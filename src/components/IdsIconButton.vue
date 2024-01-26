@@ -116,7 +116,6 @@ const iconButtonStyle = reactive({
   &:focus {
     @include focusMixin;
     border: v-bind('iconButtonStyle.focusedBorder');
-
   }
 
   &:active {
