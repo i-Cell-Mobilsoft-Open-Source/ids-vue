@@ -1,0 +1,29 @@
+{
+  "source": ["tokens/**/*.json"],
+  "platforms": {    
+    "scss": {
+      "prefix": "ids",
+      "transformGroup": "css",
+      "buildPath": "./src/styles/",
+      "files": [
+        {
+        "destination": "_base.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_component.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_smc-colors.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_smc-reference.scss",
+        "format": "css/variables"
+      }
+    ],
+    "transforms": ["attribute/cti", "name/cti/kebab", "time/seconds", "content/icon", "size/px", "color/rgb"]
+    }
+  }
+}
