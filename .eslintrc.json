@@ -8,12 +8,24 @@
     //"plugin:@typescript-eslint/eslint-recommended"
   ],
   "rules": {
-    "max-attributes-per-line": "180"
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": {
+          "max": 6
+        },
+        "multiline": {
+          "max": 4
+        }
+      }
+    ]
   },
   "ignorePatterns": [
     "dist/**",
+    "cypress/**",
     "scripts/**",
     "vite.config.ts",
-    "node_modules/**"
+    "node_modules/**",
+    "cypress.config.ts"
   ]
 }

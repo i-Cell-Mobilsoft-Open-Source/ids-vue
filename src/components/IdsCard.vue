@@ -1,6 +1,6 @@
 <template>
   <div class="ids-card">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

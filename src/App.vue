@@ -3,7 +3,7 @@ import DemoView from './demo/DemoView.vue';
 </script>
 
 <template>
-  <DemoView></DemoView>
+  <DemoView />
 </template>
 
 <style>

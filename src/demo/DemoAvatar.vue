@@ -3,30 +3,28 @@
     <h2>Avatars</h2>
     <IdsAvatar
       v-for="(option, index) in allOptions"
+      :id="`${option.variant}-${option.size}-avatar-monogram`"
       :key="index"
       :size="option.size"
       :variant="option.variant"
-      :id="`${option.variant}-${option.size}-avatar-monogram`"
     >
       BB
     </IdsAvatar>
     <IdsAvatar
       v-for="(option, index) in allOptions"
+      :id="`${option.variant}-${option.size}-avatar-user`"
       :key="index"
       :size="option.size"
       :variant="option.variant"
-      :id="`${option.variant}-${option.size}-avatar-user`"
-    >
-    </IdsAvatar>
+    />
 
     <IdsAvatar
       v-for="(option, index) in allSizeOptions"
+      :id="`${option.size}-avatar-with-image`"
       :key="index"
       :size="option.size"
       image="https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg"
-      :id="`${option.size}-avatar-with-image`"
-    >
-    </IdsAvatar>
+    />
   </div>
 </template>
 

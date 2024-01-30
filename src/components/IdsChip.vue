@@ -6,12 +6,14 @@ const props = withDefaults(defineProps<{
   mode?: "filled" | "outlined",
   size?: "compact" | "comfortable",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
-  leadingIcon?: Object | undefined,
-  trailingIcon?: Object | undefined,
+  leadingIcon?: object,
+  trailingIcon?: object,
 }>(), {
   mode: 'filled',
   size: 'comfortable',
   variant: 'primary',
+  leadingIcon: undefined,
+  trailingIcon: undefined,
 });
 
 const chipStyle = reactive({
@@ -48,7 +50,7 @@ const chipStyle = reactive({
 <template>
   <button :class="[size, 'ids-chip']" type="button">
     <component :is="props.leadingIcon" class="icon-size" />
-    <slot></slot>
+    <slot />
     <component :is="props.trailingIcon" class="icon-size" />
   </button>
 </template>

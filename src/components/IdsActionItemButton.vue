@@ -6,43 +6,45 @@ const props = withDefaults(
     mode?: "text" | "filled",
     size?: "compact" | "comfortable" | "spacious",
     variant?: "surface",
-    leadingIcon?: Object | undefined,
-    trailingIcon?: Object | undefined,
+    leadingIcon?: object,
+    trailingIcon?: object,
     isDisabled?: boolean,
+    isActive?: boolean
   }>(),
   {
     mode: "filled",
+    isActive: false,
     isDisabled: false,
-    size: "comfortable",
     variant: "surface",
+    size: "comfortable",
+    leadingIcon: undefined,
+    trailingIcon: undefined,
   },
 );
 
 const actionItemButtonStyle = reactive({
   //enabled
-  //opacity: `var(--ids-comp-action-item-button-size-${props.size}-border, 1)`,
   color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,
   background: ` var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-enabled)`,
   border: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
 
   //hovered
+  hoverColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
 
   //focused
+  focusedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
-  //background: var(--comp-action-item-button-filled-color-bg-surface-focused, #F1F5F9);
-  //border-radius: var(--comp-menu-item-size-spacious-border-radius, 1rem);
+
+  //pressed
+  pressedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-pressed)`,
+  pressedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-pressed)`,
 
   //active
-  activeBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
-
-  //   border-radius: var(--comp-action-item-button-size-spacious-border-radius, 1rem);
-  // border: var(--comp-action-item-button-size-spacious-border-width, 1px) solid var(--comp-action-item-button-text-color-border-surface-active, rgba(255, 255, 255, 0.00));
-  // background: var(--comp-action-item-button-text-color-bg-surface-active, #F1F5F9);
+  activeColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-active)`,
+  activeBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-active)`,
 
   //disabled
   disabledColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-disabled)`,
@@ -55,11 +57,23 @@ const actionItemButtonStyle = reactive({
 </script>
 
 <template>
-  <button type="button" :class="[size, 'ids-action-item-button']" :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined">
-    <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
-    <slot></slot>
-    <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
+  <button
+    type="button"
+    :class="[size, 'ids-action-item-button']"
+    :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
+    <component
+      :is="props.leadingIcon"
+      class="icon-size"
+      aria-hidden="true"
+    />
+    <slot />
+    <component
+      :is="props.trailingIcon"
+      class="icon-size"
+      aria-hidden="true"
+    />
   </button>
 </template>
 
@@ -118,22 +132,21 @@ const actionItemButtonStyle = reactive({
   border-radius: v-bind("actionItemButtonStyle.borderRadius");
 
   &:hover {
+    color: v-bind("actionItemButtonStyle.hoverColor");
     border: v-bind("actionItemButtonStyle.hoverBorder");
     background: v-bind("actionItemButtonStyle.hoverBackground");
   }
 
   &:focus {
-    border: v-bind("actionItemButtonStyle.focusedBorder");
     outline-offset: 2px;
+    color: v-bind('actionItemButtonStyle.focusedColor');
     background: v-bind("actionItemButtonStyle.focusedBackground");
     opacity: var(--ids-comp-action-item-button-size-spacious-border, 1);
-    border-radius: var(--ids-comp-action-item-button-size-spacious-border-radius, 1000px);
-    outline: var(--ids-comp-action-item-button-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+    outline: var(--ids-comp-action-item-button-focused-outline-size-outline, 1px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
   }
 
   &:active {
-    border: v-bind("actionItemButtonStyle.activeBorder");
-    background: v-bind("actionItemButtonStyle.activeBackground");
+    background: v-bind("actionItemButtonStyle.pressedBackground");
     outline: none;
   }
 
