@@ -1,17 +1,49 @@
 <template>
   <div class="demo">
     <h2>ActionItemButtons</h2>
-    <IdsActionItemButton v-for="(option, index) in allOptions" :key="index" :size="option.size"
-      :leading-icon="AdjustmentsVerticalIcon" :trailing-icon="ChevronDownIcon"
-      :id="`${option.mode}-${option.size}-button`">
+    <IdsActionItemButton
+      v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.size}-button`"
+      :key="index"
+      :size="option.size"
+      :leading-icon="AdjustmentsVerticalIcon"
+      :trailing-icon="ChevronDownIcon"
+      :mode="option.mode"
+    >
+      {{ option.mode + " " + option.size }} button
+    </IdsActionItemButton>
+
+    <!-- Active Buttons -->
+    <h2 class="pt-2">
+      Active ActionItemButtons
+    </h2>
+    <IdsActionItemButton
+      v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.size}-button`"
+      :key="index"
+      :size="option.size"
+      :leading-icon="AdjustmentsVerticalIcon"
+      :trailing-icon="ChevronDownIcon"
+      :mode="option.mode"
+      :is-active="true"
+    >
       {{ option.mode + " " + option.size }} button
     </IdsActionItemButton>
 
     <!-- Disabled Buttons -->
-    <h2 class="pt-2">Disabled ActionItemButtons</h2>
-    <IdsActionItemButton v-for="(option, index) in allOptions" :key="index" :isDisabled="true" :size="option.size"
-      :mode="option.mode" :leading-icon="AdjustmentsVerticalIcon" :trailing-icon="ChevronDownIcon"
-      :id="`${option.mode}-${option.size}-button`">
+    <h2 class="pt-2">
+      Disabled ActionItemButtons
+    </h2>
+    <IdsActionItemButton
+      v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.size}-button`"
+      :key="index"
+      :is-disabled="true"
+      :size="option.size"
+      :mode="option.mode"
+      :leading-icon="AdjustmentsVerticalIcon"
+      :trailing-icon="ChevronDownIcon"
+    >
       {{ option.mode + " " + option.size }} button
     </IdsActionItemButton>
   </div>

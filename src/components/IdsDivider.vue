@@ -22,12 +22,14 @@ const props = withDefaults(
     type: "horizontal",
     size: "comfortable",
     variant: "primary",
+    width: "auto",
+    height: "100px",
   },
 );
 
 const DividerStyle = reactive({
   //enabled
-  background: ` var(--ids-comp-divider-color-fg-${props.variant}-enabled)`,
+  background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius, 0px)`,
   width: props.width,
   height: props.height,
@@ -35,7 +37,7 @@ const DividerStyle = reactive({
 </script>
 
 <template>
-  <div :class="[type, size, 'ids-divider']"></div>
+  <div :class="[type, size, 'ids-divider']" />
 </template>
 
 <style scoped lang="scss">

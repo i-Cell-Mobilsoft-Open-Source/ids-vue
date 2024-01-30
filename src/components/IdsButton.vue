@@ -15,8 +15,8 @@ const props = withDefaults(
     | "warning"
     | "light"
     | "dark";
-    leadingIcon?: Object | undefined;
-    trailingIcon?: Object | undefined;
+    leadingIcon?: object;
+    trailingIcon?: object;
     isDisabled?: boolean;
   }>(),
   {
@@ -25,6 +25,8 @@ const props = withDefaults(
     isDisabled: false,
     variant: "primary",
     size: "comfortable",
+    leadingIcon: undefined,
+    trailingIcon: undefined,
   },
 );
 
@@ -59,10 +61,13 @@ const buttonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :class="[size, 'ids-button']" :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined">
+  <button
+    :type="type" :class="[size, 'ids-button']"
+    :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
-    <slot></slot>
+    <slot />
     <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
   </button>
 </template>

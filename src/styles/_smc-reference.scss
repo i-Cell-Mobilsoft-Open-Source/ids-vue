@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 25 Jan 2024 14:46:10 GMT
+ * Generated on Mon, 29 Jan 2024 16:59:11 GMT
  */
 
 :root {
@@ -2339,20 +2339,24 @@
   --ids-comp-divider-focused-outline-color-dark-focused: rgb(0, 0, 0);
   --ids-comp-divider-focused-outline-color-light-focused: rgb(255, 255, 255);
   --ids-comp-divider-focused-outline-size-outline: 3px;
+  --ids-comp-divider-size-compact-width: 1px;
   --ids-comp-divider-size-compact-height: 1px;
   --ids-comp-divider-size-compact-border-radius: 0px;
+  --ids-comp-divider-size-comfortable-width: 2px;
   --ids-comp-divider-size-comfortable-height: 2px;
   --ids-comp-divider-size-comfortable-border-radius: 0px;
+  --ids-comp-divider-size-spacious-width: 4px;
   --ids-comp-divider-size-spacious-height: 4px;
   --ids-comp-divider-size-spacious-border-radius: 0px;
-  --ids-comp-divider-color-fg-surface-enabled: rgb(203, 213, 225);
-  --ids-comp-divider-color-fg-primary-enabled: rgb(0, 60, 255);
-  --ids-comp-divider-color-fg-secondary-enabled: rgb(71, 85, 105);
-  --ids-comp-divider-color-fg-brand-enabled: rgb(0, 60, 255);
-  --ids-comp-divider-color-fg-success-enabled: rgb(34, 197, 94);
-  --ids-comp-divider-color-fg-warning-enabled: rgb(249, 115, 22);
-  --ids-comp-divider-color-fg-light-enabled: rgb(255, 255, 255);
-  --ids-comp-divider-color-fg-dark-enabled: rgb(2, 6, 23);
+  --ids-comp-divider-color-bg-surface-enabled: rgb(203, 213, 225);
+  --ids-comp-divider-color-bg-primary-enabled: rgb(0, 60, 255);
+  --ids-comp-divider-color-bg-secondary-enabled: rgb(100, 116, 139);
+  --ids-comp-divider-color-bg-brand-enabled: rgb(0, 60, 255);
+  --ids-comp-divider-color-bg-error-enabled: rgb(239, 68, 68);
+  --ids-comp-divider-color-bg-success-enabled: rgb(34, 197, 94);
+  --ids-comp-divider-color-bg-warning-enabled: rgb(249, 115, 22);
+  --ids-comp-divider-color-bg-light-enabled: rgb(255, 255, 255);
+  --ids-comp-divider-color-bg-dark-enabled: rgb(2, 6, 23);
   --ids-comp-action-item-button-focused-outline-color-dark-focused: rgb(0, 0, 0);
   --ids-comp-action-item-button-focused-outline-color-light-focused: rgb(255, 255, 255);
   --ids-comp-action-item-button-focused-outline-size-outline: 3px;
@@ -2381,16 +2385,19 @@
   --ids-comp-action-item-button-text-color-fg-surface-hovered: rgb(0, 60, 255);
   --ids-comp-action-item-button-text-color-fg-surface-focused: rgb(0, 60, 255);
   --ids-comp-action-item-button-text-color-fg-surface-active: rgb(0, 60, 255);
+  --ids-comp-action-item-button-text-color-fg-surface-pressed: rgb(0, 60, 255);
   --ids-comp-action-item-button-text-color-fg-surface-disabled: rgb(148, 163, 184);
   --ids-comp-action-item-button-text-color-bg-surface-enabled: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-bg-surface-hovered: rgb(241, 245, 249);
   --ids-comp-action-item-button-text-color-bg-surface-focused: rgb(241, 245, 249);
+  --ids-comp-action-item-button-text-color-bg-surface-pressed: rgb(226, 232, 240);
   --ids-comp-action-item-button-text-color-bg-surface-active: rgb(241, 245, 249);
   --ids-comp-action-item-button-text-color-bg-surface-disabled: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-border-surface-enabled: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-border-surface-hovered: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-border-surface-focused: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-border-surface-active: rgba(255, 255, 255, 0);
+  --ids-comp-action-item-button-text-color-border-surface-pressed: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-text-color-border-surface-disabled: rgba(255, 255, 255, 0);
   --ids-comp-action-item-button-filled-color-fg-surface-enabled: rgb(51, 65, 85);
   --ids-comp-action-item-button-filled-color-fg-surface-hovered: rgb(0, 60, 255);

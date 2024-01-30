@@ -3,13 +3,13 @@
     <h2>Chips</h2>
     <IdsChip
       v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.variant}-${option.size}-chip`"
       :key="index"
       :size="option.size"
       :mode="option.mode"
       :leading-icon="BoltIcon"
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
-      :id="`${option.mode}-${option.variant}-${option.size}-chip`"
     >
       {{ option.mode + " " + option.variant + " " + option.size }} chip
     </IdsChip>

@@ -7,12 +7,13 @@ const props = withDefaults(defineProps<{
   mode?: "filled" | "outlined" | "standard",
   size?: "compact" | "comfortable" | "spacious",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
-  icon?: Object | undefined,
+  icon?: object,
 }>(), {
   type: 'button',
   mode: 'filled',
   size: 'comfortable',
   variant: 'primary',
+  icon: undefined,
 });
 
 const iconButtonStyle = reactive({

@@ -3,29 +3,18 @@
     <div class="demo">
       <h2>Dividers Horizontal</h2>
       <IdsDivider
-        v-for="(option, index) in allOptions"
-        :key="index"
-        :size="option.size"
-        :variant="option.variant"
-        width="300px"
-        :id="`${option.variant}-${option.size}-horizontal-divider`"
-      >
-      </IdsDivider>
+        v-for="(option, index) in allOptions" :id="`${option.variant}-${option.size}-horizontal-divider`"
+        :key="index" :size="option.size" :variant="option.variant"
+      />
     </div>
 
     <div class="demo">
       <h2>Dividers Vetrtical</h2>
       <div class="demo2">
         <IdsDivider
-          v-for="(option, index) in allOptions"
-          :key="index"
-          height="300px"
-          type="vertical"
-          :size="option.size"
-          :variant="option.variant"
-          :id="`${option.variant}-${option.size}-vertical-divider`"
-        >
-        </IdsDivider>
+          v-for="(option, index) in allOptions" :id="`${option.variant}-${option.size}-vertical-divider`"
+          :key="index" type="vertical" :size="option.size" :variant="option.variant"
+        />
       </div>
     </div>
   </section>
@@ -37,15 +26,15 @@ import IdsDivider from "../components/IdsDivider.vue";
 type DividerOptions = {
   size?: "compact" | "comfortable" | "spacious";
   variant?:
-    | "surface"
-    | "primary"
-    | "secondary"
-    | "brand"
-    | "error"
-    | "success"
-    | "warning"
-    | "light"
-    | "dark";
+  | "surface"
+  | "primary"
+  | "secondary"
+  | "brand"
+  | "error"
+  | "success"
+  | "warning"
+  | "light"
+  | "dark";
 };
 
 const allSizes: Array<DividerOptions["size"]> = [
@@ -86,7 +75,8 @@ for (const size of allSizes) {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 40px;
-  & > button {
+
+  &>button {
     align-self: center;
   }
 }

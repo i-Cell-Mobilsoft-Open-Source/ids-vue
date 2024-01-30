@@ -3,29 +3,31 @@
     <h2>Buttons</h2>
     <IdsButton
       v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.variant}-${option.size}-button`"
       :key="index"
       :size="option.size"
       :mode="option.mode"
       :leading-icon="BoltIcon"
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
-      :id="`${option.mode}-${option.variant}-${option.size}-button`"
     >
       {{ option.mode + " " + option.variant + " " + option.size }} button
     </IdsButton>
 
     <!-- Disabled Buttons -->
-    <h2 class="pt-2">Disabled Buttons</h2>
+    <h2 class="pt-2">
+      Disabled Buttons
+    </h2>
     <IdsButton
       v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.variant}-${option.size}-button`"
       :key="index"
-      :isDisabled="true"
+      :is-disabled="true"
       :size="option.size"
       :mode="option.mode"
       :leading-icon="BoltIcon"
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
-      :id="`${option.mode}-${option.variant}-${option.size}-button`"
     >
       {{ option.mode + " " + option.variant + " " + option.size }} button
     </IdsButton>
@@ -40,14 +42,14 @@ type ButtonOptions = {
   mode?: "filled" | "outlined" | "text";
   size?: "compact" | "comfortable" | "spacious";
   variant?:
-    | "primary"
-    | "secondary"
-    | "brand"
-    | "error"
-    | "success"
-    | "warning"
-    | "light"
-    | "dark";
+  | "primary"
+  | "secondary"
+  | "brand"
+  | "error"
+  | "success"
+  | "warning"
+  | "light"
+  | "dark";
 };
 
 const allModes: Array<ButtonOptions["mode"]> = ["filled", "outlined", "text"];

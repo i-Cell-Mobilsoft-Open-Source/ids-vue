@@ -1,12 +1,17 @@
 <template>
   <div class="demo">
-     <h2>Icon Buttons</h2>
-     <IdsIconButton v-for="(option, index) in allOptions" :key="index" 
-     :size="option.size" :variant="option.variant" :mode="option.mode" :icon="BeakerIcon" 
-     :id="`${option.mode}-${option.variant}-${option.size}-icon-button`">
-     </IdsIconButton>
-     </div>
- </template>
+    <h2>Icon Buttons</h2>
+    <IdsIconButton
+      v-for="(option, index) in allOptions"
+      :id="`${option.mode}-${option.variant}-${option.size}-icon-button`" 
+      :key="index"
+      :size="option.size"
+      :variant="option.variant"
+      :mode="option.mode" 
+      :icon="BeakerIcon"
+    />
+  </div>
+</template>
  
  <script setup lang="ts">
   import { BeakerIcon } from '@heroicons/vue/24/solid'
