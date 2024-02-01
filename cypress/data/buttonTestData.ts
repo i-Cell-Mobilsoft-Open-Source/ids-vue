@@ -51,7 +51,7 @@ const buttonTestData = {
   }],
 
   //textColors
-  enabledTextColors: [{
+  enabledColors: [{
     primary: "rgb(0, 60, 255)",
     secondary: "rgb(100, 116, 139)",
     brand: "rgb(0, 60, 255)",
@@ -61,8 +61,7 @@ const buttonTestData = {
     light: "rgb(255, 255, 255)",
     dark: "rgb(2, 6, 23)",
   }],
-
-  activeTextColors: [{
+  activeColors: [{
     primary: "rgb(0, 60, 255)",
     secondary: "rgb(100, 116, 139)",
     brand: "rgb(0, 60, 255)",
@@ -72,8 +71,7 @@ const buttonTestData = {
     light: "rgb(255, 255, 255)",
     dark: "rgb(2, 6, 23)",
   }],
-
-  hoveredTextColors: [{
+  hoveredColors: [{
     primary: "rgb(255, 255, 255)",
     secondary: "rgb(255, 255, 255)",
     brand: "rgb(255, 255, 255)",
@@ -83,6 +81,17 @@ const buttonTestData = {
     light: "rgb(71, 85, 105)",
     dark: "rgb(255, 255, 255)",
   }],
+  hoveredOutlineTextColors: [{
+    primary: "rgb(0, 59, 235)",
+    secondary: "rgb(51, 65, 85)",
+    brand: "rgb(0, 47, 189)",
+    error: "rgb(220, 38, 38)",
+    success: "rgb(22, 163, 74)",
+    warning: "rgb(234, 88, 12)",
+    light: "rgb(255, 255, 255)",
+    dark: "rgb(2, 6, 23)",
+  }],
+  
 
   //sizes
   allWidth: [{
@@ -101,7 +110,8 @@ const buttonTestData = {
     spacious: "24px",
   }],
   white: 'rgba(255, 255, 255, 0)',
-  aliceBlue: 'rgb(248, 250, 252)',
+  hoverdOutlineBg: 'rgb(248, 250, 252)',
+  hoveredTextBgColors: "rgb(241, 245, 249)",
 }
 
 export default buttonTestData;

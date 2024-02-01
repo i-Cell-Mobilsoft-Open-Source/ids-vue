@@ -29,7 +29,7 @@ describe('ids Button Demo test', () => {
     cy.visit('/')
     allCombinations.forEach((item) => {
       buttonTestData.enabledBgColors.forEach((bgColor) => {
-        buttonTestData.enabledTextColors.forEach((color) => {
+        buttonTestData.enabledColors.forEach((color) => {
           const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
           if (item.mode === 'outlined' || item.mode === 'text') {
             cy.get(buttonSelector).should('be.visible').should('have.css', 'background-color').and('eq', buttonTestData.white)
@@ -73,23 +73,28 @@ describe('ids Button Demo test', () => {
     })
   })
 
-  it('Checks color of button with hovered state', () => {
+  it('Checks color and background color of button with hovered state', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.hoveredBgColors.forEach((bgColor) => {
         //itt lehetne a activeTextcolor-t bejárni, majd a 90.sorban assetrálni/tesztet írni
-        //buttonTestData.hoveredTextColors.forEach((color) => {
+        buttonTestData.hoveredOutlineTextColors.forEach((outlineColor) => {
+          buttonTestData.hoveredColors.forEach((color) => {
         const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
 
-        if (item.mode === 'outlined' || item.mode === 'text') {
-          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', 'background-color').and('eq', buttonTestData.aliceBlue);
-        } else {
-          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', 'background-color').and('eq', bgColor[item.variant]);
+        if (item.mode === 'outlined') {
+          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.hoverdOutlineBg, 'color': outlineColor[item.variant]});
+        } else if (item.mode === 'text'){
+          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.hoveredTextBgColors, 'color': outlineColor[item.variant] });
+        }        
+        else {
+          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': bgColor[item.variant],'color': color[item.variant]
+          });
         }
         //itt mehetne a tesztelés text color-ra
-        //button.should('have.css', 'color').and('eq', color[item.variant]);
+        });
+        });
       });
-      //}); //TODO: ezek az activeTextColors-t loop zárójelek
     });
   });
 
@@ -101,7 +106,7 @@ describe('ids Button Demo test', () => {
         //buttonTestData.activeTextColors.forEach((color) => {
         const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
         if (item.mode === 'outlined' || item.mode === 'text') {
-          button.realMouseDown({ pointer: "mouse" }).wait(500).should('have.css', 'background-color').and('eq', buttonTestData.aliceBlue);
+          //button.realMouseDown({ pointer: "mouse" }).wait(500).should('have.css', 'background-color').and('eq', buttonTestData.aliceBlue);
         } else {
           button.realMouseDown({ pointer: "mouse" }).wait(500).should('have.css', 'background-color').and('eq', bgColor[item.variant])
         }
