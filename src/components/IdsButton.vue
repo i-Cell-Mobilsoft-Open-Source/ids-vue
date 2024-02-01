@@ -15,8 +15,8 @@ const props = withDefaults(
     | "warning"
     | "light"
     | "dark";
-    leadingIcon?: object;
-    trailingIcon?: object;
+    leadingIcon?: object | undefined;
+    trailingIcon?: object | undefined;
     isDisabled?: boolean;
   }>(),
   {

@@ -2,12 +2,12 @@
   <div class="demo">
     <h2>Buttons</h2>
     <IdsButton
-      v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.variant}-${option.size}-button`"
-      :key="index"
+      v-for="(option, index) in allOptions" 
+      :id="`${option.mode}-${option.variant}-${option.size}-button`" 
+      :key="index" 
       :size="option.size"
-      :mode="option.mode"
-      :leading-icon="BoltIcon"
+      :mode="option.mode" 
+      :leading-icon="BoltIcon" 
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >
@@ -19,13 +19,13 @@
       Disabled Buttons
     </h2>
     <IdsButton
-      v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.variant}-${option.size}-button`"
+      v-for="(option, index) in allOptions" 
+      :id="`${option.mode}-${option.variant}-${option.size}-button`" 
       :key="index"
       :is-disabled="true"
-      :size="option.size"
-      :mode="option.mode"
-      :leading-icon="BoltIcon"
+      :size="option.size" 
+      :mode="option.mode" 
+      :leading-icon="BoltIcon" 
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >

@@ -7,7 +7,13 @@ export default defineConfig({
     },
 
     specPattern: "cypress/e2e/**/*.cy.ts",
-    baseUrl: 'http://localhost:1234',
+    baseUrl: "http://localhost:1234",
+  },
 
+  component: {
+    devServer: {
+      framework: "vue",
+      bundler: "vite",
+    },
   },
 });
