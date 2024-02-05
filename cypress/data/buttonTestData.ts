@@ -134,8 +134,21 @@ const buttonTestData = {
     comfortable: "14px",
     spacious: "18px",
   }],
-  
-  allFontWeight: '700',
+  allLineHeight: [{
+    compact: "1px",
+    comfortable: "20px",
+    spacious: "24px",
+  }],
+  common: [{
+    flexShrink: 0,
+    fontWeight: 700,
+    width: 'fit-content',
+    alignItems: 'center',
+    display: 'inline-flex',
+    justifyContent: 'center',
+  }],
+
+  //allFontWeight: '700',
   white: 'rgba(255, 255, 255, 0)',
   hoverdOutlineBg: 'rgb(248, 250, 252)',
   hoveredTextBgColors: "rgb(241, 245, 249)",

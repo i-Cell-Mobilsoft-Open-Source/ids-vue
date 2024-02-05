@@ -14,20 +14,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks the content of button', () => {
-    cy.visit('/');
-    allCombinations.forEach((item) => {
-      buttonTestData.allWidth.forEach((width) => {
-        const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
-        cy.get(buttonSelector).should('be.visible').contains(`${item.mode} ${item.variant} ${item.size} button`);
-        cy.get(buttonSelector).should('be.visible').should('have.css', 'height').and('eq', width[item.size]);
-        // ide jön még a height
-      });
-    });
-  });
-
-// min-width próba
-  xit('Checks the content of button', () => {
+  it('Checks the content, min-width and height of button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allHeight.forEach((height) => {
@@ -40,8 +27,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  //font-size próba
-  xit('Checks th font-size of button', () => {
+  xit('Checks the font-size of button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allFontSize.forEach((font) => {
@@ -52,12 +38,30 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  //font-weight próba
-  it('Checks th font-weight of button', () => {
+  xit('Checks the line-height of button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
+      buttonTestData.allLineHeight.forEach((lineHeigt) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
-        cy.get (buttonSelector).should('be.visible').should('have.css', {'font-weight': buttonTestData.allFontWeight});
+        cy.get (buttonSelector).should('be.visible').should('have.css', {'line-height': lineHeigt[item.size]});
+        });
+      });
+    });
+
+  it('Checks common css rules of button', () => {
+    cy.visit('/');
+    allCombinations.forEach((item) => {
+      buttonTestData.common.forEach((common) => {
+        const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
+        cy.get (buttonSelector).should('be.visible').should('have.css', {
+          'flex-shrink': common['flexShrink'],
+          'font-weight': common['fontWeight'],
+          'width': common['width'],
+          'align-items': common['alignItems'],
+          'display': common['display'],
+          'justify-content': common['justifyContent'],
+        });
+        });
       });
     });
 
