@@ -6,8 +6,8 @@ const props = withDefaults(defineProps<{
   mode?: "filled" | "outlined",
   size?: "compact" | "comfortable",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
-  leadingIcon?: object,
-  trailingIcon?: object,
+  leadingIcon?: object | undefined,
+  trailingIcon?: object | undefined,
 }>(), {
   mode: 'filled',
   size: 'comfortable',

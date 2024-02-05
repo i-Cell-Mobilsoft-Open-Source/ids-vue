@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<{
   mode?: "filled" | "outlined" | "standard",
   size?: "compact" | "comfortable" | "spacious",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
-  icon?: object,
+  icon?: object | undefined,
 }>(), {
   type: 'button',
   mode: 'filled',

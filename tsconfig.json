@@ -23,17 +23,24 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "types": [
+      "cypress",
+      "node",
+      "cypress-real-events"
+    ],
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "cypress.config.ts"
   ],
   "exclude": [
     "src/App.vue",
     "src/demo/**",
-    "src/main.ts"
+    "src/main.ts",
+    "cypress.config.ts",
+    "cypress",
+    "node_modules"
   ],
   "references": [
     {

@@ -6,8 +6,8 @@ const props = withDefaults(
     mode?: "text" | "filled",
     size?: "compact" | "comfortable" | "spacious",
     variant?: "surface",
-    leadingIcon?: object,
-    trailingIcon?: object,
+    leadingIcon?: object | undefined,
+    trailingIcon?: object | undefined,
     isDisabled?: boolean,
     isActive?: boolean
   }>(),

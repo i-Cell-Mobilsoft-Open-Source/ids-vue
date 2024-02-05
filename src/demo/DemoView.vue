@@ -1,29 +1,30 @@
+<!-- eslint-disable vue/html-self-closing -->
 <template>
   <nav :class="{ 'open': isMenuVisible }">
     <div
       class="menu-btn hamburger-menu"
       @click="toggleMenu"
     >
-      <div class="bar" />
-      <div class="bar" />
-      <div class="bar" />
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
-    <button @click="showComponent(Button)">
+    <button data-cy="button-component" @click="showComponent(Button)">
       Buttons Component
     </button>
-    <button @click="showComponent(IconButton)">
+    <button data-cy="icon-button-component" @click="showComponent(IconButton)">
       Icon Buttons Component
     </button>
-    <button @click="showComponent(Chip)">
+    <button data-cy="chips-component" @click="showComponent(Chip)">
       Chips Component
     </button>
-    <button @click="showComponent(Divider)">
+    <button data-cy="divider-component" @click="showComponent(Divider)">
       Divider Component
     </button>
-    <button @click="showComponent(Avatar)">
+    <button data-cy="avatar-component" @click="showComponent(Avatar)">
       Avatar Component
     </button>
-    <button @click="showComponent(ActionItemButton)">
+    <button data-cy="action-item-button-component" @click="showComponent(ActionItemButton)">
       ActionItemButton Component
     </button>
   </nav>
@@ -50,7 +51,7 @@ function showComponent(data: any) {
   currentComponent.value = data;
 }
 
-const isMenuVisible = ref(true);
+const isMenuVisible = ref(false);
 
 const toggleMenu = () => {
   isMenuVisible.value = !isMenuVisible.value;
@@ -60,7 +61,7 @@ const toggleMenu = () => {
 <style scoped>
 nav {
   top: 0px;
-  left: -325px;
+  right: -325px;
   gap: 1rem;
   display: flex;
   padding: 1rem;
@@ -68,17 +69,17 @@ nav {
   flex-direction: column;
   background-color: #334155;
   border-bottom-right-radius: 4px;
-  transition: left 0.3s ease;
+  transition: right 0.3s ease;
 
   &.open {
-    left: 0;
+    right: 0;
 
     &>.hamburger-menu {
-      transform: rotate(90deg);
+      transform: rotate(-90deg);
     }
 
     &>.hamburger-menu .bar:nth-child(1) {
-      transform: translateY(10px) rotate(-135deg);
+      transform: translateY(10px) rotate(135deg);
     }
 
     &>.hamburger-menu .bar:nth-child(2) {
@@ -86,7 +87,7 @@ nav {
     }
 
     &>.hamburger-menu .bar:nth-child(3) {
-      transform: translateY(-19px) rotate(135deg);
+      transform: translateY(-19px) rotate(-135deg);
     }
   }
 }
@@ -99,7 +100,7 @@ section {
 
 .menu-btn {
   position: absolute;
-  right: -60px;
+  left: -60px;
   top: 0px;
 }
 
