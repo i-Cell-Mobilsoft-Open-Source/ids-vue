@@ -19,8 +19,8 @@
       Disabled Buttons
     </h2>
     <IdsButton
-      v-for="(option, index) in allOptions" 
-      :id="`${option.mode}-${option.variant}-${option.size}-button`" 
+      v-for="(option, index) in disabledOptions" 
+      :id="`${option.mode}-${option.variant}-${option.size}-disabled-button`" 
       :key="index"
       :is-disabled="true"
       :size="option.size" 
@@ -52,6 +52,9 @@ type ButtonOptions = {
   | "dark";
 };
 
+type ModifiedButtonOptions = Omit<ButtonOptions, 'variant'> & { variant: AllowedVariants };
+type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | undefined;
+
 const allModes: Array<ButtonOptions["mode"]> = ["filled", "outlined", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
@@ -69,6 +72,7 @@ const allVariants: Array<ButtonOptions["variant"]> = [
   "dark",
 ];
 
+
 const allOptions: ButtonOptions[] = [];
 
 for (const mode of allModes) {
@@ -79,6 +83,19 @@ for (const mode of allModes) {
     }
   }
 }
+
+const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
+const disabledOptions: ModifiedButtonOptions[] = [];
+
+for (const mode of allModes) {
+  for (const size of allSizes) {
+    for (const variant of colorsToKeep) {
+      const options: ModifiedButtonOptions = { mode, size, variant };
+      disabledOptions.push(options);
+    }
+  }
+}
+
 </script>
 
 <style scoped>

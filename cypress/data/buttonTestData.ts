@@ -50,6 +50,14 @@ const buttonTestData = {
     dark: "rgb(51, 65, 85)",
   }],
 
+  disabledBgColors: [{
+    primary: "rgb(226, 232, 240)",
+    secondary: "rgb(226, 232, 240)",
+    brand: "rgb(226, 232, 240)",
+    light: "rgb(226, 232, 240)",
+    dark: "rgb(226, 232, 240)",
+  }],
+
   //textColors
   enabledColors: [{
     primary: "rgb(0, 60, 255)",
@@ -91,9 +99,21 @@ const buttonTestData = {
     light: "rgb(255, 255, 255)",
     dark: "rgb(2, 6, 23)",
   }],
+  disabledColors: [{
+    primary: "rgb(148, 163, 184)",
+    secondary: "rgb(148, 163, 184)",
+    brand: "rgb(148, 163, 184)",
+    light: "rgb(148, 163, 184)",
+    dark: "rgb(148, 163, 184)",
+  }],
   
 
   //sizes
+  allHeight: [{
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "56px",
+  }],
   allWidth: [{
     compact: "24px",
     comfortable: "40px",
@@ -109,9 +129,17 @@ const buttonTestData = {
     comfortable: "20px",
     spacious: "24px",
   }],
+  allFontSize: [{
+    compact: "12px",
+    comfortable: "14px",
+    spacious: "18px",
+  }],
+  
+  allFontWeight: '700',
   white: 'rgba(255, 255, 255, 0)',
   hoverdOutlineBg: 'rgb(248, 250, 252)',
   hoveredTextBgColors: "rgb(241, 245, 249)",
+  allRadius: '1000px'
 }
 
 export default buttonTestData;
