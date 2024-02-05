@@ -81,11 +81,41 @@
           "value": "{base.color.light}"
         },
         "fixed": {
+          "lighter-10": {
+            "attributes": {
+              "category": "color"
+            },
+            "value": "{base.color.light}"
+          },
           "default": {
             "attributes": {
               "category": "color"
             },
             "value": "{base.color.Slate.50}"
+          },
+          "darker-10": {
+            "attributes": {
+              "category": "color"
+            },
+            "value": "{base.color.Slate.100}"
+          },
+          "darker-20": {
+            "attributes": {
+              "category": "color"
+            },
+            "value": "{base.color.Slate.200}"
+          },
+          "darker-30": {
+            "attributes": {
+              "category": "color"
+            },
+            "value": "{base.color.Slate.300}"
+          },
+          "darker-40": {
+            "attributes": {
+              "category": "color"
+            },
+            "value": "{base.color.Slate.400}"
           },
           "darker-50": {
             "attributes": {

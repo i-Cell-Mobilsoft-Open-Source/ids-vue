@@ -99,6 +99,7 @@ const buttonStyle = reactive({
   line-height: 16px;
   gap: var(--ids-comp-buttons-size-compact-gap, 4px);
   height: var(--ids-comp-buttons-size-compact-height, 24px);
+  min-width: var(--ids-comp-buttons-size-compact-min-width, 24px);
   padding: var(--ids-comp-buttons-size-compact-padding-y, 6px) var(--ids-comp-buttons-size-compact-padding-x, 8px);
 }
 
@@ -108,6 +109,7 @@ const buttonStyle = reactive({
   line-height: 20px;
   gap: var(--ids-comp-buttons-size-comfortable-gap, 8px);
   height: var(--ids-comp-buttons-size-comfortable-height, 40px);
+  min-width: var(--ids-comp-buttons-size-comfortable-min-width, 40px);
   padding: var(--ids-comp-buttons-size-comfortable-padding-y, 10px) var(--ids-comp-buttons-size-comfortable-padding-x, 20px);
 }
 
@@ -117,6 +119,7 @@ const buttonStyle = reactive({
   line-height: 24px;
   gap: var(--ids-comp-buttons-size-spacious-gap, 8px);
   height: var(--ids-comp-buttons-size-spacious-height, 56px);
+  min-width: var(--ids-comp-buttons-size-spacious-min-width, 56px);
   padding: var(--ids-comp-buttons-size-spacious-padding-y, 16px) var(--ids-comp-buttons-size-spacious-padding-x, 24px);
 }
 
