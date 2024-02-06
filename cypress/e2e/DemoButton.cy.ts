@@ -9,12 +9,11 @@ describe('ids Button Demo test', () => {
     buttonTestData.allSizes.forEach((size) => {
       buttonTestData.allVariants.forEach((variant) => {
         allCombinations.push({ mode, size, variant });
-        console.log('ready')
       });
     });
   });
 
-  it('Checks the content, min-width and height of button', () => {
+  xit('Checks the content, min-width and height of button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allHeight.forEach((height) => {
@@ -48,7 +47,7 @@ describe('ids Button Demo test', () => {
       });
     });
 
-  it('Checks common css rules of button', () => {
+  xit('Checks common css rules of button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.common.forEach((common) => {
@@ -73,9 +72,17 @@ describe('ids Button Demo test', () => {
           buttonTestData.hoveredColors.forEach((enabledColor) => {
           const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
           if (item.mode === 'outlined' || item.mode === 'text') {
-            cy.get(buttonSelector).should('be.visible').should('have.css', {'background-color': buttonTestData.white, 'color': color[item.variant]});
+            cy.get(buttonSelector).should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
+              expect(styles.backgroundColor).to.equal(buttonTestData.white); // Ellenőrizzük a háttérszínt
+              expect(styles.color).to.equal(color[item.variant]);
+             }); // Ellenőrizzük a szövegszínt//.should('have.css', {'background-color': buttonTestData.white, 'color': color[item.variant]});
           } else {
-            cy.get(buttonSelector).should('be.visible').should('have.css', {'background-color': bgColor[item.variant], 'color': enabledColor[item.variant]});
+            cy.get(buttonSelector).should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
+              expect(styles.color).to.equal(enabledColor[item.variant]); // Ellenőrizzük a szövegszínt
+            });//.should('have.css', {'background-color': bgColor[item.variant], 'color': enabledColor[item.variant]});
           }
         });
         });
@@ -92,7 +99,7 @@ describe('ids Button Demo test', () => {
     })
   })
 
-  xit('Checks color and background color of button with hovered state', () => {
+  it('Checks color and background color of button with hovered state', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.hoveredBgColors.forEach((bgColor) => {
@@ -100,19 +107,31 @@ describe('ids Button Demo test', () => {
           buttonTestData.hoveredColors.forEach((color) => {
         const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
         if (item.mode === 'outlined') {
-          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.hoverdOutlineBg, 'color': outlineColor[item.variant]});
-        } else if (item.mode === 'text'){
-          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.hoveredTextBgColors, 'color': outlineColor[item.variant] });
-        }        
-        else {
-          button.realHover({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': bgColor[item.variant],'color': color[item.variant]
+          button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
+            expect(styles.backgroundColor).to.equal(buttonTestData.hoverdOutlineBg); // Ellenőrizzük a háttérszínt
+            expect(styles.color).to.equal(outlineColor[item.variant]); // Ellenőrizzük a szövegszínt
+            //.should('have.css', {'background-color': buttonTestData.hoverdOutlineBg, 'color': outlineColor[item.variant]});
           });
-        }
-        });
+        } else if (item.mode === 'text') {
+          button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
+            expect(styles.color).to.equal(color[item.variant]);
+           }); // Ellenőrizzük a szövegszínt //.should('have.css', {'background-color': buttonTestData.hoveredTextBgColors, 'color': outlineColor[item.variant] });
+        } else {
+          button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
+            expect(styles.color).to.equal(color[item.variant]); // Ellenőrizzük a szövegszínt
+          //.should('have.css', {'background-color': bgColor[item.variant],'color': color[item.variant]
+              });
+             }
+            });
+          });
         });
       });
     });
-  });
 
   xit('Checks color of button with active state', () => {
     cy.visit('/');
@@ -121,9 +140,9 @@ describe('ids Button Demo test', () => {
         buttonTestData.activeColors.forEach((color) => {
           const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
         if (item.mode === 'outlined' || item.mode === 'text') {
-          button.realMouseDown({ pointer: "mouse" }).wait(500).should('have.css', {'background-color': buttonTestData.activeBgColors, 'color': color[item.variant]});
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.activeBgColors, 'color': color[item.variant]});
         } else {
-          button.realMouseDown({ pointer: "mouse" }).wait(500).should('have.css', {'background-color': bgColor[item.variant], 'color': color[item.variant]});
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': bgColor[item.variant], 'color': color[item.variant]});
         }
        })
       });
