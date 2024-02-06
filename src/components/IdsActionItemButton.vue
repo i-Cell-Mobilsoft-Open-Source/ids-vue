@@ -59,7 +59,7 @@ const actionItemButtonStyle = reactive({
 <template>
   <button
     type="button"
-    :class="[size, 'ids-action-item-button']"
+    :class="[size ,'ids-action-item-button', { 'active': isActive }]"
     :disabled="isDisabled"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
@@ -78,6 +78,14 @@ const actionItemButtonStyle = reactive({
 </template>
 
 <style scoped lang="scss">
+@mixin commonMixin {
+  display: flex;
+  flex-shrink: 0;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+}
+
 //icon sizes
 .icon-size {
   gap: 10px;
@@ -88,12 +96,9 @@ const actionItemButtonStyle = reactive({
   height: v-bind("actionItemButtonStyle.iconWidthHeight");
 }
 
-@mixin commonMixin {
-  display: flex;
-  flex-shrink: 0;
-  font-weight: 700;
-  align-items: center;
-  justify-content: center;
+button.active {
+  color: v-bind("actionItemButtonStyle.activeColor");
+  background: v-bind("actionItemButtonStyle.activeBackground");
 }
 
 //sizes
