@@ -42,14 +42,17 @@ const buttonStyle = reactive({
   //hovered
   hoverBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
+  hoverColor: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-focused)`,
   focusedBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
+  focusedColor: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
+  activeColor: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-pressed)`,
 
   //disabled
   disabledColor: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-disabled)`,
@@ -133,12 +136,14 @@ const buttonStyle = reactive({
   border-radius: v-bind("buttonStyle.borderRadius");
 
   &:hover {
+    color: v-bind("buttonStyle.hoverColor");
     border: v-bind("buttonStyle.hoverBorder");
     background: v-bind("buttonStyle.hoverBackground");
   }
 
   &:focus {
     outline-offset: 2px;
+    color: v-bind("buttonStyle.focusedColor");
     border: v-bind("buttonStyle.focusedBorder");
     background: v-bind("buttonStyle.focusedBackground");
     opacity: var(--ids-comp-buttons-size-spacious-border, 1);
@@ -147,9 +152,10 @@ const buttonStyle = reactive({
   }
 
   &:active {
+    outline: none;
+    color: v-bind('buttonStyle.activeColor');
     border: v-bind("buttonStyle.activeBorder");
     background: v-bind("buttonStyle.activeBackground");
-    outline: none;
   }
 
   &:disabled {
