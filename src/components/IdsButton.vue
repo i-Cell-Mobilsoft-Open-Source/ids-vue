@@ -14,7 +14,8 @@ const props = withDefaults(
     | "success"
     | "warning"
     | "light"
-    | "dark";
+    | "dark"
+    | "surface";
     leadingIcon?: object | undefined;
     trailingIcon?: object | undefined;
     isDisabled?: boolean;

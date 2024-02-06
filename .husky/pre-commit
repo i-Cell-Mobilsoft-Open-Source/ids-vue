@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# npm run lint -- --fix
-# git add .
+npm run lint -- --fix
+git add .
 #npx cypress open --headless
 #git add .
 #npx pretty-quick --branch main
