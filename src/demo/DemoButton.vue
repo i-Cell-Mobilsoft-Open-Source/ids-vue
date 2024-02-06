@@ -49,11 +49,12 @@ type ButtonOptions = {
   | "success"
   | "warning"
   | "light"
-  | "dark";
+  | "dark"
+  | "surface";
 };
 
 type ModifiedButtonOptions = Omit<ButtonOptions, 'variant'> & { variant: AllowedVariants };
-type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | undefined;
+type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface" | undefined;
 
 const allModes: Array<ButtonOptions["mode"]> = ["filled", "outlined", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
@@ -70,6 +71,7 @@ const allVariants: Array<ButtonOptions["variant"]> = [
   "warning",
   "light",
   "dark",
+  "surface"
 ];
 
 
