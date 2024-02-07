@@ -1896,6 +1896,27 @@
         },
         "value": 128
       },
+      "4000": {
+        "attributes": {
+          "type": "dimension",
+          "category": "size"
+        },
+        "value": 400
+      },
+      "6000": {
+        "attributes": {
+          "type": "dimension",
+          "category": "size"
+        },
+        "value": 600
+      },
+      "8000": {
+        "attributes": {
+          "type": "dimension",
+          "category": "size"
+        },
+        "value": 800
+      },
       "10000": {
         "attributes": {
           "type": "dimension",
