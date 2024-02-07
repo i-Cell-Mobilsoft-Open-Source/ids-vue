@@ -352,6 +352,12 @@
                   "category": "color"
                 },
                 "value": "{smc.reference.opacity.transparent}"
+              },
+              "darker-95-fixed": {
+                "attributes": {
+                  "category": "color"
+                },
+                "value": "{smc.colors.surface.fixed.darker-95}"
               }
             },
             "primary": {
@@ -921,7 +927,7 @@
                 "attributes": {
                   "category": "color"
                 },
-                "value": "{smc.colors.surface.lighter-10}"
+                "value": "{smc.colors.surface.default}"
               },
               "darker-100": {
                 "attributes": {

@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 07 Feb 2024 10:25:09 GMT
+ * Generated on Wed, 07 Feb 2024 14:40:17 GMT
  */
 
 :root {
@@ -404,7 +404,7 @@
   --ids-comp-avatar-color-fg-light-enabled-surface: rgb(255, 255, 255);
   --ids-comp-avatar-color-fg-light-enabled-surface-lighter-10: rgb(248, 250, 252);
   --ids-comp-avatar-color-fg-light-disabled: rgb(148, 163, 184);
-  --ids-comp-avatar-color-fg-dark-enabled: rgb(255, 255, 255);
+  --ids-comp-avatar-color-fg-dark-enabled: rgb(248, 250, 252);
   --ids-comp-avatar-color-fg-dark-enabled-surface: rgb(2, 6, 23);
   --ids-comp-avatar-color-fg-dark-enabled-surface-lighter-10: rgb(51, 65, 85);
   --ids-comp-avatar-color-fg-dark-disabled: rgb(148, 163, 184);
@@ -688,9 +688,9 @@
   --ids-comp-buttons-outlined-color-fg-label-primary-pressed: rgb(0, 47, 189);
   --ids-comp-buttons-outlined-color-fg-label-primary-disabled: rgb(148, 163, 184);
   --ids-comp-buttons-outlined-color-fg-label-secondary-enabled: rgb(100, 116, 139);
-  --ids-comp-buttons-outlined-color-fg-label-secondary-hovered: rgb(51, 65, 85);
-  --ids-comp-buttons-outlined-color-fg-label-secondary-focused: rgb(51, 65, 85);
-  --ids-comp-buttons-outlined-color-fg-label-secondary-pressed: rgb(30, 41, 59);
+  --ids-comp-buttons-outlined-color-fg-label-secondary-hovered: rgb(71, 85, 105);
+  --ids-comp-buttons-outlined-color-fg-label-secondary-focused: rgb(71, 85, 105);
+  --ids-comp-buttons-outlined-color-fg-label-secondary-pressed: rgb(51, 65, 85);
   --ids-comp-buttons-outlined-color-fg-label-secondary-disabled: rgb(148, 163, 184);
   --ids-comp-buttons-outlined-color-fg-label-brand-enabled: rgb(0, 60, 255);
   --ids-comp-buttons-outlined-color-fg-label-brand-hovered: rgb(0, 59, 235);
@@ -733,9 +733,9 @@
   --ids-comp-buttons-outlined-color-fg-icon-primary-pressed: rgb(0, 47, 189);
   --ids-comp-buttons-outlined-color-fg-icon-primary-disabled: rgb(148, 163, 184);
   --ids-comp-buttons-outlined-color-fg-icon-secondary-enabled: rgb(100, 116, 139);
-  --ids-comp-buttons-outlined-color-fg-icon-secondary-hovered: rgb(51, 65, 85);
-  --ids-comp-buttons-outlined-color-fg-icon-secondary-focused: rgb(51, 65, 85);
-  --ids-comp-buttons-outlined-color-fg-icon-secondary-pressed: rgb(30, 41, 59);
+  --ids-comp-buttons-outlined-color-fg-icon-secondary-hovered: rgb(71, 85, 105);
+  --ids-comp-buttons-outlined-color-fg-icon-secondary-focused: rgb(71, 85, 105);
+  --ids-comp-buttons-outlined-color-fg-icon-secondary-pressed: rgb(51, 65, 85);
   --ids-comp-buttons-outlined-color-fg-icon-secondary-disabled: rgb(148, 163, 184);
   --ids-comp-buttons-outlined-color-fg-icon-brand-enabled: rgb(0, 60, 255);
   --ids-comp-buttons-outlined-color-fg-icon-brand-hovered: rgb(0, 59, 235);
@@ -1038,7 +1038,7 @@
   --ids-comp-icon-button-filled-color-fg-warning-enabled: rgb(255, 255, 255);
   --ids-comp-icon-button-filled-color-fg-light-enabled: rgb(71, 85, 105);
   --ids-comp-icon-button-filled-color-fg-light-disabled: rgb(148, 163, 184);
-  --ids-comp-icon-button-filled-color-fg-dark-enabled: rgb(255, 255, 255);
+  --ids-comp-icon-button-filled-color-fg-dark-enabled: rgb(248, 250, 252);
   --ids-comp-icon-button-filled-color-fg-dark-disabled: rgb(148, 163, 184);
   --ids-comp-icon-button-filled-color-fg-surface-enabled: rgb(100, 116, 139);
   --ids-comp-icon-button-filled-color-fg-surface-enabled-lighter-10: rgb(51, 65, 85);
@@ -1422,7 +1422,7 @@
   --ids-comp-chips-filled-color-fg-warning-enabled: rgb(255, 255, 255);
   --ids-comp-chips-filled-color-fg-light-enabled: rgb(71, 85, 105);
   --ids-comp-chips-filled-color-fg-light-disabled: rgb(148, 163, 184);
-  --ids-comp-chips-filled-color-fg-dark-enabled: rgb(255, 255, 255);
+  --ids-comp-chips-filled-color-fg-dark-enabled: rgb(248, 250, 252);
   --ids-comp-chips-filled-color-fg-dark-disabled: rgb(148, 163, 184);
   --ids-comp-chips-filled-color-bg-primary-enabled: rgb(0, 60, 255);
   --ids-comp-chips-filled-color-bg-primary-hovered: rgb(0, 47, 189);
@@ -2291,6 +2291,19 @@
   --ids-comp-accordions-size-spacious-border-radius: 0px;
   --ids-comp-accordions-size-spacious-gap: 8px;
   --ids-comp-accordions-size-spacious-border: 1px;
+  --ids-comp-tooltips-size-padding-x: 8px;
+  --ids-comp-tooltips-size-padding-y: 4px;
+  --ids-comp-tooltips-size-border-radius: 4px;
+  --ids-comp-tooltips-size-height: 28px;
+  --ids-comp-tooltips-size-border: 1px;
+  --ids-comp-tooltips-color-bg-light-enabled: rgb(255, 255, 255);
+  --ids-comp-tooltips-color-bg-dark-enabled: rgb(0, 0, 0);
+  --ids-comp-tooltips-color-fg-light-enabled: rgb(30, 41, 59);
+  --ids-comp-tooltips-color-fg-light-disabled: rgb(148, 163, 184);
+  --ids-comp-tooltips-color-fg-dark-enabled: rgb(248, 250, 252);
+  --ids-comp-tooltips-color-fg-dark-disabled: rgb(148, 163, 184);
+  --ids-comp-tooltips-color-border-light-enabled: rgba(255, 255, 255, 0);
+  --ids-comp-tooltips-color-border-dark-enabled: rgba(255, 255, 255, 0);
   --ids-enabled: rgb(0, 60, 255);
   --ids-hovered: rgb(0, 47, 189);
   --ids-focused: rgb(0, 60, 255);
@@ -2460,6 +2473,7 @@
   --ids-smc-reference-container-color-bg-surface-darker-95: rgb(2, 6, 23);
   --ids-smc-reference-container-color-bg-surface-darker-100: rgb(0, 0, 0);
   --ids-smc-reference-container-color-bg-surface-transparent: rgba(255, 255, 255, 0);
+  --ids-smc-reference-container-color-bg-surface-darker-95-fixed: rgb(2, 6, 23);
   --ids-smc-reference-container-color-bg-primary-lighter-40: rgb(209, 221, 255);
   --ids-smc-reference-container-color-bg-primary-default: rgb(0, 60, 255);
   --ids-smc-reference-container-color-bg-primary-darker-20: rgb(0, 47, 189);
@@ -2547,7 +2561,7 @@
   --ids-smc-reference-container-color-fg-dark-default-fixed: rgb(255, 255, 255);
   --ids-smc-reference-container-color-fg-dark-darker-100-fixed: rgb(2, 6, 23);
   --ids-smc-reference-container-color-fg-dark-lighter-10: rgb(203, 213, 225);
-  --ids-smc-reference-container-color-fg-dark-default: rgb(255, 255, 255);
+  --ids-smc-reference-container-color-fg-dark-default: rgb(248, 250, 252);
   --ids-smc-reference-container-color-fg-dark-darker-100: rgb(2, 6, 23);
   --ids-smc-reference-container-color-fg-light-default-fixed: rgb(30, 41, 59);
   --ids-smc-reference-container-color-fg-light-lighter-10-fixed: rgb(71, 85, 105);
