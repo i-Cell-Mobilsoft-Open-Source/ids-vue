@@ -34,26 +34,29 @@ const props = withDefaults(
 const buttonStyle = reactive({
   //enabled
   opacity: `var(--ids-comp-buttons-size-${props.size}-border, 1)`,
-  color: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-buttons-size-${props.size}-border-radius, 1000px)`,
+  color: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: ` var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-enabled)`,
   border: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
 
   //hovered
   hoverBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-hovered)`,
+  hoverColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
 
   //focused
   focusedBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-focused)`,
+  focusedColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-focused)`,
   focusedBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
 
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
+  activeColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
 
   //disabled
-  disabledColor: `var(--ids-comp-buttons-${props.mode}-color-fg-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-disabled)`,
+  disabledColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-disabled)`,
   disabledBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-disabled, rgba(255, 255, 255, 0.00))`,
 
   //icon sizes
@@ -63,8 +66,9 @@ const buttonStyle = reactive({
 
 <template>
   <button
-    :type="type" :class="[size, 'ids-button']"
+    :type="type" 
     :disabled="isDisabled"
+    :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
@@ -133,23 +137,26 @@ const buttonStyle = reactive({
   border-radius: v-bind("buttonStyle.borderRadius");
 
   &:hover {
+    color: v-bind("buttonStyle.hoverColor");
     border: v-bind("buttonStyle.hoverBorder");
     background: v-bind("buttonStyle.hoverBackground");
   }
 
   &:focus {
     outline-offset: 2px;
+    color: v-bind("buttonStyle.focusedColor");
     border: v-bind("buttonStyle.focusedBorder");
     background: v-bind("buttonStyle.focusedBackground");
-    opacity: var(--ids-comp-buttons-size-spacious-border, 1);
-    border-radius: var(--ids-comp-buttons-size-spacious-border-radius, 1000px);
-    outline: var(--ids-comp-buttons-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+    opacity: var(--ids-comp-buttons-size-spacious-border);
+    border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
   &:active {
+    outline: none;
+    color: v-bind("buttonStyle.activeColor");
     border: v-bind("buttonStyle.activeBorder");
     background: v-bind("buttonStyle.activeBackground");
-    outline: none;
   }
 
   &:disabled {
@@ -157,5 +164,10 @@ const buttonStyle = reactive({
     border: v-bind("buttonStyle.disabledBorder");
     background: v-bind("buttonStyle.disabledBackground");
   }
+
+  &.light:focus {
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-light);
+  }
+   
 }
 </style>
