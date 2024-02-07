@@ -42,6 +42,18 @@ const buttonTestData = {
     surface: "rgb(226, 232, 240)",
   }],
 
+  focusedBgColors: [{
+    primary: "rgb(0, 60, 255)",
+    secondary: "rgb(100, 116, 139)",
+    brand: "rgb(0, 60, 255)",
+    error: "rgb(239, 68, 68)",
+    success: "rgb(34, 197, 94)",
+    warning: "rgb(249, 115, 22)",
+    light: "rgb(255, 255, 255)",
+    dark: "rgb(30, 41, 59)",
+    surface: "rgb(226, 232, 240)",
+  }],
+
   activeBgColors: [{
     primary: "rgb(0, 36, 143)",
     secondary: "rgb(30, 41, 59)",
@@ -54,28 +66,17 @@ const buttonTestData = {
     surface: "rgb(203, 213, 225)",
   }],
 
-  disabledBgColors: [{
-    primary: "rgb(226, 232, 240)",
-    secondary: "rgb(226, 232, 240)",
-    brand: "rgb(226, 232, 240)",
-    light: "rgb(226, 232, 240)",
-    dark: "rgb(226, 232, 240)",
-    surface: "rgb(226, 232, 240)",
-  }],
+  // disabledBgColors: [{
+  //   primary: "rgb(226, 232, 240)",
+  //   secondary: "rgb(226, 232, 240)",
+  //   brand: "rgb(226, 232, 240)",
+  //   light: "rgb(226, 232, 240)",
+  //   dark: "rgb(226, 232, 240)",
+  //   surface: "rgb(226, 232, 240)",
+  // }],
 
   //textColors
   enabledColors: [{
-    primary: "rgb(0, 60, 255)",
-    secondary: "rgb(100, 116, 139)",
-    brand: "rgb(0, 60, 255)",
-    error: "rgb(239, 68, 68)",
-    success: "rgb(34, 197, 94)",
-    warning: "rgb(249, 115, 22)",
-    light: "rgb(255, 255, 255)",
-    dark: "rgb(2, 6, 23)",
-    surface: "rgb(100, 116, 139)",
-  }],
-  activeColors: [{
     primary: "rgb(0, 60, 255)",
     secondary: "rgb(100, 116, 139)",
     brand: "rgb(0, 60, 255)",
@@ -108,14 +109,38 @@ const buttonTestData = {
     dark: "rgb(2, 6, 23)",
     surface: "rgb(71, 85, 105)",
   }],
-  disabledColors: [{
-    primary: "rgb(148, 163, 184)",
-    secondary: "rgb(148, 163, 184)",
-    brand: "rgb(148, 163, 184)",
-    light: "rgb(148, 163, 184)",
-    dark: "rgb(148, 163, 184)",
-    surface: "rgb(148, 163, 184)",
+  focusedColors: [{
+    primary: "rgb(0, 60, 255)",
+    secondary: "rgb(100, 116, 139)",
+    brand: "rgb(0, 60, 255)",
+    error: "rgb(239, 68, 68)",
+    success: "rgb(34, 197, 94)",
+    warning: "rgb(249, 115, 22)",
+    light: "rgb(255, 255, 255)",
+    dark: "rgb(2, 6, 23)",
+    surface: "rgb(100, 116, 139)",
   }],
+  //pressed
+  activeColors: [{
+    primary: "rgb(255, 255, 255)",
+    secondary: "rgb(255, 255, 255)",
+    brand: "rgb(255, 255, 255)",
+    error: "rgb(255, 255, 255)",
+    success: "rgb(255, 255, 255)",
+    warning: "rgb(255, 255, 255)",
+    light: "rgb(71, 85, 105)",
+    dark: "rgb(255, 255, 255)",
+    surface: "rgb(100, 116, 139)",
+  }],
+
+  // disabledColors: [{
+  //   primary: "rgb(148, 163, 184)",
+  //   secondary: "rgb(148, 163, 184)",
+  //   brand: "rgb(148, 163, 184)",
+  //   light: "rgb(148, 163, 184)",
+  //   dark: "rgb(148, 163, 184)",
+  //   surface: "rgb(148, 163, 184)",
+  // }],
   
 
   //sizes
@@ -159,7 +184,9 @@ const buttonTestData = {
   }],
   white: 'rgba(255, 255, 255, 0)',
   hoverdOutlineBg: 'rgb(248, 250, 252)',
+  disabledBgColors: "rgb(226, 232, 240)",
   hoveredTextBgColors: "rgb(241, 245, 249)",
+  disabledTextColors: "rgb(148, 163, 184)",
   allRadius: '1000px'
 }
 

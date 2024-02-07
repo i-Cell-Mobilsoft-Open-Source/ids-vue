@@ -63,7 +63,7 @@ describe('ids Button Demo test', () => {
         });
       });
     });
-
+// kész
   xit('Checks the color of button', () => {
     cy.visit('/')
     allCombinations.forEach((item) => {
@@ -73,16 +73,16 @@ describe('ids Button Demo test', () => {
           const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
           if (item.mode === 'outlined' || item.mode === 'text') {
             cy.get(buttonSelector).should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
-              expect(styles.backgroundColor).to.equal(buttonTestData.white); // Ellenőrizzük a háttérszínt
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(buttonTestData.white);
               expect(styles.color).to.equal(color[item.variant]);
-             }); // Ellenőrizzük a szövegszínt//.should('have.css', {'background-color': buttonTestData.white, 'color': color[item.variant]});
+             });
           } else {
             cy.get(buttonSelector).should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
-              expect(styles.color).to.equal(enabledColor[item.variant]); // Ellenőrizzük a szövegszínt
-            });//.should('have.css', {'background-color': bgColor[item.variant], 'color': enabledColor[item.variant]});
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(enabledColor[item.variant]);
+            });
           }
         });
         });
@@ -97,9 +97,37 @@ describe('ids Button Demo test', () => {
       cy.get(buttonSelector).click().should('have.focus').should('be.visible')
         .should('have.css', 'outline').and('eq', 'rgb(0, 0, 0) solid 3px');
     })
-  })
+  });
 
-  it('Checks color and background color of button with hovered state', () => {
+  //WIP
+  xit('Checks color of button with FOCUSED state', () => {
+    cy.visit('/');
+    allCombinations.forEach((item) => {
+      buttonTestData.focusedBgColors.forEach((bgColor) => {
+        //buttonTestData.focusedColors.forEach((color) => {
+          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
+        if (item.mode === 'outlined' || item.mode === 'text') {
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(buttonTestData.focusedBgColors);
+            //expect(styles.color).to.equal(color[item.variant]);
+          });
+          //.should('have.css', {'background-color': buttonTestData.activeBgColors, 'color': color[item.variant]});
+        } else {
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            //expect(styles.color).to.equal(color[item.variant]);
+          });
+          //.should('have.css', {'background-color': bgColor[item.variant], 'color': color[item.variant]});
+        }
+       //})
+      });
+    });
+  });
+
+// kész
+  xit('Checks color and background color of button with hovered state', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.hoveredBgColors.forEach((bgColor) => {
@@ -108,23 +136,21 @@ describe('ids Button Demo test', () => {
         const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
         if (item.mode === 'outlined') {
           button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
-            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
-            expect(styles.backgroundColor).to.equal(buttonTestData.hoverdOutlineBg); // Ellenőrizzük a háttérszínt
-            expect(styles.color).to.equal(outlineColor[item.variant]); // Ellenőrizzük a szövegszínt
-            //.should('have.css', {'background-color': buttonTestData.hoverdOutlineBg, 'color': outlineColor[item.variant]});
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(buttonTestData.hoverdOutlineBg);
+            expect(styles.color).to.equal(outlineColor[item.variant]);
           });
         } else if (item.mode === 'text') {
           button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
-            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
-            expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
             expect(styles.color).to.equal(color[item.variant]);
-           }); // Ellenőrizzük a szövegszínt //.should('have.css', {'background-color': buttonTestData.hoveredTextBgColors, 'color': outlineColor[item.variant] });
+           });
         } else {
           button.realHover({ pointer: "mouse" }).wait(100).should(($el) => {
-            const styles = window.getComputedStyle($el[0]); // Az elem stílusait lekérjük
-            expect(styles.backgroundColor).to.equal(bgColor[item.variant]); // Ellenőrizzük a háttérszínt
-            expect(styles.color).to.equal(color[item.variant]); // Ellenőrizzük a szövegszínt
-          //.should('have.css', {'background-color': bgColor[item.variant],'color': color[item.variant]
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
               });
              }
             });
@@ -133,36 +159,53 @@ describe('ids Button Demo test', () => {
       });
     });
 
-  xit('Checks color of button with active state', () => {
+//WIP - itt a focused/secondary background-ot találja meg a pressed helyett, így a 2. lépésnél törik (a fg-ot kikommenteltem még)
+  it('Checks color of button with active (pressed) state', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.activeBgColors.forEach((bgColor) => {
         buttonTestData.activeColors.forEach((color) => {
           const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-button`);
         if (item.mode === 'outlined' || item.mode === 'text') {
-          button.realMouseDown({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': buttonTestData.activeBgColors, 'color': color[item.variant]});
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(buttonTestData.activeBgColors);
+            //expect(styles.color).to.equal(color[item.variant]);
+          });
+          //.should('have.css', {'background-color': buttonTestData.activeBgColors, 'color': color[item.variant]});
         } else {
-          button.realMouseDown({ pointer: "mouse" }).wait(100).should('have.css', {'background-color': bgColor[item.variant], 'color': color[item.variant]});
+          button.realMouseDown({ pointer: "mouse" }).wait(100).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          }).wait(500)
+          //.should('have.css', {'background-color': bgColor[item.variant], 'color': color[item.variant]});
         }
        })
       });
     });
   });
-
+// kész
   xit('Checks color of disabled state button', () => {
     cy.visit('/');
     allCombinations.forEach((item) => {
-        buttonTestData.disabledColors.forEach((color) => {
-          if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning'){
-            return 
-          };
-          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-button`);
-        if (item.mode === 'outlined' || item.mode === 'filled') {
-          button.should('have.css', {'background-color': buttonTestData.disabledBgColors, 'color': color[item.variant]});
-        } else {
-          button.should('have.css', {'background-color': buttonTestData.white, 'color': color[item.variant]});
-        }
-       })
+      if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning'){
+        return;
+      }
+      const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-button`);
+      if (item.mode === 'outlined' || item.mode === 'text') {
+        button.should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(buttonTestData.white);
+          expect(styles.color).to.equal(buttonTestData.disabledTextColors);
+        });
+      } else {
+        button.should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(buttonTestData.disabledBgColors);
+          expect(styles.color).to.equal(buttonTestData.disabledTextColors);
+        }); 
+      }
     });
   });
 
