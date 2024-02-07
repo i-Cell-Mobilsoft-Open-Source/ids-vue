@@ -124,6 +124,24 @@
               },
               "value": "{base.dimension.1280}"
             },
+            "400": {
+              "attributes": {
+                "type": "number"
+              },
+              "value": "{base.dimension.4000}"
+            },
+            "600": {
+              "attributes": {
+                "type": "number"
+              },
+              "value": "{base.dimension.6000}"
+            },
+            "800": {
+              "attributes": {
+                "type": "number"
+              },
+              "value": "{base.dimension.8000}"
+            },
             "none": {
               "attributes": {
                 "type": "number"
@@ -2000,6 +2018,12 @@
             },
             "value": "rgba(0, 0, 0, 0.9500)"
           }
+        },
+        "backdrop": {
+          "attributes": {
+            "type": "opacity"
+          },
+          "value": "{base.percentage.250}"
         }
       },
       "sizing": {
