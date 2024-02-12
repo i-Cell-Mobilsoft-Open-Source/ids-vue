@@ -68,9 +68,9 @@ const iconButtonStyle = reactive({
 @mixin focusMixin {
   outline-offset: 2px;
   background: v-bind('iconButtonStyle.focusedBackground');
-  opacity: var(--ids-comp-icon-button-size-spacious-border, 1);
-  border-radius: var(--ids-comp-icon-button-size-spacious-border-radius, 1000px);
-  outline: var(--ids-comp-icon-button-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+  opacity: var(--ids-comp-icon-button-size-spacious-border);
+  border-radius: var(--ids-comp-icon-button-size-spacious-border-radius);
+  outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-base-color-dark);
 }
 
 .icon-size {

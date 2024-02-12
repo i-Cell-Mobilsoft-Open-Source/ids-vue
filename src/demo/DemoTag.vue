@@ -1,9 +1,9 @@
 <template>
   <div class="demo">
-    <h2>Chips</h2>
-    <IdsChip
+    <h2>Tags</h2>
+    <IdsTag
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.variant}-${option.size}-chip`"
+      :id="`${option.mode}-${option.variant}-${option.size}-Tag`"
       :key="index"
       :size="option.size"
       :mode="option.mode"
@@ -11,16 +11,16 @@
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >
-      {{ option.mode + " " + option.variant + " " + option.size }} chip
-    </IdsChip>
+      {{ option.mode + " " + option.variant + " " + option.size }} Tag
+    </IdsTag>
   </div>
 </template>
 
 <script setup lang="ts">
 import { BoltIcon } from "@heroicons/vue/24/solid";
 import { BeakerIcon } from "@heroicons/vue/24/solid";
-import IdsChip from "../components/IdsChip.vue";
-type ChipOptions = {
+import IdsTag from "../components/IdsTag.vue";
+type TagOptions = {
   mode?: "filled" | "outlined";
   size?: "compact" | "comfortable";
   variant?:
@@ -34,9 +34,9 @@ type ChipOptions = {
     | "dark";
 };
 
-const allModes: Array<ChipOptions["mode"]> = ["filled", "outlined"];
-const allSizes: Array<ChipOptions["size"]> = ["compact", "comfortable"];
-const allVariants: Array<ChipOptions["variant"]> = [
+const allModes: Array<TagOptions["mode"]> = ["filled", "outlined"];
+const allSizes: Array<TagOptions["size"]> = ["compact", "comfortable"];
+const allVariants: Array<TagOptions["variant"]> = [
   "primary",
   "secondary",
   "brand",
@@ -47,12 +47,12 @@ const allVariants: Array<ChipOptions["variant"]> = [
   "dark",
 ];
 
-const allOptions: ChipOptions[] = [];
+const allOptions: TagOptions[] = [];
 
 for (const mode of allModes) {
   for (const size of allSizes) {
     for (const variant of allVariants) {
-      const options: ChipOptions = { mode, size, variant };
+      const options: TagOptions = { mode, size, variant };
       allOptions.push(options);
     }
   }
