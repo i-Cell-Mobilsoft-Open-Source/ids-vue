@@ -8,12 +8,14 @@ const props = withDefaults(defineProps<{
   size?: "compact" | "comfortable" | "spacious",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
   icon?: object | undefined,
+  isDisabled?: boolean;
 }>(), {
   type: 'button',
   mode: 'filled',
-  size: 'comfortable',
-  variant: 'primary',
   icon: undefined,
+  isDisabled: false,
+  variant: 'primary',
+  size: 'comfortable',
 });
 
 const iconButtonStyle = reactive({
@@ -46,7 +48,12 @@ const iconButtonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :class="[size, mode + '-mode']">
+  <button
+    :type="type" 
+    :disabled="isDisabled" 
+    :class="[size, mode + '-mode']"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.icon" class="icon-size" />
   </button>
 </template>

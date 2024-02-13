@@ -47,7 +47,7 @@ const actionPanelStyle = reactive({
   border-radius: v-bind('actionPanelStyle.borderRadius');
 }
 
-::v-deep button {
+:deep button {
   &:hover{
     border-color: transparent;
   }

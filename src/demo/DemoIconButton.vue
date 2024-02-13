@@ -5,10 +5,25 @@
       v-for="(option, index) in allOptions"
       :id="`${option.mode}-${option.variant}-${option.size}-icon-button`" 
       :key="index"
-      :size="option.size"
-      :variant="option.variant"
-      :mode="option.mode" 
       :icon="BeakerIcon"
+      :size="option.size"
+      :mode="option.mode" 
+      :variant="option.variant"
+    />
+
+    <!-- Disabled Buttons -->
+    <h2 class="pt-2">
+      Disabled Buttons
+    </h2>
+    <IdsIconButton
+      v-for="(option, index) in disabledOptions"
+      :id="`${option.mode}-${option.variant}-${option.size}-disabled-icon-button`" 
+      :key="index"
+      :icon="BeakerIcon"
+      :size="option.size"
+      :is-disabled="true"
+      :mode="option.mode" 
+      :variant="option.variant"
     />
   </div>
 </template>
@@ -21,6 +36,8 @@
    size?: "compact" | "comfortable" | "spacious",
    variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
    };
+   type ModifiedButtonOptions = Omit<IconButtonOptions, 'variant'> & { variant: AllowedVariants };
+  type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface" | undefined;
  
    const allModes: Array<IconButtonOptions["mode"]> = ["filled", "outlined", "standard"];
    const allSizes: Array<IconButtonOptions["size"]> = ["compact", "comfortable", "spacious"];
@@ -36,6 +53,18 @@
      }
    }
  }
+
+ const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
+const disabledOptions: ModifiedButtonOptions[] = [];
+
+for (const mode of allModes) {
+  for (const size of allSizes) {
+    for (const variant of colorsToKeep) {
+      const options: ModifiedButtonOptions = { mode, size, variant };
+      disabledOptions.push(options);
+    }
+  }
+}
  </script>
  
  <style scoped>
