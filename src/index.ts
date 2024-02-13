@@ -1,13 +1,13 @@
-import IdsChip from "./components/IdsChip.vue";
+import IdsTag from "./components/IdsTag.vue";
 import IdsButton from "./components/IdsButton.vue";
 import IdsAvatar from "./components/IdsAvatar.vue";
 import IdsDivider from "./components/IdsIconButton.vue";
 import IdsIconButton from "./components/IdsIconButton.vue";
-import IdsActionItemButton from "./components/IdsActionItemButton.vue";
+import IdsActionItem from "./components/IdsActionItem.vue";
 
-export { IdsChip };
+export { IdsTag };
 export { IdsAvatar };
 export { IdsButton };
 export { IdsDivider };
 export { IdsIconButton };
-export { IdsActionItemButton };
+export { IdsActionItem };
