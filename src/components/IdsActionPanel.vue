@@ -24,32 +24,25 @@ const actionPanelStyle = reactive({
    var(--ids-comp-action-panel-size-${props.size}-padding-x)`,
   outlinedBorder: `var(--ids-comp-action-panel-size-${props.size}-border) 
   solid var(--ids-comp-action-panel-${props.mode}-color-border-light-enabled)`,
-
-  //items
-  itemsGap: `var(--comp-menu-item-size-${props.size}-gap)`,
-  itemsHeight: `var(--comp-menu-item-size-${props.size}-height)`,
-  itemsPadding: `var(--comp-menu-item-size-${props.size}-padding-y) var(--comp-menu-item-size-${props.size}-padding-x)`,
-
-  //icon sizes
-  iconWidthHeight: `var(--ids-comp-buttons-size-${props.size}-icon)`,
 });
 
 </script>
 
 <template>
-  <div :class="[mode, 'items-container']">
-    <slot class="items" />
+  <div :class="[mode]">
+    <slot />
   </div>
 </template>
 
 <style scoped lang="scss">
 
 @mixin commonMixin {
-  // display: flex;
-  min-width: 100px;
-  // flex-direction: column;
-  // align-items: flex-start;  
+  display: flex;
+  width: 365px;
+  flex-direction: column;
+  align-items: flex-start;  
   gap: v-bind('actionPanelStyle.gap');
+  padding: v-bind('actionPanelStyle.padding');
   background: v-bind('actionPanelStyle.background');
   border-radius: v-bind('actionPanelStyle.borderRadius');
 }
@@ -59,11 +52,9 @@ const actionPanelStyle = reactive({
     border-color: transparent;
   }
   &:focus{
-    outline: none;
+    outline: none !important;
   }
 }
-  
-
 
 .filled {
   @include commonMixin;
@@ -84,30 +75,6 @@ const actionPanelStyle = reactive({
   var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl) 
   var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs) 
   var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker);
-}
-
-.items-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--comp-action-panel-size-compact-gap, 8px);
-  align-self: stretch;
-  width: 356px;
-  padding: var(--comp-action-panel-size-compact-padding-y, 8px) var(--comp-action-panel-size-compact-padding-x, 8px);
-  gap: var(--comp-action-panel-size-compact-gap, 8px);
-}
-
-.items {
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-  gap: v-bind('actionPanelStyle.itemsGap');
-  height: v-bind('actionPanelStyle.itemsHeight');
-  padding: v-bind('actionPanelStyle.itemsPadding');
-  background: var(--ids-comp-menu-item-color-bg-enabled);
-  border: 1px solid var(--ids-comp-menu-item-color-border-enabled);
-  border-radius: var(--ids-comp-menu-item-size-spacious-border-radius);
- 
 }
 
 </style>
