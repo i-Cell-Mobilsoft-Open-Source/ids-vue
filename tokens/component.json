@@ -2326,19 +2326,19 @@
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-10}"
                 },
                 "focused": {
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-10}"
                 },
                 "pressed": {
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-30}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
                 },
                 "disabled": {
                   "attributes": {
@@ -2616,19 +2616,19 @@
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-10}"
                 },
                 "focused": {
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-10}"
                 },
                 "pressed": {
                   "attributes": {
                     "category": "color"
                   },
-                  "value": "{smc.reference.container.color.fg.secondary.darker-30}"
+                  "value": "{smc.reference.container.color.fg.secondary.darker-20}"
                 },
                 "disabled": {
                   "attributes": {
@@ -12978,6 +12978,108 @@
               "type": "number"
             },
             "value": "{smc.reference.container.border-width.sm}"
+          }
+        }
+      }
+    },
+    "tooltips": {
+      "size": {
+        "padding-x": {
+          "attributes": {
+            "type": "number"
+          },
+          "value": "{smc.reference.container.padding.8}"
+        },
+        "padding-y": {
+          "attributes": {
+            "type": "number"
+          },
+          "value": "{smc.reference.container.padding.4}"
+        },
+        "border-radius": {
+          "attributes": {
+            "type": "border-radius"
+          },
+          "value": "{smc.reference.container.border-radius.2xs}"
+        },
+        "height": {
+          "attributes": {
+            "type": "number"
+          },
+          "value": "{smc.reference.container.size.height.28}"
+        },
+        "border": {
+          "attributes": {
+            "type": "number"
+          },
+          "value": "{smc.reference.container.border-width.sm}"
+        }
+      },
+      "color": {
+        "bg": {
+          "light": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.bg.light.default-fixed}"
+            }
+          },
+          "dark": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.bg.dark.default}"
+            }
+          }
+        },
+        "fg": {
+          "light": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.fg.light.default-fixed}"
+            },
+            "disabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.fg.disabled.default}"
+            }
+          },
+          "dark": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.fg.dark.default}"
+            },
+            "disabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.fg.disabled.default}"
+            }
+          }
+        },
+        "border": {
+          "light": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.border.surface.transparent}"
+            }
+          },
+          "dark": {
+            "enabled": {
+              "attributes": {
+                "category": "color"
+              },
+              "value": "{smc.reference.container.color.border.surface.transparent}"
+            }
           }
         }
       }
