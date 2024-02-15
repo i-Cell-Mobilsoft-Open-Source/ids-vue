@@ -2,6 +2,7 @@
 <template>
   <nav :class="{ 'open': isMenuVisible }">
     <div
+      data-cy="hamburger-menu"
       class="menu-btn hamburger-menu"
       @click="toggleMenu"
     >
@@ -15,8 +16,8 @@
     <button data-cy="icon-button-component" @click="showComponent(IconButton)">
       Icon Buttons Component
     </button>
-    <button data-cy="chips-component" @click="showComponent(Chip)">
-      Chips Component
+    <button data-cy="tags-component" @click="showComponent(Tag)">
+      Tags Component
     </button>
     <button data-cy="divider-component" @click="showComponent(Divider)">
       Divider Component
@@ -26,6 +27,12 @@
     </button>
     <button data-cy="action-item-button-component" @click="showComponent(ActionItemButton)">
       ActionItemButton Component
+    </button>
+    <button data-cy="action-item-link-component" @click="showComponent(ActionItemLink)">
+      ActionItemLink Component
+    </button>
+    <button data-cy="action-panel-component" @click="showComponent(ActionPanel)">
+      ActionPanel Component
     </button>
   </nav>
   <section>
@@ -37,11 +44,13 @@
 <script setup lang="ts">
 
 import { shallowRef, ref } from "vue";
-import Chip from "./DemoChip.vue";
+import Tag from "./DemoTag.vue";
 import Avatar from "./DemoAvatar.vue";
 import Button from "./DemoButton.vue";
 import Divider from "./DemoDivider.vue";
 import IconButton from "./DemoIconButton.vue";
+import ActionPanel from "./DemoActionPanel.vue";
+import ActionItemLink from "./DemoActionItemLink.vue";
 import ActionItemButton from "./DemoActionItemButton.vue";
 
 const currentComponent = shallowRef(Button);

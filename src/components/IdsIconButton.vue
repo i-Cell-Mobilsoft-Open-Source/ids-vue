@@ -8,12 +8,14 @@ const props = withDefaults(defineProps<{
   size?: "compact" | "comfortable" | "spacious",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
   icon?: object | undefined,
+  isDisabled?: boolean;
 }>(), {
   type: 'button',
   mode: 'filled',
-  size: 'comfortable',
-  variant: 'primary',
   icon: undefined,
+  isDisabled: false,
+  variant: 'primary',
+  size: 'comfortable',
 });
 
 const iconButtonStyle = reactive({
@@ -52,7 +54,12 @@ const iconButtonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :class="[size, mode + '-mode']">
+  <button
+    :type="type" 
+    :disabled="isDisabled" 
+    :class="[size, mode + '-mode']"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.icon" class="icon-size" />
   </button>
 </template>
@@ -78,9 +85,9 @@ const iconButtonStyle = reactive({
 @mixin focusMixin {
   outline-offset: 2px;
   background: v-bind('iconButtonStyle.focusedBackground');
-  opacity: var(--ids-comp-icon-button-size-spacious-border, 1);
-  border-radius: var(--ids-comp-icon-button-size-spacious-border-radius, 1000px);
-  outline: var(--ids-comp-icon-button-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+  opacity: var(--ids-comp-icon-button-size-spacious-border);
+  border-radius: var(--ids-comp-icon-button-size-spacious-border-radius);
+  outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-base-color-dark);
 }
 
 .icon-size {

@@ -1,75 +1,78 @@
 <template>
   <div class="demo">
-    <h2>ActionItemButtons</h2>
+    <h2>ActionItemLink</h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.mode}-${option.size}-link`"
       :key="index"
       :size="option.size"
-      :leading-icon="AdjustmentsVerticalIcon"
-      :trailing-icon="ChevronDownIcon"
+      :leading-icon="ClockIcon"
+      :trailing-icon="ChevronRightIcon"
       :mode="option.mode"
+      type="link"
+      href="asdfasdfa"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.mode + " " + option.size }} link
     </IdsActionItem>
 
-    <!-- Active Buttons -->
+    <!-- Active links -->
     <h2 class="pt-2">
-      Active ActionItemButtons
+      Active ActionItemLinks
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.mode}-${option.size}-link`"
       :key="index"
       :size="option.size"
-      :leading-icon="AdjustmentsVerticalIcon"
-      :trailing-icon="ChevronDownIcon"
+      :leading-icon="ClockIcon"
+      :trailing-icon="ChevronRightIcon"
       :mode="option.mode"
-      :is-active="true"
+      :is-active="true" 
+      type="link"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.mode + " " + option.size }} link
     </IdsActionItem>
 
-    <!-- Disabled Buttons -->
+    <!-- Disabled links -->
     <h2 class="pt-2">
-      Disabled ActionItemButtons
+      Disabled ActionItemlinks
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.mode}-${option.size}-link`"
       :key="index"
       :is-disabled="true"
       :size="option.size"
       :mode="option.mode"
-      :leading-icon="AdjustmentsVerticalIcon"
-      :trailing-icon="ChevronDownIcon"
+      :leading-icon="ClockIcon"
+      :trailing-icon="ChevronRightIcon"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.mode + " " + option.size }} link
     </IdsActionItem>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ChevronDownIcon } from "@heroicons/vue/24/solid";
-import { AdjustmentsVerticalIcon } from "@heroicons/vue/24/solid";
+import { ClockIcon } from "@heroicons/vue/24/solid";
+import { ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsActionItem from "../components/IdsActionItem.vue";
-type ButtonOptions = {
+type LinkOptions = {
   mode?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";
 };
 
-const allModes: Array<ButtonOptions["mode"]> = ["filled", "text"];
-const allSizes: Array<ButtonOptions["size"]> = [
+const allModes: Array<LinkOptions["mode"]> = ["filled", "text"];
+const allSizes: Array<LinkOptions["size"]> = [
   "compact",
   "comfortable",
   "spacious",
 ];
 
-const allOptions: ButtonOptions[] = [];
+const allOptions: LinkOptions[] = [];
 
 for (const mode of allModes) {
   for (const size of allSizes) {
-    const options: ButtonOptions = { mode, size };
+    const options: LinkOptions = { mode, size };
     allOptions.push(options);
   }
 }
