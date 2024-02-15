@@ -18,20 +18,26 @@ const props = withDefaults(defineProps<{
 
 const iconButtonStyle = reactive({
   //enabled
+  gap: `var(--ids-comp-icon-button-size-${props.size}-gap)`,
+  width: `var(--ids-comp-icon-button-size-${props.size}-width)`,
+  height: `var(--ids-comp-icon-button-size-${props.size}-height)`,
   color: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-icon-button-size-${props.size}-border-radius, 1000px)`,
   background: ` var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-enabled)`,
   border: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
 
   //hovered
+  hoverColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-hovered`,
   hoverBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
 
   //focused
+  focusedColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-focused`,
   focusedBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-focused)`,
   focusedBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
 
   //active
+  activeColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-pressed`,
   activeBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
 
@@ -53,10 +59,14 @@ const iconButtonStyle = reactive({
 
 <style scoped lang="scss">
 @mixin commonMixin {
+  padding: 0px;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  gap: v-bind("iconButtonStyle.gap");
+  width: v-bind("iconButtonStyle.width");
+  height: v-bind("iconButtonStyle.height");
 }
 
 @mixin baseMixin {
@@ -81,26 +91,14 @@ const iconButtonStyle = reactive({
 //sizes
 .compact {
   @include commonMixin;
-  gap: var(--ids-comp-icon-button-size-compact-gap, 4px);
-  width: var(--ids-comp-icon-button-size-compact-width, 24px);
-  height: var(--ids-comp-icon-button-size-compact-height, 24px);
-  padding: 0px;
 }
 
 .comfortable {
   @include commonMixin;
-  gap: var(--ids-comp-icon-button-size-comfortable-gap, 8px);
-  width: var(--ids-comp-icon-button-size-comfortable-width, 40px);
-  height: var(--ids-comp-icon-button-size-comfortable-height, 40px);
-  padding: 0px;
 }
 
 .spacious {
   @include commonMixin;
-  gap: var(--ids-comp-icon-button-size-spacious-gap, 8px);
-  width: var(--ids-comp-icon-button-size-spacious-width, 56px);
-  height: var(--ids-comp-icon-button-size-spacious-height, 56px);
-  padding: 0px;
 }
 
 //variants
@@ -110,17 +108,20 @@ const iconButtonStyle = reactive({
   border: v-bind('iconButtonStyle.border');
 
   &:hover {
+    color: v-bind('iconButtonStyle.color');
     border: v-bind('iconButtonStyle.hoverBorder');
     background: v-bind('iconButtonStyle.hoverBackground');
   }
 
   &:focus {
     @include focusMixin;
+    color: v-bind('iconButtonStyle.focusedColor');
     border: v-bind('iconButtonStyle.focusedBorder');
   }
 
   &:active {
     outline: none;
+    color: v-bind('iconButtonStyle.activeColor');
     border: v-bind('iconButtonStyle.activeBorder');
     background: v-bind('iconButtonStyle.activeBackground');
   }
@@ -137,18 +138,21 @@ const iconButtonStyle = reactive({
   border: none;
 
   &:hover {
-    background: v-bind('iconButtonStyle.hoverBackground');
     border: none;
+    color: v-bind('iconButtonStyle.hoverColor');
+    background: v-bind('iconButtonStyle.hoverBackground');
   }
 
   &:focus {
-    border: none;
     @include focusMixin;
+    border: none;
+    color: v-bind('iconButtonStyle.focusedColor');
   }
 
   &:active {
     border: none;
     outline: none;
+    color: v-bind('iconButtonStyle.activeColor');
     background: v-bind('iconButtonStyle.activeBackground');
   }
 

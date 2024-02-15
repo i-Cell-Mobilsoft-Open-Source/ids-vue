@@ -11,11 +11,27 @@
         "format": "css/variables"
       },
         {
-        "destination": "_component.scss",
+        "destination": "_comp.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_comp-size-comfortable.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_comp-size-compact.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_comp-size-spacious.scss",
         "format": "css/variables"
       },
         {
         "destination": "_smc-colors.scss",
+        "format": "css/variables"
+      },
+        {
+        "destination": "_smc-colors-dark.scss",
         "format": "css/variables"
       },
         {

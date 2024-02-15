@@ -352,6 +352,12 @@
                   "category": "color"
                 },
                 "value": "{smc.reference.opacity.transparent}"
+              },
+              "darker-95-fixed": {
+                "attributes": {
+                  "category": "color"
+                },
+                "value": "{smc.colors.surface.fixed.darker-95}"
               }
             },
             "primary": {
@@ -921,7 +927,7 @@
                 "attributes": {
                   "category": "color"
                 },
-                "value": "{smc.colors.surface.lighter-10}"
+                "value": "{smc.colors.surface.default}"
               },
               "darker-100": {
                 "attributes": {
@@ -1344,6 +1350,12 @@
             },
             "value": 0
           },
+          "4xs": {
+            "attributes": {
+              "type": "border-radius"
+            },
+            "value": "{base.dimension.20}"
+          },
           "2xs": {
             "attributes": {
               "type": "border-radius"
@@ -1411,6 +1423,12 @@
               "type": "number"
             },
             "value": "{smc.reference.icon.lg}"
+          },
+          "no icon": {
+            "attributes": {
+              "type": "number"
+            },
+            "value": "{smc.reference.icon.none}"
           }
         },
         "focused-outline": {
@@ -2049,6 +2067,12 @@
         }
       },
       "icon": {
+        "none": {
+          "attributes": {
+            "type": "number"
+          },
+          "value": "{base.dimension.0}"
+        },
         "2xs": {
           "attributes": {
             "type": "number"
@@ -2429,13 +2453,7 @@
             }
           },
           "brand": {
-            "fg": {
-              "lighter-100": {
-                "attributes": {
-                  "category": "color"
-                },
-                "value": "{smc.colors.surface.lighter-10}"
-              },
+            "bg": {
               "default": {
                 "attributes": {
                   "category": "color"
@@ -2443,7 +2461,13 @@
                 "value": "{smc.colors.brand.default}"
               }
             },
-            "bg": {
+            "fg": {
+              "lighter-100": {
+                "attributes": {
+                  "category": "color"
+                },
+                "value": "{smc.colors.surface.lighter-10}"
+              },
               "default": {
                 "attributes": {
                   "category": "color"
