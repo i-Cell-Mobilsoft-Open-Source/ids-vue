@@ -14,7 +14,7 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks the content, min-width and height of button', () => {
-
+    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allHeight.forEach((height) => {
         buttonTestData.allWidth.forEach((minwidth) => {
