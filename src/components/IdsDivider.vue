@@ -43,6 +43,7 @@ const DividerStyle = reactive({
 <style scoped lang="scss">
 @mixin common {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }
