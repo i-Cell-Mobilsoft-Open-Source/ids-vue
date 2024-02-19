@@ -17,7 +17,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks the content, min-width and height of button', () => {
+  it('Checks the content, min-width and height of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.allHeight.forEach((height) => {
         buttonTestData.allWidth.forEach((minwidth) => {
@@ -29,7 +29,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks the font-size of button', () => {
+  it('Checks the font-size of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.allFontSize.forEach((font) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -39,7 +39,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks the line-height of button', () => {
+  it('Checks the line-height of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.allLineHeight.forEach((lineHeigt) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -81,7 +81,7 @@ describe('ids Button Demo test', () => {
     });
 
 
-  xit('Checks the color of button', () => {
+  it('Checks the color of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.enabledBgColors.forEach((bgColor) => {
         buttonTestData.enabledColors.forEach((color) => {
@@ -106,7 +106,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks focused state of button', () => {
+  it('Checks focused state of button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
       if (item.variant === 'light') {
@@ -119,7 +119,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks color of button with FOCUSED state', () => {
+  it('Checks color of button with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       buttonTestData.focusedFilledBgColors.forEach((bgColor) => {
         buttonTestData.focusedColors.forEach((color) => {
@@ -144,7 +144,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks color and background color of button with hovered state', () => {
+  it('Checks color and background color of button with hovered state', () => {
     allCombinations.forEach((item) => {
       buttonTestData.hoveredBgColors.forEach((bgColor) => {
         buttonTestData.hoveredOutlineTextColors.forEach((outlineColor) => {
@@ -175,7 +175,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks color of button with active (pressed) state', () => {
+  it('Checks color of button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       buttonTestData.activeBgColors.forEach((bgColor) => {
         buttonTestData.activeColors.forEach((color) => {
@@ -204,7 +204,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks color of disabled state button', () => {
+  it('Checks color of disabled state button', () => {
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;
@@ -226,14 +226,14 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks left and right border radius of button', () => {
+  it('Checks left and right border radius of button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
       cy.get(buttonSelector).should('be.visible').should('have.css', { 'border-radius': buttonTestData.allRadius });
     });
   });
 
-  xit('Checks all padding top and bottom values of button', () => {
+  it('Checks all padding top and bottom values of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.topBottomPadding.forEach((padding) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -243,7 +243,7 @@ describe('ids Button Demo test', () => {
     });
   });
 
-  xit('Checks all padding left and right values of button', () => {
+  it('Checks all padding left and right values of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.leftRightPadding.forEach((padding) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;

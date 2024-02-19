@@ -16,7 +16,8 @@ const iconButtonTestData = {
       "dark",
       "surface"
     ],
-    
+  // BGcolors
+
   //filledBgColors
   enabledBgColors: [{
     primary: "rgb(0, 60, 255)",
@@ -29,8 +30,7 @@ const iconButtonTestData = {
     dark: "rgb(2, 6, 23)",
     surface: "rgb(241, 245, 249)",
   }],
-  
-  hoveredBgColors: [{
+    hoveredBgColors: [{
     primary: "rgb(0, 47, 189)",
     secondary: "rgb(51, 65, 85)",
     brand: "rgb(0, 47, 189)",
@@ -41,7 +41,6 @@ const iconButtonTestData = {
     dark: "rgb(30, 41, 59)",
     surface: "rgb(226, 232, 240)",
   }],
-
   focusedFilledBgColors: [{
     primary: "rgb(0, 60, 255)",
     secondary: "rgb(100, 116, 139)",
@@ -50,12 +49,11 @@ const iconButtonTestData = {
     success: "rgb(34, 197, 94)",
     warning: "rgb(249, 115, 22)",
     light: "rgb(255, 255, 255)",
-    // dark: "rgb(2, 6, 23)",
-    // surface: "rgb(241, 245, 249)",
     dark: "rgb(30, 41, 59)",
-    surface: "rgb(226, 232, 240)",
+    //dark: "rgb(2, 6, 23)", => ez a button színe
+    //surface: "rgb(241, 245, 249)", => ez a button színe
+    surface: "rgb(226, 232, 240)", 
   }],
-
   activeBgColors: [{
     primary: "rgb(0, 36, 143)",
     secondary: "rgb(30, 41, 59)",
@@ -68,45 +66,22 @@ const iconButtonTestData = {
     surface: "rgb(203, 213, 225)",
   }],
 
-  //outlineBgColor
-  enabledOutlineBgColors: [{
-    primary: "rgb(255, 255, 255)",
-    secondary: "rgb(255, 255, 255)",
-    brand: "rgb(255, 255, 255)",
-    error: "rgb(241, 245, 249)",  //rossz token, rákérdezni
-    success: "rgb(255, 255, 255)",
-    warning: "rgb(255, 255, 255)",
-    light: "rgb(255, 255, 255 but empty in figma)", //rákérdezni
-    dark: "rgb(255, 255, 255)",
-    surface: "rgb(255, 255, 255)",
-  }],
-  activeOutlineBgColors: [{
-    primary: "rgb(226, 232, 240)",
-    secondary: "rgb(226, 232, 240)",
-    brand: "rgb(226, 232, 240)",
-    error: "rgb(226, 232, 240)",
-    success: "rgb(226, 232, 240)",
-    warning: "rgb(226, 232, 240)",
-    light: "rgb(255, 255, 255 but empty in figma)", //rákérdezni
-    dark: "rgb(226, 232, 240)",
-    surface: "rgb(226, 232, 240)",
-  }],
-
-//standardBgColor - alias textBgColors
+  //standardBgColor - alias textBgColors
   focusedSurfaceBgColors: [{
     primary: "rgb(241, 245, 249)",
     secondary: "rgb(241, 245, 249)",
     brand: "rgb(241, 245, 249)",
     error: "rgb(255, 255, 255)",
-    success: "rgb(241, 245, 249)",
+    success: "rgb(241, 245, 249)", 
     warning: "rgb(241, 245, 249)",
     light: "rgb(241, 245, 249)",
     dark: "rgb(241, 245, 249)",
     surface: "rgb(241, 245, 249)",
   }],
 
-//standardFgColors - alias textFgColors
-enabledColors: [{
+// FGcolors
+//textFgColors
+enabledColors: [{ 
   primary: "rgb(0, 60, 255)",
   secondary: "rgb(100, 116, 139)",
   brand: "rgb(0, 60, 255)",
@@ -125,12 +100,23 @@ hoveredColors: [{
   success: "rgb(255, 255, 255)",
   warning: "rgb(255, 255, 255)",
   light: "rgb(71, 85, 105)",
-  dark: "rgb(248, 250, 252)", //"rgb(255, 255, 255)",
+  dark: "rgb(248, 250, 252)",
   surface: "rgb(100, 116, 139)",
 }],
-hoveredOutlineTextColors: [{
+hoveredOutlineColors: [{
   primary: "rgb(0, 59, 235)",
-  secondary: "rgb(71, 85, 105)",
+  secondary: "rgb(51, 65, 85)", 
+  brand: "rgb(0, 59, 235)",
+  error: "rgb(220, 38, 38)",
+  success: "rgb(22, 163, 74)",
+  warning: "rgb(234, 88, 12)",
+  light: "rgb(255, 255, 255)",
+  dark: "rgb(2, 6, 23)",
+  surface: "rgb(71, 85, 105)",
+}],
+hoveredStandardColors: [{
+  primary: "rgb(0, 59, 235)",
+  secondary: "rgb(71, 85, 105)", 
   brand: "rgb(0, 59, 235)",
   error: "rgb(220, 38, 38)",
   success: "rgb(22, 163, 74)",
@@ -140,6 +126,17 @@ hoveredOutlineTextColors: [{
   surface: "rgb(71, 85, 105)",
 }],
 focusedOutlineTextColors: [{
+  primary: "rgb(0, 59, 235)",
+  secondary: "rgb(51, 65, 85)",
+  brand: "rgb(0, 59, 235)",
+  error: "rgb(220, 38, 38)",
+  success: "rgb(22, 163, 74)",
+  warning: "rgb(234, 88, 12)",
+  light: "rgb(255, 255, 255)",
+  dark: "rgb(2, 6, 23)",
+  surface: "rgb(100, 116, 139)",
+}],
+focusedTextColors: [{
   primary: "rgb(0, 59, 235)",
   secondary: "rgb(71, 85, 105)",
   brand: "rgb(0, 59, 235)",
@@ -158,7 +155,6 @@ focusedFilledColors: [{
   success: "rgb(255, 255, 255)",
   warning: "rgb(255, 255, 255)",
   light: "rgb(71, 85, 105)",
-  // dark: "rgb(255, 255, 255)",
   dark: "rgb(248, 250, 252)",
   surface: "rgb(100, 116, 139)",
 }],
@@ -171,15 +167,13 @@ activeFilledColors: [{
   success: "rgb(255, 255, 255)",
   warning: "rgb(255, 255, 255)",
   light: "rgb(71, 85, 105)",
-  // dark: "rgb(255, 255, 255)",
   dark: "rgb(248, 250, 252)",
   surface: "rgb(100, 116, 139)",
 }],
-
-activeOutlineTextColors: [{
+activeOutlineColors: [{
   primary: "rgb(0, 47, 189)",
-  // secondary: "rgb(51, 65, 85)", //standerd esetében viszont ez...
-  secondary: "rgb(30, 41, 59)",
+  //secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
+  secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
   brand: "rgb(0, 47, 189)",
   error: "rgb(185, 28, 28)",
   success: "rgb(21, 128, 61)",
@@ -188,6 +182,19 @@ activeOutlineTextColors: [{
   dark: "rgb(2, 6, 23)",
   surface: "rgb(51, 65, 85)",
 }],
+activeStandardColors: [{
+  primary: "rgb(0, 47, 189)",
+  secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
+  //secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
+  brand: "rgb(0, 47, 189)",
+  error: "rgb(185, 28, 28)",
+  success: "rgb(21, 128, 61)",
+  warning: "rgb(194, 65, 12)",
+  light: "rgb(255, 255, 255)",
+  dark: "rgb(2, 6, 23)",
+  surface: "rgb(51, 65, 85)",
+}],
+
 
   //sizes
   allHeight: [{

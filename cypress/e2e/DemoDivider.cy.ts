@@ -45,8 +45,7 @@ describe('ids Divider Demo test', () => {
     });
   });
 
-  it('Checks the height of each vertical
-   divider', () => {
+  it('Checks the height of each vertical divider', () => {
     allCombinations.forEach((item) => {
       dividerTestData.allWidth.forEach((width) => {
         const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
