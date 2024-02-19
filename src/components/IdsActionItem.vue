@@ -26,6 +26,7 @@ const props = withDefaults(
 
 const actionItemStyle = reactive({
   //enabled
+  //--comp-menu-item-size-comfortable-height
   gap: `var(--ids-comp-action-item-size-${props.size}-gap)`,
   height: `var(--ids-comp-action-item-size-${props.mode}-height)`,
   borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,

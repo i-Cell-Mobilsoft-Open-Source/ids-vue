@@ -29,10 +29,10 @@ const props = withDefaults(
 
 const DividerStyle = reactive({
   //enabled
-  background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius, 0px)`,
   width: props.width,
   height: props.height,
+  background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
+  borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius, 0px)`,
 });
 </script>
 
