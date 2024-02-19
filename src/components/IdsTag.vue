@@ -16,30 +16,33 @@ const props = withDefaults(defineProps<{
   trailingIcon: undefined,
 });
 
-const chipStyle = reactive({
+const tagStyle = reactive({
   //enabled
+  gap: `var(--ids-comp-tag-size-${props.mode}-gap)`,
+  height: `var(--ids-comp-tag-size-${props.mode}-height)`,
+  borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-tag-${props.mode}-color-fg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius, 6px)`,
   background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
-  border: `var(--ids-comp-tag-size-${props.size}-border, 1px) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
+  padding: `var(--ids-comp-tag-size-${props.mode}-padding-y) var(--ids-comp-tag-size-${props.mode}-padding-x)`,
+  border: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-tag-size-${props.size}-border, 1px) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
+  hoverBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-tag-size-${props.size}-border, 1px) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
-  focusBorderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius, 6px)`,
+  focusedBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
+  focusBorderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
 
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-tag-size-${props.size}-border, 1px) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
+  activeBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledColor: `var(--ids-comp-tag-${props.mode}-color-fg-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-tag-size-${props.size}-border, 1px) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled, rgba(255, 255, 255, 0.00))`,
+  disabledBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
   iconWidth: `var(--ids-comp-tag-size-${props.size}-icon)`,
@@ -48,7 +51,7 @@ const chipStyle = reactive({
 </script>
 
 <template>
-  <button :class="[size, 'ids-chip']" type="button">
+  <button :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" type="button">
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" />
@@ -61,8 +64,8 @@ const chipStyle = reactive({
   gap: 16px;
   display: flex;
   align-items: flex-start;
-  width: v-bind('chipStyle.iconWidth');
-  height: v-bind('chipStyle.iconHeight');
+  width: v-bind('tagStyle.iconWidth');
+  height: v-bind('tagStyle.iconHeight');
 }
 
 //common
@@ -73,6 +76,9 @@ const chipStyle = reactive({
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  gap: v-bind("tagStyle.gap");
+  height: v-bind("tagStyle.height");
+  padding: v-bind("tagStyle.padding");
 }
 
 //sizes
@@ -91,42 +97,42 @@ const chipStyle = reactive({
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
-  gap: var(--ids-comp-tag-size-comfortable-gap, 8px);
-  height: var(--ids-comp-tag-size-comfortable-height, 32px);
-  padding: var(--ids-comp-tag-size-comfortable-padding-y, 6px) var(--ids-comp-tag-size-comfortable-padding-x, 20px);
 }
 
 //variants
-.ids-chip {
-  color: v-bind('chipStyle.color');
-  border: v-bind('chipStyle.border');
-  background: v-bind('chipStyle.background');
-  border-radius: v-bind('chipStyle.borderRadius');
+.ids-tag {
+  color: v-bind('tagStyle.color');
+  border: v-bind('tagStyle.border');
+  background: v-bind('tagStyle.background');
+  border-radius: v-bind('tagStyle.borderRadius');
 
   &:hover {
-    border: v-bind('chipStyle.hoverBorder');
-    background: v-bind('chipStyle.hoverBackground');
+    border: v-bind('tagStyle.hoverBorder');
+    background: v-bind('tagStyle.hoverBackground');
   }
 
   &:focus-within {
     outline-style: solid;
     outline-offset: 2px;
-    border: v-bind('chipStyle.focusedBorder');
-    background: v-bind('chipStyle.focusedBackground');
-    border-radius: v-bind('chipStyle.focusBorderRadius');
+    border: v-bind('tagStyle.focusedBorder');
+    background: v-bind('tagStyle.focusedBackground');
+    border-radius: v-bind('tagStyle.focusBorderRadius');
     outline: var(--ids-comp-tag-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
   }
 
   &:active {
-    border: v-bind('chipStyle.activeBorder');
-    background: v-bind('chipStyle.activeBackground');
+    border: v-bind('tagStyle.activeBorder');
+    background: v-bind('tagStyle.activeBackground');
     outline: none;
   }
 
   &:disabled {
-    color: v-bind('chipStyle.disabledColor');
-    border: v-bind('chipStyle.disabledBorder');
-    background: v-bind('chipStyle.disabledBackground');
+    color: v-bind('tagStyle.disabledColor');
+    border: v-bind('tagStyle.disabledBorder');
+    background: v-bind('tagStyle.disabledBackground');
+  }
+  &.light:focus {
+    outline: var(--ids-comp-tag-size-border) solid var(--ids-comp-tag-filled-color-border-light-focused);
   }
 }
 </style>
