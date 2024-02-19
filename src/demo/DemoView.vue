@@ -34,6 +34,9 @@
     <button data-cy="action-panel-component" @click="showComponent(ActionPanel)">
       ActionPanel Component
     </button>
+    <button data-cy="action-menu-component" @click="showComponent(ActionMenu)">
+      ActionMenu Component
+    </button>
   </nav>
   <section>
     <component :is="currentComponent" />
@@ -49,6 +52,7 @@ import Avatar from "./DemoAvatar.vue";
 import Button from "./DemoButton.vue";
 import Divider from "./DemoDivider.vue";
 import IconButton from "./DemoIconButton.vue";
+import ActionMenu from "./DemoActionMenu.vue";
 import ActionPanel from "./DemoActionPanel.vue";
 import ActionItemLink from "./DemoActionItemLink.vue";
 import ActionItemButton from "./DemoActionItemButton.vue";
