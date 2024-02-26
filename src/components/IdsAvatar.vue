@@ -14,6 +14,7 @@ const props = withDefaults(
   },
 );
 
+
 const avatarStyle = reactive({
   //enabled
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
