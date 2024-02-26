@@ -14,7 +14,6 @@ const props = withDefaults(
   },
 );
 
-
 const avatarStyle = reactive({
   //enabled
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
@@ -157,7 +156,7 @@ const avatarStyle = reactive({
     background: v-bind("avatarStyle.focusedBackground");
     opacity: var(--ids-comp-buttons-size-spacious-border);
     border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
-    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--base-color-dark);
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
   &:active {
