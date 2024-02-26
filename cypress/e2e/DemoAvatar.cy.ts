@@ -18,8 +18,7 @@ describe('ids Avatar Demo test', () => {
       });
     });
 
-//1.  width and height
-xit('Checks the width and height of avatar-monogram', () => {
+it('Checks the width and height of avatar-monogram', () => {
   allCombinations.forEach((item) => {
     avatarTestData.allHeight.forEach((height) => {
       avatarTestData.allWidth.forEach((width) => {
@@ -33,7 +32,7 @@ xit('Checks the width and height of avatar-monogram', () => {
     });
   });
 });
-  xit('Checks the width and height of avatar-user', () => {
+  it('Checks the width and height of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
         avatarTestData.allWidth.forEach((width) => {
@@ -47,7 +46,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks the width and height of avatar-with-image', () => {
+  it('Checks the width and height of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
         avatarTestData.allWidth.forEach((width) => {
@@ -61,8 +60,8 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  //2. common
-  xit('Checks common css rules of avatar-monogram', () => {
+
+  it('Checks common css rules of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
@@ -77,7 +76,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks common css rules of avatar-user', () => {
+  it('Checks common css rules of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
@@ -92,7 +91,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks common css rules of avatar-with-image', () => {
+  it('Checks common css rules of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.size}-avatar-with-image`;
@@ -107,8 +106,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });  
-//3. Font
-  xit('Checks the font-size of avatar-monogram', () => {
+  it('Checks the font-size of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allFontSize.forEach((font) => {
         avatarTestData.allFontWeight.forEach((weight) => {
@@ -122,8 +120,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-//4. line-height
-  xit('Checks the line-height of avatar-monogram', () => {
+  it('Checks the line-height of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allLineHeight.forEach((lineHeigt) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
@@ -134,8 +131,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  //5. enabled color
-  xit('Checks the color of avatar-monogram', () => {
+  it('Checks the color of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -149,7 +145,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks the color of avatar-user', () => {
+  it('Checks the color of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -163,7 +159,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks the image of avatar-with-image', () => {
+  it('Checks the image of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
         cy.get(avatarSelector)
@@ -174,33 +170,31 @@ xit('Checks the width and height of avatar-monogram', () => {
         });
       });
     });
-  
-  //6. Focused state1 javítás wip
   it('Checks focused state of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
       if (item.variant === 'light') {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
-          .should('have.css', 'outline').and('eq', avatarTestData.white2); //most fekete, így bukik
+          .should('have.css', 'outline').and('eq', avatarTestData.white2);
       } else {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.black);
       }
     });
   });
-  xit('Checks focused state of avatar-user', () => {
+  it('Checks focused state of avatar-user', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
       if (item.variant === 'light') {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
-          .should('have.css', 'outline').and('eq', avatarTestData.white2); //most fekete, így bukik
+          .should('have.css', 'outline').and('eq', avatarTestData.white2);
       } else {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.black);
       }
     });
   });
-  xit('Checks focused state of avatar-with-image', () => {
+  it('Checks focused state of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
@@ -210,8 +204,7 @@ xit('Checks the width and height of avatar-monogram', () => {
           });
       });
   });
-  //6. Focused color
-  xit('Checks color of avatar-monogram with FOCUSED state', () => {
+  it('Checks color of avatar-monogram with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -225,7 +218,7 @@ xit('Checks the width and height of avatar-monogram', () => {
         });
       });
     });
-  xit('Checks color of avatar-user with FOCUSED state', () => {
+  it('Checks color of avatar-user with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -239,8 +232,7 @@ xit('Checks the width and height of avatar-monogram', () => {
         });
       });
     });
-  //Focus image 1.0
-  xit('Checks color of avatar-with-image with FOCUSED state', () => {
+  it('Checks color of avatar-with-image with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = cy.get(`#${item.size}-avatar-with-image`);
         avatarSelector.realClick({ pointer: "mouse" }).find('div > img').should('be.visible').then(imgElement => {
@@ -248,8 +240,7 @@ xit('Checks the width and height of avatar-monogram', () => {
         });
     });
   });
-//Focus image 2.0
-  xit('Checks color of avatar-with-image with FOCUSED state', () => {
+  it('Checks color of avatar-with-image with FOCUSED state', () => {
     allCombinations.forEach((item) => {
           const avatarSelector = `#${item.size}-avatar-with-image`;
             cy.get(avatarSelector).realClick({ pointer: "mouse" }).should('have.focus').should('be.visible')
@@ -260,9 +251,7 @@ xit('Checks the width and height of avatar-monogram', () => {
 
       });
     });
-
-  //7. hovered
-  xit('Checks color and background color of avatar-monogram with hovered state', () => {
+  it('Checks color and background color of avatar-monogram with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
@@ -276,7 +265,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   }); 
-  xit('Checks color and background color of avatar-user with hovered state', () => {
+  it('Checks color and background color of avatar-user with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
@@ -290,7 +279,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   }); 
-  xit('Checks color and background color of avatar-with-image with hovered state', () => {
+  it('Checks color and background color of avatar-with-image with hovered state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
         cy.get(avatarSelector).then(button => {
@@ -301,9 +290,7 @@ xit('Checks the width and height of avatar-monogram', () => {
         });
     });
   }); 
-
-  //8. pressed
-  xit('Checks color of avatar-monogram with active (pressed) state', () => {
+  it('Checks color of avatar-monogram with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -319,7 +306,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks color of avatar-user with active (pressed) state', () => {
+  it('Checks color of avatar-user with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
@@ -335,7 +322,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks image of avatar-with-image with active (pressed) state', () => {
+  it('Checks image of avatar-with-image with active (pressed) state', () => {
     allCombinations.forEach((item) => {
           const avatarSelector = `#${item.size}-avatar-with-image`;
             cy.get(avatarSelector).then(button => {
@@ -346,8 +333,7 @@ xit('Checks the width and height of avatar-monogram', () => {
             }).realMouseUp({ pointer: "mouse" });
     });
   });
-  //9.radius
-  xit('Checks left and right border radius of avatar-monogram', () => {
+  it('Checks left and right border radius of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
@@ -359,7 +345,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks left and right border radius of avatar-user', () => {
+  it('Checks left and right border radius of avatar-user', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
@@ -371,7 +357,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  xit('Checks left and right border radius of avatar-with-image', () => {
+  it('Checks left and right border radius of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
@@ -383,8 +369,7 @@ xit('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
-  //10. padding 
-  xit('Checks all padding of avatar-monogram', () => {
+  it('Checks all padding of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.paddingTop.forEach((topPadding) => {
         avatarTestData.paddingRight.forEach((rightPadding) => {
@@ -404,7 +389,7 @@ xit('Checks the width and height of avatar-monogram', () => {
     });
   });
 });
-xit('Checks all padding of avatar-user', () => {
+it('Checks all padding of avatar-user', () => {
   allCombinations.forEach((item) => {
     avatarTestData.paddingTop.forEach((topPadding) => {
       avatarTestData.paddingRight.forEach((rightPadding) => {
@@ -424,7 +409,7 @@ xit('Checks all padding of avatar-user', () => {
     });
   });
 });
-xit('Checks all padding of avatar-with-image', () => {
+it('Checks all padding of avatar-with-image', () => {
   allCombinations.forEach((item) => {
     avatarTestData.paddingTop.forEach((topPadding) => {
       avatarTestData.paddingRight.forEach((rightPadding) => {
