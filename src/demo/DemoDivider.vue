@@ -71,14 +71,11 @@ for (const size of allSizes) {
 }
 
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
   margin-bottom: 40px;
-
-  &>button {
-    align-self: center;
-  }
+  align-items: center;
+  flex-direction: column;
 }
 
 .demo2 {

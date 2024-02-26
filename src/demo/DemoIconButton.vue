@@ -11,7 +11,7 @@
       :variant="option.variant"
     />
 
-    <!-- Disabled Buttons -->
+    <!-- Disabled IconButtons -->
     <h2 class="pt-2">
       Disabled Buttons
     </h2>
@@ -69,10 +69,11 @@ for (const mode of allModes) {
  
  <style scoped>
  .demo {
-   display: flex;
-   flex-direction: column;
    gap: 1rem;
+   display: flex;
+   align-items: center;
    margin-bottom: 40px;
+   flex-direction: column;
  }
  
  p {
