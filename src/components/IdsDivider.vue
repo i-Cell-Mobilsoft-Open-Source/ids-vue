@@ -44,6 +44,7 @@ const DividerStyle = reactive({
 @mixin common {
   flex-shrink: 0;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }
