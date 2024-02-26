@@ -42,7 +42,7 @@ const avatarStyle = reactive({
 </script>
 
 <template>
-  <button type="button" :class="[size, 'ids-button']">
+  <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
     <slot v-if="$slots.default" />
     <div v-else>
       <img v-if="image" :src="image" class="img-size">
@@ -136,7 +136,7 @@ const avatarStyle = reactive({
 }
 
 //variants
-.ids-button {
+.ids-avatar {
   color: v-bind("avatarStyle.color");
   border: v-bind("avatarStyle.border");
   padding: v-bind("avatarStyle.padding");
@@ -161,6 +161,10 @@ const avatarStyle = reactive({
     outline: none;
     border: v-bind("avatarStyle.activeBorder");
     background: v-bind("avatarStyle.activeBackground");
+  }
+  &.light:focus {
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-light);
+    outline: var(--ids-comp-avatar-focused-outline-size-outline, 3px) solid var(--ids-comp-avatar-focused-outline-color-light-focused, #FFF);
   }
 }
 </style>
