@@ -71,7 +71,7 @@ const buttonStyle = reactive({
 <template>
   <button
     :type="type" 
-    :disabled="isDisabled"
+    :disabled="isDisabled" 
     :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >

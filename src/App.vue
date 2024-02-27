@@ -7,5 +7,5 @@ import DemoView from './demo/DemoView.vue';
 </template>
 
 <style>
-@import './styles/ids.scss';
+@import './styles/ids-tokens.scss';
 </style>

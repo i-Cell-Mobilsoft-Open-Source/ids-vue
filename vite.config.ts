@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const filesNeedToExclude = ["src/demo/**", "src/pluggables/Comp2.vue"];
+const filesNeedToExclude = ["src/demo/**"];
 
 const filesPathToExclude = filesNeedToExclude.map((src) => {
   return fileURLToPath(new URL(src, import.meta.url));

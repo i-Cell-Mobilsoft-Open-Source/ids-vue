@@ -2,34 +2,33 @@ import dividerTestData from '../data/dividerTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy="hamburger-menu"]').click();
-    cy.get('[data-cy="divider-component"]').click();
-  })
+  cy.visit('/');
+  cy.get('[data-cy="hamburger-menu"]').click();
+  cy.get('[data-cy="divider-component"]').click();
+})
 
 describe('ids Divider Demo test', () => {
   const allCombinations = [] as any[];
 
-
-    dividerTestData.allSizes.forEach((size) => {
-        dividerTestData.allVariants.forEach((variant) => {
-            allCombinations.push({ size, variant });
-        });
+  dividerTestData.allSizes.forEach((size) => {
+    dividerTestData.allVariants.forEach((variant) => {
+      allCombinations.push({ size, variant });
     });
+  });
 
   it('Checks width of horizontal divider', () => {
     allCombinations.forEach((item) => {
-        const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-        cy.get(dividerSelector).should('be.visible')//.invoke('width', '300px').should('be.visible') => funkcionális teszt, felületen új értéket (300px) beírva tesztelhető azzal az értékkel (is)
-          .should('have.css','width').and('eq', dividerTestData.verticalWidth);
+      const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
+      cy.get(dividerSelector).should('be.visible')//.invoke('width', '300px').should('be.visible') => funkcionális teszt, felületen új értéket (300px) beírva tesztelhető azzal az értékkel (is)
+        .should('have.css', 'width').and('eq', dividerTestData.verticalWidth);
     });
   });
 
   it('Checks heigth of vertical divider', () => {
     allCombinations.forEach((item) => {
-        const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
-        cy.get(dividerSelector).should('be.visible')
-          .should('have.css','height').and('eq', dividerTestData.verticalHeight);
+      const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
+      cy.get(dividerSelector).should('be.visible')
+        .should('have.css', 'height').and('eq', dividerTestData.verticalHeight);
     });
   });
 
@@ -59,32 +58,32 @@ describe('ids Divider Demo test', () => {
 
   it('Checks common css rules of vertical divider', () => {
     allCombinations.forEach((item) => {
-        dividerTestData.common.forEach((common) => {
-            const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
-            cy.get(dividerSelector).should('be.visible').then(($el) => {
-                expect($el).to.have.css('flex-shrink', common['flexShrink']);
-                //expect($el).to.have.css('height', common['height']);
-                expect($el).to.have.css('align-items', common['alignItems']);
-                expect($el).to.have.css('display', common['display']);
-                expect($el).to.have.css('justify-content', common['justifyContent']);
-            });
+      dividerTestData.common.forEach((common) => {
+        const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
+        cy.get(dividerSelector).should('be.visible').then(($el) => {
+          expect($el).to.have.css('flex-shrink', common['flexShrink']);
+          //expect($el).to.have.css('height', common['height']);
+          expect($el).to.have.css('align-items', common['alignItems']);
+          expect($el).to.have.css('display', common['display']);
+          expect($el).to.have.css('justify-content', common['justifyContent']);
         });
+      });
     });
-  
+
   });
 
   it('Checks common css rules of horizontal divider', () => {
     allCombinations.forEach((item) => {
-        dividerTestData.common.forEach((common) => {
-            const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-            cy.get(dividerSelector).should('be.visible').then(($el) => {
-                expect($el).to.have.css('flex-shrink', common['flexShrink']);
-                //expect($el).to.have.css('width', common['width']);
-                expect($el).to.have.css('align-items', common['alignItems']);
-                expect($el).to.have.css('display', common['display']);
-                expect($el).to.have.css('justify-content', common['justifyContent']);
-            });
+      dividerTestData.common.forEach((common) => {
+        const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
+        cy.get(dividerSelector).should('be.visible').then(($el) => {
+          expect($el).to.have.css('flex-shrink', common['flexShrink']);
+          //expect($el).to.have.css('width', common['width']);
+          expect($el).to.have.css('align-items', common['alignItems']);
+          expect($el).to.have.css('display', common['display']);
+          expect($el).to.have.css('justify-content', common['justifyContent']);
         });
+      });
     });
   });
 
@@ -92,10 +91,10 @@ describe('ids Divider Demo test', () => {
     allCombinations.forEach((item) => {
       dividerTestData.enabledBgColors.forEach((bgColor) => {
         const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
-          cy.get(dividerSelector).should('be.visible').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-          });
+        cy.get(dividerSelector).should('be.visible').should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+        });
       });
     });
   });
@@ -104,23 +103,23 @@ describe('ids Divider Demo test', () => {
     allCombinations.forEach((item) => {
       dividerTestData.enabledBgColors.forEach((bgColor) => {
         const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-          cy.get(dividerSelector).should('be.visible').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-          });
+        cy.get(dividerSelector).should('be.visible').should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+        });
       });
     });
   });
 
-it('Checks for the existence of border radius of vertical divider', () => {
-  allCombinations.forEach((item) => {
+  it('Checks for the existence of border radius of vertical divider', () => {
+    allCombinations.forEach((item) => {
       const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
-      cy.get(dividerSelector).should('be.visible').should('have.css', {'border-radius': dividerTestData.allRadius});
+      cy.get(dividerSelector).should('be.visible').should('have.css', { 'border-radius': dividerTestData.allRadius });
+    });
   });
-});
 
-it('Checks all border radius of vertical divider', () => {
-  allCombinations.forEach((item) => {
+  it('Checks all border radius of vertical divider', () => {
+    allCombinations.forEach((item) => {
       const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
       cy.get(dividerSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
@@ -128,19 +127,19 @@ it('Checks all border radius of vertical divider', () => {
         expect(styles.borderBottomRightRadius).to.equal(dividerTestData.allRadius);
         expect(styles.borderTopLeftRadius).to.equal(dividerTestData.allRadius);
         expect(styles.borderTopLeftRadius).to.equal(dividerTestData.allRadius);
+      });
     });
   });
-});
 
-it('Checks for the existence of border radius of horizontal divider', () => {
-  allCombinations.forEach((item) => {
+  it('Checks for the existence of border radius of horizontal divider', () => {
+    allCombinations.forEach((item) => {
       const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-      cy.get(dividerSelector).should('be.visible').should('have.css', {'border-radius': dividerTestData.allRadius});
+      cy.get(dividerSelector).should('be.visible').should('have.css', { 'border-radius': dividerTestData.allRadius });
+    });
   });
-});
 
-it('Checks all border radius of vertical divider', () => {
-  allCombinations.forEach((item) => {
+  it('Checks all border radius of vertical divider', () => {
+    allCombinations.forEach((item) => {
       const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
       cy.get(dividerSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
@@ -148,34 +147,34 @@ it('Checks all border radius of vertical divider', () => {
         expect(styles.borderBottomRightRadius).to.equal(dividerTestData.allRadius);
         expect(styles.borderTopLeftRadius).to.equal(dividerTestData.allRadius);
         expect(styles.borderTopLeftRadius).to.equal(dividerTestData.allRadius);
+      });
     });
   });
-});
 
-it('Checks all padding of vertical divider', () => {
-  allCombinations.forEach((item) => {
+  it('Checks all padding of vertical divider', () => {
+    allCombinations.forEach((item) => {
       const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
       cy.get(dividerSelector).should('be.visible').then(($el) => {
-          const styles = window.getComputedStyle($el[0]);
-          expect(styles.paddingTop).to.equal(dividerTestData.allPadding);
-          expect(styles.paddingBottom).to.equal(dividerTestData.allPadding);
-          expect(styles.paddingLeft).to.equal(dividerTestData.allPadding);
-          expect(styles.paddingRight).to.equal(dividerTestData.allPadding);
+        const styles = window.getComputedStyle($el[0]);
+        expect(styles.paddingTop).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingBottom).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingLeft).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingRight).to.equal(dividerTestData.allPadding);
       });
     });
   });
 
   it('Checks all padding of horizontal divider', () => {
     allCombinations.forEach((item) => {
-        const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-        cy.get(dividerSelector).should('be.visible').then(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.paddingTop).to.equal(dividerTestData.allPadding);
-            expect(styles.paddingBottom).to.equal(dividerTestData.allPadding);
-            expect(styles.paddingLeft).to.equal(dividerTestData.allPadding);
-            expect(styles.paddingRight).to.equal(dividerTestData.allPadding);
-        });
+      const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
+      cy.get(dividerSelector).should('be.visible').then(($el) => {
+        const styles = window.getComputedStyle($el[0]);
+        expect(styles.paddingTop).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingBottom).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingLeft).to.equal(dividerTestData.allPadding);
+        expect(styles.paddingRight).to.equal(dividerTestData.allPadding);
+      });
     });
-    });
+  });
 
 });

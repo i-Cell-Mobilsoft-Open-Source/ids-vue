@@ -76,10 +76,9 @@ describe('ids Button Demo test', () => {
           expect($el).to.have.css('display', common['display']);
           expect($el).to.have.css('justify-content', common['justifyContent']);
         });
-       });
       });
     });
-
+  });
 
   it('Checks the color of button', () => {
     allCombinations.forEach((item) => {

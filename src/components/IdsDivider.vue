@@ -23,7 +23,7 @@ const props = withDefaults(
     size: "comfortable",
     variant: "primary",
     width: "auto",
-    height: "100px",
+    height: "200px",
   },
 );
 
@@ -32,7 +32,7 @@ const DividerStyle = reactive({
   width: props.width,
   height: props.height,
   background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius, 0px)`,
+  borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius)`,
 });
 </script>
 
@@ -54,19 +54,19 @@ const DividerStyle = reactive({
   &.compact {
     @include common;
     align-self: stretch;
-    width: var(--ids-comp-divider-size-compact-width, 1px);
+    width: var(--ids-comp-divider-size-compact-width);
   }
 
   &.comfortable {
     @include common;
     align-self: stretch;
-    width: var(--ids-comp-divider-size-comfortable-width, 2px);
+    width: var(--ids-comp-divider-size-comfortable-width);
   }
 
   &.spacious {
     @include common;
     align-self: stretch;
-    width: var(--ids-comp-divider-size-spacious-width, 4px);
+    width: var(--ids-comp-divider-size-spacious-width);
   }
 }
 
@@ -74,19 +74,19 @@ const DividerStyle = reactive({
   &.compact {
     @include common;
     align-self: stretch;
-    height: var(--ids-comp-divider-size-compact-height, 1px);
+    height: var(--ids-comp-divider-size-compact-height);
   }
 
   &.comfortable {
     @include common;
     align-self: stretch;
-    height: var(--ids-comp-divider-size-comfortable-height, 2px);
+    height: var(--ids-comp-divider-size-comfortable-height);
   }
 
   &.spacious {
     @include common;
     align-self: stretch;
-    height: var(--ids-comp-divider-size-spacious-height, 4px);
+    height: var(--ids-comp-divider-size-spacious-height);
   }
 }
 

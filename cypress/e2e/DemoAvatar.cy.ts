@@ -14,24 +14,25 @@ describe('ids Avatar Demo test', () => {
 
   avatarTestData.allSizes.forEach((size) => {
     avatarTestData.allVariants.forEach((variant) => {
-        allCombinations.push({ size, variant });
-      });
+      allCombinations.push({ size, variant });
     });
+  });
 
-it('Checks the width and height of avatar-monogram', () => {
-  allCombinations.forEach((item) => {
-    avatarTestData.allHeight.forEach((height) => {
-      avatarTestData.allWidth.forEach((width) => {
-        const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
-        cy.get(avatarSelector).should('be.visible')
-          .should(($el) => {
-          expect($el).to.have.css('height', height[item.size]);
-          expect($el).to.have.css('width', width[item.size]);
-          });
+  it('Checks the width and height of avatar-monogram', () => {
+    allCombinations.forEach((item) => {
+      avatarTestData.allHeight.forEach((height) => {
+        avatarTestData.allWidth.forEach((width) => {
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+          cy.get(avatarSelector).should('be.visible')
+            .should(($el) => {
+              expect($el).to.have.css('height', height[item.size]);
+              expect($el).to.have.css('width', width[item.size]);
+            });
+        });
       });
     });
   });
-});
+
   it('Checks the width and height of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
@@ -39,13 +40,14 @@ it('Checks the width and height of avatar-monogram', () => {
           const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
           cy.get(avatarSelector).should('be.visible')
             .should(($el) => {
-            expect($el).to.have.css('height', height[item.size]);
-            expect($el).to.have.css('width', width[item.size]);
+              expect($el).to.have.css('height', height[item.size]);
+              expect($el).to.have.css('width', width[item.size]);
             });
         });
       });
     });
   });
+
   it('Checks the width and height of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
@@ -53,8 +55,8 @@ it('Checks the width and height of avatar-monogram', () => {
           const avatarSelector = `#${item.size}-avatar-with-image`;
           cy.get(avatarSelector).should('be.visible')
             .should(($el) => {
-            expect($el).to.have.css('height', height[item.size]);
-            expect($el).to.have.css('width', width[item.size]);
+              expect($el).to.have.css('height', height[item.size]);
+              expect($el).to.have.css('width', width[item.size]);
             });
         });
       });
@@ -76,6 +78,7 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks common css rules of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
@@ -91,6 +94,7 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks common css rules of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
@@ -105,21 +109,23 @@ it('Checks the width and height of avatar-monogram', () => {
           .should('have.css', 'justify-content', common['justifyContent']);
       });
     });
-  });  
+  });
+
   it('Checks the font-size of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allFontSize.forEach((font) => {
         avatarTestData.allFontWeight.forEach((weight) => {
-        const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
-        cy.get(avatarSelector).should('be.visible').should(($el) => {
-          const styles = window.getComputedStyle($el[0]);
-          expect(styles.fontSize).to.equal(font[item.size]);
-          expect(styles.fontWeight).to.equal(weight[item.size]);
-        });
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+          cy.get(avatarSelector).should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.fontSize).to.equal(font[item.size]);
+            expect(styles.fontWeight).to.equal(weight[item.size]);
+          });
         });
       });
     });
   });
+
   it('Checks the line-height of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allLineHeight.forEach((lineHeigt) => {
@@ -131,45 +137,49 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks the color of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
           const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
-            cy.get(avatarSelector).should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-              expect(styles.color).to.equal(color[item.variant]);
-            });
+          cy.get(avatarSelector).should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
         });
       });
     });
   });
+
   it('Checks the color of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-            const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
-              cy.get(avatarSelector).should('be.visible').should(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(color[item.variant]);
-              });
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+          cy.get(avatarSelector).should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
         });
       });
     });
   });
+
   it('Checks the image of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
-        cy.get(avatarSelector)
-        .find('div > img') 
-        .should('be.visible') 
+      cy.get(avatarSelector)
+        .find('div > img')
+        .should('be.visible')
         .then(imgElement => {
           cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
         });
-      });
     });
+  });
+
   it('Checks focused state of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
@@ -182,6 +192,7 @@ it('Checks the width and height of avatar-monogram', () => {
       }
     });
   });
+
   it('Checks focused state of avatar-user', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
@@ -194,145 +205,157 @@ it('Checks the width and height of avatar-monogram', () => {
       }
     });
   });
+
   it('Checks focused state of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
-        cy.get(avatarSelector).click().should('have.focus').should('be.visible')
-          .should('have.css', 'outline').and('eq', avatarTestData.black);
-          cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
-            cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
-          });
+      cy.get(avatarSelector).click().should('have.focus').should('be.visible')
+        .should('have.css', 'outline').and('eq', avatarTestData.black);
+      cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
+        cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
       });
+    });
   });
+
   it('Checks color of avatar-monogram with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
           const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram`);
-            button.realClick({ pointer: "mouse" }).should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(color[item.variant]);
-            });
-          })
-        });
+          button.realClick({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
+        })
       });
     });
+  });
+
   it('Checks color of avatar-user with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
           const button = cy.get(`#${item.variant}-${item.size}-avatar-user`);
-            button.realClick({ pointer: "mouse" }).should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(color[item.variant]);
-            });
-          })
-        });
+          button.realClick({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
+        })
       });
     });
+  });
+
   it('Checks color of avatar-with-image with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = cy.get(`#${item.size}-avatar-with-image`);
-        avatarSelector.realClick({ pointer: "mouse" }).find('div > img').should('be.visible').then(imgElement => {
-          cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
-        });
-    });
-  });
-  it('Checks color of avatar-with-image with FOCUSED state', () => {
-    allCombinations.forEach((item) => {
-          const avatarSelector = `#${item.size}-avatar-with-image`;
-            cy.get(avatarSelector).realClick({ pointer: "mouse" }).should('have.focus').should('be.visible')
-            .should('have.css', 'outline').and('eq', avatarTestData.black);
-            cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
-              cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
-            });
-
+      avatarSelector.realClick({ pointer: "mouse" }).find('div > img').should('be.visible').then(imgElement => {
+        cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
       });
     });
+  });
+
+  it('Checks color of avatar-with-image with FOCUSED state', () => {
+    allCombinations.forEach((item) => {
+      const avatarSelector = `#${item.size}-avatar-with-image`;
+      cy.get(avatarSelector).realClick({ pointer: "mouse" }).should('have.focus').should('be.visible')
+        .should('have.css', 'outline').and('eq', avatarTestData.black);
+      cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
+        cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
+      });
+
+    });
+  });
+
   it('Checks color and background color of avatar-monogram with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
           const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram`);
-            button.realHover({ pointer: "mouse" }).should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-              expect(styles.color).to.equal(color[item.variant]);
-            });
+          button.realHover({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
         });
       });
     });
-  }); 
+  });
+
   it('Checks color and background color of avatar-user with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
           const button = cy.get(`#${item.variant}-${item.size}-avatar-user`);
-            button.realHover({ pointer: "mouse" }).should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-              expect(styles.color).to.equal(color[item.variant]);
-            });
+          button.realHover({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+            expect(styles.color).to.equal(color[item.variant]);
+          });
         });
       });
     });
-  }); 
+  });
+
   it('Checks color and background color of avatar-with-image with hovered state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
-        cy.get(avatarSelector).then(button => {
-          cy.wrap(button).realHover({ pointer: "mouse" }).should('be.visible')
-          cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
-            cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
-          });
+      cy.get(avatarSelector).then(button => {
+        cy.wrap(button).realHover({ pointer: "mouse" }).should('be.visible')
+        cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
+          cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
         });
+      });
     });
-  }); 
+  });
+
   it('Checks color of avatar-monogram with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
           const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
-            cy.get(avatarSelector).then(button => {
+          cy.get(avatarSelector).then(button => {
             cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
               const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(color[item.variant]);
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(color[item.variant]);
             });
-            }).realMouseUp({ pointer: "mouse" });
+          }).realMouseUp({ pointer: "mouse" });
         });
       });
     });
   });
+
   it('Checks color of avatar-user with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
           const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
-            cy.get(avatarSelector).then(button => {
+          cy.get(avatarSelector).then(button => {
             cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
               const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(color[item.variant]);
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(color[item.variant]);
             });
-            }).realMouseUp({ pointer: "mouse" });
+          }).realMouseUp({ pointer: "mouse" });
         });
       });
     });
   });
+
   it('Checks image of avatar-with-image with active (pressed) state', () => {
     allCombinations.forEach((item) => {
-          const avatarSelector = `#${item.size}-avatar-with-image`;
-            cy.get(avatarSelector).then(button => {
-            cy.wrap(button).realMouseDown({ pointer: "mouse" })
-            cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
-              cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
-            });
-            }).realMouseUp({ pointer: "mouse" });
+      const avatarSelector = `#${item.size}-avatar-with-image`;
+      cy.get(avatarSelector).then(button => {
+        cy.wrap(button).realMouseDown({ pointer: "mouse" })
+        cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
+          cy.wrap(imgElement).should('have.attr', 'src', avatarTestData.image)
+        });
+      }).realMouseUp({ pointer: "mouse" });
     });
   });
+
   it('Checks left and right border radius of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
@@ -345,6 +368,7 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks left and right border radius of avatar-user', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
@@ -357,6 +381,7 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks left and right border radius of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
@@ -369,66 +394,67 @@ it('Checks the width and height of avatar-monogram', () => {
       });
     });
   });
+
   it('Checks all padding of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.paddingTop.forEach((topPadding) => {
         avatarTestData.paddingRight.forEach((rightPadding) => {
           avatarTestData.paddingLeft.forEach((leftPadding) => {
             avatarTestData.paddingBottom.forEach((bottomPadding) => {
-      const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
-      cy.get(avatarSelector).should('be.visible').then(($el) => {
-        const styles = window.getComputedStyle($el[0]);
-        expect(styles.paddingTop).to.equal(topPadding[item.size]);
-        expect(styles.paddingRight).to.equal(rightPadding[item.size]);
-        expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
-        expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
+              const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+              cy.get(avatarSelector).should('be.visible').then(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.paddingTop).to.equal(topPadding[item.size]);
+                expect(styles.paddingRight).to.equal(rightPadding[item.size]);
+                expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
+                expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
+              });
             });
           });
         });
       });
     });
   });
-});
-it('Checks all padding of avatar-user', () => {
-  allCombinations.forEach((item) => {
-    avatarTestData.paddingTop.forEach((topPadding) => {
-      avatarTestData.paddingRight.forEach((rightPadding) => {
-        avatarTestData.paddingLeft.forEach((leftPadding) => {
-          avatarTestData.paddingBottom.forEach((bottomPadding) => {
-    const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
-    cy.get(avatarSelector).should('be.visible').then(($el) => {
-      const styles = window.getComputedStyle($el[0]);
-      expect(styles.paddingTop).to.equal(topPadding[item.size]);
-      expect(styles.paddingRight).to.equal(rightPadding[item.size]);
-      expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
-      expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
-            });
-          });
-        });
-      });
-    });
-  });
-});
-it('Checks all padding of avatar-with-image', () => {
-  allCombinations.forEach((item) => {
-    avatarTestData.paddingTop.forEach((topPadding) => {
-      avatarTestData.paddingRight.forEach((rightPadding) => {
-        avatarTestData.paddingLeft.forEach((leftPadding) => {
-          avatarTestData.paddingBottom.forEach((bottomPadding) => {
-    const avatarSelector = `#${item.size}-avatar-with-image`;
-    cy.get(avatarSelector).should('be.visible').then(($el) => {
-      const styles = window.getComputedStyle($el[0]);
-      expect(styles.paddingTop).to.equal(topPadding[item.size]);
-      expect(styles.paddingRight).to.equal(rightPadding[item.size]);
-      expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
-      expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
-            });
-          });
-        });
-      });
-    });
-  });
-});
 
+  it('Checks all padding of avatar-user', () => {
+    allCombinations.forEach((item) => {
+      avatarTestData.paddingTop.forEach((topPadding) => {
+        avatarTestData.paddingRight.forEach((rightPadding) => {
+          avatarTestData.paddingLeft.forEach((leftPadding) => {
+            avatarTestData.paddingBottom.forEach((bottomPadding) => {
+              const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+              cy.get(avatarSelector).should('be.visible').then(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.paddingTop).to.equal(topPadding[item.size]);
+                expect(styles.paddingRight).to.equal(rightPadding[item.size]);
+                expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
+                expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
 
+  it('Checks all padding of avatar-with-image', () => {
+    allCombinations.forEach((item) => {
+      avatarTestData.paddingTop.forEach((topPadding) => {
+        avatarTestData.paddingRight.forEach((rightPadding) => {
+          avatarTestData.paddingLeft.forEach((leftPadding) => {
+            avatarTestData.paddingBottom.forEach((bottomPadding) => {
+              const avatarSelector = `#${item.size}-avatar-with-image`;
+              cy.get(avatarSelector).should('be.visible').then(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.paddingTop).to.equal(topPadding[item.size]);
+                expect(styles.paddingRight).to.equal(rightPadding[item.size]);
+                expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
+                expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
 });
