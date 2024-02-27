@@ -66,9 +66,10 @@ for (const size of allSizes) {
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 40px;
 }
 

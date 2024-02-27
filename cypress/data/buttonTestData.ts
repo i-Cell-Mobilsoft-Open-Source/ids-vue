@@ -119,7 +119,7 @@ const buttonTestData = {
     success: "rgb(255, 255, 255)",
     warning: "rgb(255, 255, 255)",
     light: "rgb(71, 85, 105)",
-    dark: "rgb(255, 255, 255)",
+    dark: "rgb(255, 255, 255)",   // új dark a fillednél: "rgb(248, 250, 252)",
     surface: "rgb(100, 116, 139)",
   }],
   //pressed
@@ -131,13 +131,13 @@ const buttonTestData = {
     success: "rgb(255, 255, 255)",
     warning: "rgb(255, 255, 255)",
     light: "rgb(71, 85, 105)",
-    dark: "rgb(255, 255, 255)",
+    dark: "rgb(255, 255, 255)",   // új dark a fillednél: "rgb(248, 250, 252)",
     surface: "rgb(100, 116, 139)",
   }],
 
   activeOutlineTextColors: [{
     primary: "rgb(0, 47, 189)",
-    secondary: "rgb(51, 65, 85)",
+    secondary: "rgb(51, 65, 85)", //ld. icon button
     brand: "rgb(0, 47, 189)",
     error: "rgb(185, 28, 28)",
     success: "rgb(21, 128, 61)",
@@ -179,11 +179,11 @@ const buttonTestData = {
     spacious: "24px",
   }],
   common: [{
-    flexShrink: 0,
-    fontWeight: 700,
+    flexShrink: '0',
+    fontWeight: '700',
     width: 'fit-content',
     alignItems: 'center',
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent: 'center',
   }],
   white: 'rgba(255, 255, 255, 0)',

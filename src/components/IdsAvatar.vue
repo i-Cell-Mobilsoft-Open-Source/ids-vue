@@ -42,7 +42,7 @@ const avatarStyle = reactive({
 </script>
 
 <template>
-  <button type="button" :class="[size, 'ids-button']">
+  <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
     <slot v-if="$slots.default" />
     <div v-else>
       <img v-if="image" :src="image" class="img-size">
@@ -80,6 +80,8 @@ const avatarStyle = reactive({
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  width: var(--ids-comp-avatar-size-compact-height, 1.5rem);
+  height: var(--ids-comp-avatar-size-compact-width, 1.5rem);
 }
 
 //icon size
@@ -89,8 +91,8 @@ const avatarStyle = reactive({
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%; // v-bind('avatarStyle.width');
-  height: 100%; //v-bind('avatarStyle.height');
+  width: 100%;
+  height: 100%; 
 }
 
 //image size
@@ -111,8 +113,8 @@ const avatarStyle = reactive({
   line-height: 1rem;
   font-size: 0.6875rem;
   letter-spacing: 0.03125rem;
-  width: var(--ids-comp-avatar-size-compact-height, 1.5rem);
-  height: var(--ids-comp-avatar-size-compact-width, 1.5rem);
+  width: var(--ids-comp-avatar-size-compact-width);
+  height: var(--ids-comp-avatar-size-compact-height);
 }
 
 .comfortable {
@@ -121,8 +123,8 @@ const avatarStyle = reactive({
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0.01563rem;
-  width: var(--ids-comp-avatar-size-comfortable-width, 2.5rem);
-  height: var(--ids-comp-avatar-size-comfortable-height, 2.5rem);
+  width: var(--ids-comp-avatar-size-comfortable-width);
+  height: var(--ids-comp-avatar-size-comfortable-height);
 }
 
 .spacious {
@@ -131,12 +133,12 @@ const avatarStyle = reactive({
   font-style: normal;
   font-size: 1.375rem;
   line-height: 1.75rem;
-  width: var(--ids-comp-avatar-size-spacious-width, 4rem);
-  height: var(--ids-comp-avatar-size-spacious-height, 4rem);
+  width: var(--ids-comp-avatar-size-spacious-width);
+  height: var(--ids-comp-avatar-size-spacious-height);
 }
 
 //variants
-.ids-button {
+.ids-avatar {
   color: v-bind("avatarStyle.color");
   border: v-bind("avatarStyle.border");
   padding: v-bind("avatarStyle.padding");
@@ -152,15 +154,19 @@ const avatarStyle = reactive({
     outline-offset: 2px;
     border: v-bind("avatarStyle.focusedBorder");
     background: v-bind("avatarStyle.focusedBackground");
-    opacity: var(--ids-comp-buttons-size-spacious-border, 1);
-    border-radius: var(--ids-comp-buttons-size-spacious-border-radius, 1000px);
-    outline: var(--ids-comp-buttons-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+    opacity: var(--ids-comp-buttons-size-spacious-border);
+    border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
   &:active {
     outline: none;
     border: v-bind("avatarStyle.activeBorder");
     background: v-bind("avatarStyle.activeBackground");
+  }
+
+  &.light:focus {
+    outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
   }
 }
 </style>

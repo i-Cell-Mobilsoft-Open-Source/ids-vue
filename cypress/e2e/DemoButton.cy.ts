@@ -2,6 +2,10 @@
 import buttonTestData from '../data/buttonTestData';
 import 'cypress-real-events/support';
 
+beforeEach(() => {
+  cy.visit('/');
+})
+
 describe('ids Button Demo test', () => {
   const allCombinations = [] as any[];
 
@@ -14,7 +18,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks the content, min-width and height of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allHeight.forEach((height) => {
         buttonTestData.allWidth.forEach((minwidth) => {
@@ -27,7 +30,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks the font-size of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allFontSize.forEach((font) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -38,7 +40,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks the line-height of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.allLineHeight.forEach((lineHeigt) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -48,7 +49,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks common css rules of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.common.forEach((common) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -64,8 +64,24 @@ describe('ids Button Demo test', () => {
     });
   });
 
+  it('Checks common css value of button', () => {
+    allCombinations.forEach((item) => {
+      buttonTestData.common.forEach((common) => {
+        const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
+        cy.get(buttonSelector).should('be.visible').then(($el) => {
+          expect($el).to.have.css('flex-shrink', common['flexShrink']);
+          expect($el).to.have.css('font-weight', common['fontWeight']);
+          //expect($el).to.have.css('width', common['width']);
+          expect($el).to.have.css('align-items', common['alignItems']);
+          expect($el).to.have.css('display', common['display']);
+          expect($el).to.have.css('justify-content', common['justifyContent']);
+        });
+       });
+      });
+    });
+
+
   it('Checks the color of button', () => {
-    cy.visit('/')
     allCombinations.forEach((item) => {
       buttonTestData.enabledBgColors.forEach((bgColor) => {
         buttonTestData.enabledColors.forEach((color) => {
@@ -91,7 +107,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks focused state of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
       if (item.variant === 'light') {
@@ -105,7 +120,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks color of button with FOCUSED state', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.focusedFilledBgColors.forEach((bgColor) => {
         buttonTestData.focusedColors.forEach((color) => {
@@ -131,7 +145,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks color and background color of button with hovered state', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.hoveredBgColors.forEach((bgColor) => {
         buttonTestData.hoveredOutlineTextColors.forEach((outlineColor) => {
@@ -163,7 +176,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks color of button with active (pressed) state', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.activeBgColors.forEach((bgColor) => {
         buttonTestData.activeColors.forEach((color) => {
@@ -193,7 +205,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks color of disabled state button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;
@@ -216,7 +227,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks left and right border radius of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
       cy.get(buttonSelector).should('be.visible').should('have.css', { 'border-radius': buttonTestData.allRadius });
@@ -224,7 +234,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks all padding top and bottom values of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.topBottomPadding.forEach((padding) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
@@ -235,7 +244,6 @@ describe('ids Button Demo test', () => {
   });
 
   it('Checks all padding left and right values of button', () => {
-    cy.visit('/');
     allCombinations.forEach((item) => {
       buttonTestData.leftRightPadding.forEach((padding) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
