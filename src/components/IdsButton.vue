@@ -67,7 +67,8 @@ const buttonStyle = reactive({
 <template>
   <button
     :type="type" 
-    :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
+    :disabled="isDisabled" 
+    :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
