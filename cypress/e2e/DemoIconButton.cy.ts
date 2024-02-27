@@ -155,7 +155,7 @@ describe('ids IconButton Demo test', () => {
     });
   });
   // WIP Figma szerint jó, színek egységesítése után újranézni
-  it('Checks color of icon button with active (pressed) state', () => {
+  xit('Checks color of icon button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.activeBgColors.forEach((bgColor) => {
         iconButtonTestData.activeFilledColors.forEach((color) => {

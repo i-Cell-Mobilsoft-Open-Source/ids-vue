@@ -1,23 +1,23 @@
 const dividerTestData = {
 
-    allSizes: [
-      "compact",
-      "comfortable",
-      "spacious",
-    ],
-    allVariants: [
-      "primary",
-      "secondary",
-      "brand",
-      "error",
-      "success",
-      "warning",
-      "light",
-      "dark",
-      "surface"
-    ],
+  allSizes: [
+    "compact",
+    "comfortable",
+    "spacious",
+  ],
+  allVariants: [
+    "primary",
+    "secondary",
+    "brand",
+    "error",
+    "success",
+    "warning",
+    "light",
+    "dark",
+    "surface"
+  ],
 
-    //bgColors
+  //bgColors
   enabledBgColors: [{
     primary: "rgb(0, 60, 255)",
     secondary: "rgb(100, 116, 139)",
@@ -49,11 +49,11 @@ const dividerTestData = {
     display: 'flex',
     justifyContent: 'center'
   }],
-verticalWidth: '250px',
-verticalHeight: '100px',
-flexdirection: 'column',
-allRadius: '0px',
-allPadding: '0px' 
+  verticalWidth: '250px',
+  verticalHeight: '200px',
+  flexdirection: 'column',
+  allRadius: '0px',
+  allPadding: '0px'
 
 }
 

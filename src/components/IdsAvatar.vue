@@ -18,21 +18,21 @@ const avatarStyle = reactive({
   //enabled
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-avatar-size-spacious-border-radius, 62.5rem)`,
+  borderRadius: `var(--ids-comp-avatar-size-${props.size}-border-radius)`,
   padding: `var(--ids-comp-avatar-size-${props.size}-padding-y) var(--ids-comp-avatar-size-${props.size}-padding-x)`,
-  border: `var(--ids-comp-avatar-size-${props.size}-border, 1px) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
+  border: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-avatar-size--border, 1px) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
+  hoverBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-avatar-size-border, 1px) solid var(--ids-comp-avatar-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
+  focusedBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-avatar-size-${props.size}-border, 1px) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
+  activeBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
 
   //image sizes
   width: `var(--ids-comp-avatar-size-${props.size}-width)`,
@@ -80,8 +80,8 @@ const avatarStyle = reactive({
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: var(--ids-comp-avatar-size-compact-height, 1.5rem);
-  height: var(--ids-comp-avatar-size-compact-width, 1.5rem);
+  width: v-bind("avatarStyle.width");
+  height: v-bind("avatarStyle.height");
 }
 
 //icon size
@@ -113,8 +113,6 @@ const avatarStyle = reactive({
   line-height: 1rem;
   font-size: 0.6875rem;
   letter-spacing: 0.03125rem;
-  width: var(--ids-comp-avatar-size-compact-width);
-  height: var(--ids-comp-avatar-size-compact-height);
 }
 
 .comfortable {
@@ -123,8 +121,6 @@ const avatarStyle = reactive({
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0.01563rem;
-  width: var(--ids-comp-avatar-size-comfortable-width);
-  height: var(--ids-comp-avatar-size-comfortable-height);
 }
 
 .spacious {
@@ -133,8 +129,6 @@ const avatarStyle = reactive({
   font-style: normal;
   font-size: 1.375rem;
   line-height: 1.75rem;
-  width: var(--ids-comp-avatar-size-spacious-width);
-  height: var(--ids-comp-avatar-size-spacious-height);
 }
 
 //variants
