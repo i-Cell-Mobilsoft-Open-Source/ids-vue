@@ -34,10 +34,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { ChevronRightIcon } from "@heroicons/vue/24/solid";
+import IdsButton from "../components/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
-import IdsButton from "../components/IdsButton.vue";
-//import IdsIconButton from "../components/IdsIconButton.vue";
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";
   size?: "compact" | "comfortable" | "spacious";
@@ -59,10 +58,7 @@ for (const mode of allModes) {
   }
 }
 
-// Az ismételendő elem
 const repeatedItem = ref('Menu Item Label');
-
-// Az ismételendő elemek tömbje
 const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 </script>
 

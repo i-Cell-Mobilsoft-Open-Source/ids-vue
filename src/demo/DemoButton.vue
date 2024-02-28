@@ -74,7 +74,6 @@ const allVariants: Array<ButtonOptions["variant"]> = [
   "surface"
 ];
 
-
 const allOptions: ButtonOptions[] = [];
 
 for (const mode of allModes) {
