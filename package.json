@@ -1,23 +1,24 @@
 {
   "name": "@baller/i-ds",
-  "version": "1.0.14",
+  "version": "1.0.16",
   "description": "i-ds",
   "private": false,
   "type": "module",
   "files": [
+    "dist",
     "*.d.ts",
     "*.css",
     "*.js"
   ],
-  "main": "index.cjs",
-  "module": "index.js",
-  "types": "index.d.ts",
-  "umd": "index.umd.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "umd": "dist/index.umd.js",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "require": "./index.cjs",
-      "import": "./index.js"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
     }
   },
   "keywords": [
