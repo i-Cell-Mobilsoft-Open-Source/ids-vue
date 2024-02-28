@@ -1,6 +1,6 @@
 {
   "name": "@baller/i-ds",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "i-ds",
   "private": false,
   "type": "module",
@@ -19,6 +19,10 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
+    },
+    "./dist/*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "keywords": [
