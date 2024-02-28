@@ -24,7 +24,6 @@ export default defineConfig({
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
-      // into your library
       external: [
         "vue",
         fileURLToPath(
@@ -36,7 +35,6 @@ export default defineConfig({
       ],
       output: {
         // Provide global variables to use in the UMD build
-        // for externalized deps
         globals: {
           vue: "Vue",
         },
@@ -53,7 +51,7 @@ export default defineConfig({
   },
   server: {
     port: 1234,
-  }
+  },
   // loaderOptions: {
   //   scss: {
   //     prependData: `@import "./src/styles/ids.scss";`
@@ -69,5 +67,14 @@ export default defineConfig({
   //     },
   //   }
   // }
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/style.scss";
+        `
+      }
+    }
+  },
 })
 
