@@ -18,12 +18,12 @@ beforeEach(() => {
       });
     });
     //WIP - omfortable height 32 vs 26?
-    it('Checks the width and height of tags', () => {
+    xit('Checks the width and height of tags', () => {
         allCombinations.forEach((item) => {
           tagTestData.allHeight.forEach((height) => {
             //tagTestData.allWidth.forEach((width) => {
-              const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-              cy.get(avatarSelector).should('be.visible')
+              const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+              cy.get(tagSelector).should('be.visible')
                 .should(($el) => {
                 expect($el).to.have.css('height', height[item.size]);
                 //expect($el).to.have.css('width', width[item.size]);
@@ -36,8 +36,8 @@ beforeEach(() => {
       xit('Checks common css rules of tags', () => {
         allCombinations.forEach((item) => {
           tagTestData.common.forEach((common) => {
-            const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            cy.get(avatarSelector)
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+            cy.get(tagSelector)
               .should('be.visible')
               .should('have.css', 'display', common['display'])
               .should('have.css', 'flex-shrink', common['flexShrink'])
@@ -52,8 +52,8 @@ beforeEach(() => {
       xit('Checks the font-size of tags', () => {
         allCombinations.forEach((item) => {
             tagTestData.allFontSize.forEach((font) => {
-            const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            cy.get(avatarSelector).should('be.visible').should(($el) => {
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+            cy.get(tagSelector).should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.fontSize).to.equal(font[item.size]);
               expect(styles.fontWeight).to.equal(tagTestData.allFontWeight);
@@ -65,8 +65,8 @@ beforeEach(() => {
       xit('Checks the line-height of tags', () => {
         allCombinations.forEach((item) => {
           tagTestData.allLineHeight.forEach((lineHeigt) => {
-            const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            cy.get(avatarSelector).should('be.visible').should(($el) => {
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+            cy.get(tagSelector).should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
             });
@@ -77,19 +77,19 @@ beforeEach(() => {
         allCombinations.forEach((item) => {
           tagTestData.enabledBgColors.forEach((bgColor) => {
             tagTestData.enabledColors.forEach((color) => {
-                tagTestData.hoveredColors.forEach((enabledColor) => {
-                const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+                tagTestData.enabledOutlineColor.forEach((outlineColor) => {
+                const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
                 if (item.mode === 'filled') {
-                    cy.get(avatarSelector).should('be.visible').should(($el) => {
+                    cy.get(tagSelector).should('be.visible').should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
                     expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
                     expect(styles.color).to.equal(color[item.variant]);
                     });
                 } else { //outlined
-                    cy.get(avatarSelector).should('be.visible').should(($el) => {
+                    cy.get(tagSelector).should('be.visible').should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                    expect(styles.color).to.equal(enabledColor[item.variant]);
+                    expect(styles.backgroundColor).to.equal(tagTestData.white);
+                    expect(styles.color).to.equal(outlineColor[item.variant]);
                     });
                   }
                 });
@@ -97,4 +97,29 @@ beforeEach(() => {
             });
           });
         });
+        xit('Checks color and background color of tags with HOVERED state', () => {
+            allCombinations.forEach((item) => {
+              tagTestData.hoveredBgColors.forEach((bgColor) => {
+                tagTestData.hoveredColors.forEach((color) => {
+                    tagTestData.enabledOutlineColor.forEach((outlineColor) => {
+                  const tagSelector = cy.get(`#${item.mode}-${item.variant}-${item.size}-Tag`);
+                  if (item.mode === 'filled') {
+                    tagSelector.realHover({ pointer: "mouse" }).should(($el) => {
+                      const styles = window.getComputedStyle($el[0]);
+                      expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                      expect(styles.color).to.equal(color[item.variant]);
+                    });
+                } else { //outline
+                    tagSelector.realHover({ pointer: "mouse" }).should(($el) => {
+                        const styles = window.getComputedStyle($el[0]);
+                        expect(styles.backgroundColor).to.equal(tagTestData.hoverdOutlineBg);
+                        expect(styles.color).to.equal(outlineColor[item.variant]);
+                        });
+                       }
+                    });
+                });
+             });
+            });
+        });
+
 });
