@@ -148,9 +148,8 @@ const avatarStyle = reactive({
     outline-offset: 2px;
     border: v-bind("avatarStyle.focusedBorder");
     background: v-bind("avatarStyle.focusedBackground");
-    opacity: var(--ids-comp-buttons-size-spacious-border);
-    border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
-    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
+    border-radius: var(--ids-comp-size-avatar-size-border-radius);
+    outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
   &:active {
