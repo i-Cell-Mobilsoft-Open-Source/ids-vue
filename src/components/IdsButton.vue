@@ -42,7 +42,8 @@ const buttonStyle = reactive({
   color: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   padding: `var(--ids-comp-buttons-size-${props.size}-padding-y) var(--ids-comp-buttons-size-${props.size}-padding-x)`,
   border: `var(--ids-comp-buttons-size-${props.size}-border) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-enabled)`,
-
+  //--ids-comp-buttons-filled-color-bg-primary-enabled
+  //--ids-comp-buttons-filled-color-fg-label-primary-enabled
   //hovered
   hoverBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-hovered)`,

@@ -1,18 +1,18 @@
 const avatarTestData = {
-    allModes: ["filled", "outlined", "text"],
-    allSizes: [
-      "compact",
-      "comfortable",
-      "spacious",
-    ],
-    allVariants: [
-      "surface",
-      "primary",
-      "secondary",
-      "light",
-      "dark"
-    ],
-  
+  allModes: ["filled", "outlined", "text"],
+  allSizes: [
+    "compact",
+    "comfortable",
+    "spacious",
+  ],
+  allVariants: [
+    "surface",
+    "primary",
+    "secondary",
+    "light",
+    "dark"
+  ],
+
   //bgColors
   enabledBgColors: [{
     surface: "rgb(241, 245, 249)",
@@ -21,7 +21,7 @@ const avatarTestData = {
     light: "rgb(255, 255, 255)",
     dark: "rgb(2, 6, 23)",
   }],
-    hoveredBgColors: [{
+  hoveredBgColors: [{
     surface: "rgb(226, 232, 240)",
     primary: "rgb(0, 47, 189)",
     secondary: "rgb(51, 65, 85)",
@@ -42,7 +42,7 @@ const avatarTestData = {
     light: "rgb(226, 232, 240)",
     dark: "rgb(51, 65, 85)",
   }],
-  
+
   //textColors
   enabledColors: [{
     surface: "rgb(2, 6, 23)",
@@ -58,7 +58,7 @@ const avatarTestData = {
     light: "rgb(71, 85, 105)",
     dark: "rgb(248, 250, 252)",
   }],
-    
+
   //sizes
   allHeight: [{
     compact: "24px",
@@ -72,23 +72,23 @@ const avatarTestData = {
   }],
 
   paddingBottom: [{
-    compact: "4px",
-    comfortable: "4px",
+    compact: "2px",
+    comfortable: "2px",
     spacious: "6px",
   }],
   paddingLeft: [{
-    compact: "4px",
-    comfortable: "4px",
+    compact: "2px",
+    comfortable: "2px",
     spacious: "6px",
   }],
   paddingRight: [{
-    compact: "4px",
-    comfortable: "4px",
+    compact: "2px",
+    comfortable: "2px",
     spacious: "6px",
   }],
   paddingTop: [{
-    compact: "4px",
-    comfortable: "4px",
+    compact: "2px",
+    comfortable: "2px",
     spacious: "6px",
   }],
 
@@ -113,19 +113,19 @@ const avatarTestData = {
     fontStyle: 'normal',
     textAlign: 'center',
     alignItems: 'center',
-    flexDirection: 'column', 
+    flexDirection: 'column',
     justifyContent: 'center'
   }],
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
   hoveredTextBgColors: "rgb(241, 245, 249)",
   allRadius: '1000px',
-  image:"https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg",
+  image: "https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg",
 
 
 
   avatarImageBgcolors: "rgb(0, 60, 255)",
 
-  }
+}
 
 export default avatarTestData;
