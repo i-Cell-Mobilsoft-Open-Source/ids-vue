@@ -1,11 +1,16 @@
 {
   "name": "@baller/i-ds",
-  "version": "1.0.10",
+  "version": "1.0.18",
   "description": "i-ds",
   "private": false,
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "*.d.ts",
+    "*.css",
+    "*.js",
+    "./src/style.css",
+    "./src/styles/ids-tokens.css"
   ],
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -17,7 +22,10 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     },
-    "./style.css": "./dist/style.css"
+    "./dist/*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
+    }
   },
   "keywords": [
     "i-ds",
@@ -29,7 +37,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "format": "prettier . --write",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && vite build && npm run build:css",
+    "build:css": "sass src/style.scss dist/main.css --no-source-map --style compressed",
     "lint": "eslint . --fix --max-warnings=0",
     "generate:css": "node scripts/token-parser.js"
   },

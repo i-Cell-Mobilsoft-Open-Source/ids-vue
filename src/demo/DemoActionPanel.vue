@@ -47,10 +47,7 @@ for (const mode of allModes) {
   }
 }
 
-// Az ismételendő elem
 const repeatedItem = ref('Menu Item Label');
-
-// Az ismételendő elemek tömbje
 const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 </script>
 
