@@ -22,7 +22,6 @@ import './commands'
 import { mount } from 'cypress/vue'
 // Ensure global styles are loaded
 import '../../src/style.scss';
-import '../../src/styles/ids.scss';
 
 Cypress.Commands.add('mount', mount)
 

@@ -143,7 +143,6 @@ const buttonStyle = reactive({
     color: v-bind("buttonStyle.focusedColor");
     border: v-bind("buttonStyle.focusedBorder");
     background: v-bind("buttonStyle.focusedBackground");
-    opacity: var(--ids-comp-buttons-size-spacious-border);
     border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
     outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
