@@ -1,6 +1,6 @@
 {
   "name": "@baller/i-ds",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "i-ds",
   "private": false,
   "type": "module",
@@ -38,7 +38,7 @@
     "prepare": "husky install",
     "format": "prettier . --write",
     "build": "vue-tsc && vite build && npm run build:css",
-    "build:css": "sass dist/main.css --no-source-map --style compressed",
+    "build:css": "sass src/style/tokens.scss dist/tokens.css --no-source-map --style compressed",
     "lint": "eslint . --fix --max-warnings=0",
     "generate:css": "node scripts/token-parser.js"
   },
