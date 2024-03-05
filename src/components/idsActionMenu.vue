@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { reactive, computed } from "vue";
+  import { reactive } from "vue";
   // import IdsButton from "../components/IdsButton.vue";
   // import IdsIconButton from "../components/IdsIconButton.vue";
   // import IdsActionItem from "../components/IdsActionItem.vue";
@@ -49,19 +49,19 @@
     solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
   });
 
-  const positionConfigs = computed(() => {
-    const classes = {
-      topLeft: "absolute bottom-0 left-0",
-      topRight: "text-headline-large-prominent uppercase",
-      bottomLeft: "text-headline-small-prominent",
-      bottomRight: "whatever4",
-      leftTop: "whatever5",
-      leftBottom: "text-body-large-extra-prominent",
-      rightTop: "text-body-large-extra-prominent",
-      rightBottom: "text-body-large-extra-prominent",
-    };
-  return classes[props.position || "topLeft"];
-});
+//   const positionConfigs = computed(() => {
+//     const classes = {
+//       topLeft: "absolute bottom-0 left-0",
+//       topRight: "text-headline-large-prominent uppercase",
+//       bottomLeft: "text-headline-small-prominent",
+//       bottomRight: "whatever4",
+//       leftTop: "whatever5",
+//       leftBottom: "text-body-large-extra-prominent",
+//       rightTop: "text-body-large-extra-prominent",
+//       rightBottom: "text-body-large-extra-prominent",
+//     };
+//   return classes[props.position || "topLeft"];
+// });
 
 
 </script>
@@ -70,9 +70,9 @@
   <Popover class="">    
     <PopoverButton as="div">
       <div class="relative">
-        <div :class="positionConfigs">
-          <slot name="action" />
-        </div>
+        <!-- <div :class="positionConfigs"> -->
+        <slot name="action" />
+        <!-- </div> -->
       </div>
     </PopoverButton>
 
