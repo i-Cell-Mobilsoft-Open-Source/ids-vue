@@ -22,8 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ClockIcon } from "@heroicons/vue/24/solid";
-import { ChevronRightIcon } from "@heroicons/vue/24/solid";
+import { ClockIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsActionPanel from "../components/IdsActionPanel.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
 type ButtonOptions = {
