@@ -80,10 +80,11 @@ for (const mode of allModes) {
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
   margin-bottom: 40px;
+  align-items: center;
+  flex-direction: column;
 }
 
 p {

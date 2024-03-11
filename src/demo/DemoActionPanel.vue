@@ -22,8 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ClockIcon } from "@heroicons/vue/24/solid";
-import { ChevronRightIcon } from "@heroicons/vue/24/solid";
+import { ClockIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsActionPanel from "../components/IdsActionPanel.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
 type ButtonOptions = {
@@ -47,19 +46,17 @@ for (const mode of allModes) {
   }
 }
 
-// Az ismételendő elem
 const repeatedItem = ref('Menu Item Label');
-
-// Az ismételendő elemek tömbje
 const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 </script>
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
   margin-bottom: 40px;
+  align-items: center;
+  flex-direction: column;
 }
 
 p {

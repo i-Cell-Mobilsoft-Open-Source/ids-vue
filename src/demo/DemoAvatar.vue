@@ -25,6 +25,20 @@
       :size="option.size"
       image="https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg"
     />
+    <!-- <IdsAvatar
+      v-for="(option, index) in allOptions"
+      :id="`${option.variant}-${option.size}-avatar-monogram`"
+      :key="index"
+      :size="option.size"
+      :variant="option.variant"
+    >
+      <template #label-text>
+        Label text
+      </template>
+      <template #sub-text>
+        Sub text
+      </template>
+    </IdsAvatar> -->
   </div>
 </template>
 
@@ -66,9 +80,10 @@ for (const size of allSizes) {
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 40px;
 }
 

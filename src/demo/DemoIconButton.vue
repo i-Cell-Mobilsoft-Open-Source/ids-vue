@@ -11,7 +11,7 @@
       :variant="option.variant"
     />
 
-    <!-- Disabled Buttons -->
+    <!-- Disabled IconButtons -->
     <h2 class="pt-2">
       Disabled Buttons
     </h2>
@@ -28,33 +28,33 @@
   </div>
 </template>
  
- <script setup lang="ts">
-  import { BeakerIcon } from '@heroicons/vue/24/solid'
- import IdsIconButton  from '../components/IdsIconButton.vue';
-     type IconButtonOptions = {
-   mode?: "filled" | "outlined" | "standard",
-   size?: "compact" | "comfortable" | "spacious",
-   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
-   };
-   type ModifiedButtonOptions = Omit<IconButtonOptions, 'variant'> & { variant: AllowedVariants };
+<script setup lang="ts">
+import { BeakerIcon } from '@heroicons/vue/24/solid'
+import IdsIconButton  from '../components/IdsIconButton.vue';
+type IconButtonOptions = {
+  mode?: "filled" | "outlined" | "standard",
+  size?: "compact" | "comfortable" | "spacious",
+  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
+  };
+  type ModifiedButtonOptions = Omit<IconButtonOptions, 'variant'> & { variant: AllowedVariants };
   type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface" | undefined;
- 
-   const allModes: Array<IconButtonOptions["mode"]> = ["filled", "outlined", "standard"];
-   const allSizes: Array<IconButtonOptions["size"]> = ["compact", "comfortable", "spacious"];
-   const allVariants: Array<IconButtonOptions["variant"]> = ["primary", "secondary", "brand", "error", "success", "warning", "light", "dark", "surface"];
- 
- const allOptions: IconButtonOptions[] = [];
- 
- for (const mode of allModes) {
-   for (const size of allSizes) {
-     for (const variant of allVariants) {
-       const options: IconButtonOptions = { mode, size, variant };
-       allOptions.push(options);
-     }
-   }
- }
 
- const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
+  const allModes: Array<IconButtonOptions["mode"]> = ["filled", "outlined", "standard"];
+  const allSizes: Array<IconButtonOptions["size"]> = ["compact", "comfortable", "spacious"];
+  const allVariants: Array<IconButtonOptions["variant"]> = ["primary", "secondary", "brand", "error", "success", "warning", "light", "dark", "surface"];
+ 
+const allOptions: IconButtonOptions[] = [];
+ 
+for (const mode of allModes) {
+  for (const size of allSizes) {
+    for (const variant of allVariants) {
+      const options: IconButtonOptions = { mode, size, variant };
+      allOptions.push(options);
+    }
+  }
+}
+
+const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
 const disabledOptions: ModifiedButtonOptions[] = [];
 
 for (const mode of allModes) {
@@ -65,19 +65,20 @@ for (const mode of allModes) {
     }
   }
 }
- </script>
+</script>
  
- <style scoped>
- .demo {
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
-   margin-bottom: 40px;
- }
- 
- p {
-   font-size: 20px;
-   font-weight: 600;
-   margin-bottom: 10px;
- }
- </style>
+<style scoped>
+.demo {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+</style>

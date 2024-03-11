@@ -23,30 +23,30 @@ const iconButtonStyle = reactive({
   gap: `var(--ids-comp-icon-button-size-${props.size}-gap)`,
   width: `var(--ids-comp-icon-button-size-${props.size}-width)`,
   height: `var(--ids-comp-icon-button-size-${props.size}-height)`,
+  borderRadius: `var(--ids-comp-icon-button-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-icon-button-size-${props.size}-border-radius, 1000px)`,
   background: ` var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-enabled)`,
-  border: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
+  border: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
-  hoverColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-hovered`,
+  hoverColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
+  hoverBorder: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
-  focusedColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-focused`,
+  focusedColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-focused, rgba(255, 255, 255, 0.00))`,
+  focusedBorder: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-focused)`,
 
   //active
-  activeColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-pressed`,
+  activeColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-pressed)`,
   activeBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-pressed, rgba(255, 255, 255, 0.00))`,
+  activeBorder: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-icon-button-size-${props.size}-border, 1px) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-disabled, rgba(255, 255, 255, 0.00))`,
+  disabledBorder: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-disabled)`,
 
   iconWidthHeight: `var(--ids-comp-icon-button-size-${props.size}-icon)`,
 });
@@ -57,7 +57,7 @@ const iconButtonStyle = reactive({
   <button
     :type="type" 
     :disabled="isDisabled" 
-    :class="[size, mode + '-mode']"
+    :class="[size, mode + '-mode', { 'light': props.variant === 'light' }]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.icon" class="icon-size" />
@@ -96,15 +96,7 @@ const iconButtonStyle = reactive({
 }
 
 //sizes
-.compact {
-  @include commonMixin;
-}
-
-.comfortable {
-  @include commonMixin;
-}
-
-.spacious {
+.compact, .comfortable, .spacious {
   @include commonMixin;
 }
 
@@ -115,7 +107,7 @@ const iconButtonStyle = reactive({
   border: v-bind('iconButtonStyle.border');
 
   &:hover {
-    color: v-bind('iconButtonStyle.color');
+    color: v-bind('iconButtonStyle.hoverColor');
     border: v-bind('iconButtonStyle.hoverBorder');
     background: v-bind('iconButtonStyle.hoverBackground');
   }
@@ -137,6 +129,10 @@ const iconButtonStyle = reactive({
     color: v-bind('iconButtonStyle.disabledColor');
     border: v-bind('iconButtonStyle.disabledBorder');
     background: v-bind('iconButtonStyle.disabledBackground');
+  }
+  &.light:focus {
+    background: var(--ids-comp-icon-button-outlined-color-bg-light-focused);
+    outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-base-color-light);
   }
 }
 
@@ -167,6 +163,10 @@ const iconButtonStyle = reactive({
     border: none;
     color: v-bind('iconButtonStyle.disabledColor');
     background: v-bind('iconButtonStyle.disabledBackground');
+  }
+  &.light:focus {
+    background: var(--ids-comp-icon-button-outlined-color-bg-light-focused);
+    outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-base-color-light);
   }
 }
 </style>

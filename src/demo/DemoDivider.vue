@@ -19,7 +19,6 @@
     </div>
   </section>
 </template>
-<!-- height="300px" -->
 
 <script setup lang="ts">
 import IdsDivider from "../components/IdsDivider.vue";
@@ -71,16 +70,12 @@ for (const size of allSizes) {
 }
 
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
   margin-bottom: 40px;
-
-  &>button {
-    align-self: center;
-  }
+  align-items: center;
+  flex-direction: column;
 }
-
 .demo2 {
   display: flex;
   flex-direction: row;

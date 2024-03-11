@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const filesNeedToExclude = ["src/demo/**", "src/pluggables/Comp2.vue"];
+const filesNeedToExclude = ["src/demo/**"];
 
 const filesPathToExclude = filesNeedToExclude.map((src) => {
   return fileURLToPath(new URL(src, import.meta.url));
@@ -15,6 +15,7 @@ const filesPathToExclude = filesNeedToExclude.map((src) => {
 export default defineConfig({
   plugins: [vue(), dts()],
   build: {
+    cssMinify: true,
     lib: {
       // src/indext.ts is where we have exported the component(s)
       entry: resolve(__dirname, "src/index.ts"),
@@ -24,19 +25,17 @@ export default defineConfig({
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
-      // into your library
       external: [
         "vue",
-        fileURLToPath(
-          new URL(
-            'src/main.ts',
-            import.meta.url
-          )
-        ),
+        // fileURLToPath(
+        //   new URL(
+        //     'src/main.ts',
+        //     import.meta.url
+        //   )
+        // ),
       ],
       output: {
         // Provide global variables to use in the UMD build
-        // for externalized deps
         globals: {
           vue: "Vue",
         },
@@ -53,21 +52,16 @@ export default defineConfig({
   },
   server: {
     port: 1234,
-  }
-  // loaderOptions: {
-  //   scss: {
-  //     prependData: `@import "./src/styles/ids.scss";`
-  //   }
-  // }
+  },
   // css: {
-  //   loaderOptions: {
+  //   preprocessorOptions: {
   //     scss: {
   //       additionalData: `
-  //       @import "@/assets/styles/_responsive.scss";
-  //       @import "@/assets/styles/_element-variables.scss";
+  //         @import "./src/style.scss";
+  //         @import "./src/styles/ids-tokens.scss";
   //       `
-  //     },
+  //     }
   //   }
-  // }
+  // },
 })
 

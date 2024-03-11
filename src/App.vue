@@ -5,7 +5,3 @@ import DemoView from './demo/DemoView.vue';
 <template>
   <DemoView />
 </template>
-
-<style>
-@import './styles/ids.scss';
-</style>

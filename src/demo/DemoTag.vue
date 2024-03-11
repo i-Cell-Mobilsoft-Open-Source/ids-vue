@@ -17,8 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoltIcon } from "@heroicons/vue/24/solid";
-import { BeakerIcon } from "@heroicons/vue/24/solid";
+import { BoltIcon,BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsTag from "../components/IdsTag.vue";
 type TagOptions = {
   mode?: "filled" | "outlined";
@@ -61,10 +60,11 @@ for (const mode of allModes) {
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
   margin-bottom: 40px;
+  align-items: center;
+  flex-direction: column;
 }
 
 p {

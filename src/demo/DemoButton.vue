@@ -35,8 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoltIcon } from "@heroicons/vue/24/solid";
-import { BeakerIcon } from "@heroicons/vue/24/solid";
+import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/IdsButton.vue";
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "text";
@@ -74,7 +73,6 @@ const allVariants: Array<ButtonOptions["variant"]> = [
   "surface"
 ];
 
-
 const allOptions: ButtonOptions[] = [];
 
 for (const mode of allModes) {
@@ -102,9 +100,10 @@ for (const mode of allModes) {
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 40px;
 }
 

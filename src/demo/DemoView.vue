@@ -3,62 +3,49 @@
   <nav :class="{ 'open': isMenuVisible }">
     <div
       data-cy="hamburger-menu"
-      class="menu-btn hamburger-menu"
+      class="menu-btn hamburger-menu d-flex items-center"
       @click="toggleMenu"
     >
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
-    <button data-cy="button-component" @click="showComponent(Button)">
-      Buttons Component
-    </button>
-    <button data-cy="icon-button-component" @click="showComponent(IconButton)">
-      Icon Buttons Component
-    </button>
-    <button data-cy="tags-component" @click="showComponent(Tag)">
+    <router-link data-cy="router-link-component" to="/">
+      Button Component
+    </router-link>
+    <router-link data-cy="icon-router-link-component" to="/icon-button">
+      Icon Button Component
+    </router-link>
+    <router-link data-cy="tags-component" to="/tags">
       Tags Component
-    </button>
-    <button data-cy="divider-component" @click="showComponent(Divider)">
+    </router-link>
+    <router-link data-cy="divider-component" to="/divider">
       Divider Component
-    </button>
-    <button data-cy="avatar-component" @click="showComponent(Avatar)">
+    </router-link>
+    <router-link data-cy="avatar-component" to="/avatar">
       Avatar Component
-    </button>
-    <button data-cy="action-item-button-component" @click="showComponent(ActionItemButton)">
-      ActionItemButton Component
-    </button>
-    <button data-cy="action-item-link-component" @click="showComponent(ActionItemLink)">
+    </router-link>
+    <router-link data-cy="action-item-router-link-component" to="/action-item-button">
+      ActionItemrouter-link Component
+    </router-link>
+    <router-link data-cy="action-item-link-component" to="/action-item-link">
       ActionItemLink Component
-    </button>
-    <button data-cy="action-panel-component" @click="showComponent(ActionPanel)">
+    </router-link>
+    <router-link data-cy="action-panel-component" to="/action-panel">
       ActionPanel Component
-    </button>
+    </router-link>
+    <router-link data-cy="action-menu-component" to="/action-menu">
+      ActionMenu Component
+    </router-link>
   </nav>
   <section>
-    <component :is="currentComponent" />
+    <router-view />
   </section>
-  <!-- <IdsButton size="comfortable" variant="secondary" @click="drMode" style="margin-bottom: 10px;">{{ darkText }}</IdsButton> -->
+  <!-- <Idsrouter-link size="comfortable" variant="secondary" @click="drMode" style="margin-bottom: 10px;">{{ darkText }}</Idsrouter-link> -->
 </template>
 
 <script setup lang="ts">
-
-import { shallowRef, ref } from "vue";
-import Tag from "./DemoTag.vue";
-import Avatar from "./DemoAvatar.vue";
-import Button from "./DemoButton.vue";
-import Divider from "./DemoDivider.vue";
-import IconButton from "./DemoIconButton.vue";
-import ActionPanel from "./DemoActionPanel.vue";
-import ActionItemLink from "./DemoActionItemLink.vue";
-import ActionItemButton from "./DemoActionItemButton.vue";
-
-const currentComponent = shallowRef(Button);
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function showComponent(data: any) {
-  currentComponent.value = data;
-}
+import { ref } from "vue";
 
 const isMenuVisible = ref(false);
 
