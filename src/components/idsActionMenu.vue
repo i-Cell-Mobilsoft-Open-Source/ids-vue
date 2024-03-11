@@ -5,54 +5,75 @@
   // import IdsActionItem from "../components/IdsActionItem.vue";
   import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 
+  const props = withDefaults(
+    defineProps<{
+      //buttonType?: "button" | "iconButton" | "actionItemButton",
+      // actionPosition: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+      panelMode?: "filled" | "outlined" | "text";
+      panelSize?: "compact" | "comfortable" | "spacious";
+      position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+      // variant?:
+      // | "primary"
+      // | "secondary"
+      // | "brand"
+      // | "error"
+      // | "success"
+      // | "warning"
+      // | "light"
+      // | "dark"
+      // | "surface";
+      // leadingIcon?: object | undefined;
+      // trailingIcon?: object | undefined;
+      // isDisabled?: boolean;
+    }>(),
+    {
+      panelMode: "filled",
+      buttonType: "button",
+      position: "topLeft",
+      panelSize: "comfortable",
+      // isDisabled: false,
+      // variant: "primary",
+      // leadingIcon: undefined,
+      // trailingIcon: undefined,
+    },
+  );
 
-const props = withDefaults(
-  defineProps<{
-    //buttonType?: "button" | "iconButton" | "actionItemButton",
-    // actionPosition: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
-    panelMode?: "filled" | "outlined" | "text";
-    panelSize?: "compact" | "comfortable" | "spacious";
-    // variant?:
-    // | "primary"
-    // | "secondary"
-    // | "brand"
-    // | "error"
-    // | "success"
-    // | "warning"
-    // | "light"
-    // | "dark"
-    // | "surface";
-    // leadingIcon?: object | undefined;
-    // trailingIcon?: object | undefined;
-    // isDisabled?: boolean;
-  }>(),
-  {
-     panelMode: "filled",
-     panelSize: "comfortable",
-     buttonType: "button",
-    // isDisabled: false,
-    // variant: "primary",
-    // leadingIcon: undefined,
-    // trailingIcon: undefined,
-  },
-);
+  const actionPanelStyle = reactive({
+    //enabled
+    gap: `var(--ids-comp-action-panel-size-${props.panelSize}-gap)`,
+    borderRadius:` var(--ids-comp-action-panel-size-${props.panelSize}-border-radius)`,
+    background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
+    padding: `var(--ids-comp-action-panel-size-${props.panelSize}-padding-y)
+    var(--ids-comp-action-panel-size-${props.panelSize}-padding-x)`,
+    outlinedBorder: `var(--ids-comp-action-panel-size-${props.panelSize}-border) 
+    solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
+  });
 
-const actionPanelStyle = reactive({
-  //enabled
-  gap: `var(--ids-comp-action-panel-size-${props.panelSize}-gap)`,
-  borderRadius:` var(--ids-comp-action-panel-size-${props.panelSize}-border-radius)`,
-  background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
-  padding: `var(--ids-comp-action-panel-size-${props.panelSize}-padding-y)
-   var(--ids-comp-action-panel-size-${props.panelSize}-padding-x)`,
-  outlinedBorder: `var(--ids-comp-action-panel-size-${props.panelSize}-border) 
-  solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
-});
+//   const positionConfigs = computed(() => {
+//     const classes = {
+//       topLeft: "absolute bottom-0 left-0",
+//       topRight: "text-headline-large-prominent uppercase",
+//       bottomLeft: "text-headline-small-prominent",
+//       bottomRight: "whatever4",
+//       leftTop: "whatever5",
+//       leftBottom: "text-body-large-extra-prominent",
+//       rightTop: "text-body-large-extra-prominent",
+//       rightBottom: "text-body-large-extra-prominent",
+//     };
+//   return classes[props.position || "topLeft"];
+// });
+
+
 </script>
 
 <template>
-  <Popover class="relative">    
-    <PopoverButton as="span">
-      <slot name="action" />
+  <Popover class="">    
+    <PopoverButton as="div">
+      <div class="relative">
+        <!-- <div :class="positionConfigs"> -->
+        <slot name="action" />
+        <!-- </div> -->
+      </div>
     </PopoverButton>
 
     <transition      
@@ -131,7 +152,19 @@ const actionPanelStyle = reactive({
   transform: translateY(0);
 }
 
-.popover-panel {
+.relative {
+  position: relative;
+}
+.absolute {
   position: absolute;
 }
+
+.top-0{
+  top: 0px;
+}
+
+.left-0{
+  left: 0px;
+}
+
 </style>

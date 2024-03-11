@@ -35,8 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoltIcon } from "@heroicons/vue/24/solid";
-import { BeakerIcon } from "@heroicons/vue/24/solid";
+import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/IdsButton.vue";
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "text";
