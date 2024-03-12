@@ -24,10 +24,11 @@ const props = withDefaults(
   },
 );
 
+
 const actionItemStyle = reactive({
   //enabled
   //--comp-menu-item-size-comfortable-height
-  gap: `var(--ids-comp-action-item-size-${props.size}-gap)`,
+  gap: `var(--ids-comp-action-item-size-button-${props.size}-gap)`,
   height: `var(--ids-comp-action-item-size-${props.mode}-height)`,
   borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-enabled)`,

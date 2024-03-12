@@ -3,7 +3,7 @@ import buttonTestData from '../data/buttonTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-  cy.visit('/');
+  cy.visit('/components/button');
 })
 
 describe('ids Button Demo test', () => {
