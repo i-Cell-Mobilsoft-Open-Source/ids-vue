@@ -10,31 +10,31 @@
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
-    <router-link data-cy="router-link-component" to="/">
+    <router-link data-cy="router-link-component" to="/components/button">
       Button Component
     </router-link>
-    <router-link data-cy="icon-router-link-component" to="/icon-button">
+    <router-link data-cy="icon-router-link-component" to="/components/icon-button">
       Icon Button Component
     </router-link>
-    <router-link data-cy="tags-component" to="/tags">
+    <router-link data-cy="tags-component" to="/components/tags">
       Tags Component
     </router-link>
-    <router-link data-cy="divider-component" to="/divider">
+    <router-link data-cy="divider-component" to="/components/divider">
       Divider Component
     </router-link>
-    <router-link data-cy="avatar-component" to="/avatar">
+    <router-link data-cy="avatar-component" to="/components/avatar">
       Avatar Component
     </router-link>
-    <router-link data-cy="action-item-router-link-component" to="/action-item-button">
-      ActionItemrouter-link Component
+    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button">
+      ActionItem Button Component
     </router-link>
-    <router-link data-cy="action-item-link-component" to="/action-item-link">
-      ActionItemLink Component
+    <router-link data-cy="action-item-link-component" to="/components/action-item-link">
+      ActionItem Link Component
     </router-link>
-    <router-link data-cy="action-panel-component" to="/action-panel">
+    <router-link data-cy="action-panel-component" to="/components/action-panel">
       ActionPanel Component
     </router-link>
-    <router-link data-cy="action-menu-component" to="/action-menu">
+    <router-link data-cy="action-menu-component" to="/components/action-menu">
       ActionMenu Component
     </router-link>
   </nav>

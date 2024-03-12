@@ -20,9 +20,10 @@ const props = withDefaults(defineProps<{
 
 const iconButtonStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-icon-button-size-${props.size}-gap)`,
+  //gap: `var(--ids-comp-icon-button-size-${props.size}-gap)`,
   width: `var(--ids-comp-icon-button-size-${props.size}-width)`,
   height: `var(--ids-comp-icon-button-size-${props.size}-height)`,
+  padding: `var(--comp-icon-button-size-padding-y, 4px) var(--comp-icon-button-size-padding-x, 4px)`,
   borderRadius: `var(--ids-comp-icon-button-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-enabled)`,
@@ -65,17 +66,6 @@ const iconButtonStyle = reactive({
 </template>
 
 <style scoped lang="scss">
-@mixin commonMixin {
-  padding: 0px;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  gap: v-bind("iconButtonStyle.gap");
-  width: v-bind("iconButtonStyle.width");
-  height: v-bind("iconButtonStyle.height");
-}
-
 @mixin baseMixin {
   color: v-bind('iconButtonStyle.color');
   background: v-bind('iconButtonStyle.background');
@@ -97,7 +87,13 @@ const iconButtonStyle = reactive({
 
 //sizes
 .compact, .comfortable, .spacious {
-  @include commonMixin;
+  padding: 0px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: v-bind("iconButtonStyle.width");
+  height: v-bind("iconButtonStyle.height");
 }
 
 //variants

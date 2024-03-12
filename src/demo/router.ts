@@ -13,46 +13,50 @@ import ActionItemButton from "./DemoActionItemButton.vue";
 const routes = [
   {
     path: '/',
+    redirect: '/components/button'
+  },
+  {
+    path: '/components/button',
     name: 'Button',
     component: Button
   },
   {
-    path: '/icon-button',
+    path: '/components/icon-button',
     name: 'IconButton',
     component: IconButton
   },
   {
-    path: '/tags',
+    path: '/components/tags',
     name: 'Tags',
     component: Tag
   },
   {
-    path: '/divider',
+    path: '/components/divider',
     name: 'Divider',
     component: Divider
   },
   {
-    path: '/avatar',
+    path: '/components/avatar',
     name: 'Avatar',
     component: Avatar
   },
   {
-    path: '/action-item-button',
+    path: '/components/action-item-button',
     name: 'ActionItemButton',
     component: ActionItemButton
   },
   {
-    path: '/action-item-link',
+    path: '/components/action-item-link',
     name: 'ActionItemLink',
     component: ActionItemLink
   },
   {
-    path: '/action-panel',
+    path: '/components/action-panel',
     name: 'ActionPanel',
     component: ActionPanel
   },
   {
-    path: '/action-menu',
+    path: '/components/action-menu',
     name: 'ActionMenu',
     component: ActionItemMenu
   }
