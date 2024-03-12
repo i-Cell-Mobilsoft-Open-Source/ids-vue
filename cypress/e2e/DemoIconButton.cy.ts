@@ -3,7 +3,7 @@ import iconButtonTestData from '../data/iconButtonTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-  cy.visit('/icon-button');
+  cy.visit('/components/icon-button');
 });
 
 describe('ids IconButton Demo test', () => {

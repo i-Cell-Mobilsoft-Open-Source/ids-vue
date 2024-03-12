@@ -4,7 +4,7 @@ import avatarTestData from '../data/avatarTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-  cy.visit('/avatar');
+  cy.visit('/components/avatar');
 })
 
 describe('ids Avatar Demo test', () => {
