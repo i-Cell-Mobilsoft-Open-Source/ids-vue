@@ -32,10 +32,10 @@
       :size="option.size"
       :variant="option.variant"
     >
-      <template #label-text>
+      <template #labelText>
         Label text
       </template>
-      <template #sub-text>
+      <template #subText>
         Sub text
       </template>
     </IdsAvatar>

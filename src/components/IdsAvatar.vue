@@ -16,7 +16,7 @@ const props = withDefaults(
 
 const avatarStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-avatar-size-${props.size}-gap)`,
+  gap: `var(--ids-comp-size-avatar-size-gap-${props.size})`,
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-avatar-size-${props.size}-border-radius)`,
@@ -43,7 +43,7 @@ const avatarStyle = reactive({
 </script>
 
 <template>
-  <div :class="'flex flex-row items-center gap'">
+  <div :class="['flex flex-row items-center', { 'gap': $slots.labelText || $slots.subText }] ">
     <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
@@ -72,12 +72,12 @@ const avatarStyle = reactive({
         </svg>
       </div>
     </button>
-    <div :class="'flex flex-col flex-start'">
+    <div :class="'flex flex-col flex-start gap'">
       <span :class="size+'-label-text'">
-        <slot name="label-text" />
+        <slot name="labelText" />
       </span>
       <span :class="size+'-sub-text'">
-        <slot name="sub-text" />
+        <slot name="subText" />
       </span>
     </div>
   </div>
