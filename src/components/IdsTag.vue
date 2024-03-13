@@ -18,12 +18,12 @@ const props = withDefaults(defineProps<{
 
 const tagStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-tag-size-${props.mode}-gap)`,
-  height: `var(--ids-comp-tag-size-${props.mode}-height)`,
+  gap: `var(--ids-comp-size-tag-size-gap-${props.size})`,
+  height: `var(--ids-comp-size-tag-size-height-${props.size})`,
   borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-tag-${props.mode}-color-fg-${props.variant}-enabled)`,
   background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-tag-size-${props.mode}-padding-y) var(--ids-comp-tag-size-${props.mode}-padding-x)`,
+  padding: `var(--ids-comp-size-tag-size-padding-y-${props.size}) var(--ids-comp-size-tag-size-padding-x-${props.size})`,
   border: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
@@ -87,9 +87,6 @@ const tagStyle = reactive({
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.5px;
-  gap: var(--ids-comp-tag-size-compact-gap, 4px);
-  height: var(--ids-comp-tag-size-compact-height, 24px);
-  padding: var(--ids-comp-tag-size-compact-padding-y, 8px) var(--ids-comp-tag-size-compact-padding-x, 8px);
 }
 
 .comfortable {

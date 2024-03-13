@@ -20,12 +20,11 @@ const props = withDefaults(defineProps<{
 
 const iconButtonStyle = reactive({
   //enabled
-  //gap: `var(--ids-comp-icon-button-size-${props.size}-gap)`,
   width: `var(--ids-comp-icon-button-size-${props.size}-width)`,
   height: `var(--ids-comp-icon-button-size-${props.size}-height)`,
-  padding: `var(--comp-icon-button-size-padding-y, 4px) var(--comp-icon-button-size-padding-x, 4px)`,
   borderRadius: `var(--ids-comp-icon-button-size-${props.size}-border-radius)`,
   color: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-enabled)`,
+  padding: `var(--comp-icon-button-size-padding-y) var(--comp-icon-button-size-padding-x)`,
   background: ` var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-enabled)`,
   border: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled)`,
 

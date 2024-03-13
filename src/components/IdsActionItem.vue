@@ -27,22 +27,22 @@ const props = withDefaults(
 
 const actionItemStyle = reactive({
   //enabled
-  //--comp-menu-item-size-comfortable-height
-  gap: `var(--ids-comp-action-item-size-button-${props.size}-gap)`,
-  height: `var(--ids-comp-action-item-size-${props.mode}-height)`,
+  gap: `var(--ids-comp-size-action-item-button-size-gap-${props.size})`,
+  height: `var(--ids-comp-size-action-item-button-size-height-${props.size})`,
   borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,
-  color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-enabled)`,
+  color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: ` var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-action-item-size-${props.size}-padding-y) var(--ids-comp-menu-item-size-${props.size}-padding-x)`,
-  border: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
+  padding: `var(--ids-comp-size-action-item-button-size-padding-y-${props.size}) var(--ids-comp-size-action-item-button-size-padding-x-${props.size})`,
+  border: `var(--ids-comp-size-action-item-button-size-border-width-${props.size}) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-enabled)`,
 
+//background: var(--action-item-button-text-color-bg-surface-hovered, #F1F5F9);
   //hovered
-  hoverColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-hovered)`,
+  hoverColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
-
+  hoverBorder: `var(--ids-comp-size-action-item-button-size-border-width-${props.size}) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-hovered)`,
+ 
   //focused
-  focusedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-focused)`,
+  focusedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-focused)`,
 
   //pressed
@@ -50,13 +50,13 @@ const actionItemStyle = reactive({
   pressedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-pressed)`,
 
   //active
-  activeColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-active)`,
+  activeColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-active)`,
   activeBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-active)`,
 
   //disabled
-  disabledColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-disabled)`,
+  disabledColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-disabled, rgba(255, 255, 255, 0.00))`,
+  disabledBorder: `var(--ids-comp-size-action-item-button-size-border-width-${props.size}) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
   iconWidthHeight: `var(--ids-comp-action-item-button-size-${props.size}-icon)`,
