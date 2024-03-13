@@ -15,7 +15,6 @@ describe('ids Avatar Demo test', () => {
       allCombinations.push({ size, variant });
     });
   });
-// itt a width = lett a korábbi width + gap-el?
   xit('Checks the width and height of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
@@ -61,7 +60,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 //wip
-  xit('Checks common css rules of avatar-monogram', () => {
+  it('Checks common css rules of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;

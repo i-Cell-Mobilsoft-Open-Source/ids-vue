@@ -233,7 +233,7 @@ activeStandardColors: [{
   black: 'rgb(0, 0, 0) solid 3px',
   hoverdFocusedOutlineBg: 'rgb(248, 250, 252)',
   disabledBgColors: "rgba(255, 255, 255, 0)",
-  disabledOutlineBgColors: "rgb(226, 232, 240)", //pressedText (active) is uez
+  disabledOutlineBgColors: "rgb(226, 232, 240)",
   hoveredStandardBgColors: "rgb(241, 245, 249)",
   disabledTextColors: "rgb(148, 163, 184)",
   allRadius: '1000px',

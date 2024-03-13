@@ -153,7 +153,7 @@ describe('ids IconButton Demo test', () => {
     });
   });
 // ez nem jó, mert a light bg félremegy (outline/standard)
-  xit('Checks color of icon button with active (pressed) state', () => {
+  it('Checks color of icon button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.activeBgColors.forEach((bgColor) => {
         iconButtonTestData.activeFilledColors.forEach((color) => {
@@ -168,8 +168,8 @@ describe('ids IconButton Demo test', () => {
                         expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); // és itt?
                         expect(styles.color).to.equal(outlineColor[item.variant]);
                       } else if (item.mode === 'standard') {
-                        expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); //miért megy itt félre a light színén?
-                        // expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); 
+                        //expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); //miért megy itt félre a light színén?
+                        expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); 
                         expect(styles.color).to.equal(standardColor[item.variant]);
                       }
                       else {
