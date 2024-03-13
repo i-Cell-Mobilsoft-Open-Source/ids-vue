@@ -25,20 +25,20 @@
       :size="option.size"
       image="https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg"
     />
-    <!-- <IdsAvatar
+    <IdsAvatar
       v-for="(option, index) in allOptions"
       :id="`${option.variant}-${option.size}-avatar-monogram`"
       :key="index"
       :size="option.size"
       :variant="option.variant"
     >
-      <template #label-text>
+      <template #labelText>
         Label text
       </template>
-      <template #sub-text>
+      <template #subText>
         Sub text
       </template>
-    </IdsAvatar> -->
+    </IdsAvatar>
   </div>
 </template>
 
