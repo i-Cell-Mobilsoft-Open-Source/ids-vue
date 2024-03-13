@@ -158,7 +158,7 @@ describe('ids Button Demo test', () => {
             } else if (item.mode === 'text') {
               button.realHover({ pointer: "mouse" }).should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(buttonTestData.hoveredTextBgColors);
+                expect(styles.backgroundColor).to.equal(buttonTestData.hoverdOutlineBg);
                 expect(styles.color).to.equal(outlineColor[item.variant]);
               });
             } else {
@@ -184,7 +184,7 @@ describe('ids Button Demo test', () => {
               cy.get(buttonSelector).then(button => {
                 cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
                   const styles = window.getComputedStyle($el[0]);
-                  expect(styles.backgroundColor).to.equal(buttonTestData.disabledBgColors);
+                  expect(styles.backgroundColor).to.equal(buttonTestData.pressedBgColors);
                   expect(styles.color).to.equal(outlineColor[item.variant]);
                 }).realMouseUp({ pointer: "mouse" });
               });

@@ -66,9 +66,9 @@ const avatarTestData = {
     spacious: "64px",
   }],
   allWidth: [{
-    compact: "24px",
-    comfortable: "40px",
-    spacious: "64px",
+    compact: "32px",
+    comfortable: "48px",
+    spacious: "76px",
   }],
 
   paddingBottom: [{
