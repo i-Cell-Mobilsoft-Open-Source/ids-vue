@@ -88,7 +88,7 @@ describe('ids IconButton Demo test', () => {
       iconButtonTestData.focusedFilledBgColors.forEach((bgColor) => {
         iconButtonTestData.focusedFilledColors.forEach((color) => {
           iconButtonTestData.focusedOutlineTextColors.forEach((outlineColor) => {
-            iconButtonTestData.focusedTextColors.forEach((standardColor) => { 
+            iconButtonTestData.focusedTextColors.forEach((standardColor) => {
               iconButtonTestData.focusedSurfaceBgColors.forEach((standardBgColor) => {
                 const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-icon-button`);
                 if (item.mode === 'outlined') { //|| item.mode === 'standard') {
@@ -131,7 +131,7 @@ describe('ids IconButton Demo test', () => {
                 button.realHover({ pointer: "mouse" }).should(($el) => {
                   const styles = window.getComputedStyle($el[0]);
                   expect(styles.backgroundColor).to.equal(iconButtonTestData.hoverdFocusedOutlineBg);
-                  expect(styles.color).to.equal(outlineColor[item.variant]); 
+                  expect(styles.color).to.equal(outlineColor[item.variant]);
                 });
               } else if (item.mode === 'standard') {
                 button.realHover({ pointer: "mouse" }).should(($el) => {
@@ -152,7 +152,7 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-// ez nem jó, mert a light bg félremegy (outline/standard)
+  // ez nem jó, mert a light bg félremegy (outline/standard)
   it('Checks color of icon button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.activeBgColors.forEach((bgColor) => {
@@ -165,17 +165,19 @@ describe('ids IconButton Demo test', () => {
                   cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
                     if (item.mode === 'outlined') {
-                        expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); // és itt?
-                        expect(styles.color).to.equal(outlineColor[item.variant]);
-                      } else if (item.mode === 'standard') {
-                        //expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); //miért megy itt félre a light színén?
-                        expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); 
-                        expect(styles.color).to.equal(standardColor[item.variant]);
-                      }
-                      else {
-                        expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                        expect(styles.color).to.equal(color[item.variant]);
-                      }
+                      expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); // és itt?
+                      expect(styles.color).to.equal(outlineColor[item.variant]);
+                    } else if (item.mode === 'standard') {
+                      //expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); //miért megy itt félre a light színén?
+                      console.log('asdf-> ', item.variant, styles.color);
+
+                      expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors);
+                      expect(styles.color).to.equal(standardColor[item.variant]);
+                    }
+                    else {
+                      expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                      expect(styles.color).to.equal(color[item.variant]);
+                    }
                   }).realMouseUp({ pointer: "mouse" });
                 });
               });
