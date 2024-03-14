@@ -72,7 +72,7 @@ const avatarStyle = reactive({
         </svg>
       </div>
     </button>
-    <div :class="'flex flex-col flex-start gap'">
+    <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start gap'">
       <span :class="size+'-label-text'">
         <slot name="labelText" />
       </span>
