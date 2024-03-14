@@ -181,10 +181,10 @@ describe('ids Avatar Demo test', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
       if (item.variant === 'light') {
-        cy.get(avatarSelector).click().should('have.focus').should('be.visible')
+        cy.get(avatarSelector).click({ multiple: true }).should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.white2);
       } else {
-        cy.get(avatarSelector).click().should('have.focus').should('be.visible')
+        cy.get(avatarSelector).click({ multiple: true }).should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.black);
       }
     });
