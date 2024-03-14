@@ -35,7 +35,6 @@ const buttonStyle = reactive({
   //enabled
   gap: `var(--ids-comp-buttons-size-${props.size}-gap)`,
   height: `var(--ids-comp-buttons-size-${props.size}-height)`,
-  opacity: `var(--ids-comp-buttons-size-${props.size}-border)`,
   minWidth: `var(--ids-comp-buttons-size-${props.size}-min-width)`,
   borderRadius: `var(--ids-comp-buttons-size-${props.size}-border-radius)`,
   background: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-enabled)`,
@@ -128,7 +127,6 @@ const buttonStyle = reactive({
 .ids-button {
   color: v-bind("buttonStyle.color");
   border: v-bind("buttonStyle.border");
-  opacity: v-bind("buttonStyle.opacity");
   background: v-bind("buttonStyle.background");
   border-radius: v-bind("buttonStyle.borderRadius");
 
