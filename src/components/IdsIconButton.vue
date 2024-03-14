@@ -131,6 +131,12 @@ const iconButtonStyle = reactive({
   }
 }
 
+.outlined-mode {
+  &.light:active {
+    background: var(--ids-comp-icon-button-outlined-color-bg-light-pressed);
+  }
+}
+
 .standard-mode {
   @include baseMixin;
   border: none;
@@ -162,6 +168,9 @@ const iconButtonStyle = reactive({
   &.light:focus {
     background: var(--ids-comp-icon-button-outlined-color-bg-light-focused);
     outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-base-color-light);
+  }
+  &.light:active {
+    background: var(--ids-comp-icon-button-outlined-color-bg-light-pressed);
   }
 }
 </style>
