@@ -15,7 +15,7 @@ describe('ids Avatar Demo test', () => {
       allCombinations.push({ size, variant });
     });
   });
-  xit('Checks the width and height of avatar-monogram', () => {
+  it('Checks the width and height of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
         avatarTestData.allWidth.forEach((width) => {
@@ -30,7 +30,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the width and height of avatar-user', () => {
+  it('Checks the width and height of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
         avatarTestData.allWidth.forEach((width) => {
@@ -45,7 +45,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the width and height of avatar-with-image', () => {
+  it('Checks the width and height of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allHeight.forEach((height) => {
         avatarTestData.allWidth.forEach((width) => {
@@ -59,7 +59,7 @@ describe('ids Avatar Demo test', () => {
       });
     });
   });
-//wip
+
   it('Checks common css rules of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
@@ -76,7 +76,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks common css rules of avatar-user', () => {
+  it('Checks common css rules of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
@@ -92,7 +92,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks common css rules of avatar-with-image', () => {
+  it('Checks common css rules of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
         const avatarSelector = `#${item.size}-avatar-with-image`;
@@ -108,11 +108,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the font-size of avatar-monogram', () => {
+  it('Checks the font-size of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allFontSize.forEach((font) => {
         avatarTestData.allFontWeight.forEach((weight) => {
-          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
           cy.get(avatarSelector).should('be.visible').should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.fontSize).to.equal(font[item.size]);
@@ -123,10 +123,10 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the line-height of avatar-monogram', () => {
+  it('Checks the line-height of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.allLineHeight.forEach((lineHeigt) => {
-        const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+        const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
         cy.get(avatarSelector).should('be.visible').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
@@ -135,11 +135,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the color of avatar-monogram', () => {
+  it('Checks the color of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
           cy.get(avatarSelector).should('be.visible').should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -150,11 +150,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the color of avatar-user', () => {
+  it('Checks the color of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.enabledBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-user button`;
           cy.get(avatarSelector).should('be.visible').should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -165,7 +165,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks the image of avatar-with-image', () => {
+  it('Checks the image of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
       cy.get(avatarSelector)
@@ -177,9 +177,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks focused state of avatar-monogram', () => {
+  it('Checks focused state of avatar-monogram', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+      const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
       if (item.variant === 'light') {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.white2);
@@ -190,9 +190,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks focused state of avatar-user', () => {
+  it('Checks focused state of avatar-user', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+      const avatarSelector = `#${item.variant}-${item.size}-avatar-user button`;
       if (item.variant === 'light') {
         cy.get(avatarSelector).click().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', avatarTestData.white2);
@@ -203,9 +203,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks focused state of avatar-with-image', () => {
+  it('Checks focused state of avatar-with-image', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.size}-avatar-with-image`;
+      const avatarSelector = `#${item.size}-avatar-with-image button`;
       cy.get(avatarSelector).click().should('have.focus').should('be.visible')
         .should('have.css', 'outline').and('eq', avatarTestData.black);
       cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
@@ -214,11 +214,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-monogram with FOCUSED state', () => {
+  it('Checks color of avatar-monogram with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram`);
+          const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram button`);
           button.realClick({ pointer: "mouse" }).should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -229,11 +229,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-user with FOCUSED state', () => {
+  it('Checks color of avatar-user with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.focusedBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const button = cy.get(`#${item.variant}-${item.size}-avatar-user`);
+          const button = cy.get(`#${item.variant}-${item.size}-avatar-user button`);
           button.realClick({ pointer: "mouse" }).should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -244,7 +244,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-with-image with FOCUSED state', () => {
+  it('Checks color of avatar-with-image with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = cy.get(`#${item.size}-avatar-with-image`);
       avatarSelector.realClick({ pointer: "mouse" }).find('div > img').should('be.visible').then(imgElement => {
@@ -253,9 +253,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-with-image with FOCUSED state', () => {
+  it('Checks color of avatar-with-image with FOCUSED state', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.size}-avatar-with-image`;
+      const avatarSelector = `#${item.size}-avatar-with-image button`;
       cy.get(avatarSelector).realClick({ pointer: "mouse" }).should('have.focus').should('be.visible')
         .should('have.css', 'outline').and('eq', avatarTestData.black);
       cy.get(avatarSelector).find('div > img').should('be.visible').then(imgElement => {
@@ -265,11 +265,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color and background color of avatar-monogram with hovered state', () => {
+  it('Checks color and background color of avatar-monogram with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
-          const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram`);
+          const button = cy.get(`#${item.variant}-${item.size}-avatar-monogram button`);
           button.realHover({ pointer: "mouse" }).should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -280,11 +280,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color and background color of avatar-user with hovered state', () => {
+  it('Checks color and background color of avatar-user with hovered state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.hoveredBgColors.forEach((bgColor) => {
         avatarTestData.hoveredColors.forEach((color) => {
-          const button = cy.get(`#${item.variant}-${item.size}-avatar-user`);
+          const button = cy.get(`#${item.variant}-${item.size}-avatar-user button`);
           button.realHover({ pointer: "mouse" }).should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -295,7 +295,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color and background color of avatar-with-image with hovered state', () => {
+  it('Checks color and background color of avatar-with-image with hovered state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
       cy.get(avatarSelector).then(button => {
@@ -307,11 +307,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-monogram with active (pressed) state', () => {
+  it('Checks color of avatar-monogram with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
           cy.get(avatarSelector).then(button => {
             cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
               const styles = window.getComputedStyle($el[0]);
@@ -324,11 +324,11 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks color of avatar-user with active (pressed) state', () => {
+  it('Checks color of avatar-user with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       avatarTestData.activeBgColors.forEach((bgColor) => {
         avatarTestData.enabledColors.forEach((color) => {
-          const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+          const avatarSelector = `#${item.variant}-${item.size}-avatar-user button`;
           cy.get(avatarSelector).then(button => {
             cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
               const styles = window.getComputedStyle($el[0]);
@@ -341,7 +341,7 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks image of avatar-with-image with active (pressed) state', () => {
+  it('Checks image of avatar-with-image with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.size}-avatar-with-image`;
       cy.get(avatarSelector).then(button => {
@@ -353,9 +353,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks left and right border radius of avatar-monogram', () => {
+  it('Checks left and right border radius of avatar-monogram', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+      const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
         expect(styles.borderTopLeftRadius).to.equal(avatarTestData.allRadius);
@@ -366,9 +366,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks left and right border radius of avatar-user', () => {
+  it('Checks left and right border radius of avatar-user', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+      const avatarSelector = `#${item.variant}-${item.size}-avatar-user button`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
         expect(styles.borderTopLeftRadius).to.equal(avatarTestData.allRadius);
@@ -379,9 +379,9 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks left and right border radius of avatar-with-image', () => {
+  it('Checks left and right border radius of avatar-with-image', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.size}-avatar-with-image`;
+      const avatarSelector = `#${item.size}-avatar-with-image button`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
         expect(styles.borderTopLeftRadius).to.equal(avatarTestData.allRadius);
@@ -392,13 +392,13 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks all padding of avatar-monogram', () => {
+  it('Checks all padding of avatar-monogram', () => {
     allCombinations.forEach((item) => {
       avatarTestData.paddingTop.forEach((topPadding) => {
         avatarTestData.paddingRight.forEach((rightPadding) => {
           avatarTestData.paddingLeft.forEach((leftPadding) => {
             avatarTestData.paddingBottom.forEach((bottomPadding) => {
-              const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram`;
+              const avatarSelector = `#${item.variant}-${item.size}-avatar-monogram button`;
               cy.get(avatarSelector).should('be.visible').then(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.paddingTop).to.equal(topPadding[item.size]);
@@ -413,13 +413,13 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks all padding of avatar-user', () => {
+  it('Checks all padding of avatar-user', () => {
     allCombinations.forEach((item) => {
       avatarTestData.paddingTop.forEach((topPadding) => {
         avatarTestData.paddingRight.forEach((rightPadding) => {
           avatarTestData.paddingLeft.forEach((leftPadding) => {
             avatarTestData.paddingBottom.forEach((bottomPadding) => {
-              const avatarSelector = `#${item.variant}-${item.size}-avatar-user`;
+              const avatarSelector = `#${item.variant}-${item.size}-avatar-user button`;
               cy.get(avatarSelector).should('be.visible').then(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.paddingTop).to.equal(topPadding[item.size]);
@@ -434,13 +434,13 @@ describe('ids Avatar Demo test', () => {
     });
   });
 
-  xit('Checks all padding of avatar-with-image', () => {
+  it('Checks all padding of avatar-with-image', () => {
     allCombinations.forEach((item) => {
       avatarTestData.paddingTop.forEach((topPadding) => {
         avatarTestData.paddingRight.forEach((rightPadding) => {
           avatarTestData.paddingLeft.forEach((leftPadding) => {
             avatarTestData.paddingBottom.forEach((bottomPadding) => {
-              const avatarSelector = `#${item.size}-avatar-with-image`;
+              const avatarSelector = `#${item.size}-avatar-with-image button`;
               cy.get(avatarSelector).should('be.visible').then(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.paddingTop).to.equal(topPadding[item.size]);

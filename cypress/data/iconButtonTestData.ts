@@ -48,11 +48,8 @@ const iconButtonTestData = {
     error: "rgb(239, 68, 68)",
     success: "rgb(34, 197, 94)",
     warning: "rgb(249, 115, 22)",
-    // light: "rgb(248, 250, 252)",
     light: "rgba(255, 255, 255, 0)",
     dark: "rgb(30, 41, 59)",
-    //dark: "rgb(2, 6, 23)", => ez a button színe
-    //surface: "rgb(241, 245, 249)", => ez a button színe
     surface: "rgb(226, 232, 240)", 
   }],
   activeBgColors: [{
@@ -63,20 +60,8 @@ const iconButtonTestData = {
     success: "rgb(22, 101, 52)",
     warning: "rgb(154, 52, 18)",
     light: "rgba(255, 255, 255, 0)",
-    // light: "rgb(248, 250, 252)",
     dark: "rgb(51, 65, 85)",
     surface: "rgb(203, 213, 225)",
-  }],
-  activeOutlineBgColors: [{
-    primary: "rgb(226, 232, 240)",
-    secondary: "rgb(226, 232, 240)",
-    brand: "rgb(226, 232, 240)",
-    error: "rgb(226, 232, 240)",
-    success: "rgb(226, 232, 240)",
-    warning: "rgb(226, 232, 240)",
-    light: "rgba(255, 255, 255, 0)", //ez nem OK!
-    dark: "rgb(226, 232, 240)",
-    surface: "rgb(226, 232, 240)",
   }],
   //standardBgColor - alias textBgColors
   focusedSurfaceBgColors: [{
@@ -87,7 +72,6 @@ const iconButtonTestData = {
     success: "rgb(241, 245, 249)", 
     warning: "rgb(241, 245, 249)",
     light: "rgba(255, 255, 255, 0)",
-    // light: "rgb(248, 250, 252)",
     dark: "rgb(241, 245, 249)",
     surface: "rgb(241, 245, 249)",
   }],
@@ -185,8 +169,7 @@ activeFilledColors: [{
 }],
 activeOutlineColors: [{
   primary: "rgb(0, 47, 189)",
-  //secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
-  secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
+  secondary: "rgb(30, 41, 59)",
   brand: "rgb(0, 47, 189)",
   error: "rgb(185, 28, 28)",
   success: "rgb(21, 128, 61)",
@@ -197,8 +180,7 @@ activeOutlineColors: [{
 }],
 activeStandardColors: [{
   primary: "rgb(0, 47, 189)",
-  secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
-  //secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
+  secondary: "rgb(51, 65, 85)", 
   brand: "rgb(0, 47, 189)",
   error: "rgb(185, 28, 28)",
   success: "rgb(21, 128, 61)",
@@ -207,7 +189,6 @@ activeStandardColors: [{
   dark: "rgb(2, 6, 23)",
   surface: "rgb(51, 65, 85)",
 }],
-
 
   //sizes
   allHeight: [{
@@ -229,7 +210,6 @@ activeStandardColors: [{
 
   white: 'rgba(255, 255, 255, 0)',
   white2: 'rgb(255, 255, 255) solid 3px',
-  //white3: 'rgb(255, 255, 255)',
   black: 'rgb(0, 0, 0) solid 3px',
   hoverdFocusedOutlineBg: 'rgb(248, 250, 252)',
   disabledBgColors: "rgba(255, 255, 255, 0)",

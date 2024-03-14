@@ -2,9 +2,7 @@ import tagTestData from '../data/tagTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy="hamburger-menu"]').click();
-    cy.get('[data-cy="tags-component"]').click();
+    cy.visit('/components/tags');
   })
 
   describe('ids Tags Demo test', () => {

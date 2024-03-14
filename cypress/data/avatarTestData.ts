@@ -113,8 +113,8 @@ const avatarTestData = {
     fontStyle: 'normal',
     textAlign: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    justifyContent: 'normal'
   }],
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',

@@ -16,8 +16,8 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-  //kész
-  xit('Checks the width and height of icon button', () => {
+
+  it('Checks the width and height of icon button', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.allHeight.forEach((height) => {
         iconButtonTestData.allWidth.forEach((width) => {
@@ -27,8 +27,8 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-  // kész
-  xit('Checks common css rules of icon button', () => {
+ 
+  it('Checks common css rules of icon button', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.common.forEach((common) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
@@ -43,8 +43,8 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-  //kész
-  xit('Checks the color of icon button', () => {
+
+  it('Checks the color of icon button', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.enabledBgColors.forEach((bgColor) => {
         iconButtonTestData.enabledColors.forEach((color) => {
@@ -68,8 +68,8 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-  //kész
-  xit('Checks focused state of icon button', () => {
+ 
+  it('Checks focused state of icon button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
       if (item.variant === 'light') {
@@ -82,8 +82,7 @@ describe('ids IconButton Demo test', () => {
     });
   });
 
-  //kész
-  xit('Checks color of icon button with FOCUSED state', () => {
+  it('Checks color of icon button with FOCUSED state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.focusedFilledBgColors.forEach((bgColor) => {
         iconButtonTestData.focusedFilledColors.forEach((color) => {
@@ -91,7 +90,7 @@ describe('ids IconButton Demo test', () => {
             iconButtonTestData.focusedTextColors.forEach((standardColor) => {
               iconButtonTestData.focusedSurfaceBgColors.forEach((standardBgColor) => {
                 const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-icon-button`);
-                if (item.mode === 'outlined') { //|| item.mode === 'standard') {
+                if (item.mode === 'outlined') {
                   button.realClick({ pointer: "mouse" }).should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
                     expect(styles.backgroundColor).to.equal(iconButtonTestData.white);
@@ -118,9 +117,7 @@ describe('ids IconButton Demo test', () => {
     });
   });
 
-
-  //kész
-  xit('Checks color and background color of button with hovered state', () => {
+  it('Checks color and background color of button with hovered state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.hoveredBgColors.forEach((bgColor) => {
         iconButtonTestData.hoveredOutlineColors.forEach((outlineColor) => {
@@ -152,13 +149,11 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
-  // ez nem jó, mert a light bg félremegy (outline/standard)
   it('Checks color of icon button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.activeBgColors.forEach((bgColor) => {
         iconButtonTestData.activeFilledColors.forEach((color) => {
           iconButtonTestData.activeOutlineColors.forEach((outlineColor) => {
-            iconButtonTestData.activeOutlineBgColors.forEach((outlineBgColor) => {
               iconButtonTestData.activeStandardColors.forEach((standardColor) => {
                 const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
                 cy.get(buttonSelector).then(button => {
@@ -168,9 +163,7 @@ describe('ids IconButton Demo test', () => {
                       expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); // és itt?
                       expect(styles.color).to.equal(outlineColor[item.variant]);
                     } else if (item.mode === 'standard') {
-                      //expect(styles.backgroundColor).to.equal(outlineBgColor[item.variant]); //miért megy itt félre a light színén?
                       console.log('asdf-> ', item.variant, styles.color);
-
                       expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors);
                       expect(styles.color).to.equal(standardColor[item.variant]);
                     }
@@ -181,15 +174,13 @@ describe('ids IconButton Demo test', () => {
                   }).realMouseUp({ pointer: "mouse" });
                 });
               });
-            });
           });
         });
       });
     });
   });
 
-  // kész
-  xit('Checks color of disabled state icon button', () => {
+  it('Checks color of disabled state icon button', () => {
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;
@@ -210,15 +201,15 @@ describe('ids IconButton Demo test', () => {
       }
     });
   });
-  //kész
-  xit('Checks left and right border radius of icon button', () => {
+
+  it('Checks left and right border radius of icon button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
       cy.get(buttonSelector).should('be.visible').should('have.css', { 'border-radius': iconButtonTestData.allRadius });
     });
   });
-  //kész
-  xit('Checks all padding of icon button', () => {
+ 
+  it('Checks all padding of icon button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
       cy.get(buttonSelector).should('be.visible').then(($el) => {
