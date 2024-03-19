@@ -30,6 +30,7 @@ const avatarStyle = reactive({
   //focused
   focusedBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-focused)`,
   focusedBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
+  focusBorderRadius: `var(--ids-comp-size-avatar-size-border-radius-${props.size})`,
 
   //active
   activeBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-pressed)`,
@@ -245,7 +246,7 @@ const avatarStyle = reactive({
     outline-offset: 2px;
     border: v-bind("avatarStyle.focusedBorder");
     background: v-bind("avatarStyle.focusedBackground");
-    border-radius: var(--ids-comp-size-avatar-size-border-radius);
+    border-radius: var("avatarStyle.focusBorderRadius");
     outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 

@@ -64,18 +64,13 @@ for (const size of allSizes) {
 </script>
 
 <style scoped>
+@import "./demo-style.scss";
+
 .divider-container {
   display: flex;
   gap: 3rem;
 }
 
-.demo {
-  gap: 1rem;
-  display: flex;
-  margin-bottom: 40px;
-  align-items: center;
-  flex-direction: column;
-}
 .demo2 {
   display: flex;
   flex-direction: row;
@@ -83,9 +78,4 @@ for (const size of allSizes) {
   margin-bottom: 40px;
 }
 
-p {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
 </style>
