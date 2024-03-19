@@ -58,7 +58,6 @@
       </div>
     </Dialog>
   </TransitionRoot>
-  <!-- {{ props.isOpen }} -->
 </template>
 
 <script setup lang="ts">
