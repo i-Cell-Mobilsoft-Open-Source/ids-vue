@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Tag from "./DemoTag.vue";
+import Modal from "./DemoModal.vue";
 import Avatar from "./DemoAvatar.vue";
 import Button from "./DemoButton.vue";
 import Divider from "./DemoDivider.vue";
@@ -59,6 +60,11 @@ const routes = [
     path: '/components/action-menu',
     name: 'ActionMenu',
     component: ActionItemMenu
+  },
+  {
+    path: '/components/modal',
+    name: 'Modal',
+    component: Modal
   }
 ];
 

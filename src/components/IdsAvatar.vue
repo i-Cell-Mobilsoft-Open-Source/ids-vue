@@ -20,7 +20,7 @@ const avatarStyle = reactive({
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-avatar-size-${props.size}-border-radius)`,
-  padding: `var(--ids-comp-avatar-size-${props.size}-padding-y) var(--ids-comp-avatar-size-${props.size}-padding-x)`,
+  padding: props.image ? "0px" : `var(--ids-comp-avatar-size-${props.size}-padding-y) var(--ids-comp-avatar-size-${props.size}-padding-x)`,
   border: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
 
   //hovered
@@ -36,14 +36,14 @@ const avatarStyle = reactive({
   activeBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
 
   //image sizes
-  width: `var(--ids-comp-avatar-size-${props.size}-width)`,
-  height: `var(--ids-comp-avatar-size-${props.size}-height)`,
+  width: `var(--ids-comp-size-avatar-size-width-${props.size})`,
+  height: `var(--ids-comp-size-avatar-size-height-${props.size})`,
   iconColor: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
 });
 </script>
 
 <template>
-  <div :class="['flex flex-row items-center', { 'gap': $slots.labelText || $slots.subText }] ">
+  <div :class="[{ 'flex flex-row items-center gap': $slots.labelText || $slots.subText }] ">
     <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
@@ -72,7 +72,7 @@ const avatarStyle = reactive({
         </svg>
       </div>
     </button>
-    <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start gap'">
+    <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start'">
       <span :class="size+'-label-text'">
         <slot name="labelText" />
       </span>
@@ -121,7 +121,7 @@ const avatarStyle = reactive({
   justify-content: center;
   width: v-bind("avatarStyle.width");
   height: v-bind("avatarStyle.height");
-}
+  }
 //sizes
 .compact {
   @include common;
@@ -222,6 +222,10 @@ const avatarStyle = reactive({
 
 .gap {
   gap:  v-bind("avatarStyle.gap");
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 //variants

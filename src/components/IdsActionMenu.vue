@@ -1,40 +1,23 @@
 <script setup lang="ts">
-  import { reactive } from "vue";
-  // import IdsButton from "../components/IdsButton.vue";
-  // import IdsIconButton from "../components/IdsIconButton.vue";
-  // import IdsActionItem from "../components/IdsActionItem.vue";
+  import { ref, reactive, computed, onMounted } from "vue";
   import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
+  const slotRef = ref<HTMLElement | undefined>(undefined);
+  const horizontalPanelPosition = ref<string>('0px')
+  const verticalPanelPostion = ref<string>('0px')
 
   const props = withDefaults(
     defineProps<{
-      //buttonType?: "button" | "iconButton" | "actionItemButton",
-      // actionPosition: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+      firstPanel?: boolean;
       panelMode?: "filled" | "outlined" | "text";
       panelSize?: "compact" | "comfortable" | "spacious";
       position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
-      // variant?:
-      // | "primary"
-      // | "secondary"
-      // | "brand"
-      // | "error"
-      // | "success"
-      // | "warning"
-      // | "light"
-      // | "dark"
-      // | "surface";
-      // leadingIcon?: object | undefined;
-      // trailingIcon?: object | undefined;
-      // isDisabled?: boolean;
     }>(),
     {
+      firstPanel: true,
       panelMode: "filled",
       buttonType: "button",
       position: "topLeft",
       panelSize: "comfortable",
-      // isDisabled: false,
-      // variant: "primary",
-      // leadingIcon: undefined,
-      // trailingIcon: undefined,
     },
   );
 
@@ -49,46 +32,61 @@
     solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
   });
 
-//   const positionConfigs = computed(() => {
-//     const classes = {
-//       topLeft: "absolute bottom-0 left-0",
-//       topRight: "text-headline-large-prominent uppercase",
-//       bottomLeft: "text-headline-small-prominent",
-//       bottomRight: "whatever4",
-//       leftTop: "whatever5",
-//       leftBottom: "text-body-large-extra-prominent",
-//       rightTop: "text-body-large-extra-prominent",
-//       rightBottom: "text-body-large-extra-prominent",
-//     };
-//   return classes[props.position || "topLeft"];
-// });
+  const panelPositions = computed(() => {
+    const classes = {
+      bottomLeft: "absolute",
+      bottomRight: "absolute right-0",
+      topLeft: "absolute bottom-vertical",
+      topRight: "absolute bottom-vertical right-0",
+      leftBottom: "absolute right-horizontal top-0",
+      rightTop: "absolute bottom-0 left-horizontal ",
+      leftTop: "absolute bottom-0 right-horizontal",
+      rightBottom: "absolute top-0 left-horizontal",
+    };
+  return classes[props.position || "topLeft"];
+});
 
+onMounted(() => {
+  if (slotRef?.value instanceof HTMLElement) {
+    horizontalPanelPosition.value = slotRef?.value?.offsetWidth + 'px';
+    verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
+    console.log(horizontalPanelPosition.value);
+    console.log(slotRef?.value?.offsetHeight);
+  }  
+});
 
 </script>
 
 <template>
-  <Popover class="">    
-    <PopoverButton as="div">
-      <div class="relative">
-        <!-- <div :class="positionConfigs"> -->
-        <slot name="action" />
-        <!-- </div> -->
-      </div>
-    </PopoverButton>
-
-    <transition      
-      enter-active-class="custom-enter-active"
-      enter-from-class="custom-enter-from"
-      enter-to-class="custom-enter-to"
-      leave-active-class="custom-leave-active"
-      leave-from-class="custom-leave-from"
-      leave-to-class="custom-leave-to"
-    >
-      <PopoverPanel :class="[panelMode, 'popover-panel']">
-        <slot name="panel" />
-      </PopoverPanel>
-    </transition>
-  </Popover>
+  <div class="relative w-fit">
+    <Popover>    
+      <PopoverButton as="div">
+        <div ref="slotRef" :class="[]">
+          <slot name="action" />
+        </div>
+      </PopoverButton>
+   
+      <transition      
+        enter-active-class="custom-enter-active"
+        enter-from-class="custom-enter-from"
+        enter-to-class="custom-enter-to"
+        leave-active-class="custom-leave-active"
+        leave-from-class="custom-leave-from"
+        leave-to-class="custom-leave-to"
+      >
+        <PopoverPanel :class="[panelMode, panelPositions]">
+          <template v-if="firstPanel">
+            <slot name="panel" />
+          </template>
+          <template v-else>
+            <div>
+              <slot name="panel" />
+            </div>
+          </template>    
+        </PopoverPanel>
+      </transition>
+    </Popover>
+  </div>
 </template> 
 
 <style scoped lang="scss">
@@ -152,6 +150,10 @@
   transform: translateY(0);
 }
 
+.w-fit {
+  width: fit-content;
+}
+
 .relative {
   position: relative;
 }
@@ -159,12 +161,27 @@
   position: absolute;
 }
 
-.top-0{
+.top-0 {
   top: 0px;
 }
 
-.left-0{
-  left: 0px;
+.bottom-0 {
+  bottom: 0px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
+.bottom-vertical {
+  bottom: v-bind('verticalPanelPostion');
+}
+
+.left-horizontal {
+  left: v-bind('horizontalPanelPosition');
+}
+
+.right-horizontal {
+  right: v-bind('horizontalPanelPosition');
+}
 </style>
