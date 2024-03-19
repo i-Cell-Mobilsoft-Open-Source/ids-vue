@@ -27,7 +27,7 @@
     />
     <IdsAvatar
       v-for="(option, index) in allOptions"
-      :id="`${option.variant}-${option.size}-avatar-monogram`"
+      :id="`${option.variant}-${option.size}-avatar-label-text`"
       :key="index"
       :size="option.size"
       :variant="option.variant"

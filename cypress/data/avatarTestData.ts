@@ -70,7 +70,16 @@ const avatarTestData = {
     comfortable: "40px",
     spacious: "64px",
   }],
-
+  labelHeight: [{
+    compact: "16px",
+    comfortable: "16px",
+    spacious: "20px",
+  }],
+  labelWidth: [{
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "64px",
+  }],
   paddingBottom: [{
     compact: "2px",
     comfortable: "2px",
@@ -97,33 +106,64 @@ const avatarTestData = {
     comfortable: "14px",
     spacious: "22px",
   }],
+  
+  allLabelFontSize: [{
+    compact: "11px",
+    comfortable: "12px",
+    spacious: "14px",
+  }],
   allFontWeight: [{
     compact: '500',
     comfortable: '400',
     spacious: '400',
+  }],
+  allLabelFontWeight: [{
+    compact: '500',
+    comfortable: '600',
+    spacious: '600',
   }],
   allLineHeight: [{
     compact: "16px",
     comfortable: "20px",
     spacious: "28px",
   }],
-
+  allLabelLineHeight: [{
+    compact: "16px",
+    comfortable: "16px",
+    spacious: "20px",
+  }],
+  labelLetterSpacing: [{
+    compact: "0.5px",
+    comfortable: "0.5px",
+    spacious: "0.1px",
+  }],
+  columnGap: [{
+    compact: "8px",
+    comfortable: "8px",
+    spacious: "12px",
+  }],
+  rowGap: [{
+    compact: "8px",
+    comfortable: "8px",
+    spacious: "12px",
+  }],
   common: [{
     display: 'flex',
     fontStyle: 'normal',
     textAlign: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'normal'
+    flexDirection: 'row', // miért nem column a nem label-eseknél?
+    justifyContent: 'normal', // mégsem center?
   }],
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
   hoveredTextBgColors: "rgb(241, 245, 249)",
   allRadius: '1000px',
   image: "https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg",
-
-
-
+  allSubTextFontWeight: '500',
+  labelFGcolor: 'rgb(2, 6, 23)',
+  subFGcolor: 'rgb(51, 65, 85)',
+  labelRadius: '0px',
   avatarImageBgcolors: "rgb(0, 60, 255)",
 
 }
