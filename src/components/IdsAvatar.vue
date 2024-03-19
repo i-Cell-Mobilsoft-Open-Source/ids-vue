@@ -20,7 +20,7 @@ const avatarStyle = reactive({
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-avatar-size-${props.size}-border-radius)`,
-  padding: `var(--ids-comp-avatar-size-${props.size}-padding-y) var(--ids-comp-avatar-size-${props.size}-padding-x)`,
+  padding: props.image ? "0px" : `var(--ids-comp-avatar-size-${props.size}-padding-y) var(--ids-comp-avatar-size-${props.size}-padding-x)`,
   border: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
 
   //hovered
@@ -48,7 +48,6 @@ const avatarStyle = reactive({
       <slot v-if="$slots.default" />
       <div v-else>
         <img v-if="image" :src="image" class="img-size">
-        <!-- padding és border nem kell  -->
         <svg
           v-else width="52"
           height="52" viewBox="0 0 52 52"
@@ -120,15 +119,8 @@ const avatarStyle = reactive({
   flex-direction: column;
   vertical-align: middle;
   justify-content: center;
-  //width: v-bind("avatarStyle.width");
+  width: v-bind("avatarStyle.width");
   height: v-bind("avatarStyle.height");
-
-  // display: flex;
-  // flex-direction: column;
-
-  // align-items: center;
-  // flex: 1 0 0;
-  // align-self: stretch;
   }
 //sizes
 .compact {
@@ -230,6 +222,10 @@ const avatarStyle = reactive({
 
 .gap {
   gap:  v-bind("avatarStyle.gap");
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 //variants
