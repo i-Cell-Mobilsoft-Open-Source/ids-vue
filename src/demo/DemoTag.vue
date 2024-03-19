@@ -59,17 +59,5 @@ for (const mode of allModes) {
 </script>
 
 <style scoped>
-.demo {
-  gap: 1rem;
-  display: flex;
-  margin-bottom: 40px;
-  align-items: center;
-  flex-direction: column;
-}
-
-p {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+@import "./demo-style.scss";
 </style>
