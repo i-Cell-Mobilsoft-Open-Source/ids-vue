@@ -10,32 +10,35 @@
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
-    <router-link data-cy="router-link-component" to="/components/button">
+    <router-link data-cy="router-link-component" to="/components/button" @click="isMenuVisible = false">
       Button Component
     </router-link>
-    <router-link data-cy="icon-router-link-component" to="/components/icon-button">
+    <router-link data-cy="icon-router-link-component" to="/components/icon-button" @click="isMenuVisible = false">
       Icon Button Component
     </router-link>
-    <router-link data-cy="tags-component" to="/components/tags">
+    <router-link data-cy="tags-component" to="/components/tags" @click="isMenuVisible = false">
       Tags Component
     </router-link>
-    <router-link data-cy="divider-component" to="/components/divider">
+    <router-link data-cy="divider-component" to="/components/divider" @click="isMenuVisible = false">
       Divider Component
     </router-link>
-    <router-link data-cy="avatar-component" to="/components/avatar">
+    <router-link data-cy="avatar-component" to="/components/avatar" @click="isMenuVisible = false">
       Avatar Component
     </router-link>
-    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button">
+    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button" @click="isMenuVisible = false">
       ActionItem Button Component
     </router-link>
-    <router-link data-cy="action-item-link-component" to="/components/action-item-link">
+    <router-link data-cy="action-item-link-component" to="/components/action-item-link" @click="isMenuVisible = false">
       ActionItem Link Component
     </router-link>
-    <router-link data-cy="action-panel-component" to="/components/action-panel">
+    <router-link data-cy="action-panel-component" to="/components/action-panel" @click="isMenuVisible = false">
       ActionPanel Component
     </router-link>
-    <router-link data-cy="action-menu-component" to="/components/action-menu">
+    <router-link data-cy="action-menu-component" to="/components/action-menu" @click="isMenuVisible = false">
       ActionMenu Component
+    </router-link>
+    <router-link data-cy="action-menu-component" to="/components/modal" @click="isMenuVisible = false">
+      Modal Component
     </router-link>
   </nav>
   <section>
@@ -96,7 +99,7 @@ section {
 
 .menu-btn {
   position: absolute;
-  left: -60px;
+  left: -80px;
   top: 0px;
 }
 

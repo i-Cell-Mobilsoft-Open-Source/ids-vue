@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <h2>Action Menu</h2>
-    <IdsActionMenu panel-mode="outlined" position="topLeft">
+    <IdsActionMenu panel-mode="outlined" position="rightTop">
       <template #action>
         <IdsButton :trailing-icon="icon" @click="togglePanel">
           menu
@@ -72,10 +72,11 @@ const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 
 <style scoped>
 .demo {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
-  
+  display: flex;
+  height: 45vh; 
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 p {

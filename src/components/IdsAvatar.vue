@@ -36,18 +36,19 @@ const avatarStyle = reactive({
   activeBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
 
   //image sizes
-  width: `var(--ids-comp-avatar-size-${props.size}-width)`,
-  height: `var(--ids-comp-avatar-size-${props.size}-height)`,
+  width: `var(--ids-comp-size-avatar-size-width-${props.size})`,
+  height: `var(--ids-comp-size-avatar-size-height-${props.size})`,
   iconColor: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
 });
 </script>
 
 <template>
-  <div :class="['flex flex-row items-center', { 'gap': $slots.labelText || $slots.subText }] ">
+  <div :class="[{ 'flex flex-row items-center gap': $slots.labelText || $slots.subText }] ">
     <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
         <img v-if="image" :src="image" class="img-size">
+        <!-- padding és border nem kell  -->
         <svg
           v-else width="52"
           height="52" viewBox="0 0 52 52"
@@ -72,7 +73,7 @@ const avatarStyle = reactive({
         </svg>
       </div>
     </button>
-    <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start gap'">
+    <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start'">
       <span :class="size+'-label-text'">
         <slot name="labelText" />
       </span>
@@ -119,9 +120,16 @@ const avatarStyle = reactive({
   flex-direction: column;
   vertical-align: middle;
   justify-content: center;
-  width: v-bind("avatarStyle.width");
+  //width: v-bind("avatarStyle.width");
   height: v-bind("avatarStyle.height");
-}
+
+  // display: flex;
+  // flex-direction: column;
+
+  // align-items: center;
+  // flex: 1 0 0;
+  // align-self: stretch;
+  }
 //sizes
 .compact {
   @include common;
