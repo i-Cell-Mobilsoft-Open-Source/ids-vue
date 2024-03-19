@@ -33,6 +33,7 @@ const iconButtonStyle = reactive({
   hoverBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-icon-button-size-${props.size}-border) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered)`,
 
+  //icon-button-outlined-color-fg-light-hovered
   //focused
   focusedColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-focused)`,

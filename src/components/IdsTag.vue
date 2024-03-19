@@ -129,7 +129,7 @@ const tagStyle = reactive({
     background: v-bind('tagStyle.disabledBackground');
   }
   &.light:focus {
-    outline: var(--ids-comp-tag-size-border) solid var(--ids-comp-tag-filled-color-border-light-focused);
+    outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-light-focused);
   }
 }
 </style>
