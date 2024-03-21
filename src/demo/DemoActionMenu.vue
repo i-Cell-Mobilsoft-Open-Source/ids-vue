@@ -1,5 +1,5 @@
 <template>
-  <div class="demo">
+  <div class="demo flex justify-center h-[100vh]">
     <h2>Action Menu</h2>
     <IdsActionMenu panel-mode="outlined" position="rightTop">
       <template #action>
