@@ -71,21 +71,5 @@ const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 </script>
 
 <style scoped>
-.demo {
-  gap: 1rem;
-  display: flex;
-  height: 45vh; 
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-p {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.pt-2 {
-  padding-top: 2rem;
-}
+@import "./demo-style.scss";
 </style>
