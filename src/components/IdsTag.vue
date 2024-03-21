@@ -21,7 +21,7 @@ const tagStyle = reactive({
   gap: `var(--ids-comp-size-tag-size-gap-${props.size})`,
   height: `var(--ids-comp-size-tag-size-height-${props.size})`,
   borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
-  color: `var(--ids-comp-tag-${props.mode}-color-fg-${props.variant}-enabled)`,
+  color: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-tag-size-padding-y-${props.size}) var(--ids-comp-size-tag-size-padding-x-${props.size})`,
   border: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
@@ -40,7 +40,7 @@ const tagStyle = reactive({
   activeBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
-  disabledColor: `var(--ids-comp-tag-${props.mode}-color-fg-${props.variant}-disabled)`,
+  disabledColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-disabled)`,
   disabledBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
 
