@@ -74,7 +74,7 @@ onMounted(() => {
         leave-from-class="custom-leave-from"
         leave-to-class="custom-leave-to"
       >
-        <PopoverPanel :class="[panelMode, panelPositions]">
+        <PopoverPanel :class="[panelMode, panelPositions, '[&>*]:w-full']">
           <template v-if="firstPanel">
             <slot name="panel" />
           </template>
