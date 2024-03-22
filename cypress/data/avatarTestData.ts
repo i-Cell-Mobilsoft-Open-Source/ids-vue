@@ -148,12 +148,12 @@ const avatarTestData = {
     spacious: "12px",
   }],
   common: [{
-    display: 'flex',
+    display: 'block',
     fontStyle: 'normal',
     textAlign: 'center',
-    alignItems: 'center',
-    flexDirection: 'row', // miért nem column a nem label-eseknél?
-    justifyContent: 'normal', // mégsem center?
+    alignItems: 'normal',
+    flexDirection: 'row',
+    justifyContent: 'normal',
   }],
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
@@ -164,6 +164,7 @@ const avatarTestData = {
   labelFGcolor: 'rgb(2, 6, 23)',
   subFGcolor: 'rgb(51, 65, 85)',
   labelRadius: '0px',
+  imagePadding: '0px',
   avatarImageBgcolors: "rgb(0, 60, 255)",
 
 }

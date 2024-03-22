@@ -22,7 +22,11 @@ describe('ids IconButton Demo test', () => {
       iconButtonTestData.allHeight.forEach((height) => {
         iconButtonTestData.allWidth.forEach((width) => {
           const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
-          cy.get(buttonSelector).should('be.visible').should('have.css', { 'height': height[item.size], 'width': width[item.size] });
+          cy.get(buttonSelector).should('be.visible')
+          .should(($el) => {
+            expect($el).to.have.css('height', height[item.size]);
+            expect($el).to.have.css('width', width[item.size]);
+          });
         });
       });
     });
@@ -32,14 +36,11 @@ describe('ids IconButton Demo test', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.common.forEach((common) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
-        cy.get(buttonSelector).should('be.visible').should('have.css', {
-          'flex-shrink': common['flexShrink'],
-          'hight': common['hight'],
-          'width': common['width'],
-          'align-items': common['alignItems'],
-          'display': common['display'],
-          'justify-content': common['justifyContent'],
-        });
+        cy.get(buttonSelector).should('be.visible')
+        .should('have.css', 'flex-shrink', common['flexShrink'])
+        .should('have.css', 'align-items', common['alignItems'])
+        .should('have.css', 'display', common['display'])
+        .should('have.css', 'justify-content', common['justifyContent']);
       });
     });
   });
@@ -88,28 +89,26 @@ describe('ids IconButton Demo test', () => {
         iconButtonTestData.focusedFilledColors.forEach((color) => {
           iconButtonTestData.focusedOutlineTextColors.forEach((outlineColor) => {
             iconButtonTestData.focusedTextColors.forEach((standardColor) => {
-              iconButtonTestData.focusedSurfaceBgColors.forEach((standardBgColor) => {
-                const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-icon-button`);
-                if (item.mode === 'outlined') {
-                  button.realClick({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(iconButtonTestData.white);
-                    expect(styles.color).to.equal(outlineColor[item.variant]);
-                  });
-                } else if (item.mode === 'standard') {
-                  button.realClick({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(standardBgColor[item.variant]);
-                    expect(styles.color).to.equal(standardColor[item.variant]);
-                  });
-                } else {
-                  button.realClick({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                    expect(styles.color).to.equal(color[item.variant]);
-                  });
-                }
-              })
+              const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-icon-button`);
+              if (item.mode === 'outlined') {
+                button.realClick({ pointer: "mouse" }).should(($el) => {
+                  const styles = window.getComputedStyle($el[0]);
+                  expect(styles.backgroundColor).to.equal(iconButtonTestData.white);
+                  expect(styles.color).to.equal(outlineColor[item.variant]);
+                });
+              } else if (item.mode === 'standard') {
+                button.realClick({ pointer: "mouse" }).should(($el) => {
+                  const styles = window.getComputedStyle($el[0]);
+                  expect(styles.backgroundColor).to.equal(iconButtonTestData.white);
+                  expect(styles.color).to.equal(standardColor[item.variant]);
+                });
+              } else {
+                button.realClick({ pointer: "mouse" }).should(($el) => {
+                  const styles = window.getComputedStyle($el[0]);
+                  expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                  expect(styles.color).to.equal(color[item.variant]);
+                });
+              }
             })
           });
         });
@@ -127,7 +126,7 @@ describe('ids IconButton Demo test', () => {
               if (item.mode === 'outlined') {
                 button.realHover({ pointer: "mouse" }).should(($el) => {
                   const styles = window.getComputedStyle($el[0]);
-                  expect(styles.backgroundColor).to.equal(iconButtonTestData.hoverdFocusedOutlineBg);
+                  expect(styles.backgroundColor).to.equal(iconButtonTestData.hoveredStandardBgColors);
                   expect(styles.color).to.equal(outlineColor[item.variant]);
                 });
               } else if (item.mode === 'standard') {
@@ -149,6 +148,7 @@ describe('ids IconButton Demo test', () => {
       });
     });
   });
+
   it('Checks color of icon button with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.activeBgColors.forEach((bgColor) => {
@@ -160,11 +160,11 @@ describe('ids IconButton Demo test', () => {
                   cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
                     if (item.mode === 'outlined') {
-                      expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors); // és itt?
+                      expect(styles.backgroundColor).to.equal(iconButtonTestData.pressedStandardBgColors); // és itt?
                       expect(styles.color).to.equal(outlineColor[item.variant]);
                     } else if (item.mode === 'standard') {
                       console.log('asdf-> ', item.variant, styles.color);
-                      expect(styles.backgroundColor).to.equal(iconButtonTestData.disabledOutlineBgColors);
+                      expect(styles.backgroundColor).to.equal(iconButtonTestData.pressedStandardBgColors);
                       expect(styles.color).to.equal(standardColor[item.variant]);
                     }
                     else {
@@ -205,7 +205,13 @@ describe('ids IconButton Demo test', () => {
   it('Checks left and right border radius of icon button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
-      cy.get(buttonSelector).should('be.visible').should('have.css', { 'border-radius': iconButtonTestData.allRadius });
+      cy.get(buttonSelector).should('be.visible').then(($el) => {
+        const styles = window.getComputedStyle($el[0]);
+        expect(styles.borderTopLeftRadius).to.equal(iconButtonTestData.allRadius);
+        expect(styles.borderTopRightRadius).to.equal(iconButtonTestData.allRadius);
+        expect(styles.borderBottomLeftRadius).to.equal(iconButtonTestData.allRadius);
+        expect(styles.borderBottomRightRadius).to.equal(iconButtonTestData.allRadius);
+      });
     });
   });
  

@@ -29,12 +29,26 @@ describe('ids Button Demo test', () => {
     });
   });
 
+  it('Checks the height of button', () => {
+    allCombinations.forEach((item) => {
+      buttonTestData.allHeight.forEach((height) => {
+      const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
+      cy.get(buttonSelector).should('be.visible').should(($el) => {
+        const style = window.getComputedStyle($el[0]);
+        expect(style.height).to.equal(height[item.size]);
+        });
+      });
+    });
+  });
+
   it('Checks the font-size of button', () => {
     allCombinations.forEach((item) => {
       buttonTestData.allFontSize.forEach((font) => {
         const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
-        cy.get(buttonSelector).should('be.visible').contains(`${item.mode} ${item.variant} ${item.size} button`)
-          .should('have.css', { 'font-size': font[item.size] });
+          cy.get(buttonSelector).should('be.visible').should(($el) => {
+          const style = window.getComputedStyle($el[0]);
+          expect(style.fontSize).to.equal(font[item.size]);
+        });
       });
     });
   });
@@ -71,7 +85,6 @@ describe('ids Button Demo test', () => {
         cy.get(buttonSelector).should('be.visible').then(($el) => {
           expect($el).to.have.css('flex-shrink', common['flexShrink']);
           expect($el).to.have.css('font-weight', common['fontWeight']);
-          //expect($el).to.have.css('width', common['width']);
           expect($el).to.have.css('align-items', common['alignItems']);
           expect($el).to.have.css('display', common['display']);
           expect($el).to.have.css('justify-content', common['justifyContent']);
@@ -228,7 +241,13 @@ describe('ids Button Demo test', () => {
   it('Checks left and right border radius of button', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
-      cy.get(buttonSelector).should('be.visible').should('have.css', { 'border-radius': buttonTestData.allRadius });
+      cy.get(buttonSelector).should('be.visible').then(($el) => {
+        const styles = window.getComputedStyle($el[0]);
+        expect(styles.borderTopLeftRadius).to.equal(buttonTestData.allRadius);
+        expect(styles.borderTopRightRadius).to.equal(buttonTestData.allRadius);
+        expect(styles.borderBottomLeftRadius).to.equal(buttonTestData.allRadius);
+        expect(styles.borderBottomRightRadius).to.equal(buttonTestData.allRadius);
+      });
     });
   });
 
@@ -251,4 +270,20 @@ describe('ids Button Demo test', () => {
       });
     });
   });
+
+  it('Checks all GAP of button', () => {
+    allCombinations.forEach((item) => {
+      buttonTestData.columnGap.forEach((gapColumn) => {
+        buttonTestData.rowGap.forEach((gapRow) => {
+          const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-button`;
+          cy.get(buttonSelector).should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.columnGap).to.equal(gapColumn[item.size]);
+            expect(styles.rowGap).to.equal(gapRow[item.size]);
+          });
+        });
+      });
+    });
+  });
+
 });

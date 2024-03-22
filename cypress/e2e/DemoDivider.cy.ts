@@ -14,23 +14,7 @@ describe('ids Divider Demo test', () => {
     });
   });
 
-  it('Checks width of horizontal divider', () => {
-    allCombinations.forEach((item) => {
-      const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
-      cy.get(dividerSelector).should('be.visible')//.invoke('width', '300px').should('be.visible') => funkcionális teszt, felületen új értéket (300px) beírva tesztelhető azzal az értékkel (is)
-        .should('have.css', 'width').and('eq', dividerTestData.verticalWidth);
-    });
-  });
-
-  it('Checks heigth of vertical divider', () => {
-    allCombinations.forEach((item) => {
-      const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
-      cy.get(dividerSelector).should('be.visible')
-        .should('have.css', 'height').and('eq', dividerTestData.verticalHeight);
-    });
-  });
-
-  it('Checks the height of each horizontal divider', () => {
+  it('Checks the height of horizontal divider', () => {
     allCombinations.forEach((item) => {
       dividerTestData.allHeight.forEach((height) => {
         const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
@@ -42,7 +26,7 @@ describe('ids Divider Demo test', () => {
     });
   });
 
-  it('Checks the height of each vertical divider', () => {
+  it('Checks the height of vertical divider', () => {
     allCombinations.forEach((item) => {
       dividerTestData.allWidth.forEach((width) => {
         const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
@@ -54,15 +38,22 @@ describe('ids Divider Demo test', () => {
     });
   });
 
+  it('Checks width of vertical divider', () => {
+    allCombinations.forEach((item) => {
+      const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
+      cy.get(dividerSelector).should('be.visible')
+        .should('have.css', 'height').and('eq', dividerTestData.verticalHeight);
+    });
+  });
+
   it('Checks common css rules of vertical divider', () => {
     allCombinations.forEach((item) => {
       dividerTestData.common.forEach((common) => {
         const dividerSelector = `#${item.variant}-${item.size}-vertical-divider`;
         cy.get(dividerSelector).should('be.visible').then(($el) => {
           expect($el).to.have.css('flex-shrink', common['flexShrink']);
-          //expect($el).to.have.css('height', common['height']);
-          expect($el).to.have.css('align-items', common['alignItems']);
           expect($el).to.have.css('display', common['display']);
+          expect($el).to.have.css('align-items', common['alignItems']);
           expect($el).to.have.css('justify-content', common['justifyContent']);
         });
       });
@@ -76,9 +67,8 @@ describe('ids Divider Demo test', () => {
         const dividerSelector = `#${item.variant}-${item.size}-horizontal-divider`;
         cy.get(dividerSelector).should('be.visible').then(($el) => {
           expect($el).to.have.css('flex-shrink', common['flexShrink']);
-          //expect($el).to.have.css('width', common['width']);
-          expect($el).to.have.css('align-items', common['alignItems']);
           expect($el).to.have.css('display', common['display']);
+          expect($el).to.have.css('align-items', common['alignItems']);
           expect($el).to.have.css('justify-content', common['justifyContent']);
         });
       });

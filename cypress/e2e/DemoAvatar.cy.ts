@@ -60,7 +60,7 @@ describe('ids Avatar Demo test', () => {
       });
     });
   });
-//wip - javítás alatt
+
   it('Checks the width and height of avatar-label-text', () => {
     allCombinations.forEach((item) => {
       avatarTestData.labelHeight.forEach((height) => {
@@ -120,7 +120,7 @@ describe('ids Avatar Demo test', () => {
       });
     });
   });
-//wip
+
   it('Checks common css rules of avatar-label-text', () => {
     allCombinations.forEach((item) => {
       avatarTestData.common.forEach((common) => {
@@ -581,7 +581,7 @@ describe('ids Avatar Demo test', () => {
       });
     });
   });
-// ez a 2 sztem  nem is kell, mivel nincs is radiusa
+
   it('Checks left and right border radius of avatar-LABEL-text', () => {
     allCombinations.forEach((item) => {
       const avatarSelector = `#${item.variant}-${item.size}-avatar-label-text`;
@@ -678,21 +678,13 @@ describe('ids Avatar Demo test', () => {
 
   it('Checks all padding of avatar-with-image', () => {
     allCombinations.forEach((item) => {
-      avatarTestData.paddingTop.forEach((topPadding) => {
-        avatarTestData.paddingRight.forEach((rightPadding) => {
-          avatarTestData.paddingLeft.forEach((leftPadding) => {
-            avatarTestData.paddingBottom.forEach((bottomPadding) => {
-              const avatarSelector = `#${item.size}-avatar-with-image button`;
-              cy.get(avatarSelector).should('be.visible').then(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.paddingTop).to.equal(topPadding[item.size]);
-                expect(styles.paddingRight).to.equal(rightPadding[item.size]);
-                expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
-                expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
-              });
-            });
-          });
-        });
+      const avatarSelector = `#${item.size}-avatar-with-image button`;
+      cy.get(avatarSelector).should('be.visible').then(($el) => {
+        const styles = window.getComputedStyle($el[0]);
+        expect(styles.paddingTop).to.equal(avatarTestData.imagePadding);
+        expect(styles.paddingRight).to.equal(avatarTestData.imagePadding);
+        expect(styles.paddingLeft).to.equal(avatarTestData.imagePadding);
+        expect(styles.paddingBottom).to.equal(avatarTestData.imagePadding);
       });
     });
   });

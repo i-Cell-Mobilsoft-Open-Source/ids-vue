@@ -178,6 +178,16 @@ const buttonTestData = {
     comfortable: "20px",
     spacious: "24px",
   }],
+  columnGap: [{
+    compact: "2px",
+    comfortable: "8px",
+    spacious: "8px",
+  }],
+  rowGap: [{
+    compact: "2px",
+    comfortable: "8px",
+    spacious: "8px",
+  }],
   common: [{
     flexShrink: '0',
     fontWeight: '700',

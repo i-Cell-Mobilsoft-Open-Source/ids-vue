@@ -63,18 +63,6 @@ const iconButtonTestData = {
     dark: "rgb(51, 65, 85)",
     surface: "rgb(203, 213, 225)",
   }],
-  //standardBgColor - alias textBgColors
-  focusedSurfaceBgColors: [{
-    primary: "rgb(241, 245, 249)",
-    secondary: "rgb(241, 245, 249)",
-    brand: "rgb(241, 245, 249)",
-    error: "rgb(241, 245, 249)",
-    success: "rgb(241, 245, 249)", 
-    warning: "rgb(241, 245, 249)",
-    light: "rgba(255, 255, 255, 0)",
-    dark: "rgb(241, 245, 249)",
-    surface: "rgb(241, 245, 249)",
-  }],
 
 // FGcolors
 //textFgColors
@@ -192,29 +180,29 @@ activeStandardColors: [{
 
   //sizes
   allHeight: [{
-    compact: "16px",
-    comfortable: "32px",
-    spacious: "48px",
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "56px",
   }],
   allWidth: [{
-    compact: "16px",
-    comfortable: "32px",
-    spacious: "48px",
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "56px",
   }],
   common: [{
-    flexShrink: 0,
+    flexShrink: '0',
     alignItems: 'center',
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent: 'center',
   }],
 
   white: 'rgba(255, 255, 255, 0)',
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
-  hoverdFocusedOutlineBg: 'rgb(248, 250, 252)',
   disabledBgColors: "rgba(255, 255, 255, 0)",
   disabledOutlineBgColors: "rgb(226, 232, 240)",
-  hoveredStandardBgColors: "rgb(241, 245, 249)",
+  hoveredStandardBgColors: "rgba(100, 140, 180, 0.1)",
+  pressedStandardBgColors: "rgba(100, 140, 180, 0.2)",
   disabledTextColors: "rgb(148, 163, 184)",
   allRadius: '1000px',
   allPadding: '0px' 
