@@ -47,7 +47,7 @@ import { ref } from 'vue';
 import IdsButton from '../components/IdsButton.vue';
 import IdsModal from '../components/IdsModal.vue';
 
-const showModal = ref(false);
+const showModal = ref(true);
 
 </script>
 

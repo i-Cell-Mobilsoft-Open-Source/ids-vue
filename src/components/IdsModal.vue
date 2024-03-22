@@ -1,5 +1,3 @@
-
-
 <script setup lang="ts">
 import {
   TransitionRoot,
@@ -30,10 +28,13 @@ const props = withDefaults(defineProps<{
   isClosable: true,
   size: "comfortable",
 });
+
 const modalStyle = reactive({
-  width: `var(--ids-comp-modal-container-size-width, 600px)`,//doesn't exist 
-  minHeight: `var(--modal-container-size-min-height, 256px)`, //doesn't exist 
-});
+  width: `var(--ids-comp-size-modal-container-size-width-${props.size})`,
+  borderRadius: `var(--ids-comp-size-modal-container-size-border-radius-${props.size}, 32px)`,
+  minHeight: `var(--ids-comp-size-modal-container-size-min-height-${props.size}, 256px)`, //doesn't exist 
+});  
+
 
 </script>
 
@@ -109,41 +110,15 @@ const modalStyle = reactive({
 <style scoped lang="scss">
 .ids-modal {
   align-items: flex-start;
-  width: v-bind("modalStyle.width"); 
+  width: v-bind('modalStyle.width');
   min-height: v-bind("modalStyle.minHeight");
-
+  border-radius: v-bind("modalStyle.borderRadius");
 
   gap: var(--ids-comp-modal-container-size-gap);
   background: var(--ids-comp-modal-container-color-bg-enabled);
-  border-radius: var(--ids-comp-modal-container-size-border-radius, 32px);
   padding: var(--ids-comp-modal-container-size-padding-y) var(--ids-comp-modal-container-size-padding-x);
   padding: var(--modal-backdrop-size-padding-y, 24px) var(--modal-backdrop-size-padding-x, 24px);
   border: var(--ids-comp-modal-container-size-border-width, 0px) solid var(--ids-comp-modal-container-color-border-surface-default, rgba(255, 255, 255, 0.00));
   box-shadow: var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none, 0px) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl, 25px) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl, 50px) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs, -12px) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker, rgba(0, 0, 0, 0.25));
 }
 </style>
-
-
-<!--  gap: v-bind("modalStyle.gap");
- background: v-bind("modalStyle.background");
- border-radius: v-bind("modalStyle.borderRadius");
- padding: v-bind("modalStyle.padding");
- border: v-bind("modalStyle.border");
- box-shadow: v-bind("modalStyle.boxShadow"); -->
-
-<!-- display: flex;
-width: var(--modal-container-size-width, 600px);
-min-height: var(--modal-container-size-min-height, 256px);
-padding: var(--modal-container-size-padding-y, 24px) var(--modal-container-size-padding-x, 0px);
-flex-direction: column;
-align-items: flex-start;
-gap: var(--modal-container-size-gap, 24px);
-flex: 1 0 0; -->
-
-<!-- 
-border-radius: var(--modal-container-size-border-radius, 32px);
-border: var(--modal-container-size-border-width, 0px) solid var(--modal-container-color-border-surface-default, rgba(255, 255, 255, 0.00));
-background: var(--modal-container-color-bg-enabled, #FFF);
-
-/* ids/elevation/shadow-2xl */
-box-shadow: var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none, 0px) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl, 25px) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl, 50px) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs, -12px) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker, rgba(0, 0, 0, 0.25)); -->
