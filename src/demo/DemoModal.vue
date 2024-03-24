@@ -16,10 +16,12 @@
                 subTitle
               </template>
               <template #content>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and 
-                scrambled it to make a type specimen book.
+                <div class="text-left text-sm">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                  when an unknown printer took a galley of type and 
+                  scrambled it to make a type specimen book.
+                </div>
               </template>
               <template #label>
                 <IdsButton mode="text">
@@ -47,7 +49,7 @@ import { ref } from 'vue';
 import IdsButton from '../components/IdsButton.vue';
 import IdsModal from '../components/IdsModal.vue';
 
-const showModal = ref(true);
+const showModal = ref(false);
 
 </script>
 
