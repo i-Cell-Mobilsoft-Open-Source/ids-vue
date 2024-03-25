@@ -58,7 +58,7 @@ const iconButtonStyle = reactive({
   <button
     :type="type" 
     :disabled="isDisabled" 
-    :class="[size, mode + '-mode', { 'light': props.variant === 'light' }]"
+    :class="[size, mode + '-mode', { 'light': props.variant === 'light' }, ]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.icon" class="icon-size" />
@@ -87,6 +87,7 @@ const iconButtonStyle = reactive({
 
 //sizes
 .compact, .comfortable, .spacious {
+  //@apply p-0 flex justify-center
   padding: 0px;
   display: flex;
   flex-shrink: 0;
