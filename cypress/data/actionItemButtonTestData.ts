@@ -63,6 +63,11 @@ allFontSize: [{
     comfortable: "8px",
     spacious: "16px"
   }],
+  allPadding: [{
+    compact: "2px",
+    comfortable: "8px",
+    spacious: "16px"
+  }],
 common: [{
     display: 'flex',
     flexShrink: '0',
@@ -80,7 +85,7 @@ common: [{
     hoveredFilledBgColors: "rgb(226, 232, 240)",
 
     black: 'rgb(0, 0, 0) solid 3px',
-    white: 'rgb(255, 255, 255)',
+    white: 'rgba(255, 255, 255, 0)',
 
     pressedTextBgColors: "rgb(226, 232, 240)",
     pressedColors: "rgb(0, 60, 255)",

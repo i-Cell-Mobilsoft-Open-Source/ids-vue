@@ -96,7 +96,7 @@ describe('ids Action Item Button Demo test', () => {
         });
     });
 
-    xit('Checks color and background color of ActionItem Button with hovered state', () => {
+    xit('Checks color and background color of ActionItem Button with HOVERED state', () => {
         allCombinations.forEach((item) => {
             const button = cy.get(`#${item.mode}-${item.size}-button`);
             if (item.mode === 'text') {
@@ -160,34 +160,9 @@ describe('ids Action Item Button Demo test', () => {
         });
     });
 
-    //wip  csak a 167.sorig vizsgálja
-    // xit('Checks color of disabled state of ActionItem Button', () => {
-    //     allCombinations.forEach((item) => {
-    //         const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
-    //         cy.get(actionItemButtonSelector).should('be.visible').then(($el) => {
-    //             const isDisabled = $el.attr(':is-disabled') === 'true';
-    //             if (item.mode === 'text') {
-    //                 if (isDisabled) {
-    //                     const styles = window.getComputedStyle($el[0]);
-    //                     expect(styles.backgroundColor).to.equal(actionItemButtonTestData.white);
-    //                     expect(styles.color).to.equal(actionItemButtonTestData.disabledColors);
-    //                 }
-    //             } else {
-    //                 if (isDisabled) {
-    //                     const styles = window.getComputedStyle($el[0]);
-    //                     expect(styles.backgroundColor).to.equal(actionItemButtonTestData.disabledFilledBgColors);
-    //                     expect(styles.color).to.equal(actionItemButtonTestData.disabledColors);
-    //                 }
-    //             }
-    //         });
-    //     });
-    // });
-    it('Checks color of disabled state of ActionItem Button', () => {
+    xit('Checks color of DISABLED state of ActionItem Button', () => {
         allCombinations.forEach((item) => {
-        //   if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
-        //     return;
-        //   }
-          const actionItemButtonSelector = cy.get(`#${item.mode}-${item.size}-disabled-button`);
+          const actionItemButtonSelector = cy.get(`#${item.mode}-${item.size}-button-disabled`);
           if (item.mode === 'text') {
             actionItemButtonSelector.should(($el) => {
               const styles = window.getComputedStyle($el[0]);
@@ -218,26 +193,21 @@ describe('ids Action Item Button Demo test', () => {
             });
         });
     });
-
-// nézzünk erre vissza
-
     
-    //   it('Checks all padding of tags', () => {
-    //     allCombinations.forEach((item) => {
-    //       tagTestData.topBottomPadding.forEach((topPadding) => {
-    //         tagTestData.leftRightPadding.forEach((sidePadding) => {
-    //           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-    //           cy.get(tagSelector).should('be.visible').then(($el) => {
-    //             const styles = window.getComputedStyle($el[0]);
-    //             expect(styles.paddingTop).to.equal(topPadding[item.size]);
-    //             expect(styles.paddingLeft).to.equal(sidePadding[item.size]);
-    //             expect(styles.paddingBottom).to.equal(topPadding[item.size]);
-    //             expect(styles.paddingRight).to.equal(sidePadding[item.size]);
-    //           });
-    //         });
-    //       });
-    //     });
-    //   });
+    xit('Checks all padding of ActionItem Button', () => {
+        allCombinations.forEach((item) => {
+            actionItemButtonTestData.allPadding.forEach((padding) => {
+            const tagSelector = `#${item.mode}-${item.size}-button`;
+                cy.get(tagSelector).should('be.visible').then(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.paddingTop).to.equal(padding[item.size]);
+                expect(styles.paddingLeft).to.equal(padding[item.size]);
+                expect(styles.paddingBottom).to.equal(padding[item.size]);
+                expect(styles.paddingRight).to.equal(padding[item.size]);
+                });
+            });
+        });
+    });
     
       xit('Checks all GAP of Action Item utton', () => {
         allCombinations.forEach((item) => {

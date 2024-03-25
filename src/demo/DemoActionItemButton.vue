@@ -36,7 +36,7 @@
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.mode}-${option.size}-button-disabled`"
       :key="index"
       :is-disabled="true"
       :size="option.size"
