@@ -28,11 +28,11 @@ allHeight: [{
     comfortable: "44px",
     spacious: "56px",
   }],
-//   allWidth: [{
-//     compact: "24px",
-//     comfortable: "40px",
-//     spacious: "56px",
-//   }],
+iconHeightWidth: [{
+    compact: "20px",
+    comfortable: "24px",
+    spacious: "32px",
+  }],
 allFontSize: [{
     compact: "12px",
     comfortable: "16px",
@@ -75,10 +75,12 @@ common: [{
     alignItems: 'center',
     justifyContent: 'center',
   }],
-    // enabledTextBgColors: "rgba(255, 255, 255, 0)",
-    // enabledTextColors: "rgb(241, 245, 249)",
-    // enabledFilledBgColors: "rgb(241, 245, 249)",
-    // enabledFilledColors: "rgb(71, 85, 105)",
+    iconDisplay: 'flex',
+    iconAlignItems: 'center',
+    iconJustifyContent: 'center',
+ 
+    enabled1TextColors: "rgb(71, 85, 105)",
+    enabled1FilledColors: "rgb(51, 65, 85)",
 
     hoveredTextBgColors: "rgb(241, 245, 249)", //focus bg is text+filled
     hoveredColors: "rgb(0, 60, 255)", //focus fg is text+filled
@@ -94,6 +96,8 @@ common: [{
     disabledTextBgColors: "rgb(255, 255, 255)",
     disabledColors: "rgb(148, 163, 184)",
     disabledFilledBgColors: "rgb(226, 232, 240)",
+
+    iconGap: '10px',
 
 
 }
