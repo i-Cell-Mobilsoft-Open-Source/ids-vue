@@ -29,7 +29,7 @@ const actionItemStyle = reactive({
   //enabled
   gap: `var(--ids-comp-size-action-item-button-size-gap-${props.size})`,
   height: `var(--ids-comp-size-action-item-button-size-height-${props.size})`,
-  borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,
+  borderRadius: `var(--ids-comp-size-action-item-button-size-border-radius-${props.size})`,
   color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: ` var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-action-item-button-size-padding-y-${props.size}) var(--ids-comp-size-action-item-button-size-padding-x-${props.size})`,
@@ -39,7 +39,7 @@ const actionItemStyle = reactive({
   hoverColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-size-action-item-button-size-border-width-${props.size}) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-hovered)`,
- 
+
   //focused
   focusedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-label-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-focused)`,
@@ -63,41 +63,17 @@ const actionItemStyle = reactive({
 </script>
 
 <template>
-  <button
-    v-if="type === 'button'"
-    type="button"
-    :class="[size ,'ids-action-item-button', { 'active': isActive }]"
-    :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined"
-  >
-    <component
-      :is="props.leadingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+  <button v-if="type === 'button'" type="button" :class="[size, 'ids-action-item-button', { 'active': isActive }]"
+    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined">
+    <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
-    <component
-      :is="props.trailingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+    <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
   </button>
-  <a
-    v-else 
-    :class="[size ,'ids-action-item-button', { 'active': isActive }]" 
-    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
-  >
-    <component
-      :is="props.leadingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+  <a v-else :class="[size, 'ids-action-item-button', { 'active': isActive }]" :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined">
+    <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
-    <component
-      :is="props.trailingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+    <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
   </a>
 </template>
 
@@ -123,7 +99,8 @@ const actionItemStyle = reactive({
   height: v-bind("actionItemStyle.iconWidthHeight");
 }
 
-button.active, a.active {
+button.active,
+a.active {
   color: v-bind("actionItemStyle.activeColor");
   background: v-bind("actionItemStyle.activeBackground");
 }

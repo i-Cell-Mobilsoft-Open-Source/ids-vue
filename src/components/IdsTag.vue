@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { reactive } from 'vue';
 
@@ -20,7 +19,7 @@ const tagStyle = reactive({
   //enabled
   gap: `var(--ids-comp-size-tag-size-gap-${props.size})`,
   height: `var(--ids-comp-size-tag-size-height-${props.size})`,
-  borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
+  borderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
   color: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-tag-size-padding-y-${props.size}) var(--ids-comp-size-tag-size-padding-x-${props.size})`,
@@ -45,8 +44,8 @@ const tagStyle = reactive({
   disabledBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidth: `var(--ids-comp-tag-size-${props.size}-icon)`,
-  iconHeight: `var(--ids-comp-tag-size-${props.size}-icon)`,
+  iconWidth: `var(--ids-comp-size-tag-size-icon-${props.size})`,
+  iconHeight: `var(--ids-comp-size-tag-size-icon-${props.size})`,
 });
 </script>
 
@@ -128,6 +127,7 @@ const tagStyle = reactive({
     border: v-bind('tagStyle.disabledBorder');
     background: v-bind('tagStyle.disabledBackground');
   }
+
   &.light:focus {
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-light-focused);
   }

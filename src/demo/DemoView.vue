@@ -37,8 +37,11 @@
     <router-link data-cy="action-menu-component" to="/components/action-menu" @click="isMenuVisible = false">
       ActionMenu Component
     </router-link>
-    <router-link data-cy="action-menu-component" to="/components/modal" @click="isMenuVisible = false">
+    <router-link data-cy="modal-component" to="/components/modal" @click="isMenuVisible = false">
       Modal Component
+    </router-link>
+    <router-link data-cy="card-component" to="/components/card" @click="isMenuVisible = false">
+      Card Component
     </router-link>
   </nav>
   <section>
