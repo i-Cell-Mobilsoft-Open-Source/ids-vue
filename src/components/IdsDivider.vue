@@ -4,7 +4,7 @@ import { reactive } from "vue";
 const props = withDefaults(
   defineProps<{
     type?: "vertical" | "horizontal";
-    size?: "compact" | "comfortable" | "spacious";
+    size?: "dense" | "compact" | "comfortable" | "spacious";
     variant?:
     | "surface"
     | "primary"
@@ -32,7 +32,7 @@ const DividerStyle = reactive({
   width: props.width,
   height: props.height,
   background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-divider-size-${props.size}-border-radius)`,
+  borderRadius: `var(--ids-comp-size-divider-size-border-radius-${props.size})`,
 });
 </script>
 

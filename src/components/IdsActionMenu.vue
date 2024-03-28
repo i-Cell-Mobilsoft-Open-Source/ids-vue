@@ -1,48 +1,48 @@
 <script setup lang="ts">
-  import { ref, reactive, computed, onMounted } from "vue";
-  import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-  const slotRef = ref<HTMLElement | undefined>(undefined);
-  const horizontalPanelPosition = ref<string>('0px')
-  const verticalPanelPostion = ref<string>('0px')
+import { ref, reactive, computed, onMounted } from "vue";
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
+const slotRef = ref<HTMLElement | undefined>(undefined);
+const horizontalPanelPosition = ref<string>('0px')
+const verticalPanelPostion = ref<string>('0px')
 
-  const props = withDefaults(
-    defineProps<{
-      firstPanel?: boolean;
-      panelMode?: "filled" | "outlined" | "text";
-      panelSize?: "compact" | "comfortable" | "spacious";
-      position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
-    }>(),
-    {
-      firstPanel: true,
-      panelMode: "filled",
-      buttonType: "button",
-      position: "topLeft",
-      panelSize: "comfortable",
-    },
-  );
+const props = withDefaults(
+  defineProps<{
+    firstPanel?: boolean;
+    panelMode?: "filled" | "outlined" | "text";
+    panelSize?: "compact" | "comfortable" | "spacious";
+    position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+  }>(),
+  {
+    firstPanel: true,
+    panelMode: "filled",
+    buttonType: "button",
+    position: "topLeft",
+    panelSize: "comfortable",
+  },
+);
 
-  const actionPanelStyle = reactive({
-    //enabled
-    gap: `var(--ids-comp-action-panel-size-${props.panelSize}-gap)`,
-    borderRadius:` var(--ids-comp-action-panel-size-${props.panelSize}-border-radius)`,
-    background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
-    padding: `var(--ids-comp-action-panel-size-${props.panelSize}-padding-y)
-    var(--ids-comp-action-panel-size-${props.panelSize}-padding-x)`,
-    outlinedBorder: `var(--ids-comp-action-panel-size-${props.panelSize}-border) 
-    solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
-  });
+const actionPanelStyle = reactive({
+  //enabled
+  gap: `var(--ids-comp-size-action-panel-size-gap-${props.panelSize})`,
+  borderRadius: ` var(--ids-comp-size-action-panel-size-border-radius-${props.panelSize})`,
+  background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
+  padding: `var(--ids-comp-size-action-panel-size-padding-y-${props.panelSize})
+      var(--ids-comp-size-action-panel-size-padding-x-${props.panelSize})`,
+  outlinedBorder: `var(--ids-comp-action-panel-size-${props.panelSize}-border) 
+      solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
+});
 
-  const panelPositions = computed(() => {
-    const classes = {
-      bottomLeft: "absolute",
-      bottomRight: "absolute right-0",
-      topLeft: "absolute bottom-vertical",
-      topRight: "absolute bottom-vertical right-0",
-      leftBottom: "absolute right-horizontal top-0",
-      rightTop: "absolute bottom-0 left-horizontal ",
-      leftTop: "absolute bottom-0 right-horizontal",
-      rightBottom: "absolute top-0 left-horizontal",
-    };
+const panelPositions = computed(() => {
+  const classes = {
+    bottomLeft: "absolute",
+    bottomRight: "absolute right-0",
+    topLeft: "absolute bottom-vertical",
+    topRight: "absolute bottom-vertical right-0",
+    leftBottom: "absolute right-horizontal top-0",
+    rightTop: "absolute bottom-0 left-horizontal ",
+    leftTop: "absolute bottom-0 right-horizontal",
+    rightBottom: "absolute top-0 left-horizontal",
+  };
   return classes[props.position || "topLeft"];
 });
 
@@ -52,28 +52,23 @@ onMounted(() => {
     verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
     console.log(horizontalPanelPosition.value);
     console.log(slotRef?.value?.offsetHeight);
-  }  
+  }
 });
 
 </script>
 
 <template>
   <div class="relative w-fit">
-    <Popover>    
+    <Popover>
       <PopoverButton as="div">
         <div ref="slotRef" :class="[]">
           <slot name="action" />
         </div>
       </PopoverButton>
-   
-      <transition      
-        enter-active-class="custom-enter-active"
-        enter-from-class="custom-enter-from"
-        enter-to-class="custom-enter-to"
-        leave-active-class="custom-leave-active"
-        leave-from-class="custom-leave-from"
-        leave-to-class="custom-leave-to"
-      >
+
+      <transition enter-active-class="custom-enter-active" enter-from-class="custom-enter-from"
+        enter-to-class="custom-enter-to" leave-active-class="custom-leave-active" leave-from-class="custom-leave-from"
+        leave-to-class="custom-leave-to">
         <PopoverPanel :class="[panelMode, panelPositions, '[&>*]:w-full']">
           <template v-if="firstPanel">
             <slot name="panel" />
@@ -82,20 +77,19 @@ onMounted(() => {
             <div>
               <slot name="panel" />
             </div>
-          </template>    
+          </template>
         </PopoverPanel>
       </transition>
     </Popover>
   </div>
-</template> 
+</template>
 
 <style scoped lang="scss">
-
 @mixin commonMixin {
   width: 365px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  
+  align-items: flex-start;
   gap: v-bind('actionPanelStyle.gap');
   padding: v-bind('actionPanelStyle.padding');
   background: v-bind('actionPanelStyle.background');
@@ -103,10 +97,11 @@ onMounted(() => {
 }
 
 :deep(button) {
-  &:hover{
+  &:hover {
     border-color: transparent;
   }
-  &:focus{
+
+  &:focus {
     outline: none !important;
   }
 }
@@ -116,23 +111,18 @@ onMounted(() => {
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
 }
 
-.outlined{
+.outlined {
   @include commonMixin;
   border: v-bind('actionPanelStyle.outlinedBorder');
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
 }
 
-.elevated{
+.elevated {
   @include commonMixin;
-  box-shadow: 
-  var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none)
-  var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl) 
-  var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl) 
-  var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs) 
-  var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker);
+  box-shadow:
+    var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker);
 }
 
-/* Define your custom animations */
 .custom-enter-active,
 .custom-leave-active {
   transition: opacity 0.2s ease-out, transform 0.2s ease-out;
@@ -157,6 +147,7 @@ onMounted(() => {
 .relative {
   position: relative;
 }
+
 .absolute {
   position: absolute;
 }
