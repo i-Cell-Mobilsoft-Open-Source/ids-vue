@@ -5,13 +5,13 @@ import { reactive } from "vue";
 const props = withDefaults(
   defineProps<{
     mode?: "filled" | "outlined" | "elevated";
-    size?: "compact" | "comfortable" | "spacious";
+    size?: "compact";
     variant?: "light";
   }>(),
   {
     mode: "filled",
     variant: "light",
-    size: "comfortable",
+    size: "compact",
   },
 );
 
@@ -29,7 +29,7 @@ const actionPanelStyle = reactive({
 </script>
 
 <template>
-  <div :class="[mode]">
+  <div :class="[mode, '[&>*]:w-full']">
     <slot />
   </div>
 </template>
@@ -38,7 +38,7 @@ const actionPanelStyle = reactive({
 
 @mixin commonMixin {
   display: flex;
-  width: 365px;
+  width: 356px;
   flex-direction: column;
   align-items: flex-start;  
   gap: v-bind('actionPanelStyle.gap');

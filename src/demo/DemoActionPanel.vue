@@ -27,14 +27,12 @@ import IdsActionPanel from "../components/IdsActionPanel.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";
-  size?: "compact" | "comfortable" | "spacious";
+  size?: "compact";
 };
 
 const allModes: Array<ButtonOptions["mode"]> = ["filled", "outlined", "elevated"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
-  "comfortable",
-  "spacious",
 ];
 
 const allOptions: ButtonOptions[] = [];
