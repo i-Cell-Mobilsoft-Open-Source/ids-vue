@@ -1,4 +1,4 @@
-import { defineConfig, splitVendorChunkPlugin } from 'vite'
+import { defineConfig, } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
@@ -27,12 +27,6 @@ export default defineConfig({
       // make sure to externalize deps that shouldn't be bundled
       external: [
         "vue",
-        // fileURLToPath(
-        //   new URL(
-        //     'src/main.ts',
-        //     import.meta.url
-        //   )
-        // ),
       ],
       output: {
         // Provide global variables to use in the UMD build
@@ -53,15 +47,5 @@ export default defineConfig({
   server: {
     port: 1234,
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       additionalData: `
-  //         @import "./src/style.scss";
-  //         @import "./src/styles/ids-tokens.scss";
-  //       `
-  //     }
-  //   }
-  // },
 })
 

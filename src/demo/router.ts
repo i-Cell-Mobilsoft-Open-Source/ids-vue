@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Tag from "./DemoTag.vue";
+import Card from "./DemoCard.vue";
 import Modal from "./DemoModal.vue";
 import Avatar from "./DemoAvatar.vue";
 import Button from "./DemoButton.vue";
@@ -65,6 +66,11 @@ const routes = [
     path: '/components/modal',
     name: 'Modal',
     component: Modal
+  },
+  {
+    path: '/components/card',
+    name: 'Card',
+    component: Card
   }
 ];
 
