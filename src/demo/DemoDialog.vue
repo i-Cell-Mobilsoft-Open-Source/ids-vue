@@ -1,11 +1,10 @@
 <template>
   <div class="demo">
     <h2>Action Menu</h2>
-    <IdsButton @click="showModal = true">
-      Show Modal
+    <IdsButton @click="showDialog = true">
+      Show dialog
     </IdsButton>
-
-    <IdsModal :show="showModal" :is-closable="true" size="comfortable" @close="showModal = false" :back-drop="true">
+    <IdsDialog size="comfortable" ref="dialogRef" v-if="showDialog" @close="showDialog = false">
       <template #title>
         Title
       </template>
@@ -26,28 +25,24 @@
         </IdsButton>
       </template>
       <template #action>
-        <IdsButton mode="outlined" @click="showModal = false">
+        <IdsButton mode="outlined" @click="showDialog = false">
           Cancel
         </IdsButton>
-        <IdsButton @click="showModal = false">
+        <IdsButton @click="showDialog = false">
           Save
         </IdsButton>
       </template>
-    </IdsModal>
+    </IdsDialog>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import IdsButton from '../components/IdsButton.vue';
-import IdsModal from '../components/IdsModal.vue';
+import IdsDialog from '../components/IdsDialog.vue';
 
-const showModal = ref(false);
-// watchEffect(() => {
-//   console.log(showModal.value);
-
-// })
+const showDialog = ref(false);
 </script>
 
 <style scoped>

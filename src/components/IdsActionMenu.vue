@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from "vue";
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
+import { ref, reactive, computed, onMounted, defineProps, withDefaults } from "vue";
+
 const slotRef = ref<HTMLElement | undefined>(undefined);
 const horizontalPanelPosition = ref<string>('0px')
 const verticalPanelPostion = ref<string>('0px')
 
 const props = withDefaults(
   defineProps<{
-    firstPanel?: boolean;
-    panelMode?: "filled" | "outlined" | "text";
-    panelSize?: "compact" | "comfortable" | "spacious";
-    position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+    show?: boolean,
+    firstPanel?: boolean,
+    panelMode?: "filled" | "outlined" | "text",
+    panelSize?: "compact" | "comfortable" | "spacious",
+    position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom",
   }>(),
   {
+    show: false,
     firstPanel: true,
     panelMode: "filled",
     buttonType: "button",
@@ -50,37 +52,35 @@ onMounted(() => {
   if (slotRef?.value instanceof HTMLElement) {
     horizontalPanelPosition.value = slotRef?.value?.offsetWidth + 'px';
     verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
-    console.log(horizontalPanelPosition.value);
-    console.log(slotRef?.value?.offsetHeight);
+    // $slot["actionRef"][0].elm.clientWidth
+    // this.height = $slots["actionRef"][0].elm.clientHeight
+    console.log('horizontal ->', slotRef);
+    console.log('slotref-> ', slotRef?.value?.offsetHeight);
   }
+  console.log(props.show);
+
 });
 
 </script>
 
 <template>
-  <div class="relative w-fit">
-    <Popover>
-      <PopoverButton as="div">
-        <div ref="slotRef" :class="[]">
-          <slot name="action" />
-        </div>
-      </PopoverButton>
+  <div class="relative" @click="!show">
+    <div ref="slotRef">
+      <slot name="action" />
+    </div>
 
-      <transition enter-active-class="custom-enter-active" enter-from-class="custom-enter-from"
-        enter-to-class="custom-enter-to" leave-active-class="custom-leave-active" leave-from-class="custom-leave-from"
-        leave-to-class="custom-leave-to">
-        <PopoverPanel :class="[panelMode, panelPositions, '[&>*]:w-full']">
-          <template v-if="firstPanel">
+    <transition name="panel-fade">
+      <div v-if="props.show" :class="[panelMode, panelPositions, '[&>*]:w-full']">
+        <template v-if="firstPanel">
+          <slot name="panel" />
+        </template>
+        <template v-else>
+          <div>
             <slot name="panel" />
-          </template>
-          <template v-else>
-            <div>
-              <slot name="panel" />
-            </div>
-          </template>
-        </PopoverPanel>
-      </transition>
-    </Popover>
+          </div>
+        </template>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -123,19 +123,19 @@ onMounted(() => {
     var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker);
 }
 
-.custom-enter-active,
-.custom-leave-active {
+.panel-fade-enter-active,
+.panel-fade-leave-active {
   transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
-.custom-enter-from,
-.custom-leave-to {
+.panel-fade-enter-from,
+.panel-fade-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 
-.custom-enter-to,
-.custom-leave-from {
+.panel-fade-enter-to,
+.panel-fade-leave-from {
   opacity: 1;
   transform: translateY(0);
 }

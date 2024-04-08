@@ -20,9 +20,9 @@ const actionPanelStyle = reactive({
   borderRadius: ` var(--ids-comp-size-action-panel-size-border-radius-${props.size})`,
   background: `var(--ids-comp-action-panel-${props.mode}-color-bg-light-enabled)`,
   padding: `var(--ids-comp-size-action-panel-size-padding-y-${props.size})
-   var(--ids-comp-size-action-panel-size-padding-x-${props.size})`,
+    var(--ids-comp-size-action-panel-size-padding-x-${props.size})`,
   outlinedBorder: `var(--ids-comp-action-panel-size-${props.size}-border) 
-  solid var(--ids-comp-action-panel-${props.mode}-color-border-light-enabled)`,
+    solid var(--ids-comp-action-panel-${props.mode}-color-border-light-enabled)`,
 });
 
 </script>
