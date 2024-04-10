@@ -30,7 +30,7 @@ const actionPanelStyle = reactive({
   background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
   padding: `var(--ids-comp-size-action-panel-size-padding-y-${props.panelSize})
       var(--ids-comp-size-action-panel-size-padding-x-${props.panelSize})`,
-  outlinedBorder: `var(--ids-comp-action-panel-size-${props.panelSize}-border) 
+  outlinedBorder: `var(--ids-comp-size-action-panel-size-border-${props.panelSize}) 
       solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
 });
 
@@ -52,12 +52,7 @@ onMounted(() => {
   if (slotRef?.value instanceof HTMLElement) {
     horizontalPanelPosition.value = slotRef?.value?.offsetWidth + 'px';
     verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
-    // $slot["actionRef"][0].elm.clientWidth
-    // this.height = $slots["actionRef"][0].elm.clientHeight
-    console.log('horizontal ->', slotRef);
-    console.log('slotref-> ', slotRef?.value?.offsetHeight);
   }
-  console.log(props.show);
 
 });
 
@@ -120,7 +115,7 @@ onMounted(() => {
 .elevated {
   @include commonMixin;
   box-shadow:
-    var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker);
+    var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
 }
 
 .panel-fade-enter-active,

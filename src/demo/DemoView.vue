@@ -37,9 +37,9 @@
     <router-link data-cy="dialog-component" to="/components/dialog" @click="isMenuVisible = false">
       Dialog Component
     </router-link>
-    <router-link data-cy="card-component" to="/components/card" @click="isMenuVisible = false">
+    <!-- <router-link data-cy="card-component" to="/components/card" @click="isMenuVisible = false">
       Card Component
-    </router-link>
+    </router-link> -->
     <router-link data-cy="accordion-component" to="/components/accordion" @click="isMenuVisible = false">
       Accordion Component
     </router-link>

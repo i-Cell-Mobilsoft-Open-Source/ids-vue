@@ -9,20 +9,6 @@ const details = ref<HTMLDetailsElement | null>(null);
 const handleToggle = () => {
   open.value = !open.value;
   hasOpened.value = true
-
-  if (!open.value) {
-    console.log(11, open.value);
-  }
-  else {
-    console.log(22, open.value);
-    details.value?.classList.add('closed');
-    const onAnimationEnd = () => {
-      details.value?.removeEventListener('animationend', onAnimationEnd);
-      details.value?.classList.remove('closed');
-    };
-
-    details.value?.addEventListener('animationend', onAnimationEnd);
-  }
 }
 
 const props = withDefaults(
@@ -38,8 +24,12 @@ const accordionStyle = reactive({
   background: `var(--accordion-button-text-color-bg-enabled)`,
   gap: `var(--ids-comp-size-accordion-item-size-gap-${props.size})`,
   borderRadius: `var(--ids-comp-size-accordion-item-size-border-radius-${props.size})`,
-  padding: `var(--accordion-item-size-padding-y, 0px) var(--accordion-item-size-padding-x, 0px)`
-})
+  padding: `var(--ids-comp-size-accordion-item-size-padding-y) var(--ids-comp-size-accordion-item-size-padding-x)`,
+  borderTop: `var(--ids-comp-size-accordion-summary-size-border-width-${props.size}) solid var(--ids-comp-accordion-item-color-border-enabled)`,
+  summaryGap: `var(--ids-comp-size-accordion-summary-size-gap-${props.size})`,
+  summaryHeight: `var(--ids-comp-size-accordion-summary-size-height-${props.size})`,
+  summaryPadding: `var(--ids-comp-size-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-size-accordion-summary-size-padding-x-${props.size})`,
+});
 
 </script>
 
@@ -54,7 +44,7 @@ const accordionStyle = reactive({
         <ChevronDownIcon v-else class="w-6 flip" />
       </div>
     </summary>
-    <article :class="['text-left w-full']" ref="dropdown">
+    <article :class="['text-left w-full', [open ? 'enter' : '']]" ref="dropdown">
       <slot name="accordion-content" />
     </article>
   </details>
@@ -62,27 +52,29 @@ const accordionStyle = reactive({
 
 <style scoped>
 details {
-  /* fixfixifixifix */
-  border-top: 1px solid gray;
+  border-top: v-bind('accordionStyle.borderTop');
 
   &>summary {
     cursor: pointer;
     list-style: none;
+    gap: v-bind('accordionStyle.summaryGap');
+    height: v-bind('accordionStyle.summaryHeight');
+    padding: v-bind('accordionStyle.summaryPadding');
   }
 }
 
-details[open] summary~* {
-  animation: enter .3s;
-}
-
-details.closed summary~* {
-  animation: exit .3s;
-}
+/* details[open] summary~* {
+  animation: enter .4s ease-in-out;
+} */
 
 @keyframes enter {
   0% {
-    opacity: 0;
     transform: translateY(-5%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(0);
   }
 
   100% {
@@ -91,19 +83,28 @@ details.closed summary~* {
   }
 }
 
-@keyframes exit {
+@keyframes leave {
   0% {
+    transform: translateY(-0%);
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20%);
   }
 
   100% {
-    transform: translateY(-5%);
     opacity: 0;
   }
 }
 
+.enter {
+  animation: enter .4s ease-in-out;
+}
 
+.leave {
+  animation: leave .4s ease-in-out;
+}
 
 @keyframes flip {
   0% {

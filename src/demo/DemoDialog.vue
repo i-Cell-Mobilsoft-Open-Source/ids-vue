@@ -4,7 +4,7 @@
     <IdsButton @click="showDialog = true">
       Show dialog
     </IdsButton>
-    <IdsDialog size="comfortable" ref="dialogRef" v-if="showDialog" @close="showDialog = false">
+    <IdsDialog v-if="showDialog" ref="dialogRef" size="comfortable" @close="showDialog = false">
       <template #title>
         Title
       </template>
@@ -34,7 +34,6 @@
       </template>
     </IdsDialog>
   </div>
-
 </template>
 
 <script setup lang="ts">
@@ -43,6 +42,7 @@ import IdsButton from '../components/IdsButton.vue';
 import IdsDialog from '../components/IdsDialog.vue';
 
 const showDialog = ref(false);
+
 </script>
 
 <style scoped>

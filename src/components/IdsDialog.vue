@@ -5,7 +5,7 @@ import IdsIconButton from './IdsIconButton.vue';
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 
 const props = withDefaults(defineProps<{
-  backDrop?: boolean
+  backDrop?: boolean,
   size?: "dense" | "compact" | "comfortable" | "spacious",
 }>(), {
   backDrop: false,
@@ -23,14 +23,21 @@ const animationEndHandler = () => {
 }
 
 const dialogStyle = reactive({
-  gap: `var(--ids-comp-size-modal-container-size-gap-${props.size})`,
-  width: `var(--ids-comp-size-modal-container-size-width-${props.size})`,
+  gap: `var(--ids-comp-size-dialog-container-size-gap-${props.size})`,
+  width: `var(--ids-comp-size-dialog-container-size-width-${props.size})`,
   background: props.backDrop ? '#000000' : 'transparent',
-  minHeight: `var(--ids-comp-size-modal-container-size-min-height-${props.size}, 256px)`,
-  borderRadius: `var(--ids-comp-size-modal-container-size-border-radius-${props.size}, 32px)`,
-  padding: `var(--ids-comp-size-modal-backdrop-size-padding-y-${props.size}, 24px) var( --ids-comp-size-modal-backdrop-size-padding-x-${props.size}, 24px)`,
+  minHeight: `var(--ids-comp-size-dialog-container-size-min-height-${props.size})`,
+  border: `var(--ids-comp-size-dialog-container-size-border-width-${props.size}) 
+  solid var(--ids-comp-dialog-container-color-border-surface-default)`,
+  borderRadius: `var(--ids-comp-size-dialog-container-size-border-radius-${props.size})`,
+  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-x-${props.size})`,
+  boxShadow: `var(--ids-smc-reference-container-effects-shadow-horizontal-none) 
+  var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
+  var(--ids-smc-reference-container-effects-shadow-blur-xxxl) 
+  var(--ids-smc-reference-container-effects-shadow-spread-xxs) 
+  var(--smc-reference-container-effects-shadow-color-dark-darker)`,
 });
-
+//ids-smc-reference-container-effects-shadow
 onMounted(() => {
   dialog.value?.showModal();
 });
@@ -79,21 +86,28 @@ defineEmits(['close']);
 </template>
 
 <style scoped lang="scss">
-.dialog-container {
-
-  gap: v-bind("dialogStyle.gap");
-  width: v-bind("dialogStyle.width");
-  padding: v-bind("dialogStyle.padding");
+dialog {
+  box-shadow: v-bind("dialogStyle.boxShadow");
   min-height: v-bind("dialogStyle.minHeight");
   border-radius: v-bind("dialogStyle.borderRadius");
-  background: var(--ids-comp-modal-container-color-bg-enabled);
-  border: var(--ids-comp-modal-container-size-border-width, 0px) solid var(--ids-comp-modal-container-color-border-surface-default, rgba(255, 255, 255, 0.00));
-  box-shadow: var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none, 0px) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl, 25px) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl, 50px) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs, -12px) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker, rgba(0, 0, 0, 0.25));
 
-  section {
-    @apply flex;
+  .dialog-container {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: v-bind("dialogStyle.gap");
+    width: v-bind("dialogStyle.width");
+    border: v-bind("dialogStyle.border");
+    padding: v-bind("dialogStyle.padding");
+    min-height: v-bind("dialogStyle.minHeight");
+
+    background: var(--ids-comp-dialog-container-color-bg-enabled);
+    box-shadow: var(--ids-smc-reference-container-effects-tw-shadow-horizontal-none, 0px) var(--ids-smc-reference-container-effects-tw-shadow-vertical-xxl, 25px) var(--ids-smc-reference-container-effects-tw-shadow-blur-xxxl, 50px) var(--ids-smc-reference-container-effects-tw-shadow-spread-xxs, -12px) var(--ids-smc-reference-container-effects-tw-shadow-color-dark-darker, rgba(0, 0, 0, 0.25));
+
+    section {
+      @apply flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -102,13 +116,15 @@ defineEmits(['close']);
   transition: v-bind("dialogStyle.background") 0.5s ease;
 }
 
+dialog {
+  animation: bounce-out 0.3s;
+}
+
 dialog[open] {
   animation: bounce-in 0.3s;
 }
 
-dialog.closed {
-  animation: bounce-out 0.3s;
-}
+
 
 @keyframes bounce-in {
   0% {
