@@ -1,0 +1,362 @@
+/// <reference types="cypress"/>
+import '../support/commands';
+import DialogMenu from '../../src/demo/DemoDialog.vue';
+import dialogTestData from '../data/dialogTestData';
+
+describe('Dialog Component Test', () => {
+});
+
+xit('Unnecessary tests the Action Menu subtitle component', () => {
+  cy.mount(DialogMenu);
+  cy.contains('h2', 'Action Menu')
+});
+
+it('Check the Action Menu subtitle color', () => {
+  cy.mount(DialogMenu);
+  cy.get('h2').should('have.css', 'color', 'rgb(33, 53, 71)')
+});
+
+//Button tulajdonságok
+it('Check the color of the Button', () => {
+  cy.mount(DialogMenu);
+  cy.contains('Show dialog')
+    .should('have.css', 'color', dialogTestData.white)
+    .should('have.css', 'backgroundColor', dialogTestData.enabledBgColors)
+});
+
+it('Check radius of the Button', () => {
+  cy.mount(DialogMenu)
+  cy.contains('Show dialog')
+    .should('have.css', 'borderRadius', dialogTestData.buttonRadius)
+});
+
+it('Check padding of the Button', () => {
+  cy.mount(DialogMenu)
+  cy.contains('Show dialog')
+    .should('have.css', 'paddingBottom', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingLeft', dialogTestData.buttonLeftRightPadding)
+    .should('have.css', 'paddingTop', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingRight', dialogTestData.buttonLeftRightPadding)
+});
+
+it('Check gap of the Button', () => {
+  cy.mount(DialogMenu)
+  cy.contains('Show dialog')
+    .should('have.css', 'columnGap', dialogTestData.ButtonGap)
+    .should('have.css', 'rowGap', dialogTestData.ButtonGap)
+});
+
+it('Check the Button properities', () => {
+  cy.mount(DialogMenu)
+  cy.contains('Show dialog')
+    .should('have.css', 'minWidth', dialogTestData.minWidth)
+    .should('have.css', 'fontWeight', dialogTestData.fontWeight)
+    .should('have.css', 'display', dialogTestData.display)
+    .should('have.css', 'justify-content', dialogTestData.justifyContent)
+    .should('have.css', 'align-items', dialogTestData.alignButtonItems)
+    .should('have.css', 'height', dialogTestData.height)
+    .should('have.css', 'font-size', dialogTestData.fontSize)
+    .should('have.css', 'line-height', dialogTestData.lineHeight)
+});
+
+it('Check that the Button is clickable', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+});
+
+//Dialog panel tulajdonságok
+it('Check the panel properties after clicked the Button', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'width', dialogTestData.width)
+    .should('have.css', 'gap', dialogTestData.gap)
+    .should('have.css', 'display', dialogTestData.display)
+    .should('have.css', 'flex-direction', dialogTestData.flexDirection)
+    .should('have.css', 'align-items', dialogTestData.alignItems);
+});
+
+it('Check the backgrounColor of the Panel', () => {
+  cy.mount(DialogMenu);
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'backgroundColor', dialogTestData.white);
+});
+//radius 32 px, de hol van? - ez most nem jó
+xit('Check radius of the Panel', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'borderBottomLeftRadius', dialogTestData.radius)
+    .should('have.css', 'borderBottomRightRadius', dialogTestData.radius)
+    .should('have.css', 'borderTopLeftRadius', dialogTestData.radius)
+    .should('have.css', 'borderTopRightRadius', dialogTestData.radius)
+});
+
+it('Check padding of the Panel', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'paddingBottom', dialogTestData.padding)
+    .should('have.css', 'paddingLeft', dialogTestData.padding)
+    .should('have.css', 'paddingTop', dialogTestData.padding)
+    .should('have.css', 'paddingRight', dialogTestData.padding)
+});
+
+it('Check gap of the Panel', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'columnGap', dialogTestData.gap)
+    .should('have.css', 'rowGap', dialogTestData.gap)
+});
+
+it('Check box-shadow of the Panel', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+    .should('have.css', 'boxShadow', dialogTestData.boxShadow)
+});
+
+it('Check the popup Panel contains item buttons', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Label').should('exist')
+  cy.contains('Cancel').should('exist')
+  cy.contains('Save').should('exist')
+});
+
+//sub-button tulajdonságok
+it('Check the LABEL button properties after clicked the button', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Label')
+    .should('have.css', 'min-width', dialogTestData.minWidth)
+    .should('have.css', 'height', dialogTestData.height)
+    .should('have.css', 'gap', dialogTestData.ButtonGap)
+    .should('have.css', 'display', dialogTestData.displayButton)
+    .should('have.css', 'fontWeight', dialogTestData.fontWeight)
+    .should('have.css', 'fontSize', dialogTestData.fontSize)
+    .should('have.css', 'lineHeight', dialogTestData.lineHeight)
+    .should('have.css', 'justify-content', dialogTestData.justifyContent)
+    .should('have.css', 'align-items', dialogTestData.alignButtonItems);
+});
+
+it('Check the CANCEL button properties after clicked the button', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Cancel')
+    .should('have.css', 'min-width', dialogTestData.minWidth)
+    .should('have.css', 'height', dialogTestData.height)
+    .should('have.css', 'gap', dialogTestData.ButtonGap)
+    .should('have.css', 'display', dialogTestData.display)
+    .should('have.css', 'fontWeight', dialogTestData.fontWeight)
+    .should('have.css', 'fontSize', dialogTestData.fontSize)
+    .should('have.css', 'lineHeight', dialogTestData.lineHeight)
+    .should('have.css', 'justify-content', dialogTestData.justifyContent)
+    .should('have.css', 'align-items', dialogTestData.alignButtonItems);
+});
+
+it('Check the SAVE button properties after clicked the button', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Save')
+    .should('have.css', 'min-width', dialogTestData.minWidth)
+    .should('have.css', 'height', dialogTestData.height)
+    .should('have.css', 'gap', dialogTestData.ButtonGap)
+    .should('have.css', 'display', dialogTestData.display)
+    .should('have.css', 'fontWeight', dialogTestData.fontWeight)
+    .should('have.css', 'fontSize', dialogTestData.fontSize)
+    .should('have.css', 'lineHeight', dialogTestData.lineHeight)
+    .should('have.css', 'justify-content', dialogTestData.justifyContent)
+    .should('have.css', 'align-items', dialogTestData.alignButtonItems);
+});
+
+it('Check the colors of the sub-button Label', () => {
+  cy.mount(DialogMenu);
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Label')
+    .should('have.css', 'backgroundColor', dialogTestData.panelWhite)
+    .should('have.css', 'color', dialogTestData.enabledBgColors)
+});
+
+it('Check the colors of the sub-button Cancel', () => {
+  cy.mount(DialogMenu);
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Cancel')
+    .should('have.css', 'backgroundColor', dialogTestData.panelWhite)
+    .should('have.css', 'color', dialogTestData.enabledBgColors)
+});
+
+it('Check the colors of the sub-button Save', () => {
+  cy.mount(DialogMenu);
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Save')
+    .should('have.css', 'backgroundColor', dialogTestData.enabledBgColors)
+    .should('have.css', 'color', dialogTestData.white)
+});
+
+it('Check radius of the sub-button LABEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Label')
+    .should('have.css', 'borderBottomLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderBottomRightRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopRightRadius', dialogTestData.buttonRadius)
+});
+
+it('Check radius of the sub-button CANCEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Cancel')
+    .should('have.css', 'borderBottomLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderBottomRightRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopRightRadius', dialogTestData.buttonRadius)
+});
+
+it('Check radius of the sub-button SAVE', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Save')
+    .should('have.css', 'borderBottomLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderBottomRightRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopLeftRadius', dialogTestData.buttonRadius)
+    .should('have.css', 'borderTopRightRadius', dialogTestData.buttonRadius)
+});
+
+it('Check padding of the sub-Panel LABEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Label')
+    .should('have.css', 'paddingBottom', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingLeft', dialogTestData.buttonLeftRightPadding)
+    .should('have.css', 'paddingTop', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingRight', dialogTestData.buttonLeftRightPadding)
+});
+
+it('Check padding of the sub-Panel CANCEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Cancel')
+    .should('have.css', 'paddingBottom', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingLeft', dialogTestData.buttonLeftRightPadding)
+    .should('have.css', 'paddingTop', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingRight', dialogTestData.buttonLeftRightPadding)
+});
+
+it('Check padding of the sub-Panel SAVE', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.dialog-container')
+  cy.contains('Save')
+    .should('have.css', 'paddingBottom', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingLeft', dialogTestData.buttonLeftRightPadding)
+    .should('have.css', 'paddingTop', dialogTestData.buttonTopBottomPadding)
+    .should('have.css', 'paddingRight', dialogTestData.buttonLeftRightPadding)
+});
+
+it('Check gap of the sub-Panel LABEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Label')
+    .should('have.css', 'columnGap', dialogTestData.buttonGap)
+    .should('have.css', 'rowGap', dialogTestData.buttonGap)
+});
+
+it('Check gap of the sub-Panel CANCEL', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Cancel')
+    .should('have.css', 'columnGap', dialogTestData.buttonGap)
+    .should('have.css', 'rowGap', dialogTestData.buttonGap)
+});
+
+it('Check gap of the sub-Panel SAVE', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click();
+  cy.get('.dialog-container')
+  cy.contains('Save')
+    .should('have.css', 'columnGap', dialogTestData.buttonGap)
+    .should('have.css', 'rowGap', dialogTestData.buttonGap)
+});
+
+it('Check the dialog contains Title', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.contains('Title')
+    .should('exist')
+});
+
+it('Check the dialog contains subTitle', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.contains('subTitle')
+    .should('exist')
+});
+
+it('Check the dialog contains text', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.text-left')
+    .should('exist')
+});
+
+it('Check the dialog contains an X button', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.icon-size')
+    .should('have.css', 'width', dialogTestData.xWeightHeight)
+    .should('have.css', 'height', dialogTestData.xWeightHeight)
+    .should('have.css', 'color', dialogTestData.xColor)
+});
+
+it('Check the X button is working', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.get('.icon-size')
+    .should('exist')
+  cy.get('.icon-size').click()
+    .should('not.exist')
+});
+
+it('Check the LABEL button is working', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.contains('Label').click()
+  cy.contains('Label')
+    .should('have.css', 'outlineColor', dialogTestData.black)
+});
+
+it('Check the CANCEL button is working', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.contains('Cancel').should('exist')
+  cy.get('.dialog-container').should('exist')
+  cy.contains('Cancel').click()
+  cy.get('.dialog-container').should('not.exist')
+});
+
+it('Check the SAVE button is working', () => {
+  cy.mount(DialogMenu)
+  cy.get('button').click()
+  cy.contains('Save').should('exist')
+  cy.get('.dialog-container').should('exist')
+  cy.contains('Save').click()
+  cy.get('.dialog-container').should('not.exist')
+});

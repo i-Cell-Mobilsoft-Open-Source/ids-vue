@@ -35,3 +35,17 @@
 //     }
 //   }
 // }
+import { mount } from 'cypress/vue'; // Importáld a cypress/vue modult
+
+type MountParams = Parameters<typeof mount>
+type OptionsParam = MountParams[1]
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      mount: typeof mount; // A mount parancs definiálása a Chainable interfészen belül
+    }
+  }
+}
+
+Cypress.Commands.add('mount', mount); // A mount parancs hozzáadása a Cypress-hez
