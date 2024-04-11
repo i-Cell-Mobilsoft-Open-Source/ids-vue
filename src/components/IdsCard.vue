@@ -2,8 +2,8 @@
 import { reactive } from "vue";
 const props = withDefaults(
   defineProps<{
-    mode?: "filled" | "outlined" | "elevated";
-    size?: "dense" | "compact" | "comfortable" | "spacious";
+    mode?: "filled" | "outlined" | "elevated",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?:
     | "primary"
     | "secondary"
@@ -13,10 +13,10 @@ const props = withDefaults(
     | "success"
     | "warning"
     | "light"
-    | "dark";
-    leadingIcon?: object | undefined;
-    trailingIcon?: object | undefined;
-    isDisabled?: boolean;
+    | "dark",
+    leadingIcon?: object | undefined,
+    trailingIcon?: object | undefined,
+    isDisabled?: boolean,
   }>(),
   {
     mode: "filled",
