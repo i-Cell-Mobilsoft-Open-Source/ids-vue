@@ -21,20 +21,20 @@ const avatarStyle = reactive({
   background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
   borderRadius: `var(--ids-comp-size-avatar-size-border-radius-${props.size})`,
   padding: props.image ? "0px" : `var(--ids-comp-size-avatar-size-padding-y-${props.size}) var(--ids-comp-size-avatar-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
+  focusedBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
   focusBorderRadius: `var(--ids-comp-size-avatar-size-border-radius-${props.size})`,
 
   //active
   activeBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-avatar-size-${props.size}-border) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
 
   //image sizes
   width: `var(--ids-comp-size-avatar-size-width-${props.size})`,

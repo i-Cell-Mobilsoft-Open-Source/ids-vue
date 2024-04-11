@@ -3,8 +3,8 @@ import { reactive } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    type?: "vertical" | "horizontal";
-    size?: "dense" | "compact" | "comfortable" | "spacious";
+    type?: "vertical" | "horizontal",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?:
     | "surface"
     | "primary"
@@ -14,9 +14,9 @@ const props = withDefaults(
     | "success"
     | "warning"
     | "light"
-    | "dark";
-    width?: string;
-    height?: string;
+    | "dark",
+    width?: string,
+    height?: string,
   }>(),
   {
     type: "horizontal",
