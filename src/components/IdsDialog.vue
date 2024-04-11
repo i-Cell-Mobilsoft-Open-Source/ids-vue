@@ -37,7 +37,7 @@ const dialogStyle = reactive({
   var(--ids-smc-reference-container-effects-shadow-spread-xxs) 
   var(--smc-reference-container-effects-shadow-color-dark-darker)`,
 });
-//ids-smc-reference-container-effects-shadow
+
 onMounted(() => {
   dialog.value?.showModal();
 });
@@ -123,8 +123,6 @@ dialog {
 dialog[open] {
   animation: bounce-in 0.3s;
 }
-
-
 
 @keyframes bounce-in {
   0% {

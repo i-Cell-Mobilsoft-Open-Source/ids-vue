@@ -23,7 +23,6 @@ const actionPanelStyle = reactive({
     var(--ids-comp-size-action-panel-size-padding-x-${props.size})`,
   outlinedBorder: `var(--ids-comp-size-action-panel-size-border-${props.size}) 
     solid var(--ids-comp-action-panel-${props.mode}-color-border-light-enabled)`,
-
 });
 
 </script>
@@ -72,9 +71,4 @@ const actionPanelStyle = reactive({
   box-shadow:
     var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
 }
-
-//box-shadow: var(--container-effects-shadow-horizontal-none, 0px)
-//var(--container-effects-shadow-vertical-xxl, 25px)
-//var(--container-effects-shadow-blur-xxxl, 50px) 
-//var(--container-effects-shadow-spread-xxs, -12px) 
-//var(--container-effects-shadow-color-dark-default, rgba(0, 0, 0, 0.25));</style>
+</style>

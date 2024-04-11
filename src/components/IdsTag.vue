@@ -33,7 +33,7 @@ const tagStyle = reactive({
   focusedBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
   focusedBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
   focusBorderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
-  //border: var(--tag-size-border, 1px) solid var(--tag-filled-color-border-primary-focused, rgba(255, 255, 255, 0.00));
+
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
