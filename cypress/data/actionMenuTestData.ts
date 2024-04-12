@@ -1,23 +1,10 @@
 const actionMenuTestData = {
-  allModes: ["filled", "outlined", "elevated"],
-  allSizes: [
-    "compact",
-    "comfortable",
-    "spacious",
-  ],
-  allVariants: [
-    "surface",
-    "primary",
-    "secondary",
-    "light",
-    "dark"
-  ],
-  //bgColors
+  //Colors
   enabledBgColors: "rgb(0, 60, 255)",
   white: "rgb(255, 255, 255)",
   panelWhite: 'rgba(255, 255, 255, 0)',
+
   //size
-  selector: '[id="headlessui-popover-panel-3"]',
   width: '365px',
   gap: '12px',
   display: 'flex',
