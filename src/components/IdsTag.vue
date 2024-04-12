@@ -2,13 +2,15 @@
 import { reactive } from 'vue';
 
 const props = withDefaults(defineProps<{
+  isDisabled?: boolean,
   mode?: "filled" | "outlined",
-  size?: "compact" | "comfortable",
-  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
   leadingIcon?: object | undefined,
   trailingIcon?: object | undefined,
+  size?: "compact" | "comfortable",
+  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
 }>(), {
   mode: 'filled',
+  isDisabled: false,
   size: 'comfortable',
   variant: 'primary',
   leadingIcon: undefined,
@@ -50,7 +52,11 @@ const tagStyle = reactive({
 </script>
 
 <template>
-  <button :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" type="button">
+  <button 
+    type="button" 
+    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]"
+    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" />

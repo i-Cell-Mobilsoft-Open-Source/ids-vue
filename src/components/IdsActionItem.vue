@@ -5,7 +5,7 @@ const props = withDefaults(
   defineProps<{
     mode?: "text" | "filled",
     variant?: "surface",
-    size?: "compact" | "comfortable" | "spacious",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     type?: "button" | "link",
     leadingIcon?: object | undefined,
     trailingIcon?: object | undefined,
@@ -63,14 +63,18 @@ const actionItemStyle = reactive({
 </script>
 
 <template>
-  <button v-if="type === 'button'" type="button" :class="[size, 'ids-action-item', { 'active': isActive }]"
-    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined">
+  <button
+    v-if="type === 'button'" type="button" :class="[size, 'ids-action-item', { 'active': isActive }]"
+    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
   </button>
-  <a v-else :class="[size, 'ids-action-item', { 'active': isActive }]" :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined">
+  <a
+    v-else :class="[size, 'ids-action-item', { 'active': isActive }]" :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />

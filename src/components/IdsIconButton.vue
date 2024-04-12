@@ -2,12 +2,12 @@
 import { reactive } from 'vue';
 
 const props = withDefaults(defineProps<{
-  type?: "submit" | "button" | "reset" | undefined,
+  isDisabled?: boolean,
+  icon?: object | undefined,
   mode?: "filled" | "outlined" | "standard",
+  type?: "submit" | "button" | "reset" | undefined,
   size?: "dense" | "compact" | "comfortable" | "spacious",
   variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
-  icon?: object | undefined,
-  isDisabled?: boolean,
 }>(), {
   type: 'button',
   mode: 'filled',
@@ -53,8 +53,10 @@ const iconButtonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :disabled="isDisabled" :class="[size, mode + '-mode', { 'light': props.variant === 'light' },]"
-    :aria-disabled="isDisabled ? 'true' : undefined">
+  <button
+    :type="type" :disabled="isDisabled" :class="[size, mode + '-mode', { 'light': props.variant === 'light' },]"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.icon" class="icon-size" />
   </button>
 </template>
