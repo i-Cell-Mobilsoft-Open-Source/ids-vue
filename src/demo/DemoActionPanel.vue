@@ -1,19 +1,10 @@
 <template>
   <div class="demo">
     <h2>Action Panel</h2>
-    <IdsActionPanel
-      v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
-      :key="index"
-      :size="option.size"
-      :mode="option.mode"
-    >
-      <IdsActionItem
-        v-for="(item, i) in repeatedItems"
-        :key="i"
-        :leading-icon="ClockIcon"
-        :trailing-icon="ChevronRightIcon"
-      >
+    <IdsActionPanel v-for="(option, index) in allOptions" :id="`${option.mode}-${option.size}-button`" :key="index"
+      :size="option.size" :mode="option.mode">
+      <IdsActionItem v-for="(item, i) in repeatedItems" :key="i" :leading-icon="ClockIcon"
+        :trailing-icon="ChevronRightIcon">
         {{ item + ' ' + i }}
       </IdsActionItem>
     </IdsActionPanel>

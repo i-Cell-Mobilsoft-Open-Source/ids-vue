@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Tag from "./DemoTag.vue";
-import Modal from "./DemoModal.vue";
+import Card from "./DemoCard.vue";
+import Dialog from "./DemoDialog.vue";
 import Avatar from "./DemoAvatar.vue";
 import Button from "./DemoButton.vue";
 import Divider from "./DemoDivider.vue";
+import Accordion from "./DemoAccordion.vue";
 import IconButton from "./DemoIconButton.vue";
 import ActionPanel from "./DemoActionPanel.vue";
 import ActionItemMenu from "./DemoActionMenu.vue";
@@ -62,9 +64,19 @@ const routes = [
     component: ActionItemMenu
   },
   {
-    path: '/components/modal',
-    name: 'Modal',
-    component: Modal
+    path: '/components/dialog',
+    name: 'Dialog',
+    component: Dialog
+  },
+  {
+    path: '/components/card',
+    name: 'Card',
+    component: Card
+  },
+  {
+    path: '/components/accordion',
+    name: 'Accordion',
+    component: Accordion
   }
 ];
 

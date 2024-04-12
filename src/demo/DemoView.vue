@@ -1,11 +1,7 @@
 <!-- eslint-disable vue/html-self-closing -->
 <template>
   <nav :class="{ 'open': isMenuVisible }">
-    <div
-      data-cy="hamburger-menu"
-      class="menu-btn hamburger-menu d-flex items-center"
-      @click="toggleMenu"
-    >
+    <div data-cy="hamburger-menu" class="menu-btn hamburger-menu d-flex items-center" @click="toggleMenu">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
@@ -25,7 +21,8 @@
     <router-link data-cy="avatar-component" to="/components/avatar" @click="isMenuVisible = false">
       Avatar Component
     </router-link>
-    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button" @click="isMenuVisible = false">
+    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button"
+      @click="isMenuVisible = false">
       ActionItem Button Component
     </router-link>
     <router-link data-cy="action-item-link-component" to="/components/action-item-link" @click="isMenuVisible = false">
@@ -37,8 +34,14 @@
     <router-link data-cy="action-menu-component" to="/components/action-menu" @click="isMenuVisible = false">
       ActionMenu Component
     </router-link>
-    <router-link data-cy="action-menu-component" to="/components/modal" @click="isMenuVisible = false">
-      Modal Component
+    <router-link data-cy="dialog-component" to="/components/dialog" @click="isMenuVisible = false">
+      Dialog Component
+    </router-link>
+    <!-- <router-link data-cy="card-component" to="/components/card" @click="isMenuVisible = false">
+      Card Component
+    </router-link> -->
+    <router-link data-cy="accordion-component" to="/components/accordion" @click="isMenuVisible = false">
+      Accordion Component
     </router-link>
   </nav>
   <section>

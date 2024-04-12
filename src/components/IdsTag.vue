@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { reactive } from 'vue';
 
@@ -20,33 +19,33 @@ const tagStyle = reactive({
   //enabled
   gap: `var(--ids-comp-size-tag-size-gap-${props.size})`,
   height: `var(--ids-comp-size-tag-size-height-${props.size})`,
-  borderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
+  borderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
   color: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-tag-size-padding-y-${props.size}) var(--ids-comp-size-tag-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
-  focusBorderRadius: `var(--ids-comp-tag-size-${props.size}-border-radius)`,
+  focusedBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
+  focusBorderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
 
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-tag-size-${props.size}-border) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidth: `var(--ids-comp-tag-size-${props.size}-icon)`,
-  iconHeight: `var(--ids-comp-tag-size-${props.size}-icon)`,
+  iconWidth: `var(--ids-comp-size-tag-size-icon-${props.size})`,
+  iconHeight: `var(--ids-comp-size-tag-size-icon-${props.size})`,
 });
 </script>
 
@@ -128,6 +127,7 @@ const tagStyle = reactive({
     border: v-bind('tagStyle.disabledBorder');
     background: v-bind('tagStyle.disabledBackground');
   }
+
   &.light:focus {
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-light-focused);
   }
