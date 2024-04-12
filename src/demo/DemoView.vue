@@ -21,8 +21,10 @@
     <router-link data-cy="avatar-component" to="/components/avatar" @click="isMenuVisible = false">
       Avatar Component
     </router-link>
-    <router-link data-cy="action-item-router-link-component" to="/components/action-item-button"
-      @click="isMenuVisible = false">
+    <router-link
+      data-cy="action-item-router-link-component" to="/components/action-item-button"
+      @click="isMenuVisible = false"
+    >
       ActionItem Button Component
     </router-link>
     <router-link data-cy="action-item-link-component" to="/components/action-item-link" @click="isMenuVisible = false">

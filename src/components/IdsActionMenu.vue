@@ -10,7 +10,7 @@ const props = withDefaults(
     show?: boolean,
     firstPanel?: boolean,
     panelMode?: "filled" | "outlined" | "text",
-    panelSize?: "compact" | "comfortable" | "spacious",
+    panelSize?: "dense" | "compact" | "comfortable" | "spacious",
     position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom",
   }>(),
   {
