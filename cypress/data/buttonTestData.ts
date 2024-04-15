@@ -119,7 +119,7 @@ const buttonTestData = {
     success: "rgb(255, 255, 255)",
     warning: "rgb(255, 255, 255)",
     light: "rgb(71, 85, 105)",
-    dark: "rgb(255, 255, 255)",   // új dark a fillednél: "rgb(248, 250, 252)",
+    dark: "rgb(255, 255, 255)",
     surface: "rgb(100, 116, 139)",
   }],
   //pressed
@@ -131,13 +131,13 @@ const buttonTestData = {
     success: "rgb(255, 255, 255)",
     warning: "rgb(255, 255, 255)",
     light: "rgb(71, 85, 105)",
-    dark: "rgb(255, 255, 255)",   // új dark a fillednél: "rgb(248, 250, 252)",
+    dark: "rgb(255, 255, 255)",
     surface: "rgb(100, 116, 139)",
   }],
 
   activeOutlineTextColors: [{
     primary: "rgb(0, 47, 189)",
-    secondary: "rgb(51, 65, 85)", //ld. icon button
+    secondary: "rgb(51, 65, 85)",
     brand: "rgb(0, 47, 189)",
     error: "rgb(185, 28, 28)",
     success: "rgb(21, 128, 61)",
@@ -178,6 +178,16 @@ const buttonTestData = {
     comfortable: "20px",
     spacious: "24px",
   }],
+  columnGap: [{
+    compact: "2px",
+    comfortable: "8px",
+    spacious: "8px",
+  }],
+  rowGap: [{
+    compact: "2px",
+    comfortable: "8px",
+    spacious: "8px",
+  }],
   common: [{
     flexShrink: '0',
     fontWeight: '700',
@@ -189,12 +199,11 @@ const buttonTestData = {
   white: 'rgba(255, 255, 255, 0)',
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
-  hoverdOutlineBg: 'rgb(248, 250, 252)',
+  hoverdOutlineBg: 'rgba(100, 140, 180, 0.1)',
   disabledBgColors: "rgb(226, 232, 240)",
-  hoveredTextBgColors: "rgb(241, 245, 249)",
+  pressedBgColors: "rgba(100, 140, 180, 0.2)",
   disabledTextColors: "rgb(148, 163, 184)",
   allRadius: '1000px'
 }
 
 export default buttonTestData;
-
