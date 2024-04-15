@@ -2,11 +2,26 @@
   <div class="demo">
     <h2>Tags</h2>
     <IdsTag
-      v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.variant}-${option.size}-Tag`"
-      :key="index"
-      :size="option.size"
-      :mode="option.mode"
+      v-for="(option, index) in allOptions" 
+      :id="`${option.mode}-${option.variant}-${option.size}-tag`"
+      :key="index" 
+      :size="option.size" 
+      :mode="option.mode" 
+      :leading-icon="BoltIcon"
+      :variant="option.variant"
+      :trailing-icon="BeakerIcon"
+    >
+      {{ option.mode + " " + option.variant + " " + option.size }} Tag
+    </IdsTag>
+
+    <h2>Disabled Tags</h2>
+    <IdsTag
+      v-for="(option, index) in disabledOptions" 
+      :id="`${option.mode}-${option.variant}-${option.size}-disabled-tag`"
+      :key="index" 
+      :size="option.size" 
+      :mode="option.mode" 
+      :is-disabled="true"
       :leading-icon="BoltIcon"
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
@@ -17,35 +32,29 @@
 </template>
 
 <script setup lang="ts">
-import { BoltIcon } from "@heroicons/vue/24/solid";
-import { BeakerIcon } from "@heroicons/vue/24/solid";
+import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsTag from "../components/IdsTag.vue";
+
 type TagOptions = {
   mode?: "filled" | "outlined";
   size?: "compact" | "comfortable";
   variant?:
-    | "primary"
-    | "secondary"
-    | "brand"
-    | "error"
-    | "success"
-    | "warning"
-    | "light"
-    | "dark";
+  | "primary"
+  | "secondary"
+  | "brand"
+  | "error"
+  | "success"
+  | "warning"
+  | "light"
+  | "dark";
 };
+
+type ModifiedTagOptions = Omit<TagOptions, 'variant'> & { variant: AllowedVariants };
+type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | undefined;
 
 const allModes: Array<TagOptions["mode"]> = ["filled", "outlined"];
 const allSizes: Array<TagOptions["size"]> = ["compact", "comfortable"];
-const allVariants: Array<TagOptions["variant"]> = [
-  "primary",
-  "secondary",
-  "brand",
-  "error",
-  "success",
-  "warning",
-  "light",
-  "dark",
-];
+const allVariants: Array<TagOptions["variant"]> = ["primary", "secondary", "brand", "error", "success", "warning", "light", "dark"];
 
 const allOptions: TagOptions[] = [];
 
@@ -57,20 +66,20 @@ for (const mode of allModes) {
     }
   }
 }
+
+const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
+const disabledOptions: ModifiedTagOptions[] = [];
+
+for (const mode of allModes) {
+  for (const size of allSizes) {
+    for (const variant of colorsToKeep) {
+      const options: ModifiedTagOptions = { mode, size, variant };
+      disabledOptions.push(options);
+    }
+  }
+}
 </script>
 
 <style scoped>
-.demo {
-  gap: 1rem;
-  display: flex;
-  margin-bottom: 40px;
-  align-items: center;
-  flex-direction: column;
-}
-
-p {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+@import "./demo-style.scss";
 </style>

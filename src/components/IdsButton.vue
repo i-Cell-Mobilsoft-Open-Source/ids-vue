@@ -3,9 +3,9 @@ import { reactive } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    type?: "submit" | "button" | "reset";
-    mode?: "filled" | "outlined" | "text";
-    size?: "compact" | "comfortable" | "spacious";
+    type?: "submit" | "button" | "reset",
+    mode?: "filled" | "outlined" | "text",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?:
     | "primary"
     | "secondary"
@@ -15,10 +15,10 @@ const props = withDefaults(
     | "warning"
     | "light"
     | "dark"
-    | "surface";
-    leadingIcon?: object | undefined;
-    trailingIcon?: object | undefined;
-    isDisabled?: boolean;
+    | "surface",
+    leadingIcon?: object | undefined,
+    trailingIcon?: object | undefined,
+    isDisabled?: boolean,
   }>(),
   {
     type: "button",
@@ -32,15 +32,15 @@ const props = withDefaults(
 );
 
 const buttonStyle = reactive({
+
   //enabled
-  gap: `var(--ids-comp-buttons-size-${props.size}-gap)`,
-  height: `var(--ids-comp-buttons-size-${props.size}-height)`,
-  opacity: `var(--ids-comp-buttons-size-${props.size}-border)`,
-  minWidth: `var(--ids-comp-buttons-size-${props.size}-min-width)`,
-  borderRadius: `var(--ids-comp-buttons-size-${props.size}-border-radius)`,
+  gap: `var(--ids-comp-size-buttons-size-gap-${props.size})`,
+  height: `var(--ids-comp-size-buttons-size-height-${props.size})`,
+  minWidth: `var(--ids-comp-size-buttons-size-min-width-${props.size})`,
+  borderRadius: `var(--ids-comp-size-buttons-size-border-radius-${props.size})`,
   background: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-enabled)`,
   color: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-buttons-size-${props.size}-padding-y) var(--ids-comp-buttons-size-${props.size}-padding-x)`,
+  padding: `var(--ids-comp-size-buttons-size-padding-y-${props.size}) var(--ids-comp-size-buttons-size-padding-x-${props.size})`,
   border: `var(--ids-comp-buttons-size-${props.size}-border) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
@@ -56,7 +56,7 @@ const buttonStyle = reactive({
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-disabled)`,
@@ -64,15 +64,13 @@ const buttonStyle = reactive({
   disabledBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidthHeight: `var(--ids-comp-buttons-size-${props.size}-icon)`,
+  iconWidthHeight: `var(--ids-comp-size-buttons-size-icon-${props.size})`,
 });
 </script>
 
 <template>
   <button
-    :type="type" 
-    :disabled="isDisabled" 
-    :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
+    :type="type" :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
@@ -95,7 +93,6 @@ const buttonStyle = reactive({
 @mixin common {
   flex-shrink: 0;
   font-weight: 700;
-  width: fit-content;
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -128,7 +125,6 @@ const buttonStyle = reactive({
 .ids-button {
   color: v-bind("buttonStyle.color");
   border: v-bind("buttonStyle.border");
-  opacity: v-bind("buttonStyle.opacity");
   background: v-bind("buttonStyle.background");
   border-radius: v-bind("buttonStyle.borderRadius");
 
@@ -142,8 +138,8 @@ const buttonStyle = reactive({
     outline-offset: 2px;
     color: v-bind("buttonStyle.focusedColor");
     border: v-bind("buttonStyle.focusedBorder");
+    border-radius: v-bind("buttonStyle.borderRadius");
     background: v-bind("buttonStyle.focusedBackground");
-    border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
     outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
@@ -163,6 +159,6 @@ const buttonStyle = reactive({
   &.light:focus {
     outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-light);
   }
-   
+
 }
 </style>

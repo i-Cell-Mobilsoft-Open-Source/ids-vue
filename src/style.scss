@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import './styles/ids-tokens.scss';
+
+@import './styles/index.scss';
 
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
@@ -67,10 +68,12 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2rem;
   text-align: center;
+  width: 100%;
 }
 
 @media (prefers-color-scheme: light) {

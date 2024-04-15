@@ -1,10 +1,10 @@
 <template>
-  <div class="demo">
+  <div class="demo flex justify-center h-[100vh]">
     <h2>Action Menu</h2>
-    <IdsActionMenu panel-mode="outlined">
+    <IdsActionMenu :show="isMenuOpen" panel-mode="outlined" position="bottomLeft">
       <template #action>
-        <IdsButton :trailing-icon="ChevronRightIcon">
-          Open
+        <IdsButton :trailing-icon="icon" @click="togglePanel">
+          menu
         </IdsButton>
       </template>
       <template #panel>
@@ -33,10 +33,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ChevronRightIcon } from "@heroicons/vue/24/solid";
+import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
+const isMenuOpen = ref<boolean>(false);
+const icon = ref<object>(ChevronDownIcon)
+const togglePanel = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  return icon.value = isMenuOpen.value === true ? ChevronUpIcon : ChevronDownIcon;
+}
+
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";
   size?: "compact" | "comfortable" | "spacious";
@@ -60,23 +67,9 @@ for (const mode of allModes) {
 
 const repeatedItem = ref('Menu Item Label');
 const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
+
 </script>
 
 <style scoped>
-.demo {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  
-}
-
-p {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.pt-2 {
-  padding-top: 2rem;
-}
+@import "./demo-style.scss";
 </style>

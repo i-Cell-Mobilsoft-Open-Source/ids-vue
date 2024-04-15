@@ -5,7 +5,7 @@ const props = withDefaults(
   defineProps<{
     mode?: "text" | "filled",
     variant?: "surface",
-    size?: "compact" | "comfortable" | "spacious",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     type?: "button" | "link",
     leadingIcon?: object | undefined,
     trailingIcon?: object | undefined,
@@ -24,86 +24,65 @@ const props = withDefaults(
   },
 );
 
+
 const actionItemStyle = reactive({
   //enabled
-  //--comp-menu-item-size-comfortable-height
-  gap: `var(--ids-comp-action-item-size-${props.size}-gap)`,
-  height: `var(--ids-comp-action-item-size-${props.mode}-height)`,
-  borderRadius: `var(--ids-comp-action-item-button-size-${props.size}-border-radius)`,
-  color: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-enabled)`,
-  background: ` var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-action-item-size-${props.size}-padding-y) var(--ids-comp-menu-item-size-${props.size}-padding-x)`,
-  border: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-enabled, rgba(255, 255, 255, 0.00))`,
+  gap: `var(--ids-comp-size-action-item-size-gap-${props.size})`,
+  height: `var(--ids-comp-size-action-item-size-height-${props.size})`,
+  borderRadius: `var(--ids-comp-size-action-item-size-border-radius-${props.size})`,
+  color: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-enabled)`,
+  background: ` var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-enabled)`,
+  padding: `var(--ids-comp-size-action-item-size-padding-y-${props.size}) var(--ids-comp-size-action-item-size-padding-x-${props.size})`,
+  border: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
-  hoverColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-hovered)`,
-  hoverBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-hovered, rgba(255, 255, 255, 0.00))`,
+  hoverColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-hovered)`,
+  hoverBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
-  focusedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-focused)`,
-  focusedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-focused)`,
+  focusedColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-focused)`,
+  focusedBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-focused)`,
 
   //pressed
-  pressedColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-pressed)`,
-  pressedBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-pressed)`,
+  pressedColor: `var(--ids-comp-action-item-${props.mode}-color-fg-${props.variant}-pressed)`,
+  pressedBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-pressed)`,
 
   //active
-  activeColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-active)`,
-  activeBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-active)`,
+  activeColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-active)`,
+  activeBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-active)`,
 
   //disabled
-  disabledColor: `var(--ids-comp-action-item-button-${props.mode}-color-fg-${props.variant}-disabled)`,
-  disabledBackground: `var(--ids-comp-action-item-button-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-action-item-button-size-${props.size}-border, 1px) solid var(--ids-comp-action-item-button-${props.mode}-color-border-${props.variant}-disabled, rgba(255, 255, 255, 0.00))`,
+  disabledColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-disabled)`,
+  disabledBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidthHeight: `var(--ids-comp-action-item-button-size-${props.size}-icon)`,
+  iconWidthHeight: `var(--ids-comp-size-action-item-size-icon-${props.size})`,
 });
 </script>
 
 <template>
   <button
-    v-if="type === 'button'"
-    type="button"
-    :class="[size ,'ids-action-item-button', { 'active': isActive }]"
-    :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined"
-  >
-    <component
-      :is="props.leadingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
-    <slot />
-    <component
-      :is="props.trailingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
-  </button>
-  <a
-    v-else 
-    :class="[size ,'ids-action-item-button', { 'active': isActive }]" 
+    v-if="type === 'button'" type="button" :class="[size, 'ids-action-item', { 'active': isActive }]"
     :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
   >
-    <component
-      :is="props.leadingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+    <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
-    <component
-      :is="props.trailingIcon"
-      class="icon-size"
-      aria-hidden="true"
-    />
+    <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
+  </button>
+  <a
+    v-else :class="[size, 'ids-action-item', { 'active': isActive }]" :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
+    <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
+    <slot />
+    <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
   </a>
 </template>
 
 <style scoped lang="scss">
 @mixin commonMixin {
-  width: 100%;
   display: flex;
   flex-shrink: 0;
   font-weight: 700;
@@ -124,7 +103,8 @@ const actionItemStyle = reactive({
   height: v-bind("actionItemStyle.iconWidthHeight");
 }
 
-button.active, a.active {
+button.active,
+a.active {
   color: v-bind("actionItemStyle.activeColor");
   background: v-bind("actionItemStyle.activeBackground");
 }
@@ -149,7 +129,7 @@ button.active, a.active {
 }
 
 //variants
-.ids-action-item-button {
+.ids-action-item {
   color: v-bind("actionItemStyle.color");
   border: v-bind("actionItemStyle.border");
   background: v-bind("actionItemStyle.background");
@@ -165,8 +145,8 @@ button.active, a.active {
     outline-offset: 2px;
     color: v-bind('actionItemStyle.focusedColor');
     background: v-bind("actionItemStyle.focusedBackground");
-    opacity: var(--ids-comp-action-item-button-size-spacious-border, 1);
-    outline: var(--ids-comp-action-item-button-focused-outline-size-outline, 1px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
+    opacity: var(--ids-comp-action-item-size-spacious-border, 1);
+    outline: var(--ids-comp-action-item-focused-outline-size-outline, 1px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
   }
 
   &:active {

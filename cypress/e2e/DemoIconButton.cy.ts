@@ -3,10 +3,8 @@ import iconButtonTestData from '../data/iconButtonTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-  cy.visit('/');
-  cy.get('[data-cy="hamburger-menu"]').click();
-  cy.get('[data-cy="icon-button-component"]').click();
-})
+  cy.visit('/components/icon-button');
+});
 
 describe('ids IconButton Demo test', () => {
   const allCombinations = [] as any[];

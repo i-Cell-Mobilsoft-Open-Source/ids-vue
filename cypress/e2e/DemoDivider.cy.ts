@@ -2,9 +2,7 @@ import dividerTestData from '../data/dividerTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-  cy.visit('/');
-  cy.get('[data-cy="hamburger-menu"]').click();
-  cy.get('[data-cy="divider-component"]').click();
+  cy.visit('/components/divider');
 })
 
 describe('ids Divider Demo test', () => {
