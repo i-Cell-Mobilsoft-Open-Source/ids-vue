@@ -1,241 +1,317 @@
+import { exists } from 'fs';
 import tagTestData from '../data/tagTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy="hamburger-menu"]').click();
-    cy.get('[data-cy="tags-component"]').click();
+    cy.visit('/components/tags');
   })
 
-  describe('ids Tags Demo test', () => {
-    const allCombinations = [] as any[];
-  
-    tagTestData.allModes.forEach((mode) => {
-        tagTestData.allSizes.forEach((size) => {
-            tagTestData.allVariants.forEach((variant) => {
-          allCombinations.push({ mode, size, variant });
+describe('ids tags Demo test', () => {
+const allCombinations = [] as any[];
+
+  tagTestData.allModes.forEach((mode) => {
+    tagTestData.allSizes.forEach((size) => {
+      tagTestData.allVariants.forEach((variant) => {
+      allCombinations.push({ mode, size, variant });
+      });
+    });
+  });
+  it('Checks the height of tags', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.allHeight.forEach((height) => {
+      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+      cy.get(tagSelector).should('be.visible').should(($el) => {
+        expect($el).to.have.css('height', height[item.size]);
         });
       });
     });
-    //WIP - omfortable height 32 vs 26?
-    it('Checks the width and height of tags', () => {
-        allCombinations.forEach((item) => {
-          tagTestData.allHeight.forEach((height) => {
-            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            cy.get(tagSelector).should('be.visible')
-            .should(($el) => {
-            expect($el).to.have.css('height', height[item.size]);
+  });
+
+  it('Checks the width and height of tags leading icon', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.allLeadingHeight.forEach((height) => {
+        tagTestData.allLeadingWidth.forEach((width) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.height).to.equal(height[item.size]);
+            expect(styles.width).to.equal(width[item.size]);
             });
+        });
+        });
+      });
+    });
+
+    it('Checks the width and height of tags trailing icon', () => {
+      allCombinations.forEach((item) => {
+        tagTestData.allLeadingHeight.forEach((height) => {
+          tagTestData.allLeadingWidth.forEach((width) => {
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[1]);
+              expect(styles.height).to.equal(height[item.size]);
+              expect(styles.width).to.equal(width[item.size]);
+              });
+          });
           });
         });
       });
-    //kész - display inline-flex vs flex
-    it('Checks common css rules of tags', () => {
-        allCombinations.forEach((item) => {
-            tagTestData.common.forEach((common) => {
-            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            cy.get(tagSelector)
-                .should('be.visible')
-                .should('have.css', 'display', common['display'])
-                .should('have.css', 'flex-shrink', common['flexShrink'])
-                .should('have.css', 'font-weight', common['fontWeight'])
-                .should('have.css', 'align-items', common['alignItems'])
-                .should('have.css', 'justify-content', common['justifyContent']);
-            });
-        });
+    
+  it('Checks common css rules of tags', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.common.forEach((common) => {
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+        cy.get(tagSelector)
+          .should('be.visible')
+          .should('have.css', 'flex-shrink', common['flexShrink'])
+          .should('have.css', 'font-weight', common['fontWeight'])
+          .should('have.css', 'align-items', common['alignItems'])
+          .should('have.css', 'display', common['display'])
+          .should('have.css', 'justify-content', common['justifyContent']);
+      });
     });
-    //kész
-    it('Checks the font-size of tags', () => {
+  });
+
+  it('Checks the font-size of tags', () => {
     allCombinations.forEach((item) => {
         tagTestData.allFontSize.forEach((font) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector).should('be.visible').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.fontSize).to.equal(font[item.size]);
-            expect(styles.fontWeight).to.equal(tagTestData.allFontWeight);
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.fontSize).to.equal(font[item.size]);
+          expect(styles.fontWeight).to.equal(tagTestData.allFontWeight);
         });
-        });
+      });
     });
-    });
-    //kész
-    it('Checks the line-height of tags', () => {
+  });
+
+  it('Checks the line-height of tags', () => {
     allCombinations.forEach((item) => {
-        tagTestData.allLineHeight.forEach((lineHeigt) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+      tagTestData.allLineHeight.forEach((lineHeigt) => {
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector).should('be.visible').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
         });
-        });
+      });
     });
-    });
-    //kész
-    it('Checks the color of tags', () => {
+  });
+
+  it('Checks the color of tags', () => {
     allCombinations.forEach((item) => {
-        tagTestData.enabledBgColors.forEach((bgColor) => {
+      tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
-            tagTestData.enabledOutlineColor.forEach((outlineColor) => {
-            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-            if (item.mode === 'filled') {
-                cy.get(tagSelector).should('be.visible').should(($el) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          if (item.mode === 'filled') {
+              cy.get(tagSelector).should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(color[item.variant]);
+              });
+          } else {
+              cy.get(tagSelector).should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(tagTestData.white);
+              expect(styles.color).to.equal(bgColor[item.variant]);
+              });
+            }
+          });
+        });
+      });
+    });
+
+  it('Checks the color of tags leading Icon', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.enabledBgColors.forEach((bgColor) => {
+        tagTestData.enabledColors.forEach((color) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          if (item.mode === 'filled') {
+              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.color).to.equal(color[item.variant]);
+              });
+          } else {
+              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[0]);
+              expect(styles.color).to.equal(bgColor[item.variant]);
+              });
+            }
+          });
+        });
+      });
+    });
+
+  it('Checks the color of tags trailing Icon', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.enabledBgColors.forEach((bgColor) => {
+        tagTestData.enabledColors.forEach((color) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          if (item.mode === 'filled') {
+              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[1]);
+              expect(styles.color).to.equal(color[item.variant]);
+              });
+          } else {
+              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+              const styles = window.getComputedStyle($el[1]);
+              expect(styles.color).to.equal(bgColor[item.variant]);
+              });
+            }
+          });
+        });
+      });
+    });
+
+    it.only('Checks color and background color of tags with hovered state', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.hoveredBgColors.forEach((bgColor) => {
+        tagTestData.hoveredOutlineColors.forEach((outlineColor) => {
+          tagTestData.hoveredColors.forEach((color) => {
+            const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
+            if (item.mode === 'outlined') {
+              button.realHover({ pointer: "mouse" }).should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.backgroundColor).to.equal(tagTestData.hoverdOutlineBg);
+                expect(styles.color).to.equal(outlineColor[item.variant]);
+              });
+            } else {
+              button.realHover({ pointer: "mouse" }).should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
                 expect(styles.color).to.equal(color[item.variant]);
-                });
-            } else { //outlined
-                cy.get(tagSelector).should('be.visible').should(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(tagTestData.white);
-                expect(styles.color).to.equal(outlineColor[item.variant]);
-                });
-                }
-            });
-            });
-        });
-        });
-    });
-    //kész
-    it('Checks color and background color of tags with HOVERED state', () => {
-        allCombinations.forEach((item) => {
-            tagTestData.hoveredBgColors.forEach((bgColor) => {
-            tagTestData.hoveredColors.forEach((color) => {
-                tagTestData.enabledOutlineColor.forEach((outlineColor) => {
-                const tagSelector = cy.get(`#${item.mode}-${item.variant}-${item.size}-Tag`);
-                if (item.mode === 'filled') {
-                tagSelector.realHover({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                    expect(styles.color).to.equal(color[item.variant]);
-                });
-            } else { //outline
-                tagSelector.realHover({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    expect(styles.backgroundColor).to.equal(tagTestData.hoverdOutlineBg);
-                    expect(styles.color).to.equal(outlineColor[item.variant]);
-                    });
-                    }
-                });
-            });
-            });
-        });
-    });
-    //kész, de hibás: outline-color rgb(71, 85, 105) => legyen fehér
-    it('Checks focused state of tags', () => {
-        allCombinations.forEach((item) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-        if (item.variant === 'light') {
-            cy.get(tagSelector).click().should('have.focus').should('be.visible')
-            .should('have.css', 'outline').and('eq', tagTestData.white2);
-        } else {
-            cy.get(tagSelector).click().should('have.focus').should('be.visible')
-            .should('have.css', 'outline').and('eq', tagTestData.black);
-        }
-        });
-    });
-    //kész, de hibás: Figma szerint a activeOutlineTextColors fg színek a jók, de itt a enabledOutlineColor-ra fut le
-    it('Checks color of icon tag with FOCUSED state', () => {
-        allCombinations.forEach((item) => {
-        tagTestData.focusedFilledBgColors.forEach((bgColor) => {
-            tagTestData.hoveredColors.forEach((color) => {
-            tagTestData.activeOutlineTextColors.forEach((outlineColor) => {
-                    const tag = cy.get(`#${item.mode}-${item.variant}-${item.size}-Tag`);
-                    if (item.mode === 'outlined') {
-                    tag.realClick({ pointer: "mouse" }).should(($el) => {
-                        const styles = window.getComputedStyle($el[0]);
-                        expect(styles.backgroundColor).to.equal(tagTestData.hoverdFocusedOutlineBg);
-                        expect(styles.color).to.equal(outlineColor[item.variant]);
-                    });
-                    } else { //filled
-                    tag.realClick({ pointer: "mouse" }).should(($el) => {
-                        const styles = window.getComputedStyle($el[0]);
-                        expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                        expect(styles.color).to.equal(color[item.variant]);
-                    });
-                    }
-            });
-            });
-        });
-        });
-    });
-    //kész, de hibás, Figma szerint a activeOutlineTextColors a helyes, ehelyett a enabledOutlineColor-re fut le
-    it('Checks color of tag with active (PRESSED) state', () => {
-        allCombinations.forEach((item) => {
-          tagTestData.activeBgColors.forEach((bgColor) => {
-            tagTestData.enabledColors.forEach((color) => {
-              tagTestData.activeOutlineTextColors.forEach((outlineColor) => {
-                const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-                cy.get(tagSelector).then(tag => {
-                cy.wrap(tag).realMouseDown({ pointer: "mouse" }).should(($el) => {
-                    const styles = window.getComputedStyle($el[0]);
-                    if (item.mode === 'outlined') {
-                    expect(styles.backgroundColor).to.equal(tagTestData.disabledBgColors);
-                    expect(styles.color).to.equal(outlineColor[item.variant]);
-                    } else { //filled
-                    expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                    expect(styles.color).to.equal(color[item.variant]);
-                    }
-                }).realMouseUp({ pointer: "mouse" });
               });
+            }
+          });
+        });
+      });
+    });
+  });
+
+  it('Checks focused state of tags', () => {
+    allCombinations.forEach((item) => {
+      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+      if (item.variant === 'light') {
+        cy.get(tagSelector).click().should('have.focus').should('be.visible')
+          .should('have.css', 'outline').and('eq', tagTestData.white2);
+      } else {
+        cy.get(tagSelector).click().should('have.focus').should('be.visible')
+          .should('have.css', 'outline').and('eq', tagTestData.black);
+      }
+    });
+  });
+
+  it('Checks color of tags with FOCUSED state', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.focusedBgColors.forEach((bgColor) => {
+        tagTestData.focusedColors.forEach((color) => {
+          tagTestData.focusedOutlineColors.forEach((outlineColor) => {
+          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
+          if(item.mode === 'outlined') {
+            button.realClick({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(tagTestData.white);
+              expect(styles.color).to.equal(outlineColor[item.variant]);
+            });
+          } else {
+          button.realClick({ pointer: "mouse" }).should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(color[item.variant]);
+            });
+          }
+        });
+        });
+      });
+    });
+  });
+
+  it('Checks color of tags with active (pressed) state', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.activeBgColors.forEach((bgColor) => {
+        tagTestData.focusedColors.forEach((color) => {
+          tagTestData.activeOutlineColors.forEach((outlineColor) => {
+            const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+            cy.get(buttonSelector).then(button => {
+              cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                if (item.mode === 'outlined') {
+                  expect(styles.backgroundColor).to.equal(tagTestData.activeOutlineBg);
+                  expect(styles.color).to.equal(outlineColor[item.variant]);
+                } else {
+                  expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                  expect(styles.color).to.equal(color[item.variant]);
+                }
+              }).realMouseUp({ pointer: "mouse" });
             });
           });
         });
       });
     });
-  // kész, de nincs disabled-tag (csak a Figmaban)
+  });
+
   it('Checks color of disabled state tags', () => {
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;
       }
-      const tag = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-Tag`);
+      const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-tag`);
       if (item.mode === 'outlined') {
-        tag.should(($el) => {
+        button.should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.backgroundColor).to.equal(tagTestData.white);
           expect(styles.color).to.equal(tagTestData.disabledTextColors);
         });
       } else {
-        tag.should(($el) => {
+        button.should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.backgroundColor).to.equal(tagTestData.disabledBgColors);
-          expect(styles.color).to.equal(tagTestData.disabledBgColors);
+          expect(styles.color).to.equal(tagTestData.disabledTextColors);
         });
       }
     });
   });
-  //kész
-  it('Checks left and right border radius of icon button', () => {
+
+  it('Checks left and right border radius of tags', () => {
     allCombinations.forEach((item) => {
-        tagTestData.radiusTop.forEach((topRadius) => {
-           tagTestData.radiusBottom.forEach((bottomRadius) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-        cy.get(tagSelector).should('be.visible').then(($el) => {
+      tagTestData.Radius.forEach((allRadius) => {
+        const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+        cy.get(avatarSelector).should('be.visible').then(($el) => {
           const styles = window.getComputedStyle($el[0]);
-          expect(styles.borderTopLeftRadius).to.equal(topRadius[item.size]);
-          expect(styles.borderTopRightRadius).to.equal(topRadius[item.size]);
-          expect(styles.borderBottomLeftRadius).to.equal(bottomRadius[item.size]);
-          expect(styles.borderBottomRightRadius).to.equal(bottomRadius[item.size]);
+          expect(styles.borderTopLeftRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderTopRightRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderBottomLeftRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderBottomRightRadius).to.equal(allRadius[item.size]);
         });
-           });
       });
     });
   });
-  //kész, Figma szerint beállítva, de a comfortable padding 0px-el fut le
+
   it('Checks all padding of tags', () => {
     allCombinations.forEach((item) => {
-      tagTestData.paddingTop.forEach((topPadding) => {
-        tagTestData.paddingRight.forEach((rightPadding) => {
-          tagTestData.paddingLeft.forEach((leftPadding) => {
-            tagTestData.paddingBottom.forEach((bottomPadding) => {
-              const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
-              cy.get(tagSelector).should('be.visible').then(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.paddingTop).to.equal(topPadding[item.size]);
-                expect(styles.paddingRight).to.equal(rightPadding[item.size]);
-                expect(styles.paddingLeft).to.equal(leftPadding[item.size]);
-                expect(styles.paddingBottom).to.equal(bottomPadding[item.size]);
-              });
-            });
+      tagTestData.topBottomPadding.forEach((topPadding) => {
+        tagTestData.leftRightPadding.forEach((sidePadding) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          cy.get(tagSelector).should('be.visible').then(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.paddingTop).to.equal(topPadding[item.size]);
+            expect(styles.paddingLeft).to.equal(sidePadding[item.size]);
+            expect(styles.paddingBottom).to.equal(topPadding[item.size]);
+            expect(styles.paddingRight).to.equal(sidePadding[item.size]);
+          });
+        });
+      });
+    });
+  });
+
+  it('Checks all GAP of tags', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.columnGap.forEach((gapColumn) => {
+        tagTestData.rowGap.forEach((gapRow) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          cy.get(tagSelector).should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.columnGap).to.equal(gapColumn[item.size]);
+            expect(styles.rowGap).to.equal(gapRow[item.size]);
           });
         });
       });
