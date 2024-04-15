@@ -6,7 +6,7 @@ beforeEach(() => {
     cy.visit('/components/tags');
   })
 
-describe('ids Tags Demo test', () => {
+describe('ids tags Demo test', () => {
 const allCombinations = [] as any[];
 
   tagTestData.allModes.forEach((mode) => {
@@ -19,7 +19,7 @@ const allCombinations = [] as any[];
   it('Checks the height of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.allHeight.forEach((height) => {
-      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
       cy.get(tagSelector).should('be.visible').should(($el) => {
         expect($el).to.have.css('height', height[item.size]);
         });
@@ -31,7 +31,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.allLeadingHeight.forEach((height) => {
         tagTestData.allLeadingWidth.forEach((width) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.height).to.equal(height[item.size]);
@@ -46,7 +46,7 @@ const allCombinations = [] as any[];
       allCombinations.forEach((item) => {
         tagTestData.allLeadingHeight.forEach((height) => {
           tagTestData.allLeadingWidth.forEach((width) => {
-            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
             cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[1]);
               expect(styles.height).to.equal(height[item.size]);
@@ -61,7 +61,7 @@ const allCombinations = [] as any[];
   it('Checks common css rules of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.common.forEach((common) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector)
           .should('be.visible')
           .should('have.css', 'flex-shrink', common['flexShrink'])
@@ -76,7 +76,7 @@ const allCombinations = [] as any[];
   it('Checks the font-size of tags', () => {
     allCombinations.forEach((item) => {
         tagTestData.allFontSize.forEach((font) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector).should('be.visible').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.fontSize).to.equal(font[item.size]);
@@ -89,7 +89,7 @@ const allCombinations = [] as any[];
   it('Checks the line-height of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.allLineHeight.forEach((lineHeigt) => {
-        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector).should('be.visible').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
@@ -102,7 +102,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
               cy.get(tagSelector).should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
@@ -125,7 +125,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
               cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
@@ -146,7 +146,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
               cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[1]);
@@ -168,7 +168,7 @@ const allCombinations = [] as any[];
       tagTestData.hoveredBgColors.forEach((bgColor) => {
         tagTestData.hoveredOutlineColors.forEach((outlineColor) => {
           tagTestData.hoveredColors.forEach((color) => {
-            const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-Tag`);
+            const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
             if (item.mode === 'outlined') {
               button.realHover({ pointer: "mouse" }).should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
@@ -190,7 +190,7 @@ const allCombinations = [] as any[];
 
   it('Checks focused state of tags', () => {
     allCombinations.forEach((item) => {
-      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
       if (item.variant === 'light') {
         cy.get(tagSelector).click().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', tagTestData.white2);
@@ -206,7 +206,7 @@ const allCombinations = [] as any[];
       tagTestData.focusedBgColors.forEach((bgColor) => {
         tagTestData.focusedColors.forEach((color) => {
           tagTestData.focusedOutlineColors.forEach((outlineColor) => {
-          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-Tag`);
+          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
           if(item.mode === 'outlined') {
             button.realClick({ pointer: "mouse" }).should(($el) => {
             const styles = window.getComputedStyle($el[0]);
@@ -231,7 +231,7 @@ const allCombinations = [] as any[];
       tagTestData.activeBgColors.forEach((bgColor) => {
         tagTestData.focusedColors.forEach((color) => {
           tagTestData.activeOutlineColors.forEach((outlineColor) => {
-            const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+            const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
             cy.get(buttonSelector).then(button => {
               cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
@@ -255,7 +255,7 @@ const allCombinations = [] as any[];
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;
       }
-      const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-Tag`);
+      const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-disabled-tag`);
       if (item.mode === 'outlined') {
         button.should(($el) => {
           const styles = window.getComputedStyle($el[0]);
@@ -275,7 +275,7 @@ const allCombinations = [] as any[];
   it('Checks left and right border radius of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.Radius.forEach((allRadius) => {
-        const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+        const avatarSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(avatarSelector).should('be.visible').then(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.borderTopLeftRadius).to.equal(allRadius[item.size]);
@@ -291,7 +291,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.topBottomPadding.forEach((topPadding) => {
         tagTestData.leftRightPadding.forEach((sidePadding) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           cy.get(tagSelector).should('be.visible').then(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.paddingTop).to.equal(topPadding[item.size]);
@@ -308,7 +308,7 @@ const allCombinations = [] as any[];
     allCombinations.forEach((item) => {
       tagTestData.columnGap.forEach((gapColumn) => {
         tagTestData.rowGap.forEach((gapRow) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-Tag`;
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           cy.get(tagSelector).should('be.visible').should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.columnGap).to.equal(gapColumn[item.size]);
