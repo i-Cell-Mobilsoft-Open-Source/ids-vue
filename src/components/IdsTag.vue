@@ -33,9 +33,10 @@ const tagStyle = reactive({
   hoverBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
-  focusedBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
   focusBorderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
+  focusBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
+  focusColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-focused)`,
+  focusBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
@@ -119,8 +120,9 @@ const tagStyle = reactive({
   &:focus-within {
     outline-style: solid;
     outline-offset: 2px;
-    border: v-bind('tagStyle.focusedBorder');
-    background: v-bind('tagStyle.focusedBackground');
+    color: v-bind('tagStyle.focusColor');
+    border: v-bind('tagStyle.focusBorder');
+    background: v-bind('tagStyle.focusBackground');
     border-radius: v-bind('tagStyle.focusBorderRadius');
     outline: var(--ids-comp-tag-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
   }
