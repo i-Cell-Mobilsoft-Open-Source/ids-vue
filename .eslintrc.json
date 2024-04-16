@@ -27,5 +27,8 @@
     "vite.config.ts",
     "node_modules/**",
     "cypress.config.ts"
-  ]
+  ],
+  "env": {
+    "vue/setup-compiler-macros": true
+  }
 }
