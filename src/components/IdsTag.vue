@@ -29,6 +29,7 @@ const tagStyle = reactive({
 
   //hovered
   hoverBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-hovered)`,
+  hoverColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
@@ -38,6 +39,7 @@ const tagStyle = reactive({
 
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
+  activeColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
@@ -109,6 +111,7 @@ const tagStyle = reactive({
   border-radius: v-bind('tagStyle.borderRadius');
 
   &:hover {
+    color: v-bind('tagStyle.hoverColor');
     border: v-bind('tagStyle.hoverBorder');
     background: v-bind('tagStyle.hoverBackground');
   }
@@ -123,6 +126,7 @@ const tagStyle = reactive({
   }
 
   &:active {
+    color: v-bind('tagStyle.activeColor');
     border: v-bind('tagStyle.activeBorder');
     background: v-bind('tagStyle.activeBackground');
     outline: none;
