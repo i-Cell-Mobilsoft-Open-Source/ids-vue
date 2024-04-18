@@ -53,7 +53,6 @@ onMounted(() => {
     horizontalPanelPosition.value = slotRef?.value?.offsetWidth + 'px';
     verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
   }
-
 });
 
 </script>
@@ -65,7 +64,7 @@ onMounted(() => {
     </div>
 
     <transition name="panel-fade">
-      <div v-if="props.show" :class="[panelMode, panelPositions, '[&>*]:w-full']">
+      <div v-if="props.show" :class="[panelMode, panelPositions, '[&>*]:w-full z-20']">
         <template v-if="firstPanel">
           <slot name="panel" />
         </template>
