@@ -5,7 +5,7 @@ const props = withDefaults(
   defineProps<{
     type?: "submit" | "button" | "reset",
     mode?: "filled" | "outlined" | "text",
-    size?: "compact" | "comfortable" | "spacious",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?:
     | "primary"
     | "secondary"
@@ -69,8 +69,10 @@ const buttonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
-    :aria-disabled="isDisabled ? 'true' : undefined">
+  <button
+    :type="type" :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />

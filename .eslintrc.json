@@ -2,8 +2,8 @@
   "extends": [
     "plugin:vue/base",
     "plugin:vue/vue3-essential",
-    "plugin:vue/vue3-recommended"
-    //"@vue/eslint-config-typescript/recommended"
+    "plugin:vue/vue3-recommended",
+    "@vue/eslint-config-typescript/recommended"
     //"plugin:@typescript-eslint/recommended"
     //"plugin:@typescript-eslint/eslint-recommended"
   ],
@@ -27,5 +27,8 @@
     "vite.config.ts",
     "node_modules/**",
     "cypress.config.ts"
-  ]
+  ],
+  "env": {
+    "vue/setup-compiler-macros": true
+  }
 }
