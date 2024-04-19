@@ -3,9 +3,9 @@ import { reactive } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    type?: "submit" | "button" | "reset";
-    mode?: "filled" | "outlined" | "text";
-    size?: "compact" | "comfortable" | "spacious";
+    type?: "submit" | "button" | "reset",
+    mode?: "filled" | "outlined" | "text",
+    size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?:
     | "primary"
     | "secondary"
@@ -15,10 +15,10 @@ const props = withDefaults(
     | "warning"
     | "light"
     | "dark"
-    | "surface";
-    leadingIcon?: object | undefined;
-    trailingIcon?: object | undefined;
-    isDisabled?: boolean;
+    | "surface",
+    leadingIcon?: object | undefined,
+    trailingIcon?: object | undefined,
+    isDisabled?: boolean,
   }>(),
   {
     type: "button",
@@ -56,7 +56,7 @@ const buttonStyle = reactive({
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-disabled)`,
@@ -69,8 +69,10 @@ const buttonStyle = reactive({
 </script>
 
 <template>
-  <button :type="type" :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
-    :aria-disabled="isDisabled ? 'true' : undefined">
+  <button
+    :type="type" :disabled="isDisabled" :class="[size, 'ids-button', { 'light': props.variant === 'light' }]"
+    :aria-disabled="isDisabled ? 'true' : undefined"
+  >
     <component :is="props.leadingIcon" class="icon-size" aria-hidden="true" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" aria-hidden="true" />
@@ -136,8 +138,8 @@ const buttonStyle = reactive({
     outline-offset: 2px;
     color: v-bind("buttonStyle.focusedColor");
     border: v-bind("buttonStyle.focusedBorder");
+    border-radius: v-bind("buttonStyle.borderRadius");
     background: v-bind("buttonStyle.focusedBackground");
-    border-radius: var(--ids-comp-buttons-size-spacious-border-radius);
     outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
   }
 
