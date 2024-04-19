@@ -9,7 +9,7 @@ const props = withDefaults(
   defineProps<{
     show?: boolean,
     firstPanel?: boolean,
-    panelMode?: "filled" | "outlined" | "text",
+    panelMode?: "filled" | "outlined" | "elevated",
     panelSize?: "dense" | "compact" | "comfortable" | "spacious",
     position?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom",
   }>(),
@@ -102,7 +102,6 @@ onMounted(() => {
 
 .filled {
   @include commonMixin;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
 }
 
 .outlined {
