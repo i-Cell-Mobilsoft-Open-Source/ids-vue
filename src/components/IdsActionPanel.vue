@@ -57,18 +57,26 @@ const actionPanelStyle = reactive({
 
 .filled {
   @include commonMixin;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
 }
 
 .outlined {
   @include commonMixin;
   border: v-bind('actionPanelStyle.outlinedBorder');
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
+  box-shadow: 
+  var(--ids-smc-reference-container-effects-shadow-horizontal-none) 
+  var(--ids-smc-reference-container-effects-shadow-vertical-xxs) 
+  var(--ids-smc-reference-container-effects-shadow-blur-xxs) 
+  var(--ids-smc-reference-container-effects-shadow-spread-none) 
+  var(--ids-smc-reference-container-effects-shadow-color-dark-lighter);
 }
 
 .elevated {
   @include commonMixin;
   box-shadow:
-    var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
+    var(--ids-smc-reference-container-effects-shadow-horizontal-none)
+    var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
+    var(--ids-smc-reference-container-effects-shadow-blur-xxxl) 
+    var(--ids-smc-reference-container-effects-shadow-spread-xxs) 
+    var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
 }
 </style>
