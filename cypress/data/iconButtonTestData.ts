@@ -48,10 +48,8 @@ const iconButtonTestData = {
     error: "rgb(239, 68, 68)",
     success: "rgb(34, 197, 94)",
     warning: "rgb(249, 115, 22)",
-    light: "rgb(248, 250, 252)",
+    light: "rgba(255, 255, 255, 0)",
     dark: "rgb(30, 41, 59)",
-    //dark: "rgb(2, 6, 23)", => ez a button színe
-    //surface: "rgb(241, 245, 249)", => ez a button színe
     surface: "rgb(226, 232, 240)", 
   }],
   activeBgColors: [{
@@ -61,22 +59,9 @@ const iconButtonTestData = {
     error: "rgb(153, 27, 27)",
     success: "rgb(22, 101, 52)",
     warning: "rgb(154, 52, 18)",
-    light: "rgb(248, 250, 252)",
+    light: "rgba(255, 255, 255, 0)",
     dark: "rgb(51, 65, 85)",
     surface: "rgb(203, 213, 225)",
-  }],
-
-  //standardBgColor - alias textBgColors
-  focusedSurfaceBgColors: [{
-    primary: "rgb(241, 245, 249)",
-    secondary: "rgb(241, 245, 249)",
-    brand: "rgb(241, 245, 249)",
-    error: "rgb(241, 245, 249)",
-    success: "rgb(241, 245, 249)", 
-    warning: "rgb(241, 245, 249)",
-    light: "rgb(248, 250, 252)",
-    dark: "rgb(241, 245, 249)",
-    surface: "rgb(241, 245, 249)",
   }],
 
 // FGcolors
@@ -172,8 +157,7 @@ activeFilledColors: [{
 }],
 activeOutlineColors: [{
   primary: "rgb(0, 47, 189)",
-  //secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
-  secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
+  secondary: "rgb(30, 41, 59)",
   brand: "rgb(0, 47, 189)",
   error: "rgb(185, 28, 28)",
   success: "rgb(21, 128, 61)",
@@ -184,8 +168,7 @@ activeOutlineColors: [{
 }],
 activeStandardColors: [{
   primary: "rgb(0, 47, 189)",
-  secondary: "rgb(51, 65, 85)", //standard esetében viszont ez
-  //secondary: "rgb(30, 41, 59)", //javítás alatt, outlined esetében meg ez
+  secondary: "rgb(51, 65, 85)", 
   brand: "rgb(0, 47, 189)",
   error: "rgb(185, 28, 28)",
   success: "rgb(21, 128, 61)",
@@ -195,32 +178,31 @@ activeStandardColors: [{
   surface: "rgb(51, 65, 85)",
 }],
 
-
   //sizes
   allHeight: [{
-    compact: "16px",
-    comfortable: "32px",
-    spacious: "48px",
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "56px",
   }],
   allWidth: [{
-    compact: "16px",
-    comfortable: "32px",
-    spacious: "48px",
+    compact: "24px",
+    comfortable: "40px",
+    spacious: "56px",
   }],
   common: [{
-    flexShrink: 0,
+    flexShrink: '0',
     alignItems: 'center',
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent: 'center',
   }],
 
   white: 'rgba(255, 255, 255, 0)',
   white2: 'rgb(255, 255, 255) solid 3px',
-  //white3: 'rgb(255, 255, 255)',
   black: 'rgb(0, 0, 0) solid 3px',
-  hoverdFocusedOutlineBg: 'rgb(248, 250, 252)',
-  disabledBgColors: "rgb(226, 232, 240)", //pressedText (active) is uez
-  hoveredStandardBgColors: "rgb(241, 245, 249)",
+  disabledBgColors: "rgba(255, 255, 255, 0)",
+  disabledOutlineBgColors: "rgb(226, 232, 240)",
+  hoveredStandardBgColors: "rgba(100, 140, 180, 0.1)",
+  pressedStandardBgColors: "rgba(100, 140, 180, 0.2)",
   disabledTextColors: "rgb(148, 163, 184)",
   allRadius: '1000px',
   allPadding: '0px' 
