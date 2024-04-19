@@ -55,10 +55,9 @@ const tagStyle = reactive({
 </script>
 
 <template>
-  <button 
-    type="button" 
-    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]"
-    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
+  <button
+    type="button" :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
