@@ -3,25 +3,25 @@ import tagTestData from '../data/tagTestData';
 import 'cypress-real-events/support';
 
 beforeEach(() => {
-    cy.visit('/components/tags');
-  })
+  cy.visit('/components/tags');
+})
 
 describe('ids tags Demo test', () => {
-const allCombinations = [] as any[];
+  const allCombinations = [] as any[];
 
   tagTestData.allModes.forEach((mode) => {
     tagTestData.allSizes.forEach((size) => {
       tagTestData.allVariants.forEach((variant) => {
-      allCombinations.push({ mode, size, variant });
+        allCombinations.push({ mode, size, variant });
       });
     });
   });
   it('Checks the height of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.allHeight.forEach((height) => {
-      const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
-      cy.get(tagSelector).should('be.visible').should(($el) => {
-        expect($el).to.have.css('height', height[item.size]);
+        const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+        cy.get(tagSelector).should('be.visible').should(($el) => {
+          expect($el).to.have.css('height', height[item.size]);
         });
       });
     });
@@ -36,28 +36,27 @@ const allCombinations = [] as any[];
             const styles = window.getComputedStyle($el[0]);
             expect(styles.height).to.equal(height[item.size]);
             expect(styles.width).to.equal(width[item.size]);
-            });
-        });
+          });
         });
       });
     });
+  });
 
-    it('Checks the width and height of tags trailing icon', () => {
-      allCombinations.forEach((item) => {
-        tagTestData.allLeadingHeight.forEach((height) => {
-          tagTestData.allLeadingWidth.forEach((width) => {
-            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
-            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[1]);
-              expect(styles.height).to.equal(height[item.size]);
-              expect(styles.width).to.equal(width[item.size]);
-              });
-          });
+  it('Checks the width and height of tags trailing icon', () => {
+    allCombinations.forEach((item) => {
+      tagTestData.allLeadingHeight.forEach((height) => {
+        tagTestData.allLeadingWidth.forEach((width) => {
+          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+          cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            const styles = window.getComputedStyle($el[1]);
+            expect(styles.height).to.equal(height[item.size]);
+            expect(styles.width).to.equal(width[item.size]);
           });
         });
       });
-    
-  //kész - display inline-flex vs flex?
+    });
+  });
+
   it('Checks common css rules of tags', () => {
     allCombinations.forEach((item) => {
       tagTestData.common.forEach((common) => {
@@ -75,7 +74,7 @@ const allCombinations = [] as any[];
 
   it('Checks the font-size of tags', () => {
     allCombinations.forEach((item) => {
-        tagTestData.allFontSize.forEach((font) => {
+      tagTestData.allFontSize.forEach((font) => {
         const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
         cy.get(tagSelector).should('be.visible').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
@@ -104,22 +103,22 @@ const allCombinations = [] as any[];
         tagTestData.enabledColors.forEach((color) => {
           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
-              cy.get(tagSelector).should('be.visible').should(($el) => {
+            cy.get(tagSelector).should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
               expect(styles.color).to.equal(color[item.variant]);
-              });
-          } else { //outlined
-              cy.get(tagSelector).should('be.visible').should(($el) => {
+            });
+          } else {
+            cy.get(tagSelector).should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.backgroundColor).to.equal(tagTestData.white);
               expect(styles.color).to.equal(bgColor[item.variant]);
-              });
-            }
-          });
+            });
+          }
         });
       });
     });
+  });
 
   it('Checks the color of tags leading Icon', () => {
     allCombinations.forEach((item) => {
@@ -127,20 +126,20 @@ const allCombinations = [] as any[];
         tagTestData.enabledColors.forEach((color) => {
           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
-              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.color).to.equal(color[item.variant]);
-              });
-          } else { //outlined
-              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            });
+          } else {
+            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
               expect(styles.color).to.equal(bgColor[item.variant]);
-              });
-            }
-          });
+            });
+          }
         });
       });
     });
+  });
 
   it('Checks the color of tags trailing Icon', () => {
     allCombinations.forEach((item) => {
@@ -148,21 +147,21 @@ const allCombinations = [] as any[];
         tagTestData.enabledColors.forEach((color) => {
           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
-              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[1]);
               expect(styles.color).to.equal(color[item.variant]);
-              });
-          } else { //outlined
-              cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
+            });
+          } else {
+            cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[1]);
               expect(styles.color).to.equal(bgColor[item.variant]);
-              });
-            }
-          });
+            });
+          }
         });
       });
     });
-//kész - outline color token javításra vár
+  });
+
   it('Checks color and background color of tags with hovered state', () => {
     allCombinations.forEach((item) => {
       tagTestData.hoveredBgColors.forEach((bgColor) => {
@@ -175,7 +174,7 @@ const allCombinations = [] as any[];
                 expect(styles.backgroundColor).to.equal(tagTestData.hoverdOutlineBg);
                 expect(styles.color).to.equal(outlineColor[item.variant]);
               });
-            } else { //filled
+            } else {
               button.realHover({ pointer: "mouse" }).should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
@@ -206,26 +205,26 @@ const allCombinations = [] as any[];
       tagTestData.focusedBgColors.forEach((bgColor) => {
         tagTestData.focusedColors.forEach((color) => {
           tagTestData.focusedOutlineColors.forEach((outlineColor) => {
-          const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
-          if(item.mode === 'outlined') {
-            button.realClick({ pointer: "mouse" }).should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(tagTestData.white);
-              expect(styles.color).to.equal(outlineColor[item.variant]);
-            });
-          } else { //filled
-          button.realClick({ pointer: "mouse" }).should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-              expect(styles.color).to.equal(color[item.variant]);
-            });
-          }
-        });
+            const button = cy.get(`#${item.mode}-${item.variant}-${item.size}-tag`);
+            if (item.mode === 'outlined') {
+              button.realClick({ pointer: "mouse" }).should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.backgroundColor).to.equal(tagTestData.white);
+                expect(styles.color).to.equal(outlineColor[item.variant]);
+              });
+            } else {
+              button.realClick({ pointer: "mouse" }).should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                expect(styles.color).to.equal(color[item.variant]);
+              });
+            }
+          });
         });
       });
     });
   });
-//wip - outline color token javításra vár (szerintem itt is az a baj)
+
   it('Checks color of tags with active (pressed) state', () => {
     allCombinations.forEach((item) => {
       tagTestData.activeBgColors.forEach((bgColor) => {
@@ -249,7 +248,7 @@ const allCombinations = [] as any[];
       });
     });
   });
-// wip - nincs disabled tags....
+
   it('Checks color of disabled state tags', () => {
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
@@ -262,7 +261,7 @@ const allCombinations = [] as any[];
           expect(styles.backgroundColor).to.equal(tagTestData.white);
           expect(styles.color).to.equal(tagTestData.disabledTextColors);
         });
-      } else { //filled
+      } else {
         button.should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.backgroundColor).to.equal(tagTestData.disabledBgColors);
