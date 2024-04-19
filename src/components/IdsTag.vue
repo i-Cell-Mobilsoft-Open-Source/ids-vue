@@ -29,15 +29,18 @@ const tagStyle = reactive({
 
   //hovered
   hoverBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-hovered)`,
+  hoverColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
-  focusedBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
   focusBorderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
+  focusBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
+  focusColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-focused)`,
+  focusBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
+  activeColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-pressed)`,
   activeBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
@@ -52,10 +55,9 @@ const tagStyle = reactive({
 </script>
 
 <template>
-  <button 
-    type="button" 
-    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]"
-    :disabled="isDisabled" :aria-disabled="isDisabled ? 'true' : undefined"
+  <button
+    type="button" :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
+    :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
@@ -109,6 +111,7 @@ const tagStyle = reactive({
   border-radius: v-bind('tagStyle.borderRadius');
 
   &:hover {
+    color: v-bind('tagStyle.hoverColor');
     border: v-bind('tagStyle.hoverBorder');
     background: v-bind('tagStyle.hoverBackground');
   }
@@ -116,13 +119,15 @@ const tagStyle = reactive({
   &:focus-within {
     outline-style: solid;
     outline-offset: 2px;
-    border: v-bind('tagStyle.focusedBorder');
-    background: v-bind('tagStyle.focusedBackground');
+    color: v-bind('tagStyle.focusColor');
+    border: v-bind('tagStyle.focusBorder');
+    background: v-bind('tagStyle.focusBackground');
     border-radius: v-bind('tagStyle.focusBorderRadius');
     outline: var(--ids-comp-tag-focused-outline-size-outline, 3px) solid var(--base-color-dark, rgba(0, 0, 0, 1));
   }
 
   &:active {
+    color: v-bind('tagStyle.activeColor');
     border: v-bind('tagStyle.activeBorder');
     background: v-bind('tagStyle.activeBackground');
     outline: none;
