@@ -56,7 +56,8 @@ const buttonStyle = reactive({
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
   activeColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-disabled)`,
