@@ -33,12 +33,14 @@ const actionItemStyle = reactive({
   color: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   background: ` var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-action-item-size-padding-y-${props.size}) var(--ids-comp-size-action-item-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
+  solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
+  solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-focused)`,
@@ -55,7 +57,8 @@ const actionItemStyle = reactive({
   //disabled
   disabledColor: `var(--ids-comp-action-item-${props.mode}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-action-item-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
+  solid var(--ids-comp-action-item-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
   iconWidthHeight: `var(--ids-comp-size-action-item-size-icon-${props.size})`,
