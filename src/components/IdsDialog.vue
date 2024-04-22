@@ -51,16 +51,20 @@ defineEmits(['close']);
 </script>
 
 <template>
-  <dialog role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" ref="dialog" class="">
+  <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
       <header class="flex justify-between w-full">
         <div class="flex grow flex-col items-start gap-2">
-          <p v-if="$slots.title"
-            class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]">
+          <p
+            v-if="$slots.title"
+            class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
+          >
             <slot name="title" />
           </p>
-          <p v-if="$slots.subTitle"
-            class="text-base font-normal tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]">
+          <p
+            v-if="$slots.subTitle"
+            class="text-base font-normal tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
+          >
             <slot name="subTitle" />
           </p>
         </div>

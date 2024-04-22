@@ -116,7 +116,13 @@ describe('ids Action Item Button Demo test', () => {
     it('Checks box-shadow of Action Panel', () => {
         allCombinations.forEach((item) => {
             const actionSelector = `#${item.mode}-${item.size}-button`;
-            if (item.mode === 'elevated') {
+            if (item.mode === 'filled') {
+                cy.get(actionSelector).click().should('be.visible').should(($el) => {
+                    const styles = window.getComputedStyle($el[0]);
+                    expect(styles.boxShadow).to.equal('none');
+                });
+            }
+            else if (item.mode === 'elevated') {
                 cy.get(actionSelector).click().should('be.visible').should(($el) => {
                     const styles = window.getComputedStyle($el[0]);
                     expect(styles.boxShadow).to.equal(actionPanelTestData.elevatedBoxShadow);

@@ -34,7 +34,7 @@ const accordionStyle = reactive({
 </script>
 
 <template>
-  <details class="w-full" @toggle="handleToggle" ref="details">
+  <details ref="details" class="w-full" @toggle="handleToggle">
     <summary class="flex justify-between w-full">
       <div class="w-4/5 flex justify-start">
         <slot name="accordion-title" />
@@ -44,7 +44,7 @@ const accordionStyle = reactive({
         <ChevronDownIcon v-else class="w-6 flip" />
       </div>
     </summary>
-    <article :class="['text-left w-full', [open ? 'enter' : '']]" ref="dropdown">
+    <article ref="dropdown" :class="['text-left w-full', [open ? 'enter' : '']]">
       <slot name="accordion-content" />
     </article>
   </details>
