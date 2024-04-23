@@ -25,27 +25,32 @@ const iconButtonStyle = reactive({
   color: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-enabled)`,
   background: ` var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-icon-button-size-padding-y-${props.size}) var(ids-comp-size-icon-button-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-icon-button-size-border-${props.size}) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-icon-button-size-border-${props.size}) 
+  solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-enabled)`,
 
   //hovered
   hoverColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) 
+  solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-focused)`,
   focusedBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-focused)`,
+  focusedBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) 
+  solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-focused)`,
 
   //active
   activeColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-pressed)`,
   activeBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) 
+  solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledColor: `var(--ids-comp-icon-button-${props.mode}-color-fg-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-icon-button-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-icon-button-size-border-${props.size}) 
+  solid var(--ids-comp-icon-button-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon
   iconWidthHeight: `var(--ids-comp-size-icon-button-size-icon-${props.size})`,
