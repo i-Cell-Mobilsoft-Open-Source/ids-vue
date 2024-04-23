@@ -28,7 +28,6 @@ const dividerTestData = {
     light: "rgb(255, 255, 255)",
     dark: "rgb(2, 6, 23)",
     surface: "rgb(203, 213, 225)",
-    //surface: "rgb(241, 245, 249)", ez a button szín
   }],
 
   //sizes

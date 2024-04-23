@@ -22,8 +22,8 @@ const actionPanelTestData = {
   padding: '8px',
   gap: '8px',
 
-  outlinedBoxShadow: 'rgba(100, 140, 180, 0.05) 0px 1px 2px 0px',
-  elevatedBoxShadow: 'rgba(100, 140, 180, 0.25) 0px 25px 50px -12px',
+  outlinedBoxShadow:  'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+  elevatedBoxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
 }
 
 export default actionPanelTestData;
