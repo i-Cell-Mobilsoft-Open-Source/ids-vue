@@ -1,7 +1,7 @@
 <template>
   <div class="demo flex justify-center h-[100vh]">
     <h2>Action Menu</h2>
-    <IdsActionMenu panel-mode="outlined" position="rightTop">
+    <IdsActionMenu :show="isMenuOpen" panel-mode="elevated" position="bottomLeft">
       <template #action>
         <IdsButton :trailing-icon="icon" @click="togglePanel">
           menu
@@ -42,8 +42,8 @@ const icon = ref<object>(ChevronDownIcon)
 const togglePanel = () => {
   isMenuOpen.value = !isMenuOpen.value;
   return icon.value = isMenuOpen.value === true ? ChevronUpIcon : ChevronDownIcon;
-  }
-  
+}
+
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";
   size?: "compact" | "comfortable" | "spacious";
