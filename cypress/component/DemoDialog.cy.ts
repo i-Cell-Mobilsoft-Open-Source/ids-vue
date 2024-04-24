@@ -64,6 +64,7 @@ describe('Dialog Component Test', () => {
     });
 
     //Dialog panel tulajdonságok
+    //Még nem a felesztés része, ezért nem szükséges tesztelni a full width-et
     it('Check the panel properties after clicked the Button', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
@@ -91,7 +92,7 @@ describe('Dialog Component Test', () => {
         .should('have.css', 'borderTopLeftRadius', dialogTestData.radius)
         .should('have.css', 'borderTopRightRadius', dialogTestData.radius)
     });
-
+//javítás alatt - hiba: left/right 0px IDS-412
     it('Check padding of the Panel', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
@@ -109,7 +110,7 @@ describe('Dialog Component Test', () => {
         .should('have.css', 'columnGap', dialogTestData.gap)
         .should('have.css', 'rowGap', dialogTestData.gap)
     });
-
+// javítás alatt - hiba: boxShadow none IDS-412
     it('Check box-shadow of the Panel', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()

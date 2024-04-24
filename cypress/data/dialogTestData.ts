@@ -7,17 +7,17 @@ const dialogTestData = {
   black: 'rgb(0, 0, 0)',
 
   //dialog sizes
-  width: '800px', //nem 600px?
+  width: '800px',
   gap: '24px',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'normal', //nem flex-start?
+  alignItems: 'normal',
 
   //Label, Cancel, Save buttons sizes
   minWidth: '40px',
   height: '40px',
   ButtonGap: '8px',
-  displayButton: 'inline-flex', //nem flex? vs a Cancel + Save miért csak flex?
+  displayButton: 'inline-flex',
   fontWeight: '700',
   fontSize: '14px',
   lineHeight: '20px',
