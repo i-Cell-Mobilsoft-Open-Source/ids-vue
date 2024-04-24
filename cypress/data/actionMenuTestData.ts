@@ -28,7 +28,7 @@ const actionMenuTestData = {
 
   radius: '24px',
   padding: '10px',
-  boxShadow: 'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px',
+  boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
 }
 
 export default actionMenuTestData;
