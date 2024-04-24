@@ -7,25 +7,25 @@ beforeEach(() => {
 })
 
 describe('ids Action Item Button Demo test', () => {
-    const allCombinations = [] as any[];
-  
-    actionItemButtonTestData.allModes.forEach((mode) => {
-        actionItemButtonTestData.allSizes.forEach((size) => {
-            actionItemButtonTestData.allVariants.forEach((variant) => {
-                allCombinations.push({ mode, size, variant });
-            });
-        });
+  const allCombinations = [] as any[];
+
+  actionItemButtonTestData.allModes.forEach((mode) => {
+    actionItemButtonTestData.allSizes.forEach((size) => {
+      actionItemButtonTestData.allVariants.forEach((variant) => {
+        allCombinations.push({ mode, size, variant });
+      });
     });
+  });
 
   it('Checks the height of ActionItem Button', () => {
     allCombinations.forEach((item) => {
-        actionItemButtonTestData.allHeight.forEach((height) => {
-            const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
-            cy.get(actionItemButtonSelector).should('be.visible')
-                .should(($el) => {
-                expect($el).to.have.css('height', height[item.size]);
-                });
-        });
+      actionItemButtonTestData.allHeight.forEach((height) => {
+        const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
+        cy.get(actionItemButtonSelector).should('be.visible')
+          .should(($el) => {
+            expect($el).to.have.css('height', height[item.size]);
+          });
+      });
     });
   });
 
@@ -35,9 +35,9 @@ describe('ids Action Item Button Demo test', () => {
         actionItemButtonTestData.iconHeightWidth.forEach((width) => {
           const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
           cy.get(actionItemButtonSelector).find('svg').should('be.visible').should(($el) => {
-              const style = window.getComputedStyle($el[0]);
-              expect(style.height).to.equal(height[item.size]);
-              expect(style.height).to.equal(width[item.size]);
+            const style = window.getComputedStyle($el[0]);
+            expect(style.height).to.equal(height[item.size]);
+            expect(style.height).to.equal(width[item.size]);
           });
         });
       });
@@ -50,9 +50,9 @@ describe('ids Action Item Button Demo test', () => {
         actionItemButtonTestData.iconHeightWidth.forEach((width) => {
           const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
           cy.get(actionItemButtonSelector).find('svg').should('be.visible').should(($el) => {
-              const style = window.getComputedStyle($el[1]);
-              expect(style.height).to.equal(height[item.size]);
-              expect(style.height).to.equal(width[item.size]);
+            const style = window.getComputedStyle($el[1]);
+            expect(style.height).to.equal(height[item.size]);
+            expect(style.height).to.equal(width[item.size]);
           });
         });
       });
@@ -61,7 +61,7 @@ describe('ids Action Item Button Demo test', () => {
 
   it('Checks common css rules of ActionItem Button', () => {
     allCombinations.forEach((item) => {
-        actionItemButtonTestData.common.forEach((common) => {
+      actionItemButtonTestData.common.forEach((common) => {
         const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
         cy.get(actionItemButtonSelector)
           .should('be.visible')
@@ -73,19 +73,19 @@ describe('ids Action Item Button Demo test', () => {
       });
     });
   });
-// csak a displayre fut le, a másik 2nél "normal"-t vár - megkérdezni
+
   it('Checks common css rules of the leading icon of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
       cy.get(actionItemButtonSelector).find('svg').should('be.visible').should(($el) => {
         const styles = window.getComputedStyle($el[0]);
         expect(styles.display).to.equal(actionItemButtonTestData.iconDisplay);
-        expect(styles.display).to.equal(actionItemButtonTestData.iconAlignItems);
-        expect(styles.display).to.equal(actionItemButtonTestData.iconJustifyContent);
+        expect(styles.alignItems).to.equal(actionItemButtonTestData.iconAlignItems);
+        expect(styles.justifyContent).to.equal(actionItemButtonTestData.iconJustifyContent);
       });
     });
   });
-//kész - sztem javítani kell a figmanak megfelelőre, Figma =/= böngésző 
+  //kész - sztem javítani kell a figmanak megfelelőre, Figma =/= böngésző IDS-409
   it('Checks the font-size of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allFontSize.forEach((font) => {
@@ -97,16 +97,16 @@ describe('ids Action Item Button Demo test', () => {
       });
     });
   });
-// kész - Figma =/= böngésző (comfortable a legnagyobb!)
+  // kész - Figma =/= böngésző (comfortable a legnagyobb!) IDS-409
   it('Checks the line-height of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allLineHeight.forEach((lineHeigt) => {
-      const buttonSelector = `#${item.mode}-${item.size}-button`;
-      cy.get(buttonSelector).should('be.visible')
-      .should(($el) => {
-        const styles = window.getComputedStyle($el[0]);
-        expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
-        });
+        const buttonSelector = `#${item.mode}-${item.size}-button`;
+        cy.get(buttonSelector).should('be.visible')
+          .should(($el) => {
+            const styles = window.getComputedStyle($el[0]);
+            expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
+          });
       });
     });
   });
@@ -117,20 +117,20 @@ describe('ids Action Item Button Demo test', () => {
         actionItemButtonTestData.enabledTextColors.forEach((textColor) => {
           actionItemButtonTestData.enabledFilledBgColors.forEach((filledBgColor) => {
             actionItemButtonTestData.enabledFilledColors.forEach((filledColor) => {
-            const actionSelector = `#${item.mode}-${item.size}-button`;
-            if (item.mode === 'text') {
-              cy.get(actionSelector).should('be.visible').should(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(textBgColor[item.variant]);
-                expect(styles.color).to.equal(textColor[item.variant]);
-              });
-            } else {
-              cy.get(actionSelector).should('be.visible').should(($el) => {
-                const styles = window.getComputedStyle($el[0]);
-                expect(styles.backgroundColor).to.equal(filledBgColor[item.variant]);
-                expect(styles.color).to.equal(filledColor[item.variant]);
-              });
-            }
+              const actionSelector = `#${item.mode}-${item.size}-button`;
+              if (item.mode === 'text') {
+                cy.get(actionSelector).should('be.visible').should(($el) => {
+                  const styles = window.getComputedStyle($el[0]);
+                  expect(styles.backgroundColor).to.equal(textBgColor[item.variant]);
+                  expect(styles.color).to.equal(textColor[item.variant]);
+                });
+              } else {
+                cy.get(actionSelector).should('be.visible').should(($el) => {
+                  const styles = window.getComputedStyle($el[0]);
+                  expect(styles.backgroundColor).to.equal(filledBgColor[item.variant]);
+                  expect(styles.color).to.equal(filledColor[item.variant]);
+                });
+              }
             });
           });
         });
@@ -173,37 +173,37 @@ describe('ids Action Item Button Demo test', () => {
   });
 
   it('Checks color and background color of ActionItem Button with HOVERED state', () => {
-      allCombinations.forEach((item) => {
-          const button = cy.get(`#${item.mode}-${item.size}-button`);
-          if (item.mode === 'text') {
-              button.realHover({ pointer: "mouse" }).should(($el) => {
-                  const styles = window.getComputedStyle($el[0]);
-                  expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
-                  expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-              });
-          } else {
-              button.realHover({ pointer: "mouse" }).should(($el) => {
-                  const styles = window.getComputedStyle($el[0]);
-                  expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredFilledBgColors);
-                  expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-              });
-          }
-      });
+    allCombinations.forEach((item) => {
+      const button = cy.get(`#${item.mode}-${item.size}-button`);
+      if (item.mode === 'text') {
+        button.realHover({ pointer: "mouse" }).should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
+      } else {
+        button.realHover({ pointer: "mouse" }).should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredFilledBgColors);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
+      }
     });
+  });
 
   it('Checks color and background color of the leading icon of the ActionItem Button with HOVERED state', () => {
     allCombinations.forEach((item) => {
       const button = cy.get(`#${item.mode}-${item.size}-button`);
       if (item.mode === 'text') {
-          button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       } else {
-          button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       }
     });
   });
@@ -212,23 +212,23 @@ describe('ids Action Item Button Demo test', () => {
     allCombinations.forEach((item) => {
       const button = cy.get(`#${item.mode}-${item.size}-button`);
       if (item.mode === 'text') {
-          button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
-            const styles = window.getComputedStyle($el[1]);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
+          const styles = window.getComputedStyle($el[1]);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       } else {
-          button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
-            const styles = window.getComputedStyle($el[1]);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realHover({ pointer: "mouse" }).find('svg').should(($el) => {
+          const styles = window.getComputedStyle($el[1]);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       }
     });
   });
   it('Checks focused state of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
-        cy.get(actionItemButtonSelector).click().should('have.focus').should('be.visible')
-          .should('have.css', 'outline').and('eq', actionItemButtonTestData.black);
+      cy.get(actionItemButtonSelector).click().should('have.focus').should('be.visible')
+        .should('have.css', 'outline').and('eq', actionItemButtonTestData.black);
     });
   });
 
@@ -236,17 +236,17 @@ describe('ids Action Item Button Demo test', () => {
     allCombinations.forEach((item) => {
       const button = cy.get(`#${item.mode}-${item.size}-button`);
       if (item.mode === 'text') {
-          button.realClick({ pointer: "mouse" }).should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realClick({ pointer: "mouse" }).should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       } else {
-          button.realClick({ pointer: "mouse" }).should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-            expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
-            expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        button.realClick({ pointer: "mouse" }).should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.backgroundColor).to.equal(actionItemButtonTestData.hoveredTextBgColors);
+          expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
+        });
       }
     });
   });
@@ -258,7 +258,7 @@ describe('ids Action Item Button Demo test', () => {
         button.realClick({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        });
       } else {
         button.realClick({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
@@ -275,7 +275,7 @@ describe('ids Action Item Button Demo test', () => {
         button.realClick({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[1]);
           expect(styles.color).to.equal(actionItemButtonTestData.hoveredColors);
-          });
+        });
       } else {
         button.realClick({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[1]);
@@ -289,16 +289,16 @@ describe('ids Action Item Button Demo test', () => {
     allCombinations.forEach((item) => {
       const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
       cy.get(actionItemButtonSelector).then(button => {
-          cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
-            const styles = window.getComputedStyle($el[0]);
-      if (item.mode === 'text') {
+        cy.wrap(button).realMouseDown({ pointer: "mouse" }).should(($el) => {
+          const styles = window.getComputedStyle($el[0]);
+          if (item.mode === 'text') {
             expect(styles.backgroundColor).to.equal(actionItemButtonTestData.pressedTextBgColors);
             expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-      } else {
+          } else {
             expect(styles.backgroundColor).to.equal(actionItemButtonTestData.pressedFilledBgColors);
             expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-            }
-        }).realMouseUp({ pointer: "mouse" });            
+          }
+        }).realMouseUp({ pointer: "mouse" });
       });
     });
   });
@@ -309,12 +309,12 @@ describe('ids Action Item Button Demo test', () => {
       cy.get(actionItemButtonSelector).then(button => {
         cy.wrap(button).realMouseDown({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
-      if (item.mode === 'text') {
-        expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-      } else {
-        expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-        }
-        }).realMouseUp({ pointer: "mouse" });            
+          if (item.mode === 'text') {
+            expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
+          } else {
+            expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
+          }
+        }).realMouseUp({ pointer: "mouse" });
       });
     });
   });
@@ -325,12 +325,12 @@ describe('ids Action Item Button Demo test', () => {
       cy.get(actionItemButtonSelector).then(button => {
         cy.wrap(button).realMouseDown({ pointer: "mouse" }).find('svg').should(($el) => {
           const styles = window.getComputedStyle($el[1]);
-      if (item.mode === 'text') {
-        expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-      } else {
-        expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
-        }
-        }).realMouseUp({ pointer: "mouse" });            
+          if (item.mode === 'text') {
+            expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
+          } else {
+            expect(styles.color).to.equal(actionItemButtonTestData.pressedColors);
+          }
+        }).realMouseUp({ pointer: "mouse" });
       });
     });
   });
@@ -391,33 +391,33 @@ describe('ids Action Item Button Demo test', () => {
   it('Checks radius of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.Radius.forEach((allRadius) => {
-      const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
+        const actionItemButtonSelector = `#${item.mode}-${item.size}-button`;
         cy.get(actionItemButtonSelector).should('be.visible').then(($el) => {
           const styles = window.getComputedStyle($el[0]);
-            expect(styles.borderTopLeftRadius).to.equal(allRadius[item.size]);
-            expect(styles.borderTopRightRadius).to.equal(allRadius[item.size]);
-            expect(styles.borderBottomLeftRadius).to.equal(allRadius[item.size]);
-            expect(styles.borderBottomRightRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderTopLeftRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderTopRightRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderBottomLeftRadius).to.equal(allRadius[item.size]);
+          expect(styles.borderBottomRightRadius).to.equal(allRadius[item.size]);
         });
       });
     });
   });
-    
+
   it('Checks all padding of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allPadding.forEach((padding) => {
-      const tagSelector = `#${item.mode}-${item.size}-button`;
+        const tagSelector = `#${item.mode}-${item.size}-button`;
         cy.get(tagSelector).should('be.visible').then(($el) => {
-        const styles = window.getComputedStyle($el[0]);
-        expect(styles.paddingTop).to.equal(padding[item.size]);
-        expect(styles.paddingLeft).to.equal(padding[item.size]);
-        expect(styles.paddingBottom).to.equal(padding[item.size]);
-        expect(styles.paddingRight).to.equal(padding[item.size]);
+          const styles = window.getComputedStyle($el[0]);
+          expect(styles.paddingTop).to.equal(padding[item.size]);
+          expect(styles.paddingLeft).to.equal(padding[item.size]);
+          expect(styles.paddingBottom).to.equal(padding[item.size]);
+          expect(styles.paddingRight).to.equal(padding[item.size]);
         });
       });
     });
   });
-    
+
   it('Checks all GAP of Action Item Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.columnGap.forEach((gapColumn) => {
