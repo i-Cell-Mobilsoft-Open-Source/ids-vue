@@ -6,7 +6,7 @@ const props = withDefaults(
     size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?: "surface" | "primary" | "secondary" | "light" | "dark",
     image?: string,
-    interactive?: boolean
+    interactive?: boolean,
   }>(),
   {
     size: "comfortable",

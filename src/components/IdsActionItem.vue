@@ -10,7 +10,7 @@ const props = withDefaults(
     leadingIcon?: object | undefined,
     trailingIcon?: object | undefined,
     isDisabled?: boolean,
-    isActive?: boolean
+    isActive?: boolean,
   }>(),
   {
     mode: "text",

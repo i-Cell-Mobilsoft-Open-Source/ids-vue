@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
 
 const open = ref(false);
@@ -13,9 +13,11 @@ const handleToggle = () => {
 
 const props = withDefaults(
   defineProps<{
+    isOpen?: boolean,
     size?: "dense" | "compact" | "comfortable" | "spacious",
   }>(),
   {
+    isOpen: false,
     size: "comfortable",
   },
 );
@@ -31,6 +33,16 @@ const accordionStyle = reactive({
   summaryPadding: `var(--ids-comp-size-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-size-accordion-summary-size-padding-x-${props.size})`,
 });
 
+onMounted(() => {
+  // Open the accordion if the index matches the defaultOpenIndex
+  if (props.isOpen) {
+    hasOpened.value = true;
+    if (details.value) {
+      details.value.open = true;
+    }
+  }
+});
+
 </script>
 
 <template>
@@ -40,8 +52,8 @@ const accordionStyle = reactive({
         <slot name="accordion-title" />
       </div>
       <div class="w-1/5 flex justify-end">
-        <ChevronUpIcon v-if="!open" :class="['w-6', { 'flip': hasOpened }]" />
-        <ChevronDownIcon v-else class="w-6 flip" />
+        <ChevronDownIcon v-if="!open" :class="['w-6', { 'flip': hasOpened }]" />
+        <ChevronUpIcon v-else class="w-6 flip" />
       </div>
     </summary>
     <article ref="dropdown" :class="['text-left w-full', [open ? 'enter' : '']]">
