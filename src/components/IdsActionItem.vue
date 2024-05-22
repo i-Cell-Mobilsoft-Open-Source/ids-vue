@@ -88,7 +88,6 @@ const actionItemStyle = reactive({
 @mixin commonMixin {
   display: flex;
   flex-shrink: 0;
-  font-weight: 700;
   align-items: center;
   justify-content: center;
   gap: v-bind("actionItemStyle.gap");
@@ -113,22 +112,37 @@ a.active {
 }
 
 //sizes
+.dense {
+  @include commonMixin;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
 .compact {
   @include commonMixin;
   font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
   line-height: 16px;
+  letter-spacing: 0.5px;
 }
 
 .comfortable {
   @include commonMixin;
-  font-size: 14px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
   line-height: 20px;
 }
 
 .spacious {
   @include commonMixin;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; 
 }
 
 //variants
