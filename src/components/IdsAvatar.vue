@@ -5,12 +5,14 @@ const props = withDefaults(
   defineProps<{
     size?: "dense" | "compact" | "comfortable" | "spacious",
     variant?: "surface" | "primary" | "secondary" | "light" | "dark",
-    image?: string
+    image?: string,
+    interactive?: boolean,
   }>(),
   {
     size: "comfortable",
     variant: "primary",
     image: undefined,
+    interactive: false,
   },
 );
 
@@ -45,7 +47,7 @@ const avatarStyle = reactive({
 
 <template>
   <div :class="[{ 'flex flex-row items-center gap': $slots.labelText || $slots.subText }]">
-    <button type="button" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
+    <component :is="interactive ? 'button' : 'div'" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
         <img v-if="image" :src="image" class="img-size">
@@ -73,7 +75,7 @@ const avatarStyle = reactive({
           </g>
         </svg>
       </div>
-    </button>
+    </component>
     <div v-if="$slots.labelText || $slots.subText" :class="'flex flex-col flex-start'">
       <span :class="size + '-label-text'">
         <slot name="labelText" />

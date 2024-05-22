@@ -54,7 +54,7 @@ defineEmits(['close']);
 <template>
   <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
-      <header class="flex justify-between w-full">
+      <header class="flex justify-between items-center w-full">
         <div class="flex grow flex-col items-start gap-2">
           <p
             v-if="$slots.title"
@@ -77,8 +77,8 @@ defineEmits(['close']);
           <slot name="content" />
         </div>
       </section>
-
-      <footer class="flex flex-row items-center justify-between w-full">
+      <!-- TODO: fix me later pls  $slots.label ? 'justify-between' : 'justify-end' -->
+      <footer class="flex flex-row items-center w-full justify-between">
         <div v-if="$slots.label">
           <slot name="label" />
         </div>
