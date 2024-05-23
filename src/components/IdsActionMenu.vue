@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, defineProps, withDefaults, onBeforeUnmount, watchEffect } from "vue";
 
+const emit = defineEmits(['close']);
+
 const showPanel = ref(false);
 const panelRef = ref<HTMLElement | undefined>(undefined);
 const slotRef = ref<HTMLElement | undefined>(undefined);
@@ -62,11 +64,13 @@ const closeMenu = (event?: MouseEvent) => {
   }
   showPanel.value = false;
   document.removeEventListener('click', closeMenu);
+  emit('close');
 };
 
 const handleClickInside = () => {
-  showPanel.value = false;
+  showPanel.value = false;  
   document.removeEventListener('click', closeMenu);
+  emit('close');
 };
 
 watchEffect(() => {
@@ -89,6 +93,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', closeMenu);
 });
+
+
 </script>
 
 <template>

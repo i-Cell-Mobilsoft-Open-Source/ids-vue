@@ -18,7 +18,7 @@ const props = withDefaults(
   }>(),
   {
     isOpen: false,
-    size: "comfortable",
+    size: "compact",
   },
 );
 
@@ -31,6 +31,8 @@ const accordionStyle = reactive({
   summaryGap: `var(--ids-comp-size-accordion-summary-size-gap-${props.size})`,
   summaryHeight: `var(--ids-comp-size-accordion-summary-size-height-${props.size})`,
   summaryPadding: `var(--ids-comp-size-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-size-accordion-summary-size-padding-x-${props.size})`,
+  detailsPadding: `var(--ids-comp-size-accordion-details-size-padding-y-${props.size}) var(--ids-comp-size-accordion-details-size-padding-x-${props.size})`,
+  //padding: var(--accordion-summary-size-padding-y, 2px) var(--accordion-summary-size-padding-x, 2px);
 });
 
 onMounted(() => {
@@ -65,7 +67,6 @@ onMounted(() => {
 <style scoped>
 details {
   border-top: v-bind('accordionStyle.borderTop');
-
   &>summary {
     cursor: pointer;
     list-style: none;
@@ -73,6 +74,10 @@ details {
     height: v-bind('accordionStyle.summaryHeight');
     padding: v-bind('accordionStyle.summaryPadding');
   }
+}
+
+article {
+  padding: v-bind('accordionStyle.detailsPadding');
 }
 
 /* details[open] summary~* {
