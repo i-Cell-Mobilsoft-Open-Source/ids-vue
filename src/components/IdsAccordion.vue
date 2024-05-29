@@ -70,6 +70,7 @@ details {
   &>summary {
     cursor: pointer;
     list-style: none;
+    font-weight: 600;
     gap: v-bind('accordionStyle.summaryGap');
     height: v-bind('accordionStyle.summaryHeight');
     padding: v-bind('accordionStyle.summaryPadding');
