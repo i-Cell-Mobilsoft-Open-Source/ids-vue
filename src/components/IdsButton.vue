@@ -41,17 +41,18 @@ const buttonStyle = reactive({
   background: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-enabled)`,
   color: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-buttons-size-padding-y-${props.size}) var(--ids-comp-size-buttons-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-buttons-size-${props.size}-border) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-enabled)`,
   
   //hovered
   hoverBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-hovered)`,
   hoverColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-focused)`,
   focusedColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-focused)`,
+  focusedBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-pressed)`,
@@ -62,7 +63,8 @@ const buttonStyle = reactive({
   //disabled
   disabledBackground: `var(--ids-comp-buttons-${props.mode}-color-bg-${props.variant}-disabled)`,
   disabledColor: `var(--ids-comp-buttons-${props.mode}-color-fg-label-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-buttons-size-${props.size}-border, 1px) solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  solid var(--ids-comp-buttons-${props.mode}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
   iconWidthHeight: `var(--ids-comp-size-buttons-size-icon-${props.size})`,
