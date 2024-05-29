@@ -78,6 +78,13 @@ const tagStyle = reactive({
   height: v-bind('tagStyle.iconHeight');
 }
 
+@mixin tagRules {
+  color: v-bind('tagStyle.color');
+  border: v-bind('tagStyle.border');
+  background: v-bind('tagStyle.background');
+  border-radius: v-bind('tagStyle.borderRadius');
+}
+
 //common
 @mixin common {
   flex-shrink: 0;
@@ -107,12 +114,8 @@ const tagStyle = reactive({
 }
 
 //variants
-.ids-tag {
-  color: v-bind('tagStyle.color');
-  border: v-bind('tagStyle.border');
-  background: v-bind('tagStyle.background');
-  border-radius: v-bind('tagStyle.borderRadius');
-
+button.ids-tag {
+  @include tagRules;
   &:hover {
     color: v-bind('tagStyle.hoverColor');
     border: v-bind('tagStyle.hoverBorder');
@@ -145,5 +148,9 @@ const tagStyle = reactive({
   &.light:focus {
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-light-focused);
   }
+}
+
+div.ids-tag {
+  @include tagRules;
 }
 </style>
