@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 
 const props = withDefaults(defineProps<{
   isDisabled?: boolean,
+  interactive?: boolean,
   mode?: "filled" | "outlined",
   leadingIcon?: object | undefined,
   trailingIcon?: object | undefined,
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<{
   variant: 'primary',
   leadingIcon: undefined,
   trailingIcon: undefined,
+  interactive: false,
 });
 
 const tagStyle = reactive({
@@ -55,14 +57,15 @@ const tagStyle = reactive({
 </script>
 
 <template>
-  <button
-    type="button" :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
+  <component
+    :is="interactive ? 'button' : 'div'" :type="interactive ? 'button': ''" 
+    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" />
-  </button>
+  </component>
 </template>
 
 <style scoped lang="scss">

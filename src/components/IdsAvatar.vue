@@ -47,7 +47,7 @@ const avatarStyle = reactive({
 
 <template>
   <div :class="[{ 'flex flex-row items-center gap': $slots.labelText || $slots.subText }]">
-    <component :is="interactive ? 'button' : 'div'" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
+    <component :is="interactive ? 'button' : 'div'" :type="interactive ? 'button': ''" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
         <img v-if="image" :src="image" class="img-size">

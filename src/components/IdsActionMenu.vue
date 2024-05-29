@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 @mixin commonMixin {
-  width: 365px;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

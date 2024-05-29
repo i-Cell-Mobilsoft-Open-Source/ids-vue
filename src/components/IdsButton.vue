@@ -3,6 +3,7 @@ import { reactive } from "vue";
 
 const props = withDefaults(
   defineProps<{
+    isDisabled: boolean,
     type?: "submit" | "button" | "reset",
     mode?: "filled" | "outlined" | "text",
     size?: "dense" | "compact" | "comfortable" | "spacious",
@@ -18,7 +19,6 @@ const props = withDefaults(
     | "surface",
     leadingIcon?: object | undefined,
     trailingIcon?: object | undefined,
-    isDisabled?: boolean,
   }>(),
   {
     type: "button",
@@ -141,7 +141,7 @@ const buttonStyle = reactive({
     border: v-bind("buttonStyle.focusedBorder");
     border-radius: v-bind("buttonStyle.borderRadius");
     background: v-bind("buttonStyle.focusedBackground");
-    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-dark);
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-comp-buttons-focused-outline-color-dark-focused);
   }
 
   &:active {
@@ -158,7 +158,7 @@ const buttonStyle = reactive({
   }
 
   &.light:focus {
-    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-base-color-light);
+    outline: var(--ids-comp-buttons-focused-outline-size-outline) solid var(--ids-comp-buttons-focused-outline-color-light-focused);
   }
 
 }

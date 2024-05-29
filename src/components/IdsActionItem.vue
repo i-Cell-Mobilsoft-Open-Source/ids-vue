@@ -89,7 +89,7 @@ const actionItemStyle = reactive({
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: v-bind("actionItemStyle.gap");
   height: v-bind("actionItemStyle.height");
   padding: v-bind("actionItemStyle.padding");
