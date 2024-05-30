@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, defineProps, withDefaults, onBeforeUnmount, watchEffect } from "vue";
+import { ref, reactive, computed, onMounted, defineProps, withDefaults, onBeforeUnmount } from "vue";
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['update:show']);
 
-const showPanel = ref(false);
 const panelRef = ref<HTMLElement | undefined>(undefined);
 const slotRef = ref<HTMLElement | undefined>(undefined);
 const horizontalPanelPosition = ref<string>('0px')
@@ -54,7 +53,7 @@ const panelPositions = computed(() => {
 
 const openMenu = (event: MouseEvent) => {
   event.stopPropagation();
-  showPanel.value = true;
+  emit('update:show', true);
   document.addEventListener('click', closeMenu);
 };
 
@@ -62,26 +61,15 @@ const closeMenu = (event?: MouseEvent) => {
   if (event && panelRef.value?.contains(event.target as Node)) {
     return;
   }
-  showPanel.value = false;
+  emit('update:show', false);
   document.removeEventListener('click', closeMenu);
-  emit('close');
+
 };
 
 const handleClickInside = () => {
-  showPanel.value = false;  
+  emit('update:show', false); 
   document.removeEventListener('click', closeMenu);
-  emit('close');
 };
-
-watchEffect(() => {
-  if (props.show) {
-    showPanel.value = true;
-    document.addEventListener('click', closeMenu);
-  } else {
-    showPanel.value = false;
-    document.removeEventListener('click', closeMenu);
-  }
-});
 
 onMounted(() => {
   if (slotRef.value instanceof HTMLElement) {
@@ -94,7 +82,6 @@ onBeforeUnmount(() => {
   document.removeEventListener('click', closeMenu);
 });
 
-
 </script>
 
 <template>
@@ -104,7 +91,7 @@ onBeforeUnmount(() => {
     </div>
 
     <transition name="panel-fade">
-      <div v-if="showPanel" ref="panelRef" :class="[props.panelMode, panelPositions, '[&>*]:w-full z-20']">
+      <div v-if="show" ref="panelRef" :class="[props.panelMode, panelPositions, '[&>*]:w-full z-20']">
         <template v-if="props.firstPanel">
           <div class="[&>*]:w-full" @click.stop="handleClickInside">
             <slot name="panel" />
