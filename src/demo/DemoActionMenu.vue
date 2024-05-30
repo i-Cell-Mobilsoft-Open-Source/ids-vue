@@ -1,8 +1,7 @@
 <template>
   <div class="demo flex justify-center h-[100vh]">
-    {{ isMenuOpen }}
     <h2>Action Menu</h2>
-    <IdsActionMenu :show="isMenuOpen" panel-mode="elevated" position="bottomLeft" @close="isMenuOpen = false">
+    <IdsActionMenu v-model:show="isMenuOpen" panel-mode="elevated" position="bottomLeft">
       <template #action>
         <IdsButton :trailing-icon="icon" @click="isMenuOpen = !isMenuOpen">
           menu

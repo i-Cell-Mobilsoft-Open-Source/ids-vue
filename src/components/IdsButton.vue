@@ -3,7 +3,6 @@ import { reactive } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    isDisabled: boolean,
     type?: "submit" | "button" | "reset",
     mode?: "filled" | "outlined" | "text",
     size?: "dense" | "compact" | "comfortable" | "spacious",
@@ -17,14 +16,15 @@ const props = withDefaults(
     | "light"
     | "dark"
     | "surface",
+    isDisabled?: boolean,
     leadingIcon?: object | undefined,
     trailingIcon?: object | undefined,
   }>(),
   {
     type: "button",
     mode: "filled",
-    isDisabled: false,
     variant: "primary",
+    isDisabled: false,
     size: "comfortable",
     leadingIcon: undefined,
     trailingIcon: undefined,
