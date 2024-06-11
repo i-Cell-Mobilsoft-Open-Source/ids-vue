@@ -125,7 +125,7 @@ const failMsgs = [
  * DEVELOPER TODO: Change and update regex below according to your preferences.
  */
 //const pattern = new RegExp("\\[?abc-|ABC-|Abc-[0-9]+\\]? ?(-?|:?) .+");
-const pattern = new RegExp(/(I|i)(D|d)(s|S)-[0-9]{1,6}/);
+const pattern = new RegExp(/(I|i)(D|d)(s|S)/);
 const result = pattern.test(msg);
 const commitResultMsg = result ? "SUCCESS" : "FAILED";
 

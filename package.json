@@ -1,5 +1,5 @@
 {
-  "name": "@baller/i-ds",
+  "name": "@i-cell/ids-vue",
   "version": "1.0.38",
   "description": "i-ds",
   "private": false,
@@ -26,6 +26,14 @@
       "import": "./dist/*.css",
       "require": "./dist/*.css"
     }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-Cell-Mobilsoft-Open-Source/ids-vue.git"
   },
   "keywords": [
     "i-ds",
