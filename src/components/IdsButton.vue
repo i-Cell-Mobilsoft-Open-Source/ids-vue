@@ -1,31 +1,19 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+import { Size } from "@models/size.type";
+import { AllVariants } from "@models/variants";
+import { ButtonAppearance } from "@models/appearances";
+import { ButtonTypeAttribute } from "@models/attributes";
+import { ButtonConfig } from "@models/interfaces";
 
 const props = withDefaults(
-  defineProps<{
-    type?: "submit" | "button" | "reset",
-    mode?: "filled" | "outlined" | "text",
-    size?: "dense" | "compact" | "comfortable" | "spacious",
-    variant?:
-    | "primary"
-    | "secondary"
-    | "brand"
-    | "error"
-    | "success"
-    | "warning"
-    | "light"
-    | "dark"
-    | "surface",
-    isDisabled?: boolean,
-    leadingIcon?: object | undefined,
-    trailingIcon?: object | undefined,
-  }>(),
+  defineProps<ButtonConfig>(),
   {
-    type: "button",
-    mode: "filled",
-    variant: "primary",
+    type: ButtonTypeAttribute.BUTTON,
+    mode: ButtonAppearance.FILLED,
+    variant: AllVariants.PRIMARY,
     isDisabled: false,
-    size: "comfortable",
+    size: Size.COMFORTABLE,
     leadingIcon: undefined,
     trailingIcon: undefined,
   },
@@ -68,6 +56,13 @@ const buttonStyle = reactive({
 
   //icon sizes
   iconWidthHeight: `var(--ids-comp-size-buttons-size-icon-${props.size})`,
+
+  //font
+  fontFamily: `var(--ids-comp-size-buttons-label-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-size-buttons-label-typography-font-weight-${props.size})`,
+  fontSize: `var(--ids-comp-size-buttons-label-typography-font-size-${props.size})`,
+  lineHeight: `var(--ids-comp-size-buttons-label-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-size-buttons-label-typography-letter-spacing-${props.size})`,
 });
 </script>
 
@@ -83,6 +78,8 @@ const buttonStyle = reactive({
 </template>
 
 <style scoped lang="scss">
+$sizes: compact, comfortable, spacious, dense;
+
 //icon sizes
 .icon-size {
   gap: 10px;
@@ -95,10 +92,14 @@ const buttonStyle = reactive({
 
 @mixin common {
   flex-shrink: 0;
-  font-weight: 700;
+  font-weight: v-bind("buttonStyle.fontWeight"); 
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  font-family: v-bind("buttonStyle.fontFamily");
+  font-size: v-bind("buttonStyle.fontSize");
+  line-height: v-bind("buttonStyle.lineHeight");
+  letter-spacing: v-bind("buttonStyle.letterSpacing");
   gap: v-bind("buttonStyle.gap");
   height: v-bind("buttonStyle.height");
   padding: v-bind("buttonStyle.padding");
@@ -106,22 +107,10 @@ const buttonStyle = reactive({
 }
 
 //sizes
-.compact {
-  @include common;
-  font-size: 12px;
-  line-height: 16px;
-}
-
-.comfortable {
-  @include common;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.spacious {
-  @include common;
-  font-size: 18px;
-  line-height: 24px;
+@each $size in $sizes  {
+  .#{$size} {
+    @include common;
+  }
 }
 
 //variants
