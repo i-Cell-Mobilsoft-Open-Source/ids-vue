@@ -30,8 +30,8 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
       "@models/*": ["src/models/*"],
+      "@components/*": ["src/components/*"]
     },
   },
   "include": [
