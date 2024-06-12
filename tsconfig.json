@@ -28,6 +28,11 @@
       "node",
       "cypress-real-events"
     ],
+    "baseUrl": "./",
+    "paths": {
+      "@models/*": ["src/models/*"],
+      "@components/*": ["src/components/*"]
+    },
   },
   "include": [
     "src/**/*.ts",

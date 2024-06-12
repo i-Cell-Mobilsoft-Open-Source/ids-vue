@@ -1,19 +1,15 @@
 <script setup lang="ts">
+import { TagAppearance } from '@models/appearances';
+import { TagConfig } from '@models/interfaces';
+import { Size } from '@models/size.type';
+import { AllVariants } from '@models/variants';
 import { reactive } from 'vue';
 
-const props = withDefaults(defineProps<{
-  isDisabled?: boolean,
-  interactive?: boolean,
-  mode?: "filled" | "outlined",
-  leadingIcon?: object | undefined,
-  trailingIcon?: object | undefined,
-  size?: "compact" | "comfortable",
-  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
-}>(), {
-  mode: 'filled',
+const props = withDefaults(defineProps<TagConfig>(), {
+  mode: TagAppearance.FILLED,
   isDisabled: false,
-  size: 'comfortable',
-  variant: 'primary',
+  size: Size.COMFORTABLE,
+  variant: AllVariants.PRIMARY,
   leadingIcon: undefined,
   trailingIcon: undefined,
   interactive: false,
@@ -53,6 +49,13 @@ const tagStyle = reactive({
   //icon sizes
   iconWidth: `var(--ids-comp-size-tag-size-icon-${props.size})`,
   iconHeight: `var(--ids-comp-size-tag-size-icon-${props.size})`,
+
+  //font
+  fontFamily: `var(--ids-comp-size-tag-label-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-size-tag-label-typography-font-weight-${props.size})`,
+  fontSize: `var(--ids-comp-size-tag-label-typography-font-size-${props.size})`,
+  lineHeight: `var(--ids-comp-size-tag-label-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-size-tag-label-typography-letter-spacing-${props.size})`,
 });
 </script>
 
@@ -69,6 +72,8 @@ const tagStyle = reactive({
 </template>
 
 <style scoped lang="scss">
+$sizes: compact, comfortable, spacious, dense;
+
 //icon sizes
 .icon-size {
   gap: 16px;
@@ -88,29 +93,25 @@ const tagStyle = reactive({
 //common
 @mixin common {
   flex-shrink: 0;
-  font-weight: 500;
+  font-weight: v-bind("tagStyle.fontWeight");
   width: fit-content;
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  font-family: v-bind("tagStyle.fontFamily");
+  font-size: v-bind("tagStyle.fontSize");
+  line-height: v-bind("tagStyle.lineHeight");
+  letter-spacing: v-bind("tagStyle.letterSpacing");
   gap: v-bind("tagStyle.gap");
   height: v-bind("tagStyle.height");
   padding: v-bind("tagStyle.padding");
 }
 
 //sizes
-.compact {
-  @include common;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.5px;
-}
-
-.comfortable {
-  @include common;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+@each $size in $sizes  {
+  .#{$size} {
+    @include common;
+  }
 }
 
 //variants
