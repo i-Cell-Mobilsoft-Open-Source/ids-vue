@@ -1,16 +1,14 @@
 <script setup lang="ts">
+import { AvatarConfig } from "@models/interfaces";
+import { Size } from "@models/size.type";
+import { SurfaceVariant } from "@models/variants";
 import { reactive } from "vue";
 
 const props = withDefaults(
-  defineProps<{
-    size?: "dense" | "compact" | "comfortable" | "spacious",
-    variant?: "surface" | "primary" | "secondary" | "light" | "dark",
-    image?: string,
-    interactive?: boolean,
-  }>(),
+  defineProps<AvatarConfig>(),
   {
-    size: "comfortable",
-    variant: "primary",
+    size: Size.COMFORTABLE,
+    variant: SurfaceVariant.PRIMARY,
     image: undefined,
     interactive: false,
   },
@@ -42,6 +40,23 @@ const avatarStyle = reactive({
   width: `var(--ids-comp-size-avatar-size-width-${props.size})`,
   height: `var(--ids-comp-size-avatar-size-height-${props.size})`,
   iconColor: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
+
+  //font
+  initialsFontFamily: `var(--ids-comp-size-avatar-initials-typography-font-family-${props.size})`,
+  initialsFontWeight: `var(--ids-comp-size-avatar-initials-typography-font-weight-${props.size})`,
+  initialsFontSize: `var(--ids-comp-size-avatar-initials-typography-font-size-${props.size})`,
+  initialsLineHeight: `var(--avatar-initials-typography-line-height-${props.size})`,
+  initialsLetterSpacing: `var(--ids-comp-size-avatar-initials-typography-letter-spacing-${props.size})`,
+  labelFontFamily: `var(--ids-comp-size-avatar-label-typography-font-family-${props.size})`,
+  labelFontWeight: `var(--ids-comp-size-avatar-label-typography-font-weight-${props.size})`,
+  labelFontSize: `var(--ids-comp-size-avatar-label-typography-font-size-${props.size})`,
+  labelLineHeight: `var(--ids-comp-size-avatar-label-typography-line-height-${props.size})`,
+  labelLetterSpacing: `var(--ids-comp-size-avatar-label-typography-letter-spacing-${props.size})`,
+  subLabelFontFamily: `var(---ids-comp-size-avatar-sublabel-typography-font-family-${props.size})`,
+  subLabelFontWeight: `var( --ids-comp-size-avatar-sublabel-typography-font-weight-${props.size})`,
+  subLabelFontSize: `var(--ids-comp-size-avatar-sublabel-typography-font-size-${props.size})`,
+  subLabelLineHeight: `var(--ids-comp-size-avatar-sublabel-typography-line-height-${props.size})`,
+  subLabelLetterSpacing: `var(--ids-comp-size-avatar-sublabel-typography-letter-spacing-${props.size})`,
 });
 </script>
 
@@ -88,6 +103,8 @@ const avatarStyle = reactive({
 </template>
 
 <style scoped lang="scss">
+$sizes: compact, comfortable, spacious, dense;
+
 @mixin common {
   display: flex;
   font-style: normal;
@@ -97,12 +114,6 @@ const avatarStyle = reactive({
   justify-content: center;
   width: v-bind("avatarStyle.width");
   height: v-bind("avatarStyle.height");
-}
-
-@mixin commonLabel {
-  line-height: 16px;
-  font-style: normal;
-  letter-spacing: 0.5px;
 }
 
 //icon size
@@ -128,84 +139,35 @@ const avatarStyle = reactive({
 }
 
 //sizes
-.compact {
-  @include common;
-  font-weight: 500;
-  line-height: 1rem;
-  font-style: normal;
-  font-size: 0.6875rem;
-  letter-spacing: 0.03125rem;
-}
+@each $size in $sizes {
+  .#{$size} {
+    @include common;
+    font-family: v-bind("avatarStyle.initialsFontFamily");
+    font-weight: v-bind("avatarStyle.initialsFontWeight");
+    line-height: v-bind("avatarStyle.initialsLineHeight");
+    font-size: v-bind("avatarStyle.initialsFontSize");
+    letter-spacing: v-bind("avatarStyle.initialsLetterSpacing");
+  }
 
-.comfortable {
-  @include common;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  letter-spacing: 0.01563rem;
-}
+  .#{$size}-label-text {
+    font-family: v-bind("avatarStyle.labelFontFamily");
+    font-size: v-bind("avatarStyle.labelFontSize");
+    font-weight: v-bind("avatarStyle.labelFontWeight");
+    line-height: v-bind("avatarStyle.labelLineHeight");
+    font-style: normal;
+    letter-spacing: v-bind("avatarStyle.labelLetterSpacing");
+    color: var(--ids-comp-avatar-color-fg-surface-enabled);
+  }
 
-.spacious {
-  @include common;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.375rem;
-  line-height: 1.75rem;
-}
-
-
-.compact-label-text {
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 16px;
-  font-style: normal;
-  letter-spacing: 0.5px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled);
-}
-
-.compact-sub-text {
-  font-size: 11px;
-  font-weight: 500;
-  font-style: normal;
-  line-height: 16px;
-  letter-spacing: 0.5px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled-lighter-10);
-}
-
-.comfortable-label-text {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-  font-style: normal;
-  letter-spacing: 0.5px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled);
-}
-
-.comfortable-sub-text {
-  font-size: 12px;
-  font-weight: 500;
-  font-style: normal;
-  line-height: 16px;
-  letter-spacing: 0.5px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled-lighter-10);
-}
-
-.spacious-label-text {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  font-style: normal;
-  letter-spacing: 0.1px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled);
-}
-
-.spacious-sub-text {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  font-style: normal;
-  letter-spacing: 0.1px;
-  color: var(--ids-comp-avatar-color-fg-surface-enabled-lighter-10);
+  .#{$size}-sub-text {
+    font-family: v-bind("avatarStyle.subLabelFontFamily");
+    font-size: v-bind("avatarStyle.subLabelFontSize");
+    font-weight: v-bind("avatarStyle.subLabelFontWeight");
+    line-height: v-bind("avatarStyle.subLabelLineHeight");
+    font-style: normal;
+    letter-spacing: v-bind("avatarStyle.subLabelLetterSpacing");
+    color: var(--ids-comp-avatar-color-fg-surface-enabled-lighter-10);
+  }
 }
 
 .flex {
