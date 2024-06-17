@@ -3,6 +3,8 @@ import { ButtonTypeAttributeType } from "@models/attributes";
 import { SizeType } from "@models/size.type";
 import { AllVariantsType, SurfaceVariantType } from "@models/variants";
 import { OrientationType } from "./orientation.type";
+import { Component } from "vue";
+
 
 export interface ButtonConfig {
     type?: ButtonTypeAttributeType,
@@ -10,8 +12,8 @@ export interface ButtonConfig {
     size?: SizeType,
     variant?: AllVariantsType,
     isDisabled?: boolean,
-    leadingIcon?: object,
-    trailingIcon?: object,
+    leadingIcon?: Component,
+    trailingIcon?: Component,
 }
 
 export interface TagConfig {
@@ -20,13 +22,13 @@ export interface TagConfig {
     variant?: AllVariantsType,
     isDisabled?: boolean,
     interactive?: boolean,
-    leadingIcon?: object,
-    trailingIcon?: object,
+    leadingIcon?: Component,
+    trailingIcon?: Component,
 }
 
 export interface IconButtonConfig {
     isDisabled?: boolean,
-    icon?: object,
+    icon?: Component,
     mode?: IconButtonAppearanceType,
     type?: ButtonTypeAttributeType,
     size?: SizeType,
@@ -50,8 +52,8 @@ export interface CardConfig {
     mode?: CardAppearanceType,
     size?: SizeType,
     variant?: AllVariantsType
-    leadingIcon?: object,
-    trailingIcon?: object,
+    leadingIcon?: Component,
+    trailingIcon?: Component,
     isDisabled?: boolean,
 }
 
