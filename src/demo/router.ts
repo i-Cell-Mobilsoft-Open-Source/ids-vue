@@ -12,6 +12,7 @@ import ActionPanel from "./DemoActionPanel.vue";
 import ActionItemMenu from "./DemoActionMenu.vue";
 import ActionItemLink from "./DemoActionItemLink.vue";
 import ActionItemButton from "./DemoActionItemButton.vue";
+import Checkbox from "./DemoCheckbox.vue";
 
 const routes = [
   {
@@ -77,6 +78,11 @@ const routes = [
     path: '/components/accordion',
     name: 'Accordion',
     component: Accordion
+  },
+  {
+    path: '/components/checkbox',
+    name: 'Checkbox',
+    component: Checkbox
   }
 ];
 

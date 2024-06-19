@@ -20,6 +20,15 @@ export const BaseVariant = {
   } as const;
   
   export type BrandVariantType = (typeof BrandVariant)[keyof typeof BrandVariant];
+
+  export const ErrorVariant = {
+    LIGHT: 'light',
+    DARK: 'dark',
+    ERROR: 'error',
+    SURFACE: 'surface'
+  } as const;
+  
+  export type ErrorVariantType = (typeof BrandVariant)[keyof typeof BrandVariant];
   
   export const AllVariants = {
     ...BrandVariant,

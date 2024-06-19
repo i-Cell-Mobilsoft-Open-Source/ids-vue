@@ -26,3 +26,4 @@ export { default as IdsAccordion } from "./components/IdsAccordion.vue";
 export { default as IdsIconButton } from "./components/IdsIconButton.vue";
 export { default as IdsActionItem } from "./components/IdsActionItem.vue";
 export { default as IdsActionMenu } from "./components/IdsActionMenu.vue";
+export { default as IdsCheckbox } from "./components/IdsCheckbox.vue";

@@ -1,7 +1,7 @@
 import { ButtonAppearanceType, CardAppearanceType, IconButtonAppearanceType, TagAppearanceType } from "@models/appearances";
 import { ButtonTypeAttributeType } from "@models/attributes";
 import { SizeType } from "@models/size.type";
-import { AllVariantsType, SurfaceVariantType } from "@models/variants";
+import { AllVariantsType, ErrorVariantType, SurfaceVariantType } from "@models/variants";
 import { OrientationType } from "./orientation.type";
 import { Component } from "vue";
 
@@ -62,4 +62,10 @@ export interface AvatarConfig {
     variant?: SurfaceVariantType,
     image?: string,
     interactive?: boolean,
+}
+
+export interface CheckboxConfig {
+    size?: SizeType,
+    variant?: ErrorVariantType,
+    isDisabled?: boolean,
 }
