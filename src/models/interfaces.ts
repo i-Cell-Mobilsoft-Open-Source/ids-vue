@@ -67,5 +67,8 @@ export interface AvatarConfig {
 export interface CheckboxConfig {
     size?: SizeType,
     variant?: ErrorVariantType,
-    isDisabled?: boolean,
+    disabled?: boolean,
+    indeterminate?: boolean,
+    invalid?: boolean
+    id?: string,
 }
