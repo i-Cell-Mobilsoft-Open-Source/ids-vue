@@ -54,7 +54,10 @@ onBeforeUnmount(() => {
   <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
       <header class="flex justify-between items-center w-full">
-        <div class="flex grow flex-col items-start gap-2">
+        <div v-if="$slots.customHeader" class="flex grow flex-col items-start gap-2">
+          <slot name="customHeader" />
+        </div>
+        <div v-else class="flex grow flex-col items-start gap-2">
           <p
             v-if="$slots.title"
             class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
@@ -76,12 +79,8 @@ onBeforeUnmount(() => {
           <slot name="content" />
         </div>
       </section>
-      <!-- TODO: fix me later pls  $slots.label ? 'justify-between' : 'justify-end' -->
-      <footer class="flex flex-row items-center w-full justify-between">
-        <div v-if="$slots.label">
-          <slot name="label" />
-        </div>
-        <div v-if="$slots.action" class="flex gap-2">
+      <footer class="flex flex-row items-center w-full">
+        <div v-if="$slots.action" class="w-full">
           <slot name="action" />
         </div>
       </footer>
