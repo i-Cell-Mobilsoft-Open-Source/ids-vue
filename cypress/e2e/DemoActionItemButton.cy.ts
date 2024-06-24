@@ -85,7 +85,7 @@ describe('ids Action Item Button Demo test', () => {
       });
     });
   });
-  //kész - sztem javítani kell a figmanak megfelelőre, Figma =/= böngésző IDS-409
+
   it('Checks the font-size of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allFontSize.forEach((font) => {
@@ -97,7 +97,7 @@ describe('ids Action Item Button Demo test', () => {
       });
     });
   });
-  // kész - Figma =/= böngésző (comfortable a legnagyobb!) IDS-409
+  
   it('Checks the line-height of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allLineHeight.forEach((lineHeigt) => {

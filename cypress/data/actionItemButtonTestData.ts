@@ -35,13 +35,13 @@ const actionItemButtonTestData = {
   }],
   allFontSize: [{
     compact: "12px",
-    comfortable: "16px",
-    spacious: "16px",
+    comfortable: "14px",
+    spacious: "18px",
   }],
   allLineHeight: [{
     compact: "16px",
     comfortable: "20px",
-    spacious: "20px",
+    spacious: "24px",
   }],
   TopLeftRadius: [{
     compact: "4px",
@@ -98,8 +98,6 @@ const actionItemButtonTestData = {
   disabledFilledBgColors: "rgb(226, 232, 240)",
 
   iconGap: '10px',
-
-
 }
 
 export default actionItemButtonTestData;
