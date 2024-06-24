@@ -58,7 +58,7 @@ type ButtonOptions = {
   size?: "compact" | "comfortable" | "spacious";
 };
 
-const allModes: Array<ButtonOptions["appearance"]> = ["filled", "text"];
+const allAppearance: Array<ButtonOptions["appearance"]> = ["filled", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
   "comfortable",
@@ -67,7 +67,7 @@ const allSizes: Array<ButtonOptions["size"]> = [
 
 const allOptions: ButtonOptions[] = [];
 
-for (const appearance of allModes) {
+for (const appearance of allAppearance) {
   for (const size of allSizes) {
     const options: ButtonOptions = { appearance, size };
     allOptions.push(options);

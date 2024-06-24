@@ -62,7 +62,7 @@ type LinkOptions = {
   size?: "compact" | "comfortable" | "spacious";
 };
 
-const allModes: Array<LinkOptions["appearance"]> = ["filled", "text"];
+const allAppearance: Array<LinkOptions["appearance"]> = ["filled", "text"];
 const allSizes: Array<LinkOptions["size"]> = [
   "compact",
   "comfortable",
@@ -71,7 +71,7 @@ const allSizes: Array<LinkOptions["size"]> = [
 
 const allOptions: LinkOptions[] = [];
 
-for (const appearance of allModes) {
+for (const appearance of allAppearance) {
   for (const size of allSizes) {
     const options: LinkOptions = { appearance, size };
     allOptions.push(options);

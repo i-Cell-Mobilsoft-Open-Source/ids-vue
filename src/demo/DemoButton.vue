@@ -55,7 +55,7 @@ type ButtonOptions = {
 type ModifiedButtonOptions = Omit<ButtonOptions, 'variant'> & { variant: AllowedVariants };
 type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface" | undefined;
 
-const allModes: Array<ButtonOptions["appearance"]> = ["filled", "outlined", "text"];
+const allAppearance: Array<ButtonOptions["appearance"]> = ["filled", "outlined", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
   "comfortable",
@@ -75,7 +75,7 @@ const allVariants: Array<ButtonOptions["variant"]> = [
 
 const allOptions: ButtonOptions[] = [];
 
-for (const appearance of allModes) {
+for (const appearance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of allVariants) {
       const options: ButtonOptions = { appearance, size, variant };
@@ -87,7 +87,7 @@ for (const appearance of allModes) {
 const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
 const disabledOptions: ModifiedButtonOptions[] = [];
 
-for (const appearance of allModes) {
+for (const appearance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of colorsToKeep) {
       const options: ModifiedButtonOptions = { appearance, size, variant };
