@@ -1,64 +1,70 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
+import { AccordionAppearance } from "@models/appearances";
+import { AccordionConfig } from "@models/interfaces";
+import { Size } from "@models/size.type";
 
 const open = ref(false);
-const hasOpened = ref(false);
-const dropdown = ref<HTMLElement | null>(null);
-const details = ref<HTMLDetailsElement | null>(null);
-const handleToggle = () => {
+const clicked = ref(false);
+const detailsRef = ref<HTMLDetailsElement  | null>(null);
+const handleToggle = () =>  {
   open.value = !open.value;
-  hasOpened.value = true
-}
+  if (!clicked.value) {
+    clicked.value = true;    
+  }
+};
 
 const props = withDefaults(
-  defineProps<{
-    isOpen?: boolean,
-    size?: "dense" | "compact" | "comfortable" | "spacious",
-  }>(),
+  defineProps<AccordionConfig>(),
   {
-    isOpen: false,
-    size: "compact",
+    isExpanded: false,
+    isDisabled: false,
+    size: Size.COMPACT,
+    appearance: AccordionAppearance.FILLED,
   },
 );
 
 const accordionStyle = reactive({
   background: `var(--accordion-button-text-color-bg-enabled)`,
   gap: `var(--ids-comp-size-accordion-item-size-gap-${props.size})`,
-  borderRadius: `var(--ids-comp-size-accordion-item-size-border-radius-${props.size})`,
-  padding: `var(--ids-comp-size-accordion-item-size-padding-y) var(--ids-comp-size-accordion-item-size-padding-x)`,
-  borderTop: `var(--ids-comp-size-accordion-summary-size-border-width-${props.size}) solid var(--ids-comp-accordion-item-color-border-enabled)`,
   summaryGap: `var(--ids-comp-size-accordion-summary-size-gap-${props.size})`,
   summaryHeight: `var(--ids-comp-size-accordion-summary-size-height-${props.size})`,
+  borderRadius: `var(--ids-comp-size-accordion-item-size-border-radius-${props.size})`,
+  padding: `var(--ids-comp-size-accordion-item-size-padding-y-${props.size}) var(--ids-comp-size-accordion-item-size-padding-x-${props.size})`,
+  borderTop: `var(--ids-comp-size-accordion-summary-size-border-width-${props.size}) solid var(--ids-comp-accordion-item-color-border-default)`,
   summaryPadding: `var(--ids-comp-size-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-size-accordion-summary-size-padding-x-${props.size})`,
   detailsPadding: `var(--ids-comp-size-accordion-details-size-padding-y-${props.size}) var(--ids-comp-size-accordion-details-size-padding-x-${props.size})`,
-  //padding: var(--accordion-summary-size-padding-y, 2px) var(--accordion-summary-size-padding-x, 2px);
+
+  //typography
+  fontSize: `var(--ids-comp-size-accordion-summary-typography-font-size-${props.size})`,
+  fontFamily: `var(--ids-comp-size-accordion-summary-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-size-accordion-summary-typography-font-weight-${props.size})`,
+  lineHeight: `var(--ids-comp-size-accordion-summary-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-size-accordion-summary-typography-letter-spacing-${props.size})`,
 });
 
 onMounted(() => {
-  // Open the accordion if the index matches the defaultOpenIndex
-  if (props.isOpen) {
-    hasOpened.value = true;
-    if (details.value) {
-      details.value.open = true;
+  if (props.isExpanded) {
+    if (detailsRef.value) {
+      open.value = true;
+      detailsRef.value.open = true;
     }
-  }
+  }  
 });
-
 </script>
 
 <template>
-  <details ref="details" class="w-full" @toggle="handleToggle">
-    <summary class="flex justify-between w-full">
+  <details ref="detailsRef" class="w-full p-2.5">
+    <summary class="flex justify-between w-full" @click="handleToggle">
       <div class="w-4/5 flex justify-start">
         <slot name="accordion-title" />
       </div>
       <div class="w-1/5 flex justify-end">
-        <ChevronDownIcon v-if="!open" :class="['w-6', { 'flip': hasOpened }]" />
-        <ChevronUpIcon v-else class="w-6 flip" />
+        <component :is="open ? ChevronUpIcon : ChevronDownIcon" :class="['w-6', { 'flip': clicked }]" />
       </div>
     </summary>
-    <article ref="dropdown" :class="['text-left w-full', [open ? 'enter' : '']]">
+    <article class="text-left w-full">
       <slot name="accordion-content" />
     </article>
   </details>
@@ -70,10 +76,15 @@ details {
   &>summary {
     cursor: pointer;
     list-style: none;
-    font-weight: 600;
+    transition: margin 1.5s ease-out;
     gap: v-bind('accordionStyle.summaryGap');
+    font-size: v-bind('accordionStyle.fontSize');
     height: v-bind('accordionStyle.summaryHeight');
+    line-height: v-bind('accordionStyle.lineHeight');
+    font-family: v-bind('accordionStyle.fontFamily');
+    font-weight: v-bind('accordionStyle.fontWeight');
     padding: v-bind('accordionStyle.summaryPadding');
+    letter-spacing: v-bind('accordionStyle.letterSpacing');
   }
 }
 
@@ -81,48 +92,23 @@ article {
   padding: v-bind('accordionStyle.detailsPadding');
 }
 
-/* details[open] summary~* {
-  animation: enter .4s ease-in-out;
-} */
+@keyframes slideDown {
+	    0% {
+          opacity: 0; 
+	        height: 0%;          
+	    }
+	    100% {
+          opacity: 1; 
+	        height: 100%;
+	    }
+	}
 
-@keyframes enter {
-  0% {
-    transform: translateY(-5%);
-    opacity: 0;
-  }
-
-  50% {
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes leave {
-  0% {
-    transform: translateY(-0%);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translateY(-20%);
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-.enter {
-  animation: enter .4s ease-in-out;
-}
-
-.leave {
-  animation: leave .4s ease-in-out;
-}
+	details[open] > article {
+      overflow:hidden;
+	    animation-name: slideDown;
+	    animation-duration: .5s;
+	    animation-timing-function:cubic-bezier(0, 0, 1, 0);
+	}
 
 @keyframes flip {
   0% {

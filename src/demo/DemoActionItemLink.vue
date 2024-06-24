@@ -3,16 +3,16 @@
     <h2>ActionItemLink</h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-link`"
+      :id="`${option.appearance}-${option.size}-link`"
       :key="index"
       :size="option.size"
       :leading-icon="ClockIcon"
       :trailing-icon="ChevronRightIcon"
-      :mode="option.mode"
+      :appearance="option.appearance"
       type="link"
-      href="#"
+      link="#"
     >
-      {{ option.mode + " " + option.size }} link
+      {{ option.appearance + " " + option.size }} link
     </IdsActionItem>
 
     <!-- Active links -->
@@ -21,16 +21,17 @@
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-link`"
+      :id="`${option.appearance}-${option.size}-link`"
       :key="index"
       :size="option.size"
       :leading-icon="ClockIcon"
       :trailing-icon="ChevronRightIcon"
-      :mode="option.mode"
+      :appearance="option.appearance"
       :is-active="true" 
       type="link"
+      link="#"
     >
-      {{ option.mode + " " + option.size }} link
+      {{ option.appearance + " " + option.size }} link
     </IdsActionItem>
 
     <!-- Disabled links -->
@@ -39,15 +40,15 @@
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-link`"
+      :id="`${option.appearance}-${option.size}-link`"
       :key="index"
       :is-disabled="true"
       :size="option.size"
-      :mode="option.mode"
+      :appearance="option.appearance"
       :leading-icon="ClockIcon"
       :trailing-icon="ChevronRightIcon"
     >
-      {{ option.mode + " " + option.size }} link
+      {{ option.appearance + " " + option.size }} link
     </IdsActionItem>
   </div>
 </template>
@@ -57,11 +58,11 @@ import { ClockIcon } from "@heroicons/vue/24/solid";
 import { ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsActionItem from "../components/IdsActionItem.vue";
 type LinkOptions = {
-  mode?: "filled" | "text";
+  appearance?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";
 };
 
-const allModes: Array<LinkOptions["mode"]> = ["filled", "text"];
+const allModes: Array<LinkOptions["appearance"]> = ["filled", "text"];
 const allSizes: Array<LinkOptions["size"]> = [
   "compact",
   "comfortable",
@@ -70,9 +71,9 @@ const allSizes: Array<LinkOptions["size"]> = [
 
 const allOptions: LinkOptions[] = [];
 
-for (const mode of allModes) {
+for (const appearance of allModes) {
   for (const size of allSizes) {
-    const options: LinkOptions = { mode, size };
+    const options: LinkOptions = { appearance, size };
     allOptions.push(options);
   }
 }

@@ -3,15 +3,15 @@
     <h2>Buttons</h2>
     <IdsButton
       v-for="(option, index) in allOptions" 
-      :id="`${option.mode}-${option.variant}-${option.size}-button`" 
+      :id="`${option.appearance}-${option.variant}-${option.size}-button`" 
       :key="index" 
       :size="option.size"
-      :mode="option.mode" 
+      :appearance="option.appearance" 
       :leading-icon="BoltIcon" 
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >
-      {{ option.mode + " " + option.variant + " " + option.size }} button
+      {{ option.appearance + " " + option.variant + " " + option.size }} button
     </IdsButton>
 
     <!-- Disabled Buttons -->
@@ -20,16 +20,16 @@
     </h2>
     <IdsButton
       v-for="(option, index) in disabledOptions" 
-      :id="`${option.mode}-${option.variant}-${option.size}-disabled-button`" 
+      :id="`${option.appearance}-${option.variant}-${option.size}-disabled-button`" 
       :key="index"
       :is-disabled="true"
       :size="option.size" 
-      :mode="option.mode" 
+      :appearance="option.appearance" 
       :leading-icon="BoltIcon" 
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >
-      {{ option.mode + " " + option.variant + " " + option.size }} button
+      {{ option.appearance + " " + option.variant + " " + option.size }} button
     </IdsButton>
   </div>
 </template>
@@ -38,7 +38,7 @@
 import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/IdsButton.vue";
 type ButtonOptions = {
-  mode?: "filled" | "outlined" | "text";
+  appearance?: "filled" | "outlined" | "text";
   size?: "compact" | "comfortable" | "spacious";
   variant?:
   | "primary"
@@ -55,7 +55,7 @@ type ButtonOptions = {
 type ModifiedButtonOptions = Omit<ButtonOptions, 'variant'> & { variant: AllowedVariants };
 type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface" | undefined;
 
-const allModes: Array<ButtonOptions["mode"]> = ["filled", "outlined", "text"];
+const allModes: Array<ButtonOptions["appearance"]> = ["filled", "outlined", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
   "comfortable",
@@ -75,10 +75,10 @@ const allVariants: Array<ButtonOptions["variant"]> = [
 
 const allOptions: ButtonOptions[] = [];
 
-for (const mode of allModes) {
+for (const appearance of allModes) {
   for (const size of allSizes) {
     for (const variant of allVariants) {
-      const options: ButtonOptions = { mode, size, variant };
+      const options: ButtonOptions = { appearance, size, variant };
       allOptions.push(options);
     }
   }
@@ -87,10 +87,10 @@ for (const mode of allModes) {
 const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
 const disabledOptions: ModifiedButtonOptions[] = [];
 
-for (const mode of allModes) {
+for (const appearance of allModes) {
   for (const size of allSizes) {
     for (const variant of colorsToKeep) {
-      const options: ModifiedButtonOptions = { mode, size, variant };
+      const options: ModifiedButtonOptions = { appearance, size, variant };
       disabledOptions.push(options);
     }
   }
