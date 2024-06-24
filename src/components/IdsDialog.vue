@@ -3,15 +3,14 @@
 import { ref, reactive, withDefaults, onMounted, onBeforeUnmount } from 'vue';
 import IdsIconButton from './IdsIconButton.vue';
 import { XMarkIcon } from "@heroicons/vue/24/solid";
+import { DialogConfig } from '@models/interfaces';
+import { Size } from '@models/size.type';
 
 defineEmits(['close']);
 
-const props = withDefaults(defineProps<{
-  backDrop?: boolean,
-  size?: "dense" | "compact" | "comfortable" | "spacious",
-}>(), {
+const props = withDefaults(defineProps<DialogConfig>(), {
   backDrop: false,
-  size: "comfortable",
+  size: Size.COMFORTABLE,
 });
 
 const dialog = ref<HTMLDialogElement | null>();
