@@ -31,8 +31,8 @@ const dialogStyle = reactive({
   border: `var(--ids-comp-size-dialog-container-size-border-width-${props.size}) 
   solid var(--ids-comp-dialog-container-color-border-surface-default)`,
   borderRadius: `var(--ids-comp-size-dialog-container-size-border-radius-${props.size})`,
-  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-y-${props.size})`,
-  //TODO: there is a ids-comp-size-dialog-container-size-padding-x variable which contains a falsy value aka 0;
+  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-x-${props.size})`,
+ 
   boxShadow: `var(--ids-smc-reference-container-effects-shadow-horizontal-none)
    var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
    var(--ids-smc-reference-container-effects-shadow-blur-xxxl) 
