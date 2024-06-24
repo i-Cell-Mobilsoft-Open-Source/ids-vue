@@ -52,13 +52,13 @@ type TagOptions = {
 type ModifiedTagOptions = Omit<TagOptions, 'variant'> & { variant: AllowedVariants };
 type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | undefined;
 
-const allModes: Array<TagOptions["apperance"]> = ["filled", "outlined"];
+const allAppearance: Array<TagOptions["apperance"]> = ["filled", "outlined"];
 const allSizes: Array<TagOptions["size"]> = ["compact", "comfortable"];
 const allVariants: Array<TagOptions["variant"]> = ["primary", "secondary", "brand", "error", "success", "warning", "light", "dark"];
 
 const allOptions: TagOptions[] = [];
 
-for (const apperance of allModes) {
+for (const apperance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of allVariants) {
       const options: TagOptions = { apperance, size, variant };
@@ -70,7 +70,7 @@ for (const apperance of allModes) {
 const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
 const disabledOptions: ModifiedTagOptions[] = [];
 
-for (const apperance of allModes) {
+for (const apperance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of colorsToKeep) {
       const options: ModifiedTagOptions = { apperance, size, variant };
