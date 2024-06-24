@@ -19,13 +19,13 @@ describe('Accordion Component Test', () => {
       cy.contains('Accordion item')
         .should('exist')
     });
-    // IDS-384
+
     it('Check the "Accordion" subtitle color', () => {
       cy.mount(AccordionMenu)
       cy.get('h2')
         .should('have.css', 'color', accordionTestData.titleColor)
     });
-    // IDS-384
+
     it('Check the color of "Accordion Item"', () => {
       cy.mount(AccordionMenu)
       cy.contains('Accordion item')
@@ -38,7 +38,7 @@ describe('Accordion Component Test', () => {
           .should('not.contain', '.text-left w-full enter');
       });
     });
-    // IDS-384
+ 
     it('Check the "Accordion Item" common things', () => {
       cy.mount(AccordionMenu)
       cy.get(':nth-child(2) > .justify-between')

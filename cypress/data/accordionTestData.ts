@@ -2,9 +2,9 @@ const accordionTestData = {
 
     //Colors
     basicColor: 'rgb(33, 53, 71)',
-    titleColor: "rgb(2, 6, 23)",
+    titleColor: "rgb(33, 53, 71)",
     white: "rgb(255, 255, 255)",
-    dividingLine: '1px solid rgb(229, 231, 235)',
+    dividingLine: '0px solid rgb(229, 231, 235)',
     textColor: 'rgb(229, 231, 235)',
     black: 'rgba(0, 0, 0, 0)',
     
