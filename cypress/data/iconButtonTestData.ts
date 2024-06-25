@@ -16,8 +16,7 @@ const iconButtonTestData = {
       "dark",
       "surface"
     ],
-  // BGcolors
-
+  //bgColors
   //filledBgColors
   enabledBgColors: [{
     primary: "rgb(0, 60, 255)",
@@ -64,7 +63,7 @@ const iconButtonTestData = {
     surface: "rgb(203, 213, 225)",
   }],
 
-// FGcolors
+//fgColors
 //textFgColors
 enabledColors: [{ 
   primary: "rgb(0, 60, 255)",

@@ -1,4 +1,3 @@
-/// <reference types="cypress"/>
 import '../support/commands';
 import ActionMenu from '../../src/demo/DemoActionMenu.vue';
 import actionMenuTestData from '../data/actionMenuTestData';
@@ -15,7 +14,7 @@ describe('Action Menu Test', () => {
         .should('have.css', 'color', 'rgb(33, 53, 71)');
     });
 
-    //Button tulajdonságok
+    //Button properties
     it('Check the color of the Button', () => {
       cy.mount(ActionMenu);
       cy.contains('menu')
@@ -68,12 +67,11 @@ describe('Action Menu Test', () => {
       cy.contains('menu').click()
     });
 
-    //Action Panel tulajdonságok
+    //Action Panel properties
     it('Check the panel properties after clicked the button', () => {
       cy.mount(ActionMenu)
       cy.contains('menu').click()
       cy.get('.elevated')
-        // .should('have.css', 'width', actionMenuTestData.width)
         .should('have.css', 'gap', actionMenuTestData.gap)
         .should('have.css', 'display', actionMenuTestData.display)
         .should('have.css', 'flex-direction', actionMenuTestData.flexDirection)

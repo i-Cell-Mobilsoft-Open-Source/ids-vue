@@ -137,8 +137,3 @@ describe('Accordion Component Test', () => {
 
   });
 });
-
-
-
-
-

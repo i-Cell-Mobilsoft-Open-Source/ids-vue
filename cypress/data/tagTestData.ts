@@ -12,7 +12,7 @@ const tagTestData = {
       "dark"
     ],
   
-    // //bgColors
+    //bgColors
     enabledBgColors: [{
       primary: "rgb(0, 60, 255)",
       secondary: "rgb(100, 116, 139)",
@@ -56,7 +56,7 @@ const tagTestData = {
       dark: "rgb(51, 65, 85)",    
     }],
   
-    // //textColors
+    //textColors
     enabledColors: [{
       primary: "rgb(255, 255, 255)",
       secondary: "rgb(255, 255, 255)",
