@@ -8,19 +8,26 @@ const accordionTestData = {
     textColor: 'rgb(229, 231, 235)',
     black: 'rgba(0, 0, 0, 0)',
     //sizes
-    fontWeight: '500',
-    fontSize: '16px',
-    lineHeight: '24px',
+       
+    fontWeight: '600',
+    fontSize: '12px',
+    lineHeight: '16px',
     letterSpacing: '0.5px',
+
+    fontWeightText: '500',
+    fontSizeText: '16px',
+    lineHeightText: '24px',
 
     display: 'flex',
     justifyContent: 'center',
     alignButtonItems: 'flex-start',
 
     accordionRadius: '0px',
-    accordionGap: '8px',
-    buttonTopBottomPadding: '8px',
-    buttonLeftRightPadding: '8px',
+    accordionGap: '0px',
+    buttonTopBottomPadding: '0px',
+    buttonLeftRightPadding: '0px',
+    
+
     //text sizes
     radius: '0px',
     padding: '0px',
