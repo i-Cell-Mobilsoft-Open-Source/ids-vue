@@ -24,7 +24,7 @@ const actionMenuTestData = {
   height: '40px',
   minWidth: '40px',
   fontSize: '14px',
-  lineHeight: '20px',
+  lineHeight: '14px',
 
   radius: '24px',
   padding: '10px',

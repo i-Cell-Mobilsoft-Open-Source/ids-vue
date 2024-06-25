@@ -114,95 +114,12 @@ describe('Action Menu Test', () => {
         .should('have.css', 'columnGap', actionMenuTestData.gap)
         .should('have.css', 'rowGap', actionMenuTestData.gap)
     });
-    //nem jó => box-shadow: none? IDS-413
+
     it('Check box-shadow of the Panel', () => {
       cy.mount(ActionMenu)
       cy.contains('menu').click()
       cy.get('.elevated')
         .should('have.css', 'boxShadow', actionMenuTestData.boxShadow)
     });
-
-    it('Check the popup Panel contains item buttons', () => {
-      cy.mount(ActionMenu)
-      cy.contains('menu').click()
-      cy.get('.elevated')
-        .children('div > button')
-        .should('exist');
-    });
-    //wip => nincsenek sub-panelek?
-    // sub-panel tulajdonságok
-    //     it('Check the sub-Panel properties after clicked the button', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.contains('menu').click()
-    //       cy.get('.elevated')
-    //       cy.get('button').contains('menu').click().wait(1000)
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'width', actionMenuTestData.width)
-    //         .should('have.css', 'gap', actionMenuTestData.gap)
-    //         .should('have.css', 'display', actionMenuTestData.display)
-    //         .should('have.css', 'flex-direction', actionMenuTestData.flexDirection)
-    //         .should('have.css', 'align-items', actionMenuTestData.alignItems);
-    //     });
-
-    //     it('Check the backgrounColor of the sub-Panel', () => {
-    //       cy.mount(ActionMenu);
-    //       cy.get('button').click()
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'backgroundColor', actionMenuTestData.white);
-    //     });
-
-    //     it('Check radius of the sub-Panel', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.get('button').click()
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'borderBottomLeftRadius', actionMenuTestData.radius)
-    //         .should('have.css', 'borderBottomRightRadius', actionMenuTestData.radius)
-    //         .should('have.css', 'borderTopLeftRadius', actionMenuTestData.radius)
-    //         .should('have.css', 'borderTopRightRadius', actionMenuTestData.radius)
-    //     });
-
-    //     it('Check padding of the sub-Panel', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.get('button').click()
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'paddingBottom', actionMenuTestData.padding)
-    //         .should('have.css', 'paddingLeft', actionMenuTestData.padding)
-    //         .should('have.css', 'paddingTop', actionMenuTestData.padding)
-    //         .should('have.css', 'paddingRight', actionMenuTestData.padding)
-    //     });
-
-    //     it('Check gap of the sub-Panel', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.get('button').click();
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'columnGap', actionMenuTestData.gap)
-    //         .should('have.css', 'rowGap', actionMenuTestData.gap)
-    //     });
-
-    //     it('Check box-shadow of the sub-Panel', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.get('button').click()
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8')
-    //         .should('have.css', 'boxShadow', actionMenuTestData.boxShadow)
-    //     });
-
-    //     it('Check the popup sub-Panel contains item buttons', () => {
-    //       cy.mount(ActionMenu)
-    //       cy.get('button').click();
-    //       cy.get('#headlessui-popover-panel-3')
-    //       cy.get('button').contains('menu').click()
-    //       cy.get('#headlessui-popover-panel-8').children('div > button')
-    //         .should('exist');
-    //     });
   });
 });
