@@ -4,7 +4,7 @@
     <IdsButton @click="showDialog = true">
       Show dialog
     </IdsButton>
-    <IdsDialog v-if="showDialog" ref="dialogRef" size="comfortable" @close="showDialog = false">
+    <IdsDialog v-if="showDialog" ref="dialogRef" size="comfortable" @close="showDialog = false"> 
       <template #title>
         Title
       </template>
@@ -19,18 +19,21 @@
           scrambled it to make a type specimen book.
         </div>
       </template>
-      <template #label>
-        <IdsButton mode="text">
-          Label
-        </IdsButton>
-      </template>
       <template #action>
-        <IdsButton mode="outlined" @click="showDialog = false">
-          Cancel
-        </IdsButton>
-        <IdsButton @click="showDialog = false">
-          Save
-        </IdsButton>
+        <div class="flex justify-between">
+          <IdsButton mode="text">
+            Label
+          </IdsButton>
+     
+          <div class="flex gap-2">
+            <IdsButton mode="outlined" @click="showDialog = false">
+              Cancel
+            </IdsButton>
+            <IdsButton @click="showDialog = false">
+              Save
+            </IdsButton>
+          </div>
+        </div>
       </template>
     </IdsDialog>
   </div>

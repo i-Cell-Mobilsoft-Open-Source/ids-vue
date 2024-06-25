@@ -1,27 +1,16 @@
 <script setup lang="ts">
+import { DividerConfig } from "@models/interfaces";
+import { Orientation } from "@models/orientation.type";
+import { Size } from "@models/size.type";
+import { AllVariants } from "@models/variants";
 import { reactive } from "vue";
 
 const props = withDefaults(
-  defineProps<{
-    type?: "vertical" | "horizontal",
-    size?: "dense" | "compact" | "comfortable" | "spacious",
-    variant?:
-    | "surface"
-    | "primary"
-    | "secondary"
-    | "brand"
-    | "error"
-    | "success"
-    | "warning"
-    | "light"
-    | "dark",
-    width?: string,
-    height?: string,
-  }>(),
+  defineProps<DividerConfig>(),
   {
-    type: "horizontal",
-    size: "comfortable",
-    variant: "primary",
+    type: Orientation.HORIZONTAL,
+    size: Size.COMFORTABLE,
+    variant: AllVariants.PRIMARY,
     width: "auto",
     height: "200px",
   },
@@ -37,56 +26,32 @@ const DividerStyle = reactive({
 </script>
 
 <template>
-  <div :class="[type, size, 'ids-divider']" />
+  <div :class="[size, type, 'ids-divider']" />
 </template>
 
 <style scoped lang="scss">
+$sizes: compact, comfortable, spacious, dense;
+
 @mixin common {
   flex-shrink: 0;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
 }
 
-//sizes
-.vertical {
-  &.compact {
+@each $size in $sizes {
+  .#{$size} {
     @include common;
-    align-self: stretch;
-    width: var(--ids-comp-divider-size-compact-width);
-  }
 
-  &.comfortable {
-    @include common;
-    align-self: stretch;
-    width: var(--ids-comp-divider-size-comfortable-width);
-  }
+    &.vertical {
+      width: var(--ids-comp-size-divider-size-width-#{$size});
+    }
 
-  &.spacious {
-    @include common;
-    align-self: stretch;
-    width: var(--ids-comp-divider-size-spacious-width);
-  }
-}
-
-.horizontal {
-  &.compact {
-    @include common;
-    align-self: stretch;
-    height: var(--ids-comp-divider-size-compact-height);
-  }
-
-  &.comfortable {
-    @include common;
-    align-self: stretch;
-    height: var(--ids-comp-divider-size-comfortable-height);
-  }
-
-  &.spacious {
-    @include common;
-    align-self: stretch;
-    height: var(--ids-comp-divider-size-spacious-height);
+    &.horizontal {
+      height: var(--ids-comp-size-divider-size-height-#{$size});
+    }
   }
 }
 

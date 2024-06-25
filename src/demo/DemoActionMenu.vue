@@ -1,9 +1,9 @@
 <template>
   <div class="demo flex justify-center h-[100vh]">
     <h2>Action Menu</h2>
-    <IdsActionMenu :show="isMenuOpen" panel-mode="elevated" position="bottomLeft">
+    <IdsActionMenu v-model:show="isMenuOpen" panel-mode="elevated" position="bottomLeft">
       <template #action>
-        <IdsButton :trailing-icon="icon" @click="togglePanel">
+        <IdsButton :trailing-icon="icon" @click="isMenuOpen = !isMenuOpen">
           menu
         </IdsButton>
       </template>
@@ -32,17 +32,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
 const isMenuOpen = ref<boolean>(false);
-const icon = ref<object>(ChevronDownIcon)
-const togglePanel = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-  return icon.value = isMenuOpen.value === true ? ChevronUpIcon : ChevronDownIcon;
-}
+
+const icon = computed(() => {
+  return isMenuOpen.value === true ? ChevronUpIcon : ChevronDownIcon;
+})
 
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";

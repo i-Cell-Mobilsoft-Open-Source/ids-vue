@@ -163,7 +163,6 @@ describe('ids IconButton Demo test', () => {
                       expect(styles.backgroundColor).to.equal(iconButtonTestData.pressedStandardBgColors); // és itt?
                       expect(styles.color).to.equal(outlineColor[item.variant]);
                     } else if (item.mode === 'standard') {
-                      console.log('asdf-> ', item.variant, styles.color);
                       expect(styles.backgroundColor).to.equal(iconButtonTestData.pressedStandardBgColors);
                       expect(styles.color).to.equal(standardColor[item.variant]);
                     }

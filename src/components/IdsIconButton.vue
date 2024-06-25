@@ -1,20 +1,18 @@
 <script setup lang="ts">
+import { IconButtonAppearance } from '@models/appearances';
+import { ButtonTypeAttribute } from '@models/attributes';
+import { IconButtonConfig } from '@models/interfaces';
+import { Size } from '@models/size.type';
+import { AllVariants } from '@models/variants';
 import { reactive } from 'vue';
 
-const props = withDefaults(defineProps<{
-  isDisabled?: boolean,
-  icon?: object | undefined,
-  mode?: "filled" | "outlined" | "standard",
-  type?: "submit" | "button" | "reset" | undefined,
-  size?: "dense" | "compact" | "comfortable" | "spacious",
-  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | "surface",
-}>(), {
-  type: 'button',
-  mode: 'filled',
+const props = withDefaults(defineProps<IconButtonConfig>(), {
+  type: ButtonTypeAttribute.BUTTON,
+  mode: IconButtonAppearance.FILLED,
   icon: undefined,
   isDisabled: false,
-  variant: 'primary',
-  size: 'comfortable',
+  variant: AllVariants.PRIMARY,
+  size: Size.COMFORTABLE,
 });
 
 const iconButtonStyle = reactive({

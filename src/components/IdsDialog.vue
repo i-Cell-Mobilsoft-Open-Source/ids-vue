@@ -3,13 +3,14 @@
 import { ref, reactive, withDefaults, onMounted, onBeforeUnmount } from 'vue';
 import IdsIconButton from './IdsIconButton.vue';
 import { XMarkIcon } from "@heroicons/vue/24/solid";
+import { DialogConfig } from '@models/interfaces';
+import { Size } from '@models/size.type';
 
-const props = withDefaults(defineProps<{
-  backDrop?: boolean,
-  size?: "dense" | "compact" | "comfortable" | "spacious",
-}>(), {
+defineEmits(['close']);
+
+const props = withDefaults(defineProps<DialogConfig>(), {
   backDrop: false,
-  size: "comfortable",
+  size: Size.COMFORTABLE,
 });
 
 const dialog = ref<HTMLDialogElement | null>();
@@ -47,15 +48,16 @@ onBeforeUnmount(() => {
   dialog.value?.classList.add('closed');
   dialog.value?.addEventListener('animationend', animationEndHandler);
 });
-
-defineEmits(['close']);
 </script>
 
 <template>
   <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
-      <header class="flex justify-between w-full">
-        <div class="flex grow flex-col items-start gap-2">
+      <header class="flex justify-between items-center w-full">
+        <div v-if="$slots.customHeader" class="flex grow flex-col items-start gap-2">
+          <slot name="customHeader" />
+        </div>
+        <div v-else class="flex grow flex-col items-start gap-2">
           <p
             v-if="$slots.title"
             class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
@@ -77,12 +79,8 @@ defineEmits(['close']);
           <slot name="content" />
         </div>
       </section>
-
-      <footer class="flex flex-row items-center justify-between w-full">
-        <div v-if="$slots.label">
-          <slot name="label" />
-        </div>
-        <div v-if="$slots.action" class="flex gap-2">
+      <footer class="flex flex-row items-center w-full">
+        <div v-if="$slots.action" class="w-full">
           <slot name="action" />
         </div>
       </footer>

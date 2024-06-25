@@ -3,14 +3,14 @@
     <h2>ActionItemButtons</h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.appearance}-${option.size}-button`"
       :key="index"
       :size="option.size"
       :leading-icon="AdjustmentsVerticalIcon"
       :trailing-icon="ChevronDownIcon"
-      :mode="option.mode"
+      :appearance="option.appearance"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.appearance + " " + option.size }} button
     </IdsActionItem>
 
     <!-- Active Buttons -->
@@ -19,15 +19,15 @@
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button`"
+      :id="`${option.appearance}-${option.size}-button`"
       :key="index"
       :size="option.size"
       :leading-icon="AdjustmentsVerticalIcon"
       :trailing-icon="ChevronDownIcon"
-      :mode="option.mode"
+      :appearance="option.appearance"
       :is-active="true"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.appearance + " " + option.size }} button
     </IdsActionItem>
 
     <!-- Disabled Buttons -->
@@ -36,15 +36,15 @@
     </h2>
     <IdsActionItem
       v-for="(option, index) in allOptions"
-      :id="`${option.mode}-${option.size}-button-disabled`"
+      :id="`${option.appearance}-${option.size}-button-disabled`"
       :key="index"
       :is-disabled="true"
       :size="option.size"
-      :mode="option.mode"
+      :appearance="option.appearance"
       :leading-icon="AdjustmentsVerticalIcon"
       :trailing-icon="ChevronDownIcon"
     >
-      {{ option.mode + " " + option.size }} button
+      {{ option.appearance + " " + option.size }} button
     </IdsActionItem>
   </div>
 </template>
@@ -54,11 +54,11 @@ import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { AdjustmentsVerticalIcon } from "@heroicons/vue/24/solid";
 import IdsActionItem from "../components/IdsActionItem.vue";
 type ButtonOptions = {
-  mode?: "filled" | "text";
+  appearance?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";
 };
 
-const allModes: Array<ButtonOptions["mode"]> = ["filled", "text"];
+const allAppearance: Array<ButtonOptions["appearance"]> = ["filled", "text"];
 const allSizes: Array<ButtonOptions["size"]> = [
   "compact",
   "comfortable",
@@ -67,9 +67,9 @@ const allSizes: Array<ButtonOptions["size"]> = [
 
 const allOptions: ButtonOptions[] = [];
 
-for (const mode of allModes) {
+for (const appearance of allAppearance) {
   for (const size of allSizes) {
-    const options: ButtonOptions = { mode, size };
+    const options: ButtonOptions = { appearance, size };
     allOptions.push(options);
   }
 }
