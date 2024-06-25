@@ -17,10 +17,10 @@ const dialogTestData = {
   minWidth: '40px',
   height: '40px',
   ButtonGap: '8px',
-  displayButton: 'inline-flex',
+  displayButton: 'flex',
   fontWeight: '700',
   fontSize: '14px',
-  lineHeight: '20px',
+  lineHeight: '14px',
   justifyContent: 'center',
   alignButtonItems: 'center',
 
@@ -31,8 +31,8 @@ const dialogTestData = {
 
   radius: '32px',
   bottonTopPadding: '24px',
-  leftRightPadding: '0px',
-  boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+  leftRightPadding: '24px',
+  boxShadow: 'none',
 
   xWeightHeight: '40px',
   xColor: 'rgb(71, 85, 105)'

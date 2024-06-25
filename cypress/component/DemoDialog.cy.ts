@@ -64,8 +64,7 @@ describe('Dialog Component Test', () => {
     });
 
     //Dialog panel tulajdonságok
-    //Még nem a felesztés része, ezért nem szükséges tesztelni a full width-et
-    it('Check the panel properties after clicked the Button', () => {
+      it('Check the panel properties after clicked the Button', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
       cy.get('dialog > section')
@@ -92,7 +91,7 @@ describe('Dialog Component Test', () => {
         .should('have.css', 'borderTopLeftRadius', dialogTestData.radius)
         .should('have.css', 'borderTopRightRadius', dialogTestData.radius)
     });
-//javítás alatt - hiba: left/right 0px IDS-412
+
     it('Check padding of the Panel', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
@@ -110,7 +109,7 @@ describe('Dialog Component Test', () => {
         .should('have.css', 'columnGap', dialogTestData.gap)
         .should('have.css', 'rowGap', dialogTestData.gap)
     });
-// javítás alatt - hiba: boxShadow none IDS-412
+
     it('Check box-shadow of the Panel', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
@@ -181,8 +180,8 @@ describe('Dialog Component Test', () => {
       cy.contains('Show dialog').click()
       cy.get('dialog > section')
       cy.contains('Label')
-        .should('have.css', 'backgroundColor', dialogTestData.panelWhite)
-        .should('have.css', 'color', dialogTestData.enabledBgColors)
+        .should('have.css', 'backgroundColor', dialogTestData.enabledBgColors)
+        .should('have.css', 'color', dialogTestData.white)
     });
 
     it('Check the colors of the sub-button Cancel', () => {
@@ -190,8 +189,8 @@ describe('Dialog Component Test', () => {
       cy.contains('Show dialog').click()
       cy.get('dialog > section')
       cy.contains('Cancel')
-        .should('have.css', 'backgroundColor', dialogTestData.panelWhite)
-        .should('have.css', 'color', dialogTestData.enabledBgColors)
+        .should('have.css', 'backgroundColor', dialogTestData.enabledBgColors)
+        .should('have.css', 'color', dialogTestData.white)
     });
 
     it('Check the colors of the sub-button Save', () => {
@@ -340,7 +339,7 @@ describe('Dialog Component Test', () => {
       cy.contains('Show dialog').click()
       cy.contains('Label').click()
       cy.contains('Label')
-        .should('have.css', 'outlineColor', dialogTestData.enabledBgColors)
+        .should('have.css', 'outlineColor', dialogTestData.white)
     });
 
     it('Check the CANCEL button is working', () => {

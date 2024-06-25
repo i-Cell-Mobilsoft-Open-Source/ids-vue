@@ -39,9 +39,18 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: { 
+        additionalData: `@import "@i-cell/ids-tokens/css/tokens.css";` 
+     },
+    },
+  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, './src'),
+      '@models': path.resolve(__dirname, './src/models'),
+      '@components': path.resolve(__dirname, './src/components')
     }
   },
   server: {

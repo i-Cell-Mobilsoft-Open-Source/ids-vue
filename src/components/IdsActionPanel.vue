@@ -36,7 +36,7 @@ const actionPanelStyle = reactive({
 <style scoped lang="scss">
 @mixin commonMixin {
   display: flex;
-  width: 356px;
+  // width: 220px;
   flex-direction: column;
   align-items: flex-start;
   gap: v-bind('actionPanelStyle.gap');

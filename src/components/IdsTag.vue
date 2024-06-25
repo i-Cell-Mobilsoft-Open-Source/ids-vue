@@ -1,71 +1,88 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { TagAppearance } from '@models/appearances';
+import { TagConfig } from '@models/interfaces';
+import { Size } from '@models/size.type';
+import { AllVariants } from '@models/variants';
+import { computed, reactive } from 'vue';
 
-const props = withDefaults(defineProps<{
-  isDisabled?: boolean,
-  mode?: "filled" | "outlined",
-  leadingIcon?: object | undefined,
-  trailingIcon?: object | undefined,
-  size?: "compact" | "comfortable",
-  variant?: "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark",
-}>(), {
-  mode: 'filled',
+const props = withDefaults(defineProps<TagConfig>(), {
+  appearance: TagAppearance.FILLED,
   isDisabled: false,
-  size: 'comfortable',
-  variant: 'primary',
+  size: Size.COMFORTABLE,
+  variant: AllVariants.PRIMARY,
   leadingIcon: undefined,
   trailingIcon: undefined,
+  interactive: false,
+  link: undefined,
 });
+
+const hrefLink = computed(() => (props.interactive ? props.link : undefined));
+const componentType = computed(() => (props.interactive  ? 'a' : 'div'));
 
 const tagStyle = reactive({
   //enabled
   gap: `var(--ids-comp-size-tag-size-gap-${props.size})`,
   height: `var(--ids-comp-size-tag-size-height-${props.size})`,
   borderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
-  color: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-enabled)`,
-  background: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-enabled)`,
+  color: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-enabled)`,
+  background: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-enabled)`,
   padding: `var(--ids-comp-size-tag-size-padding-y-${props.size}) var(--ids-comp-size-tag-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-enabled)`,
+  border: `var(--ids-comp-size-tag-size-border-width-${props.size}) solid 
+  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-enabled)`,
 
   //hovered
-  hoverBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-hovered)`,
-  hoverColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-hovered)`,
+  hoverBackground: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-hovered)`,
+  hoverColor: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-size-tag-size-border-width-${props.size}) solid 
+  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusBorderRadius: `var(--ids-comp-size-tag-size-border-radius-${props.size})`,
-  focusBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-focused)`,
-  focusColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-focused)`,
-  focusBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-focused)`,
+  focusBackground: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-focused)`,
+  focusColor: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-focused)`,
+  focusBorder: `var(--ids-comp-size-tag-size-border-width-${props.size}) solid 
+  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-focused)`,
 
   //active
-  activeBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-pressed)`,
-  activeColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-pressed)`,
+  activeBackground: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-pressed)`,
+  activeColor: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-size-tag-size-border-width-${props.size}) solid 
+  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-pressed)`,
 
   //disabled
-  disabledColor: `var(--ids-comp-tag-${props.mode}-color-fg-label-${props.variant}-disabled)`,
-  disabledBackground: `var(--ids-comp-tag-${props.mode}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-size-tag-size-border-${props.size}) solid var(--ids-comp-tag-${props.mode}-color-border-${props.variant}-disabled)`,
+  disabledColor: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-disabled)`,
+  disabledBackground: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-disabled)`,
+  disabledBorder: `var(--ids-comp-size-tag-size-border-width-${props.size}) solid 
+  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
   iconWidth: `var(--ids-comp-size-tag-size-icon-${props.size})`,
   iconHeight: `var(--ids-comp-size-tag-size-icon-${props.size})`,
+
+  //font
+  fontFamily: `var(--ids-comp-size-tag-label-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-size-tag-label-typography-font-weight-${props.size})`,
+  fontSize: `var(--ids-comp-size-tag-label-typography-font-size-${props.size})`,
+  lineHeight: `var(--ids-comp-size-tag-label-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-size-tag-label-typography-letter-spacing-${props.size})`,
 });
 </script>
 
 <template>
-  <button
-    type="button" :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
+  <component
+    :is="componentType" :href="hrefLink" 
+    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
     :aria-disabled="isDisabled ? 'true' : undefined"
   >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
     <component :is="props.trailingIcon" class="icon-size" />
-  </button>
+  </component> 
 </template>
 
 <style scoped lang="scss">
+$sizes: compact, comfortable, spacious, dense;
+
 //icon sizes
 .icon-size {
   gap: 16px;
@@ -75,41 +92,40 @@ const tagStyle = reactive({
   height: v-bind('tagStyle.iconHeight');
 }
 
+@mixin tagRules {
+  color: v-bind('tagStyle.color');
+  border: v-bind('tagStyle.border');
+  background: v-bind('tagStyle.background');
+  border-radius: v-bind('tagStyle.borderRadius');
+}
+
 //common
 @mixin common {
   flex-shrink: 0;
-  font-weight: 500;
+  font-weight: v-bind("tagStyle.fontWeight");
   width: fit-content;
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  font-family: v-bind("tagStyle.fontFamily");
+  font-size: v-bind("tagStyle.fontSize");
+  line-height: v-bind("tagStyle.lineHeight");
+  letter-spacing: v-bind("tagStyle.letterSpacing");
   gap: v-bind("tagStyle.gap");
   height: v-bind("tagStyle.height");
   padding: v-bind("tagStyle.padding");
 }
 
 //sizes
-.compact {
-  @include common;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.5px;
-}
-
-.comfortable {
-  @include common;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+@each $size in $sizes  {
+  .#{$size} {
+    @include common;
+  }
 }
 
 //variants
-.ids-tag {
-  color: v-bind('tagStyle.color');
-  border: v-bind('tagStyle.border');
-  background: v-bind('tagStyle.background');
-  border-radius: v-bind('tagStyle.borderRadius');
-
+button.ids-tag {
+  @include tagRules;
   &:hover {
     color: v-bind('tagStyle.hoverColor');
     border: v-bind('tagStyle.hoverBorder');
@@ -142,5 +158,9 @@ const tagStyle = reactive({
   &.light:focus {
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-light-focused);
   }
+}
+
+.ids-tag {
+  @include tagRules;
 }
 </style>

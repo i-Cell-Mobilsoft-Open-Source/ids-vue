@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, defineProps, withDefaults } from "vue";
+import { ref, reactive, computed, onMounted, defineProps, withDefaults, onBeforeUnmount } from "vue";
 
+const emit = defineEmits(['update:show']);
+
+const panelRef = ref<HTMLElement | undefined>(undefined);
 const slotRef = ref<HTMLElement | undefined>(undefined);
 const horizontalPanelPosition = ref<string>('0px')
-const verticalPanelPostion = ref<string>('0px')
+const verticalPanelPosition = ref<string>('0px')
 
 const props = withDefaults(
   defineProps<{
@@ -48,28 +51,54 @@ const panelPositions = computed(() => {
   return classes[props.position || "topLeft"];
 });
 
-onMounted(() => {
-  if (slotRef?.value instanceof HTMLElement) {
-    horizontalPanelPosition.value = slotRef?.value?.offsetWidth + 'px';
-    verticalPanelPostion.value = slotRef?.value?.offsetHeight + 'px';
+const openMenu = (event: MouseEvent) => {
+  event.stopPropagation();
+  emit('update:show', true);
+  document.addEventListener('click', closeMenu);
+};
+
+const closeMenu = (event?: MouseEvent) => {
+  if (event && panelRef.value?.contains(event.target as Node)) {
+    return;
   }
+  emit('update:show', false);
+  document.removeEventListener('click', closeMenu);
+
+};
+
+const handleClickInside = () => {
+  emit('update:show', false); 
+  document.removeEventListener('click', closeMenu);
+};
+
+onMounted(() => {
+  if (slotRef.value instanceof HTMLElement) {
+    horizontalPanelPosition.value = slotRef.value.offsetWidth + 'px';
+    verticalPanelPosition.value = slotRef.value.offsetHeight + 'px';
+  }
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', closeMenu);
 });
 
 </script>
 
 <template>
-  <div class="relative" @click="!show">
+  <div class="relative" @click="openMenu">
     <div ref="slotRef">
       <slot name="action" />
     </div>
 
     <transition name="panel-fade">
-      <div v-if="props.show" :class="[panelMode, panelPositions, '[&>*]:w-full z-20']">
-        <template v-if="firstPanel">
-          <slot name="panel" />
+      <div v-if="show" ref="panelRef" :class="[props.panelMode, panelPositions, '[&>*]:w-full z-20']">
+        <template v-if="props.firstPanel">
+          <div class="[&>*]:w-full" @click.stop="handleClickInside">
+            <slot name="panel" />
+          </div>
         </template>
         <template v-else>
-          <div>
+          <div class="[&>*]:w-full" @click.stop="handleClickInside">
             <slot name="panel" />
           </div>
         </template>
@@ -80,7 +109,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @mixin commonMixin {
-  width: 365px;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -113,7 +142,11 @@ onMounted(() => {
 .elevated {
   @include commonMixin;
   box-shadow:
-    var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl) var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
+    var(--ids-smc-reference-container-effects-shadow-horizontal-none) 
+    var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
+    var(--ids-smc-reference-container-effects-shadow-blur-xxxl) 
+    var(--ids-smc-reference-container-effects-shadow-spread-xxs) 
+    var(--ids-smc-reference-container-effects-shadow-color-dark-default);
 }
 
 .panel-fade-enter-active,
@@ -158,7 +191,7 @@ onMounted(() => {
 }
 
 .bottom-vertical {
-  bottom: v-bind('verticalPanelPostion');
+  bottom: v-bind('verticalPanelPosition');
 }
 
 .left-horizontal {
