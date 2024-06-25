@@ -1,4 +1,3 @@
-/// <reference types="cypress"/>
 import '../support/commands';
 import AccordionMenu from '../../src/demo/DemoAccordion.vue';
 import accordionTestData from '../data/accordionTestData';
@@ -139,5 +138,3 @@ describe('Accordion Component Test', () => {
 
   });
 });
-
-

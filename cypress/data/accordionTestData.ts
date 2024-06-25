@@ -7,9 +7,7 @@ const accordionTestData = {
     dividingLine: '0px solid rgb(229, 231, 235)',
     textColor: 'rgb(229, 231, 235)',
     black: 'rgba(0, 0, 0, 0)',
-    
     //sizes
-       
     fontWeight: '500',
     fontSize: '16px',
     lineHeight: '24px',
@@ -23,13 +21,10 @@ const accordionTestData = {
     accordionGap: '8px',
     buttonTopBottomPadding: '8px',
     buttonLeftRightPadding: '8px',
-    
-
     //text sizes
     radius: '0px',
     padding: '0px',
     gap: '0px',
-
 }
 
 export default accordionTestData;

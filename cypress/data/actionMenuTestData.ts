@@ -14,9 +14,7 @@ const actionMenuTestData = {
   buttonRadius: '1000px',
   buttonTopBottomPadding: '10px',
   buttonLeftRightPadding: '20px',
-
   ButtonGap: '8px',
-
   fontWeight: '700',
   alignButtonItems: 'center',
   displayButton: 'inline-flex',
