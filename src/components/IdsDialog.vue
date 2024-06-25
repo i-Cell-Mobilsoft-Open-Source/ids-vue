@@ -31,8 +31,8 @@ const dialogStyle = reactive({
   border: `var(--ids-comp-size-dialog-container-size-border-width-${props.size}) 
   solid var(--ids-comp-dialog-container-color-border-surface-default)`,
   borderRadius: `var(--ids-comp-size-dialog-container-size-border-radius-${props.size})`,
-  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-y-${props.size})`,
-  //TODO: there is a ids-comp-size-dialog-container-size-padding-x variable which contains a falsy value aka 0;
+  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-x-${props.size})`,
+ 
   boxShadow: `var(--ids-smc-reference-container-effects-shadow-horizontal-none)
    var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
    var(--ids-smc-reference-container-effects-shadow-blur-xxxl) 
@@ -54,7 +54,10 @@ onBeforeUnmount(() => {
   <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
       <header class="flex justify-between items-center w-full">
-        <div class="flex grow flex-col items-start gap-2">
+        <div v-if="$slots.customHeader" class="flex grow flex-col items-start gap-2">
+          <slot name="customHeader" />
+        </div>
+        <div v-else class="flex grow flex-col items-start gap-2">
           <p
             v-if="$slots.title"
             class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
@@ -76,12 +79,8 @@ onBeforeUnmount(() => {
           <slot name="content" />
         </div>
       </section>
-      <!-- TODO: fix me later pls  $slots.label ? 'justify-between' : 'justify-end' -->
-      <footer class="flex flex-row items-center w-full justify-between">
-        <div v-if="$slots.label">
-          <slot name="label" />
-        </div>
-        <div v-if="$slots.action" class="flex gap-2">
+      <footer class="flex flex-row items-center w-full">
+        <div v-if="$slots.action" class="w-full">
           <slot name="action" />
         </div>
       </footer>

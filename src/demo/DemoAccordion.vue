@@ -1,7 +1,7 @@
 <template>
   <div class="demo w-full">
     <h2>Accordion</h2>
-    <IdsAccordion is-open="true">
+    <IdsAccordion :is-expanded="true">
       <template #accordion-title>
         Accordion item 1
       </template>

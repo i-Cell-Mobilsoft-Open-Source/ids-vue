@@ -3,30 +3,30 @@
     <h2>Tags</h2>
     <IdsTag
       v-for="(option, index) in allOptions" 
-      :id="`${option.mode}-${option.variant}-${option.size}-tag`"
+      :id="`${option.apperance}-${option.variant}-${option.size}-tag`"
       :key="index" 
       :size="option.size" 
-      :mode="option.mode" 
+      :apperance="option.apperance" 
       :leading-icon="BoltIcon"
       :variant="option.variant"
-      :trailing-icon="BeakerIcon"
+      :trailing-icon="BeakerIcon" 
     >
-      {{ option.mode + " " + option.variant + " " + option.size }} Tag
+      {{ option.apperance + " " + option.variant + " " + option.size }} Tag
     </IdsTag>
-
+    <!-- if tag is interactive you should add -> :link="`#`" -->
     <h2>Disabled Tags</h2>
     <IdsTag
       v-for="(option, index) in disabledOptions" 
-      :id="`${option.mode}-${option.variant}-${option.size}-disabled-tag`"
+      :id="`${option.apperance}-${option.variant}-${option.size}-disabled-tag`"
       :key="index" 
       :size="option.size" 
-      :mode="option.mode" 
+      :apperance="option.apperance" 
       :is-disabled="true"
       :leading-icon="BoltIcon"
       :variant="option.variant"
       :trailing-icon="BeakerIcon"
     >
-      {{ option.mode + " " + option.variant + " " + option.size }} Tag
+      {{ option.apperance + " " + option.variant + " " + option.size }} Tag
     </IdsTag>
   </div>
 </template>
@@ -36,7 +36,7 @@ import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
 import IdsTag from "../components/IdsTag.vue";
 
 type TagOptions = {
-  mode?: "filled" | "outlined";
+  apperance?: "filled" | "outlined";
   size?: "compact" | "comfortable";
   variant?:
   | "primary"
@@ -52,16 +52,16 @@ type TagOptions = {
 type ModifiedTagOptions = Omit<TagOptions, 'variant'> & { variant: AllowedVariants };
 type AllowedVariants = "primary" | "secondary" | "brand" | "error" | "success" | "warning" | "light" | "dark" | undefined;
 
-const allModes: Array<TagOptions["mode"]> = ["filled", "outlined"];
+const allAppearance: Array<TagOptions["apperance"]> = ["filled", "outlined"];
 const allSizes: Array<TagOptions["size"]> = ["compact", "comfortable"];
 const allVariants: Array<TagOptions["variant"]> = ["primary", "secondary", "brand", "error", "success", "warning", "light", "dark"];
 
 const allOptions: TagOptions[] = [];
 
-for (const mode of allModes) {
+for (const apperance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of allVariants) {
-      const options: TagOptions = { mode, size, variant };
+      const options: TagOptions = { apperance, size, variant };
       allOptions.push(options);
     }
   }
@@ -70,10 +70,10 @@ for (const mode of allModes) {
 const colorsToKeep: AllowedVariants[] = allVariants.filter((color) => !["error", "success", "warning"].includes(color as string));
 const disabledOptions: ModifiedTagOptions[] = [];
 
-for (const mode of allModes) {
+for (const apperance of allAppearance) {
   for (const size of allSizes) {
     for (const variant of colorsToKeep) {
-      const options: ModifiedTagOptions = { mode, size, variant };
+      const options: ModifiedTagOptions = { apperance, size, variant };
       disabledOptions.push(options);
     }
   }

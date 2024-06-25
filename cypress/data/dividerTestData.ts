@@ -53,7 +53,6 @@ const dividerTestData = {
   flexdirection: 'column',
   allRadius: '0px',
   allPadding: '0px'
-
 }
 
 export default dividerTestData;
