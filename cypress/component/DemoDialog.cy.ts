@@ -1,4 +1,3 @@
-/// <reference types="cypress"/>
 import '../support/commands';
 import DialogMenu from '../../src/demo/DemoDialog.vue';
 import dialogTestData from '../data/dialogTestData';
@@ -12,7 +11,7 @@ describe('Dialog Component Test', () => {
     it('Unnecessary tests the Action Menu subtitle component', () => {
       cy.mount(DialogMenu);
       cy.contains('Action Menu')
-      .should('have.css', 'color', 'rgb(33, 53, 71)')
+        .should('have.css', 'color', 'rgb(33, 53, 71)')
     });
 
     //Button tulajdonságok
@@ -64,11 +63,11 @@ describe('Dialog Component Test', () => {
     });
 
     //Dialog panel tulajdonságok
-      it('Check the panel properties after clicked the Button', () => {
+    it('Check the panel properties after clicked the Button', () => {
       cy.mount(DialogMenu)
       cy.contains('Show dialog').click()
       cy.get('dialog > section')
-        // .should('have.css', 'width', dialogTestData.width) // max-width? a 800 px nem jó
+        .should('have.css', 'width', dialogTestData.width)
         .should('have.css', 'gap', dialogTestData.gap)
         .should('have.css', 'display', dialogTestData.display)
         .should('have.css', 'flex-direction', dialogTestData.flexDirection)
