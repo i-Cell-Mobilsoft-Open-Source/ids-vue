@@ -2,8 +2,14 @@
 import { CheckboxConfig } from '@models/interfaces';
 import { Size } from '@models/size.type';
 import { ErrorVariant } from '@models/variants';
-import { computed, reactive } from 'vue';
-		const componentClass = 'ids-checkbox';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
+import IdsCheckMark from '@components/checkbox/IdsCheckMark.vue'
+import IdsIndeterminateIcon from '@components/checkbox/IdsIndeterminateIcon.vue';
+
+	const componentClass = 'ids-checkbox';
+	const checkboxRef = ref<HTMLInputElement | null>(null)
+
+	const model = defineModel<unknown>();
 
     const props = withDefaults(
   		defineProps<CheckboxConfig>(),
@@ -14,15 +20,23 @@ import { computed, reactive } from 'vue';
 			indeterminate: false,
 			invalid: false,
 			id: '',
+			value: undefined,
+			name: "addada",
+			tabindex: undefined,
+			readonly: false,
+			required: false,
   	});
 
+	const $emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur', 'update:indeterminate'])
+
 		const state = reactive({
+			indeterminate: props.indeterminate,
 			classList: [
 				componentClass,
 				addClassPrefix(props.size),
 				addClassPrefix(props.variant),
 			],
-		})
+		});
 
 		const isDisabled = computed(() => {
 			return props.disabled ? addClassPrefix('disabled') : null;
@@ -33,26 +47,67 @@ import { computed, reactive } from 'vue';
 		});
 
 		const isIndeterminate = computed(() => {
-			return props.indeterminate ? addClassPrefix('indeterminate') : null;
+			return state.indeterminate ? addClassPrefix('indeterminate') : null;
 		});
 
+		const checked = computed(() => {
+			return state.indeterminate;
+		})
+
+
+		onMounted(() => {
+			if (checkboxRef.value) {
+				checkboxRef.value.indeterminate = state.indeterminate;
+			}
+		})
+
+		watch(() => props.indeterminate, (newVal) => {
+			if (checkboxRef.value) {
+				state.indeterminate = newVal;
+			}
+		})
+
+		function onChange(event: Event): void {
+			console.log(checkboxRef.value?.indeterminate)
+
+			$emit('change', event);
+		}
+
+		function onFocus(event: Event): void {
+            $emit('focus', event);
+        };
+
+        function onBlur(event: Event): void {
+            $emit('blur', event);
+        }
 
 		function addClassPrefix(className: string | null): string | null {
-    	return className ? `${componentClass}-${className}` : null;
-  	}
+    		return className ? `${componentClass}-${className}` : null;
+  		}
 </script>
 <template>
   <div :class="[state.classList, isDisabled, isValid, isIndeterminate]">
     <div class="ids-checkbox__input-wrapper">
       <div class="ids-checkbox__touch-target" />
-      <input :id="props.id" type="checkbox" :disabled="props.disabled" :indeterminate="props.indeterminate">
+      <input
+        :id="props.id"
+        ref="checkboxRef"
+        v-model="model"
+        type="checkbox" 
+        :disabled="props.disabled" 
+        :value="value"
+        :name="name"
+        :checked="checked"
+        :tabindex="tabindex"
+        :readonly="readonly"
+        :required="required"   
+        @focus="onFocus"
+        @blur="onBlur"
+        @change="onChange"
+      >
       <div class="ids-checkbox__icon">	
-        <!-- <svg class="ids-checkbox__checkmark" viewBox="0 0 20 20" focusable="false" fill="none" aria-hidden="true">
-          <path d="M3 10.5L9 16.5L18 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg> -->
-        <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
-          <path d="M4 10H15.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <IdsCheckMark v-if="checked" />
+        <IdsIndeterminateIcon />
       </div>
     </div>
     <div class="ids-checkbox__label-wrapper">
@@ -60,7 +115,7 @@ import { computed, reactive } from 'vue';
         <label :for="props.id" class="ids-checkbox__label">Az Általános Szerződési Feltételeket a mai nappal tudomásul vettem és elfogadom</label>
         <span class="ids-checkbox__asterisk">*</span>
       </div>
-      <span class="ids-checkbox-hint">Checkbox: {{ props.variant }} - {{ props.size }}</span>
+      <span class="ids-checkbox-hint">Checkbox: {{ props.variant }} - {{ props.size }} - {{ props.value }}</span>
     </div>
   </div>
 </template>

@@ -98,4 +98,10 @@ export interface CheckboxConfig {
     indeterminate?: boolean,
     invalid?: boolean
     id?: string,
+    value?: string | boolean | null,
+    name?: string,
+    checked?: boolean,
+    tabindex?: number,
+    readonly?: boolean,
+    required?: boolean,
 }

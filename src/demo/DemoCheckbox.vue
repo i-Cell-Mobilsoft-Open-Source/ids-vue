@@ -3,13 +3,18 @@
   <div class="demo">
     <h2>Checkboxes</h2>
     <h3>base</h3>
+    <button @click="asd()">
+      alalaa
+    </button>
     <IdsCheckbox
-      v-for="(option, index) in allOptions"
-      :id="'ids-checkbox-' + index" 
-      :key="index"
-      :size="option.size"
-      :variant="option.variant"
+      :id="'ids-checkbox-' + 444" 
+      :key="444"
+      v-model="asd1"
+      :size="'compact'"
+      :variant="'surface'"
+      :indeterminate="indeterminate"
     />
+    <p>ertek: {{ asd1 }}</p>
     <h3>Disabled</h3>
     <IdsCheckbox
       v-for="(option, index) in allOptions"
@@ -26,7 +31,7 @@
       :key="index"
       :size="option.size"
       :variant="option.variant"
-      :indeterminate="true"
+      :indeterminate="indeterminate"
     />
     <IdsCheckbox
       v-for="(option, index) in allOptions"
@@ -117,7 +122,12 @@
   </div>
 </template>
 <script setup lang="ts">
- import IdsCheckbox from "../components/IdsCheckbox.vue";
+ import { ref } from "vue";
+import IdsCheckbox from "../components/IdsCheckbox.vue";
+
+const indeterminate = ref(true);
+const asd1 = ref();
+
  type CheckboxOptions = {
   size?: "compact" | "comfortable" | "spacious" | "dense";
   variant?:
@@ -137,6 +147,10 @@ const allVariants: Array<CheckboxOptions["variant"]> = [
 ];
 
 const allOptions: CheckboxOptions[] = [];
+
+function asd(): void {
+  indeterminate.value = !indeterminate.value;
+}
 
  for (const size of allSizes) {
     for (const variant of allVariants) {
