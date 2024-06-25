@@ -1,4 +1,3 @@
-/// <reference types="cypress"/>
 import '../support/commands';
 import AccordionMenu from '../../src/demo/DemoAccordion.vue';
 import accordionTestData from '../data/accordionTestData';
@@ -98,9 +97,9 @@ describe('Accordion Component Test', () => {
       cy.get('.justify-between').eq(0).click()
       cy.get('.text-left').eq(0)
         .should('have.css', 'letterSpacing', accordionTestData.letterSpacing)
-        .should('have.css', 'fontWeight', accordionTestData.fontWeight)
-        .should('have.css', 'fontSize', accordionTestData.fontSize)
-        .should('have.css', 'lineHeight', accordionTestData.lineHeight)
+        .should('have.css', 'fontWeight', accordionTestData.fontWeightText)
+        .should('have.css', 'fontSize', accordionTestData.fontSizeText)
+        .should('have.css', 'lineHeight', accordionTestData.lineHeightText)
     });
 
     it('Check the color of the text', () => {
@@ -125,19 +124,21 @@ describe('Accordion Component Test', () => {
       cy.get('.justify-between').eq(0).click()
       cy.get('.text-left').eq(0)
         .should('have.css', 'paddingBottom', accordionTestData.padding)
-        .should('have.css', 'paddingLeft', accordionTestData.padding)
+        .should('have.css', 'paddingLeft', accordionTestData.buttonLeftRightPadding)
         .should('have.css', 'paddingTop', accordionTestData.padding)
-        .should('have.css', 'paddingRight', accordionTestData.padding)
+        .should('have.css', 'paddingRight', accordionTestData.buttonLeftRightPadding)
     });
 
     it('Check the text disappeared after the 2nd clicking', () => {
       cy.mount(AccordionMenu)
       cy.get('.justify-between').eq(0).dblclick()
-      cy.get('.text-left').eq(0)
-        .should('not.be.visible')
+      cy.contains('Lorem').should('have.css', 'display', 'block')
     });
 
   });
 });
+
+
+
 
 

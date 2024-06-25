@@ -10,24 +10,28 @@ const accordionTestData = {
     
     //sizes
        
-    fontWeight: '500',
-    fontSize: '16px',
-    lineHeight: '24px',
+    fontWeight: '600',
+    fontSize: '12px',
+    lineHeight: '16px',
     letterSpacing: '0.5px',
+
+    fontWeightText: '500',
+    fontSizeText: '16px',
+    lineHeightText: '24px',
 
     display: 'flex',
     justifyContent: 'center',
     alignButtonItems: 'flex-start',
 
     accordionRadius: '0px',
-    accordionGap: '8px',
-    buttonTopBottomPadding: '8px',
-    buttonLeftRightPadding: '8px',
+    accordionGap: '2px',
+    buttonTopBottomPadding: '2px',
+    buttonLeftRightPadding: '2px',
     
 
     //text sizes
     radius: '0px',
-    padding: '0px',
+    padding: '8px',
     gap: '0px',
 
 }
