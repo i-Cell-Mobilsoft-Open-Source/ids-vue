@@ -15,7 +15,6 @@ const props = withDefaults(
 );
 
 const actionPanelStyle = reactive({
-  //enabled
   gap: `var(--ids-comp-size-action-panel-size-gap-${props.size})`,
   borderRadius: ` var(--ids-comp-size-action-panel-size-border-radius-${props.size})`,
   background: `var(--ids-comp-action-panel-${props.mode}-color-bg-light-enabled)`,
@@ -23,6 +22,7 @@ const actionPanelStyle = reactive({
     var(--ids-comp-size-action-panel-size-padding-x-${props.size})`,
   outlinedBorder: `var(--ids-comp-size-action-panel-size-border-${props.size}) 
     solid var(--ids-comp-action-panel-${props.mode}-color-border-light-enabled)`,
+  maxWidth: `var(--ids-comp-size-action-panel-size-max-width-${props.size})`,
 });
 
 </script>
@@ -36,10 +36,10 @@ const actionPanelStyle = reactive({
 <style scoped lang="scss">
 @mixin commonMixin {
   display: flex;
-  // width: 220px;
   flex-direction: column;
   align-items: flex-start;
   gap: v-bind('actionPanelStyle.gap');
+  width: v-bind('actionPanelStyle.maxWidth');
   padding: v-bind('actionPanelStyle.padding');
   background: v-bind('actionPanelStyle.background');
   border-radius: v-bind('actionPanelStyle.borderRadius');
