@@ -49,22 +49,28 @@ describe('ids IconButton Demo test', () => {
     allCombinations.forEach((item) => {
       iconButtonTestData.enabledBgColors.forEach((bgColor) => {
         iconButtonTestData.enabledColors.forEach((color) => {
+        iconButtonTestData.enabledOutlineColors.forEach((enableOutlineColor) => {
           iconButtonTestData.hoveredColors.forEach((enabledColor) => {
             const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
             if (item.mode === 'outlined' || item.mode === 'standard') {
               cy.get(buttonSelector).should('be.visible').should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.backgroundColor).to.equal(iconButtonTestData.white);
-                expect(styles.color).to.equal(color[item.variant]);
+                if((item.mode === 'outlined' || item.mode === 'standard')  && item.variant === 'error') {
+                  expect(styles.color).to.equal(enableOutlineColor.error);
+                } else {
+                  expect(styles.color).to.equal(color[item.variant]);
+                }
               });
             } else {
               cy.get(buttonSelector).should('be.visible').should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-                expect(styles.color).to.equal(enabledColor[item.variant]);
+                  expect(styles.color).to.equal(enabledColor[item.variant]);
               });
             }
           });
+        });
         });
       });
     });
@@ -74,10 +80,10 @@ describe('ids IconButton Demo test', () => {
     allCombinations.forEach((item) => {
       const buttonSelector = `#${item.mode}-${item.variant}-${item.size}-icon-button`;
       if (item.variant === 'light') {
-        cy.get(buttonSelector).click().should('have.focus').should('be.visible')
+        cy.get(buttonSelector).realClick().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', iconButtonTestData.white2);
       } else {
-        cy.get(buttonSelector).click().should('have.focus').should('be.visible')
+        cy.get(buttonSelector).realClick().should('have.focus').should('be.visible')
           .should('have.css', 'outline').and('eq', iconButtonTestData.black);
       }
     });
@@ -135,7 +141,8 @@ describe('ids IconButton Demo test', () => {
                   expect(styles.backgroundColor).to.equal(iconButtonTestData.hoveredStandardBgColors);
                   expect(styles.color).to.equal(standardColor[item.variant]);
                 });
-              } else { //filled
+              } else { 
+                //filled
                 button.realHover({ pointer: "mouse" }).should(($el) => {
                   const styles = window.getComputedStyle($el[0]);
                   expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
