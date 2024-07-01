@@ -96,7 +96,7 @@ export interface CheckboxConfig {
     variant?: ErrorVariantType,
     disabled?: boolean,
     indeterminate?: boolean,
-    invalid?: boolean
+    isValid?: boolean
     id?: string,
     value?: string | boolean | null,
     name?: string,
