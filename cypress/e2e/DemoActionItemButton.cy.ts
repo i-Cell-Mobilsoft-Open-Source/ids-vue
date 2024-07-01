@@ -98,7 +98,7 @@ describe('ids Action Item Button Demo test', () => {
     });
   });
   
-  it('Checks the line-height of ActionItem Button', () => {
+  it('Checks the line-height and letter-spacing of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allLineHeight.forEach((lineHeigt) => {
         const buttonSelector = `#${item.mode}-${item.size}-button`;
@@ -106,6 +106,7 @@ describe('ids Action Item Button Demo test', () => {
           .should(($el) => {
             const styles = window.getComputedStyle($el[0]);
             expect(styles.lineHeight).to.equal(lineHeigt[item.size]);
+            expect(styles.letterSpacing).to.equal(actionItemButtonTestData.letterSpacing);
           });
       });
     });
