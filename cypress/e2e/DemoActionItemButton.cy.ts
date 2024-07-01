@@ -98,7 +98,7 @@ describe('ids Action Item Button Demo test', () => {
     });
   });
   
-  it('Checks the line-heightand letter-spacing of ActionItem Button', () => {
+  it('Checks the line-height and letter-spacing of ActionItem Button', () => {
     allCombinations.forEach((item) => {
       actionItemButtonTestData.allLineHeight.forEach((lineHeigt) => {
         const buttonSelector = `#${item.mode}-${item.size}-button`;
