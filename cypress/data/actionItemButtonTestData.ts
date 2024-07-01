@@ -35,7 +35,7 @@ const actionItemButtonTestData = {
   }],
   allFontSize: [{
     compact: "12px",
-    comfortable: "14px",
+    comfortable: "16px",
     spacious: "18px",
   }],
   allLineHeight: [{
@@ -71,9 +71,9 @@ const actionItemButtonTestData = {
   common: [{
     display: 'flex',
     flexShrink: '0',
-    fontWeight: '700',
+    fontWeight: '400',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   }],
   iconDisplay: 'flex',
   iconAlignItems: 'center',
@@ -85,6 +85,8 @@ const actionItemButtonTestData = {
   hoveredTextBgColors: "rgb(241, 245, 249)",
   hoveredColors: "rgb(0, 60, 255)",
   hoveredFilledBgColors: "rgb(226, 232, 240)",
+
+  letterSpacing: '0.5px',
 
   black: 'rgb(0, 0, 0) solid 3px',
   white: 'rgba(255, 255, 255, 0)',

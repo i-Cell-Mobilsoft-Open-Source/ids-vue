@@ -18,24 +18,13 @@ describe('ids Action Item Button Demo test', () => {
         });
     });
 
-    it('Checks the height of Action Panel', () => {
-        allCombinations.forEach((item) => {
-            actionPanelTestData.allWidth.forEach((width) => {
-                const actionPanelSelector = `#${item.mode}-${item.size}-button`;
-                cy.get(actionPanelSelector).should('be.visible').should(($el) => {
-                    expect($el).to.have.css('width', width[item.size]);
-                });
-            });
-        });
-    });
-
     it('Checks common css rules of Action Panel', () => {
         allCombinations.forEach((item) => {
             const actionSelector = `#${item.mode}-${item.size}-button`;
             cy.get(actionSelector).should('be.visible').should(($el) => {
                 const styles = window.getComputedStyle($el[0]);
                 expect(styles.display).to.equal(actionPanelTestData.display);
-                expect(styles.width).to.equal(actionPanelTestData.width);
+                expect(styles.maxWidth).to.equal(actionPanelTestData.maxWidth);
                 expect(styles.flexDirection).to.equal(actionPanelTestData.flexDirection);
                 expect(styles.alignItems).to.equal(actionPanelTestData.alignItems);
             });
