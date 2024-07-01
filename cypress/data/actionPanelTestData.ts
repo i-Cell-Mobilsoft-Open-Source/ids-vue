@@ -5,7 +5,7 @@ const actionPanelTestData = {
 
   //common
   display: 'flex',
-  width: '356px',
+  maxWidth: '320px',
   flexDirection: 'column',
   alignItems: 'flex-start',
   //colors
