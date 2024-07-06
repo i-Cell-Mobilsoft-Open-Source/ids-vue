@@ -7,7 +7,7 @@ import {
         } from "@models/appearances";
 import { ButtonTypeAttributeType } from "@models/attributes";
 import { SizeType } from "@models/size.type";
-import { AllVariantsType, ErrorVariantType, SurfaceVariantType } from "@models/variants";
+import { AllVariantsType, SurfaceVariantType } from "@models/variants";
 import { OrientationType } from "./orientation.type";
 import { Component } from "vue";
 

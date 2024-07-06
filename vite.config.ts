@@ -50,8 +50,9 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@core': path.resolve(__dirname, './src/core'),
       '@models': path.resolve(__dirname, './src/models'),
-      '@components': path.resolve(__dirname, './src/components')
     }
   },
   server: {

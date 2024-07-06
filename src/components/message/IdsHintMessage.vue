@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { Size, SizeType } from '@models/size.type';
-import { AllVariants, AllVariantsType } from '@models/variants';
+import { MessageVariant, MessageVariantType } from '@components/message/models/IdsMessageVariant.type.ts';
+import { IdsMessageProps } from '@components/message/models/IdsMessageProps.interface.ts';
 import { ComponentInternalInstance, computed, getCurrentInstance, reactive } from 'vue';
+import { addClassPrefix } from '@core/utils/AddClassPrefix';
+
   const componentClass = 'ids-message';
   const componentTypeClass = 'ids-hint-message';
   const parent: ComponentInternalInstance | null | undefined = getCurrentInstance()?.parent;
 
   const props = withDefaults(
-    defineProps<{size?: string, variant?: string, disabled?: boolean}>(),{
+    defineProps<IdsMessageProps>(),{
         size: undefined,
         variant: undefined,
         disabled: undefined
@@ -16,7 +19,7 @@ import { ComponentInternalInstance, computed, getCurrentInstance, reactive } fro
 
   const setDisabledClass = computed<string | null>(() => {
     const isDisabled = props.disabled !== undefined ? props.disabled : parent && parent.props['disabled'] ? parent.props['disabled'] as boolean : false;
-    return isDisabled ? addClassPrefix('disabled') : null;
+    return isDisabled ? addClassPrefix(componentClass, 'disabled') : null;
   });
 
   const state = reactive({
@@ -24,33 +27,32 @@ import { ComponentInternalInstance, computed, getCurrentInstance, reactive } fro
       componentClass,
       componentTypeClass,
       addClassPrefix(
+        componentClass,
         props.size !== undefined ? 
         props.size : parent && parent.props['size'] ? 
         parent.props['size'] as SizeType : Size.COMFORTABLE
       ),
       addClassPrefix(
+        componentClass,
         props.variant !== undefined ? 
         props.variant : parent && parent.props['variant'] ? 
-        parent.props['variant'] as unknown as AllVariantsType : AllVariants.SURFACE
+        parent.props['variant'] as unknown as MessageVariantType : MessageVariant.SURFACE
       ),
     ],
-  })
-
-
-  function addClassPrefix(className: string | null): string | null {
-    return className ? `${componentClass}-${className}` : null;
-  }
+  });
 
 </script>
 <template>
   <div :class="[state.classList, setDisabledClass]">
-    <div class="ids-message__icon">
-      <slot name="idsMessagePrefix" />
+    <div class="ids-message-content">
+      <div v-if="$slots.idsMessagePrefix" class="ids-message__icon">
+        <slot name="idsMessagePrefix" />
+      </div>
+      <div class="ids-message__text">
+        <slot />
+      </div>
     </div>
-    <div class="ids-message__text">
-      <slot />
-    </div>
-    <div class="ids-message__counter">
+    <div v-if="$slots.idsMessageSuffix" class="ids-message__counter">
       <slot name="idsMessageSuffix" />
     </div>
   </div>
@@ -63,6 +65,17 @@ $variants: light, dark, surface;
   display: flex;
   align-items: flex-start;
   font-style: normal;
+  align-items: center;
+
+  .ids-message-content {
+    display: flex;
+    flex: 1 0 0;
+
+    .ids-message__icon {
+      display: flex;
+      flex-shrink: 0;
+    }
+  }
 
   @each $size in $sizes {
     &.ids-message-#{$size} {
@@ -73,6 +86,11 @@ $variants: light, dark, surface;
       font-weight: var(--ids-comp-size-forms-message-typography-font-weight-#{$size});
       letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
+
+      .ids-message__icon {
+        width: var(--text-field-size-width, 12px);
+        height: var(--text-field-size-height, 12px);
+      }
     }
   }
 

@@ -1,68 +1,57 @@
 <script setup lang="ts">
-import { CheckboxConfig } from '@models/interfaces';
 import { Size } from '@models/size.type';
-import { ErrorVariant } from '@models/variants';
-import { computed, onMounted, provide, reactive, ref, watch } from 'vue';
+import { computed, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue';
 import IdsCheckMark from '@assets/IdsCheckMark.vue'
 import IdsIndeterminateIcon from '@assets/IdsIndeterminateIcon.vue';
+import { IdsCheckboxProps } from '@components/checkbox/models/IdsCheckboxProps.interface.ts';
+import { CheckboxVariant } from '@components/checkbox/models/IdsCheckboxVariant.type.ts';
+import { IdsCheckboxState, IdsCheckboxStateType } from '@components/checkbox/models/IdsCheckboxState.type.ts';
+import { addClassPrefix } from '@core/utils/AddClassPrefix';
 
 const componentClass = 'ids-checkbox';
 
-const CheckboxState = {
-  CHECKED: "Checked",
-  UNCHECKED: "Unchecked",
-  INDETERMINATE: "Indeterminate",
-} as const;
-
-type CheckboxStateType = (typeof CheckboxState)[keyof typeof CheckboxState];
-
-
 const props = withDefaults(
-  defineProps<CheckboxConfig>(),
+  defineProps<IdsCheckboxProps>(),
   {
-    variant: ErrorVariant.SURFACE,
+    variant: CheckboxVariant.SURFACE,
     size: Size.COMPACT,
     disabled: false,
     indeterminate: false,
     isValid: undefined,
-    id: '',
+    id: undefined,
     value: null,
     name: "",
     checked: false,
-    tabindex: undefined,
+    tabindex: 0,
     readonly: false,
     required: false,
   });
 
+const instance = getCurrentInstance();
+const uid = ref(instance?.uid);
 const checkboxRef = ref<HTMLInputElement | null>(null);
 const labelRef = ref<HTMLInputElement | null>(null);
-const checkboxTypes: CheckboxStateType = CheckboxState.UNCHECKED;
-const checkboxState = ref<CheckboxStateType>(checkboxTypes);
+const checkboxTypes: IdsCheckboxStateType = IdsCheckboxState.UNCHECKED;
+const checkboxState = ref<IdsCheckboxStateType>(checkboxTypes);
 const model = defineModel<unknown, string>();
-const $emit = defineEmits(['update:modelValue', 'focus', 'blur', 'update:indeterminate'])
-provide('size', props.size);
-provide('variant', props.variant);
+const $emit = defineEmits(['update:modelValue', 'focus', 'blur', 'update:indeterminate']);
 
 const state = reactive({
   indeterminate: props.indeterminate,
   checked: props.checked,
   classList: [
     componentClass,
-    addClassPrefix(props.size),
-    addClassPrefix(props.variant),
+    addClassPrefix(componentClass, props.size),
+    addClassPrefix(componentClass, props.variant),
   ],
 });
 
-const isDisabled = computed<boolean>(() => {
-  return props.disabled;
-});
-
 const setDisabledClass = computed<string | null>(() => {
-  return isDisabled.value ? addClassPrefix('disabled') : null;
+  return props.disabled ? addClassPrefix(componentClass, 'disabled') : null;
 });
 
 const setValidity = computed<string | null>(() => {
-  return !validity.value ? addClassPrefix('invalid') : null;
+  return !validity.value ? addClassPrefix(componentClass, 'invalid') : null;
 });
 
 const validity = computed<boolean>(() => {
@@ -70,15 +59,23 @@ const validity = computed<boolean>(() => {
 });
 
 const setIndeterminate = computed<string | null>(() => {
-  return props.indeterminate ? addClassPrefix('indeterminate') : null;
+  return props.indeterminate ? addClassPrefix(componentClass, 'indeterminate') : null;
 });
 
 const isIndeterminate = computed<boolean>(() => {
-  return checkboxState.value === CheckboxState.INDETERMINATE;
+  return checkboxState.value === IdsCheckboxState.INDETERMINATE;
 });
 
 const isChecked = computed<boolean>(() => {
-  return checkboxState.value === CheckboxState.CHECKED;
+  return checkboxState.value === IdsCheckboxState.CHECKED;
+});
+
+const isFocusable = computed<boolean>(() => {
+  return !props.disabled && !props.readonly;
+});
+
+const inputId = computed<string>(() => {
+  return props.id !== undefined ? props.id : `${componentClass}-${uid.value}`;
 });
 
 onMounted(() => {
@@ -86,10 +83,10 @@ onMounted(() => {
     checkboxRef.value.indeterminate = props.indeterminate;
     if (props.indeterminate) {
       checkboxRef.value.checked = false;
-      checkboxState.value = CheckboxState.INDETERMINATE;
+      checkboxState.value = IdsCheckboxState.INDETERMINATE;
     } else {
       checkboxRef.value.checked = props.checked ? props.checked : determinateCheckValue();
-      checkboxState.value = checkboxRef.value.checked ? CheckboxState.CHECKED : CheckboxState.UNCHECKED;
+      checkboxState.value = checkboxRef.value.checked ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
     }
   }
 })
@@ -97,12 +94,12 @@ onMounted(() => {
 watch(() => props.indeterminate, (newVal) => {
   if (checkboxRef.value) checkboxRef.value.indeterminate = newVal;
   if (newVal) {
-    checkboxState.value = CheckboxState.INDETERMINATE;
+    checkboxState.value = IdsCheckboxState.INDETERMINATE;
   }
 })
 
 function determinateCheckValue(): boolean {
-  if (checkboxState.value === CheckboxState.INDETERMINATE) {
+  if (checkboxState.value === IdsCheckboxState.INDETERMINATE) {
     return false;
   }
 
@@ -110,7 +107,7 @@ function determinateCheckValue(): boolean {
     return model.value.includes(props.value);
   }
 
-  return checkboxState.value === CheckboxState.CHECKED;
+  return checkboxState.value === IdsCheckboxState.CHECKED;
 }
 
 function onTouchTargetClick(): void {
@@ -151,12 +148,12 @@ function preventBubblingFromLabel(event: MouseEvent): void {
 
 function handleInputClick(): void {
   if (!props.disabled) {
-    if (checkboxRef.value && checkboxState.value === CheckboxState.INDETERMINATE) {
-      checkboxState.value = CheckboxState.CHECKED;
+    if (checkboxRef.value && checkboxState.value === IdsCheckboxState.INDETERMINATE) {
+      checkboxState.value = IdsCheckboxState.CHECKED;
       checkboxRef.value.indeterminate = false;
       $emit('update:indeterminate', false);
     } else {
-      checkboxState.value = checkboxState.value === CheckboxState.CHECKED ? CheckboxState.UNCHECKED : CheckboxState.CHECKED;
+      checkboxState.value = checkboxState.value === IdsCheckboxState.CHECKED ? IdsCheckboxState.UNCHECKED : IdsCheckboxState.CHECKED;
     }
     if (checkboxRef.value) checkboxRef.value.checked = determinateCheckValue();
     $emit('update:modelValue', setModelValue());
@@ -168,14 +165,14 @@ function setModelValue(): boolean | Array<unknown> {
   let modelValue;
 
   if (model.value instanceof Array) {
-    if (checkboxState.value === CheckboxState.CHECKED) {
+    if (checkboxState.value === IdsCheckboxState.CHECKED) {
       modelValue = model.value ? model.value.includes(props.value) ? [...model.value] : [...model.value, props.value] : [props.value];
     }
     else {
       modelValue = model.value.filter((val) => val !== props.value);
     }
   } else {
-    modelValue = checkboxState.value === CheckboxState.INDETERMINATE ? true : checkboxState.value === CheckboxState.CHECKED;
+    modelValue = checkboxState.value === IdsCheckboxState.INDETERMINATE ? true : checkboxState.value === IdsCheckboxState.CHECKED;
   }
 
   return modelValue;
@@ -189,9 +186,6 @@ function onBlur(event: Event): void {
   if (!props.disabled) $emit('blur', event);
 }
 
-function addClassPrefix(className: string | null): string | null {
-  return className ? `${componentClass}-${className}` : null;
-}
 </script>
 <template>
   <div
@@ -201,11 +195,23 @@ function addClassPrefix(className: string | null): string | null {
     <div class="ids-checkbox__input-wrapper">
       <div class="ids-checkbox__touch-target" @click="onTouchTargetClick()" />
       <input
-        :id="props.id" ref="checkboxRef" v-model="model" type="checkbox"
-        :disabled="props.disabled" :value="value"
-        :name="name" :checked="props.checked" :tabindex="tabindex" :readonly="props.readonly"
-        :required="required"
-        @focus="onFocus" @blur="onBlur" @click="onInputClick()" @change="$event.stopPropagation()"
+        :id="inputId" 
+        ref="checkboxRef" 
+        v-model="model" 
+        type="checkbox"
+        :disabled="props.disabled" 
+        :value="props.value"
+        :name="props.name" 
+        :checked="props.checked" 
+        :tabindex="isFocusable ? -1 : props.tabindex" 
+        :readonly="props.readonly"
+        :required="props.required"
+        :aria-invalid="!validity || undefined"
+        :aria-checked="isIndeterminate ? 'mixed' : undefined"
+        @focus="onFocus" 
+        @blur="onBlur" 
+        @click="onInputClick()" 
+        @change="$event.stopPropagation()"
       >
       <div class="ids-checkbox__icon">
         <IdsCheckMark v-if="isChecked" />
@@ -214,15 +220,15 @@ function addClassPrefix(className: string | null): string | null {
     </div>
     <div class="ids-checkbox__label-wrapper">
       <div class="ids-checkbox__label-container">
-        <label ref="labelRef" :for="props.id" class="ids-checkbox__label">
+        <label ref="labelRef" :for="inputId" class="ids-checkbox__label">
           <slot />
         </label>
         <span v-if="props.required" class="ids-validation__required-marker">*</span>
       </div>
-      <span v-if="$slots.IdsHintMsg || $slots.IdsErrorMsg" class="ids-checkbox__message-container">
+      <div v-if="$slots.IdsHintMsg || $slots.IdsErrorMsg" class="ids-checkbox__message-container">
         <slot v-if="$slots.IdsErrorMsg && !validity" name="IdsErrorMsg" />
         <slot v-else-if="$slots.IdsHintMsg" name="IdsHintMsg" />
-      </span>
+      </div>
     </div>
   </div>
 </template>
@@ -348,6 +354,10 @@ $variants: light, dark, surface;
         font-style: normal;
       }
     }
+
+    .ids-checkbox__message-container {
+      width: 100%;
+    }
   }
 
   @each $size in $sizes {
@@ -437,8 +447,6 @@ $variants: light, dark, surface;
   }
 
   &.ids-checkbox-disabled {
-    opacity: var(--ids-comp-checkbox-disabled);
-
     .ids-checkbox__input-wrapper {
       .ids-checkbox__touch-target {
         cursor: not-allowed;
