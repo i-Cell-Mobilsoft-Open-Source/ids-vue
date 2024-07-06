@@ -87,9 +87,13 @@ $variants: light, dark, surface;
       letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
 
-      .ids-message__icon {
-        width: var(--text-field-size-width, 12px);
-        height: var(--text-field-size-height, 12px);
+      .ids-message-content {
+        gap: var(--ids-comp-size-forms-message-size-gap-#{$size});
+
+        .ids-message__icon {
+          width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
+          height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
+        }
       }
     }
   }
@@ -100,18 +104,8 @@ $variants: light, dark, surface;
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
       }
 
-      .ids-message__text {
+      .ids-message__text, .ids-message__counter {
         color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
-      }
-
-      &.ids-message-disabled {
-        .ids-message__icon {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
-        }
-
-        .ids-message__text {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
-        }
       }
 
       &.ids-error-message {
@@ -123,16 +117,26 @@ $variants: light, dark, surface;
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
         }
       }
-    }
-  }
 
-  &.ids-message-success {
-    .ids-message__icon {
-      color: var(--ids-comp-forms-message-color-fg-icon-success-enabled);
-    }
+      &.ids-message-success {
+        .ids-message__icon {
+          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
+        }
 
-    .ids-message__text {
-      color: var(--ids-comp-forms-message-color-fg-text-success-enabled);
+        .ids-message__text, .ids-message__counter {
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
+        }
+      }
+
+      &.ids-message-disabled {
+        .ids-message__icon, .ids-message__counter {
+          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
+        }
+
+        .ids-message__text {
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
+        }
+      }
     }
   }
 }

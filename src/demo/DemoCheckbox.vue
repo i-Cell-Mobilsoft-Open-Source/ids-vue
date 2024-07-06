@@ -13,7 +13,16 @@
     </button>
     <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" :size="'compact'" :variant="'surface'" :checked="true">
       fefefefefef.
+      <template #IdsHintMsg>
+        <IdsSuccessMessage>
+          Teszt teszt tesz tesz teszt
+          <template #idsMessageSuffix>
+            13/50
+          </template>
+        </IdsSuccessMessage>
+      </template>
     </IdsCheckbox>
+    <!-- compact, comfortable, spacious, dense -->
     <IdsCheckbox
       :id="'ids-checkbox-' + 444" :key="444" v-model="asd1" :disabled="disab"
       :size="'compact'"
@@ -34,12 +43,12 @@
         </IdsHintMessage>
       </template>
       <template #IdsErrorMsg>
-        <IdsSuccessMessage>
+        <IdsErrorMessage>
           Teszt teszt tesz tesz teszt
           <template #idsMessageSuffix>
             13/50
           </template>
-        </IdsSuccessMessage>
+        </IdsErrorMessage>
       </template>
     </IdsCheckbox>
     <p>ertek: {{ asd1 }}</p>
@@ -48,7 +57,9 @@
     <IdsCheckbox
       v-for="(option, index) in allOptions" :key="index" :size="option.size" :variant="option.variant"
       :disabled="true"
-    />
+    > 
+      Its disabled
+    </IdsCheckbox>
     <h3>indeterminate</h3>
     <IdsCheckbox
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-id'" :key="index"
@@ -126,6 +137,7 @@
 import { ref } from "vue";
 import IdsCheckbox from "../components/checkbox/IdsCheckbox.vue";
 import IdsHintMessage from "../components/message/IdsHintMessage.vue";
+import IdsErrorMessage from "../components/message/IdsErrorMessage.vue";
 import IdsSuccessMessage from "../components/message/IdsSuccessMessage.vue";
 import { computed } from "vue";
 

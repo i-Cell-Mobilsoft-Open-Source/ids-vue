@@ -90,18 +90,3 @@ export interface AvatarConfig {
     image?: string,
     interactive?: boolean,
 }
-
-export interface CheckboxConfig {
-    size?: SizeType,
-    variant?: ErrorVariantType,
-    disabled?: boolean,
-    indeterminate?: boolean,
-    isValid?: boolean
-    id?: string,
-    value?: string | boolean | null,
-    name?: string,
-    checked?: boolean,
-    tabindex?: number,
-    readonly?: boolean,
-    required?: boolean,
-}
