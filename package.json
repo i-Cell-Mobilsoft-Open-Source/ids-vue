@@ -45,7 +45,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "format": "prettier . --write",
-    "build": "vue-tsc && vite build && npm run build:css",
+    "build": "vue-tsc && vite build && pnpm run build:css",
     "build:css": "sass src/styles/index.scss dist/index.css --no-source-map --style compressed",
     "lint": "eslint . --fix --max-warnings=0",
     "generate:css": "node scripts/token-parser.js"
@@ -58,7 +58,7 @@
   "lint-staged": {
     "*.ts": [
       "eslint 'src/**' --fix",
-      "npm run test:staged"
+      "pnpm run test:staged"
     ]
   },
   "peerDependencies": {
