@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Size } from '@models/size.type';
-import { computed, getCurrentInstance, onMounted, reactive, ref, watch } from 'vue';
+import { computed, getCurrentInstance, onMounted, ref, watch } from 'vue';
 import IdsCheckMark from '@assets/IdsCheckMark.vue'
 import IdsIndeterminateIcon from '@assets/IdsIndeterminateIcon.vue';
 import { IdsCheckboxProps } from '@components/checkbox/models/IdsCheckboxProps.interface.ts';
@@ -36,30 +36,17 @@ const checkboxState = ref<IdsCheckboxStateType>(checkboxTypes);
 const model = defineModel<unknown, string>();
 const $emit = defineEmits(['update:modelValue', 'focus', 'blur', 'update:indeterminate']);
 
-const state = reactive({
-  indeterminate: props.indeterminate,
-  checked: props.checked,
-  classList: [
-    componentClass,
-    addClassPrefix(componentClass, props.size),
-    addClassPrefix(componentClass, props.variant),
-  ],
-});
-
-const setDisabledClass = computed<string | null>(() => {
-  return props.disabled ? addClassPrefix(componentClass, 'disabled') : null;
-});
-
-const setValidity = computed<string | null>(() => {
-  return !validity.value ? addClassPrefix(componentClass, 'invalid') : null;
-});
+const classObject = computed(() => ({
+  [componentClass]: true,
+  [addClassPrefix(componentClass, props.size)]: !!props.size,
+  [addClassPrefix(componentClass, props.variant)]: !!props.variant,
+  [addClassPrefix(componentClass, 'disabled')]: props.disabled,
+  [addClassPrefix(componentClass, 'invalid')]: !validity.value,
+  [addClassPrefix(componentClass, 'indeterminate')]: props.indeterminate,
+}));
 
 const validity = computed<boolean>(() => {
   return props.isValid !== undefined ? props.isValid : !props.required ? true : isChecked.value;
-});
-
-const setIndeterminate = computed<string | null>(() => {
-  return props.indeterminate ? addClassPrefix(componentClass, 'indeterminate') : null;
 });
 
 const isIndeterminate = computed<boolean>(() => {
@@ -189,7 +176,7 @@ function onBlur(event: Event): void {
 </script>
 <template>
   <div
-    :class="[state.classList, setDisabledClass, setValidity, setIndeterminate]" @keyup="handleKeyUpEvent($event)"
+    :class="classObject" @keyup="handleKeyUpEvent($event)"
     @click="handleClickEvent($event)"
   >
     <div class="ids-checkbox__input-wrapper">
@@ -358,9 +345,7 @@ $variants: light, dark, surface;
         color: var(--ids-comp-checkbox-asterisk-color-fg-enabled);
       }
     }
-
-   
-
+    
     .ids-checkbox__message-container {
       width: 100%;
     }

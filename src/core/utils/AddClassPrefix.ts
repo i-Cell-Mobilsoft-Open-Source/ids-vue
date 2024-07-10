@@ -1,3 +1,3 @@
-export function addClassPrefix(componentClass: string, className: string | null): string | null {
-  return className ? `${componentClass}-${className}` : null;
+export function addClassPrefix(componentClass: string, className: string): string {
+  return `${componentClass}-${className}`;
 }

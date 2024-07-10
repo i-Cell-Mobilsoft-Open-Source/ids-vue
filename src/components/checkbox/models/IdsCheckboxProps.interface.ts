@@ -1,17 +1,68 @@
 import { SizeType } from "@models/size.type";
 import { CheckboxVariantType } from './IdsCheckboxVariant.type';
 
+/**
+ * Props for the IdsCheckbox component
+ */
 export interface IdsCheckboxProps {
-  size?: SizeType,
-  variant?: CheckboxVariantType,
-  disabled?: boolean,
-  indeterminate?: boolean,
-  isValid?: boolean
-  id?: string,
-  value?: string | boolean | null,
-  name?: string,
-  checked?: boolean,
-  tabindex?: number,
-  readonly?: boolean,
-  required?: boolean,
+  /**
+   * The size of the checkbox
+   */
+  size?: SizeType;
+
+  /**
+   * The variant of the checkbox
+   */
+  variant?: CheckboxVariantType;
+
+  /**
+   * Determines if the checkbox is disabled
+   */
+  disabled?: boolean;
+
+  /**
+   * Determines if the checkbox is in an indeterminate state
+   */
+  indeterminate?: boolean;
+
+  /**
+   * Indicates if the checkbox value is valid
+   */
+  isValid?: boolean;
+
+  /**
+   * The id of the checkbox
+   */
+  id?: string;
+
+  /**
+   * The value of the checkbox
+   */
+  value?: string | boolean | null;
+
+  /**
+   * The name of the checkbox
+   */
+  name?: string;
+
+  /**
+   * Determines if the checkbox is checked
+   */
+  checked?: boolean;
+
+  /**
+   * The tabindex of the checkbox
+   */
+  tabindex?: number;
+
+  /**
+   * Determines if the checkbox is read-only
+   */
+  readonly?: boolean;
+
+  /**
+   * Determines if the checkbox is required
+   */
+  required?: boolean;
 }
+

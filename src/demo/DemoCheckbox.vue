@@ -11,6 +11,9 @@
     <button @click="toggleValidity()">
       validity
     </button>
+    <button @click="change()">
+      size
+    </button>
     <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" :size="'compact'" :variant="'surface'" :checked="true">
       fefefefefef.
       <template #IdsHintMsg>
@@ -25,7 +28,7 @@
     <!-- compact, comfortable, spacious, dense -->
     <IdsCheckbox
       :id="'ids-checkbox-' + 444" :key="444" v-model="asd1" :disabled="disab"
-      :size="'compact'"
+      :size="sizeChange"
       :variant="'surface'" :readonly="false" :value="'alma'" :required="true"
       :is-valid="validity"
       :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate"
@@ -145,6 +148,7 @@ const indeterminate = ref(false);
 const disab = ref(false);
 const validw = ref(true);
 const asd1 = ref(["alma", "korte", "asd"]);
+const sizeChange = ref("compact");
 
 type CheckboxOptions = {
   size?: "compact" | "comfortable" | "spacious" | "dense";
@@ -165,6 +169,10 @@ const allVariants: Array<CheckboxOptions["variant"]> = [
 ];
 
 const allOptions: CheckboxOptions[] = [];
+
+function change(): void {
+  sizeChange.value = "dense";
+}
 
 function changeIndeterminate(): void {
   indeterminate.value = false;
