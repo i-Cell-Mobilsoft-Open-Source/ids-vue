@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from '@storybook/vue3';
-import IdsCheckbox from "./IdsCheckbox.vue";
+import IdsCheckbox from "@components/checkbox/IdsCheckbox.vue";
 import { Size } from '@models/size.type';
 import { CheckboxVariant } from './models/IdsCheckboxVariant.type';
+import IdsHintMessage from '@components/message/IdsHintMessage.vue';
+import IdsErrorMessage from '@components/message/IdsErrorMessage.vue';
 
 function selectControlOptions(constObj: { [key: string]: string }, description?: string): object {
   return {
@@ -20,14 +22,52 @@ const meta = {
     disabled: { control: 'boolean' },
     indeterminate: { control: 'boolean' },
     isValid: { control: 'boolean' },
-    checked: { control: 'boolean' },
     readonly: { control: 'boolean' },
     required: { control: 'boolean' },
+    id: { 
+      control: {
+        disable: true,
+      } 
+    },
+    name: { 
+      control: {
+        disable: true,
+      } 
+    },
+    value: { 
+      control: {
+        disable: true,
+      } 
+    },
+    tabindex: { 
+      control: {
+        disable: true,
+      } 
+    },
+    modelValue: {
+      table: {
+        disable: true,
+      }
+    },
+    modelModifiers: {
+      table: {
+        disable: true,
+      }
+    },
   },
   parameters: {
     docs: {
       description: {
         component: 'Another description, overriding the comments'
+      },
+    },
+    parameters: {
+      backgrounds: {
+        default: 'light',
+        values: [
+          { name: 'light', value: '#FFFFFF' },
+          { name: 'dark', value: '#000' },
+        ],
       },
     },
   },
@@ -36,7 +76,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Template: Story = {
+export const Checkbox: Story = {
   render: (args) => ({
     components: { IdsCheckbox },
     setup() {
@@ -48,34 +88,183 @@ export const Template: Story = {
   }),
   args: {
     size: Size.COMPACT,
-    variant: CheckboxVariant.DARK,
+    variant: CheckboxVariant.SURFACE,
     disabled: false,
     indeterminate: false,
     isValid: true,
-    checked: false,
     readonly: false,
     required: false,
   },
 };
 
-export const Almafa: Story = {
+export const CheckboxWithHintMessage: Story = {
   render: (args) => ({
-    components: { IdsCheckbox },
+    components: { IdsCheckbox, IdsHintMessage, IdsErrorMessage },
     setup() {
       return { args };
     },
     template: `
-      <IdsCheckbox v-bind="args">This is a test message</IdsCheckbox>
+      <IdsCheckbox v-bind="args">
+        This is a test message
+        <template #IdsHintMsg>
+        <IdsHintMessage>
+          This is a hint message!
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          This is an error message!
+        </IdsErrorMessage>
+      </IdsCheckbox>
     `,
   }),
   args: {
-    size: Size.COMFORTABLE,
+    size: Size.COMPACT,
     variant: CheckboxVariant.SURFACE,
     disabled: false,
     indeterminate: false,
     isValid: true,
-    checked: false,
     readonly: false,
     required: false,
+  },
+};
+
+export const CheckboxWithErrorMessage: Story = {
+  render: (args) => ({
+    components: { IdsCheckbox, IdsHintMessage, IdsErrorMessage },
+    setup() {
+      return { args };
+    },
+    template: `
+      <IdsCheckbox v-bind="args">
+        This is a test message
+        <template #IdsHintMsg>
+        <IdsHintMessage>
+          This is a hint message!
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          This is an error message!
+        </IdsErrorMessage>
+      </IdsCheckbox>
+    `,
+  }),
+  args: {
+    size: Size.COMPACT,
+    variant: CheckboxVariant.SURFACE,
+    disabled: false,
+    indeterminate: false,
+    isValid: false,
+    readonly: false,
+    required: false,
+  },
+};
+
+export const CheckboxLightVariant: Story = {
+  render: (args) => ({
+    components: { IdsCheckbox, IdsHintMessage, IdsErrorMessage },
+    setup() {
+      return { args };
+    },
+    template: `
+      <IdsCheckbox v-bind="args">
+        This is a test message
+      </IdsCheckbox>
+    `,
+  }),
+  args: {
+    size: Size.COMPACT,
+    variant: CheckboxVariant.LIGHT,
+    disabled: false,
+    indeterminate: false,
+    isValid: true,
+    readonly: false,
+    required: false,
+  },
+  parameters: {
+    backgrounds: 
+      {
+        default: 'dark',
+      }
+    ,
+  },
+};
+
+export const CheckboxLightVariantWithHintMessage: Story = {
+  render: (args) => ({
+    components: { IdsCheckbox, IdsHintMessage, IdsErrorMessage },
+    setup() {
+      return { args };
+    },
+    template: `
+      <IdsCheckbox v-bind="args">
+        This is a test message
+        <template #IdsHintMsg>
+        <IdsHintMessage>
+          This is a hint message!
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          This is an error message!
+        </IdsErrorMessage>
+      </IdsCheckbox>
+    `,
+  }),
+  args: {
+    size: Size.COMPACT,
+    variant: CheckboxVariant.LIGHT,
+    disabled: false,
+    indeterminate: false,
+    isValid: true,
+    readonly: false,
+    required: false,
+  },
+  parameters: {
+    backgrounds: 
+      {
+        default: 'dark',
+      }
+    ,
+  },
+};
+
+export const CheckboxLightVariantWithErrorMessage: Story = {
+  render: (args) => ({
+    components: { IdsCheckbox, IdsHintMessage, IdsErrorMessage },
+    setup() {
+      return { args };
+    },
+    template: `
+      <IdsCheckbox v-bind="args">
+        This is a test message
+        <template #IdsHintMsg>
+        <IdsHintMessage>
+          This is a hint message!
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          This is an error message!
+        </IdsErrorMessage>
+      </IdsCheckbox>
+    `,
+  }),
+  args: {
+    size: Size.COMPACT,
+    variant: CheckboxVariant.LIGHT,
+    disabled: false,
+    indeterminate: false,
+    isValid: false,
+    readonly: false,
+    required: false,
+  },
+  parameters: {
+    backgrounds: 
+      {
+        default: 'dark',
+      }
+    ,
   },
 };

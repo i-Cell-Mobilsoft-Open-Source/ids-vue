@@ -1,0 +1,15 @@
+import { Meta, Controls, Stories, Canvas, Title, Primary } from '@storybook/blocks';
+import * as IdsCheckboxStories from "./IdsCheckbox.stories.ts";
+
+<Meta of={IdsCheckboxStories} />
+
+<Title>Checkbox</Title>
+
+<Canvas 
+source={{
+  code: `<IdsCheckbox v-model="model" :size="comfort" :variant="'surface'"> This is a test message </IdsCheckbox>`
+}}
+of={IdsCheckboxStories.Checkbox}/>
+
+<Controls />
+

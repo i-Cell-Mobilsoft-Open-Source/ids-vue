@@ -14,7 +14,10 @@
     <button @click="change()">
       size
     </button>
-    <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" :size="'compact'" :variant="'surface'" :checked="true">
+    <button @click="toggleChecked()">
+      check
+    </button>
+    <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" v-model="checked" :size="'compact'" :variant="'surface'">
       fefefefefef.
       <template #IdsHintMsg>
         <IdsSuccessMessage>
@@ -25,12 +28,12 @@
         </IdsSuccessMessage>
       </template>
     </IdsCheckbox>
-    <!-- compact, comfortable, spacious, dense -->
+    compact, comfortable, spacious, dense
     <IdsCheckbox
       :id="'ids-checkbox-' + 444" :key="444" v-model="asd1" :disabled="disab"
       :size="sizeChange"
-      :variant="'surface'" :readonly="false" :value="'alma'" :required="true"
-      :is-valid="validity"
+      :variant="'surface'" :readonly="false" :value="'alma'"
+      :is-valid="validw"
       :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate"
     >
       Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
@@ -142,10 +145,10 @@ import IdsCheckbox from "../components/checkbox/IdsCheckbox.vue";
 import IdsHintMessage from "../components/message/IdsHintMessage.vue";
 import IdsErrorMessage from "../components/message/IdsErrorMessage.vue";
 import IdsSuccessMessage from "../components/message/IdsSuccessMessage.vue";
-import { computed } from "vue";
 
 const indeterminate = ref(false);
 const disab = ref(false);
+const checked = ref();
 const validw = ref(true);
 const asd1 = ref(["alma", "korte", "asd"]);
 const sizeChange = ref("compact");
@@ -176,13 +179,12 @@ function change(): void {
 
 function changeIndeterminate(): void {
   indeterminate.value = false;
+  console.log("Indeterminate: ", indeterminate.value)
 }
 
 function toggleValidity(): void {
   validw.value = !validw.value;
 }
-
-const validity = computed<boolean>(() => asd1.value.includes('alma'));
 
 function toggleIndeterminate(): void {
   indeterminate.value = !indeterminate.value;
@@ -190,6 +192,10 @@ function toggleIndeterminate(): void {
 
 function toggleDisabled(): void {
   disab.value = !disab.value;
+}
+
+function toggleChecked(): void {
+  checked.value = !checked.value;
 }
 
 for (const size of allSizes) {

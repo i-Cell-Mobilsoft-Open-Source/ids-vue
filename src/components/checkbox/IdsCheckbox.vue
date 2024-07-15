@@ -6,7 +6,9 @@ import IdsIndeterminateIcon from '@assets/IdsIndeterminateIcon.vue';
 import { IdsCheckboxProps } from '@components/checkbox/models/IdsCheckboxProps.interface.ts';
 import { CheckboxVariant } from '@components/checkbox/models/IdsCheckboxVariant.type.ts';
 import { IdsCheckboxState, IdsCheckboxStateType } from '@components/checkbox/models/IdsCheckboxState.type.ts';
-import { addClassPrefix } from '@core/utils/AddClassPrefix';
+import { IdsCheckboxEvents } from '@components/checkbox/models/IdsCheckboxEvents.interface.ts';
+import { IdsCheckboxSlots } from '@components/checkbox/models/IdsCheckboxSlots.interface.ts';
+import { addClassPrefix } from '@core/utils/AddClassPrefix.ts';
 
 const componentClass = 'ids-checkbox';
 
@@ -19,9 +21,8 @@ const props = withDefaults(
     indeterminate: false,
     isValid: undefined,
     id: undefined,
-    value: null,
+    value: false,
     name: "",
-    checked: false,
     tabindex: 0,
     readonly: false,
     required: false,
@@ -29,12 +30,13 @@ const props = withDefaults(
 
 const instance = getCurrentInstance();
 const uid = ref(instance?.uid);
-const checkboxRef = ref<HTMLInputElement | null>(null);
-const labelRef = ref<HTMLInputElement | null>(null);
 const checkboxTypes: IdsCheckboxStateType = IdsCheckboxState.UNCHECKED;
 const checkboxState = ref<IdsCheckboxStateType>(checkboxTypes);
+const checkboxRef = ref<HTMLInputElement | null>(null);
+const labelRef = ref<HTMLInputElement | null>(null);
 const model = defineModel<unknown, string>();
-const $emit = defineEmits(['update:modelValue', 'focus', 'blur', 'update:indeterminate']);
+const $emit = defineEmits<IdsCheckboxEvents>();
+const $slots = defineSlots<IdsCheckboxSlots>();
 
 const classObject = computed(() => ({
   [componentClass]: true,
@@ -72,7 +74,7 @@ onMounted(() => {
       checkboxRef.value.checked = false;
       checkboxState.value = IdsCheckboxState.INDETERMINATE;
     } else {
-      checkboxRef.value.checked = props.checked ? props.checked : determinateCheckValue();
+      checkboxRef.value.checked = determinateCheckValue();
       checkboxState.value = checkboxRef.value.checked ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
     }
   }
@@ -83,6 +85,10 @@ watch(() => props.indeterminate, (newVal) => {
   if (newVal) {
     checkboxState.value = IdsCheckboxState.INDETERMINATE;
   }
+});
+
+watch(() => model.value, () => {
+  checkboxState.value = determinateCheckValue() ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
 })
 
 function determinateCheckValue(): boolean {
@@ -92,6 +98,10 @@ function determinateCheckValue(): boolean {
 
   if (model.value instanceof Array) {
     return model.value.includes(props.value);
+  }
+
+  if (model.value !== undefined && typeof model.value === 'boolean') {
+    return model.value
   }
 
   return checkboxState.value === IdsCheckboxState.CHECKED;
@@ -114,6 +124,7 @@ function onInputClick(): void {
 }
 
 function handleClickEvent(event: MouseEvent): void {
+
   if (props.disabled || props.readonly) {
     event.preventDefault();
   }
@@ -189,7 +200,7 @@ function onBlur(event: Event): void {
         :disabled="props.disabled" 
         :value="props.value"
         :name="props.name" 
-        :checked="props.checked" 
+        :checked="isChecked" 
         :tabindex="isFocusable ? -1 : props.tabindex" 
         :readonly="props.readonly"
         :required="props.required"
@@ -208,9 +219,9 @@ function onBlur(event: Event): void {
     <div class="ids-checkbox__label-wrapper">
       <div class="ids-checkbox__label-container">
         <label ref="labelRef" :for="inputId" class="ids-checkbox__label">
-          <slot />
+          <span><slot /></span>
+          <span v-if="props.required" class="ids-form-field__required-marker" />
         </label>
-        <span v-if="props.required" class="ids-validation__required-marker">*</span>
       </div>
       <div v-if="$slots.IdsHintMsg || $slots.IdsErrorMsg" class="ids-checkbox__message-container">
         <slot v-if="$slots.IdsErrorMsg && !validity" name="IdsErrorMsg" />
@@ -334,18 +345,13 @@ $variants: light, dark, surface;
     flex: 1 0 0;
 
     .ids-checkbox__label-container {
-      display: flex;
+      text-align: start;
 
       .ids-checkbox__label {
-        text-align: start;
         font-style: normal;
       }
-
-      .ids-validation__required-marker {
-        color: var(--ids-comp-checkbox-asterisk-color-fg-enabled);
-      }
     }
-    
+
     .ids-checkbox__message-container {
       width: 100%;
     }
@@ -377,7 +383,7 @@ $variants: light, dark, surface;
           border-width: var(--ids-comp-size-checkbox-input-size-border-width-#{$size});
 
           &:focus {
-            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{size});
+            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{$size});
           }
         }
 
@@ -392,15 +398,11 @@ $variants: light, dark, surface;
           var(--ids-comp-size-checkbox-label-group-size-padding-x-#{$size});
         gap: var(--ids-comp-size-checkbox-label-group-size-gap-#{$size});
 
-        .ids-checkbox__label-container .ids-checkbox__label {
+        .ids-checkbox__label-container {
           font-family: var(--ids-comp-size-checkbox-label-typography-font-family-#{$size});
           font-weight: var(--ids-comp-size-checkbox-label-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-size-checkbox-label-typography-letter-spacing-#{$size});
           font-size: var(--ids-comp-size-checkbox-label-typography-font-size-#{$size});
-          line-height: var(--ids-comp-size-checkbox-label-typography-line-height-#{$size});
-        }
-
-        .ids-validation__required-marker {
           line-height: var(--ids-comp-size-checkbox-label-typography-line-height-#{$size});
         }
       }
@@ -435,19 +437,15 @@ $variants: light, dark, surface;
         }
       }
 
-      &.ids-checkbox-disabled .ids-checkbox__label-wrapper .ids-checkbox__label-container {
-        .ids-checkbox__label {
-          color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-disabled);
-        }
-
-        .ids-validation__required-marker {
-          color: var(--ids-comp-checkbox-asterisk-color-fg-disabled);
-        }
+      &.ids-checkbox-disabled .ids-checkbox__label-wrapper .ids-checkbox__label-container .ids-checkbox__label {
+        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-disabled);
       }
     }
   }
 
   &.ids-checkbox-disabled {
+    opacity: var(--ids-comp-checkbox-disabled);
+
     .ids-checkbox__input-wrapper {
       .ids-checkbox__touch-target {
         cursor: not-allowed;
@@ -514,4 +512,6 @@ $variants: light, dark, surface;
     }
   }
 }
+
+
 </style>

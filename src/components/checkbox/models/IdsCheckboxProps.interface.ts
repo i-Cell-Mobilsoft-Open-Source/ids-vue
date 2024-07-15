@@ -46,11 +46,6 @@ export interface IdsCheckboxProps {
   name?: string;
 
   /**
-   * Determines if the checkbox is checked
-   */
-  checked?: boolean;
-
-  /**
    * The tabindex of the checkbox
    */
   tabindex?: number;

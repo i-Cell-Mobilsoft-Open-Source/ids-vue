@@ -13,7 +13,6 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-actions",
-    "@storybook/addon-themes",
   ],
   framework: {
     name: "@storybook/vue3-vite",
@@ -23,18 +22,6 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true // ignore update notification
-  },
-  async viteFinal(config) {
-     const { mergeConfig } = await import('vite');
-    return mergeConfig(config, {
-      css: {
-        preprocessorOptions: {
-          scss: {
-            additionalData: `@import '../src/assets/style.scss';`,
-          },
-        },
-      },
-    });
   },
 };
 export default config;

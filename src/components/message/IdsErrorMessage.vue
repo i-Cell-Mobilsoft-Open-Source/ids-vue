@@ -42,22 +42,19 @@ import { addClassPrefix } from '@core/utils/AddClassPrefix';
   [addClassPrefix(componentClass, variant.value)]: variant.value,
   [addClassPrefix(componentClass, 'disabled')]: disabled.value,
 }));
-  
 
 </script>
 <template>
   <div :class="classObject">
-    <div class="ids-message-content">
-      <div class="ids-message__icon">
-        <slot name="idsMessagePrefix">
-          <IdsAlertIcon />
-        </slot>
-      </div>
-      <div class="ids-message__text">
-        <slot />
-      </div>
+    <div class="ids-message__prefix">
+      <slot name="idsMessagePrefix">
+        <IdsAlertIcon />
+      </slot>
     </div>
-    <div v-if="$slots.idsMessageSuffix" class="ids-message__counter">
+    <div class="ids-message__text">
+      <slot />
+    </div>
+    <div v-if="$slots.idsMessageSuffix" class="ids-message__suffix">
       <slot name="idsMessageSuffix" />
     </div>
   </div>
@@ -69,18 +66,17 @@ $variants: light, dark, surface;
 
 .ids-message {
   display: flex;
-  align-items: flex-start;
-  font-style: normal;
+  justify-content: flex-start;
   align-items: center;
+  font-style: normal;
 
-  .ids-message-content {
+  .ids-message__prefix {
     display: flex;
-    flex: 1 0 0;
+  }
 
-    .ids-message__icon {
-      display: flex;
-      flex-shrink: 0;
-    }
+  .ids-message__text {
+    flex-grow: 1;
+    text-align: start;
   }
 
   @each $size in $sizes {
@@ -93,12 +89,13 @@ $variants: light, dark, surface;
       letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
 
-      .ids-message-content {
-        gap: var(--ids-comp-size-forms-message-size-gap-#{$size});
+      .ids-message__prefix {
+        height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
+        width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
 
-        .ids-message__icon {
-          width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
-          height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
+        & > ids-icon {
+          height: inherit;
+          width: inherit;
         }
       }
     }
@@ -106,44 +103,45 @@ $variants: light, dark, surface;
 
   @each $variant in $variants {
     &.ids-message-#{$variant} {
-      .ids-message__icon {
+      .ids-message__prefix {
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
       }
-
-      .ids-message__text, .ids-message__counter {
+      .ids-message__text,
+      .ids-message__suffix {
         color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
       }
 
+      &.ids-message-disabled {
+        .ids-message__prefix {
+          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
+        }
+        .ids-message__text,
+        .ids-message__suffix {
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
+        }
+      }
+
       &.ids-error-message {
-        .ids-message__icon {
+        .ids-message__prefix {
           color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-enabled);
         }
-
-        .ids-message__text, .ids-message__counter {
+        .ids-message__text,
+        .ids-message__suffix {
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
         }
       }
+    }
 
-      &.ids-message-success {
-        .ids-message__icon {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
-        }
-
-        .ids-message__text, .ids-message__counter {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
-        }
+    &.ids-success-message {
+      .ids-message__prefix {
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
       }
-
-      &.ids-message-disabled {
-        .ids-message__icon, .ids-message__counter {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
-        }
-
-        .ids-message__text {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
-        }
+      .ids-message__text,
+      .ids-message__suffix {
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
       }
     }
   }
 }
+
 </style>

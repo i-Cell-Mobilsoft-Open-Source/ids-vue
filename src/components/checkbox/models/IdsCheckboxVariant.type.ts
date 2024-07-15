@@ -1,7 +1,6 @@
 export const CheckboxVariant = {
   LIGHT: 'light',
   DARK: 'dark',
-  ERROR: 'error',
   SURFACE: 'surface'
 } as const;
 
