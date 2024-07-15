@@ -115,6 +115,7 @@ export const CheckboxWithHintMessage: Story = {
         <IdsErrorMessage>
           This is an error message!
         </IdsErrorMessage>
+      </template>
       </IdsCheckbox>
     `,
   }),
@@ -147,6 +148,7 @@ export const CheckboxWithErrorMessage: Story = {
         <IdsErrorMessage>
           This is an error message!
         </IdsErrorMessage>
+      </template>
       </IdsCheckbox>
     `,
   }),
@@ -201,14 +203,15 @@ export const CheckboxLightVariantWithHintMessage: Story = {
       <IdsCheckbox v-bind="args">
         This is a test message
         <template #IdsHintMsg>
-        <IdsHintMessage>
-          This is a hint message!
-        </IdsHintMessage>
-      </template>
-      <template #IdsErrorMsg>
-        <IdsErrorMessage>
-          This is an error message!
-        </IdsErrorMessage>
+          <IdsHintMessage>
+            This is a hint message!
+          </IdsHintMessage>
+        </template>
+        <template #IdsErrorMsg>
+          <IdsErrorMessage>
+            This is an error message!
+          </IdsErrorMessage>
+        </template>
       </IdsCheckbox>
     `,
   }),
@@ -240,14 +243,15 @@ export const CheckboxLightVariantWithErrorMessage: Story = {
       <IdsCheckbox v-bind="args">
         This is a test message
         <template #IdsHintMsg>
-        <IdsHintMessage>
-          This is a hint message!
-        </IdsHintMessage>
-      </template>
-      <template #IdsErrorMsg>
-        <IdsErrorMessage>
-          This is an error message!
-        </IdsErrorMessage>
+          <IdsHintMessage>
+            This is a hint message!
+          </IdsHintMessage>
+        </template>
+        <template #IdsErrorMsg>
+          <IdsErrorMessage>
+            This is an error message!
+          </IdsErrorMessage>
+        </template>
       </IdsCheckbox>
     `,
   }),

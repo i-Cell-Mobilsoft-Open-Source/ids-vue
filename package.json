@@ -105,7 +105,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.1.4",
-    "@i-cell/ids-tokens": "^0.0.8",
+    "@i-cell/ids-tokens": "^0.0.9",
     "@rushstack/eslint-patch": "^1.10.3",
     "@vue-hero-icons/outline": "^1.7.2",
     "vite-plugin-dts": "^3.9.1",
