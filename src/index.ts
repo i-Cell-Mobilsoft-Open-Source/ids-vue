@@ -26,3 +26,7 @@ export { default as IdsAccordion } from "./components/IdsAccordion.vue";
 export { default as IdsIconButton } from "./components/IdsIconButton.vue";
 export { default as IdsActionItem } from "./components/IdsActionItem.vue";
 export { default as IdsActionMenu } from "./components/IdsActionMenu.vue";
+export { default as IdsCheckbox } from "./components/checkbox/IdsCheckbox.vue";
+export { default as IdsHintMessage } from "./components/message/IdsHintMessage.vue";
+export { default as IdsErrorMessage } from "./components/message/IdsErrorMessage.vue";
+export { default as IdsSuccessMessage } from "./components/message/IdsSuccessMessage.vue";
