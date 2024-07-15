@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/html-self-closing -->
 <template>
   <nav :class="{ 'open': isMenuVisible }">
-    <div data-cy="hamburger-menu" class="menu-btn hamburger-menu d-flex items-center" @click="toggleMenu">
+    <div data-cy="hamburger-menu" class="menu-btn hamburger-menu" @click="toggleMenu">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>

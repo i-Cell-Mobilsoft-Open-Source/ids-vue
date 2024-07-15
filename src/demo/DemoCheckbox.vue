@@ -93,7 +93,7 @@
       Almafa Ez egy almafa nem tudom mit írjak e még ide.
     </IdsCheckbox>
 
-    <div class="bg-black demo p-4">
+    <div class="demo dark-container">
       <h2 class="text-white">
         light mode
       </h2>
@@ -207,4 +207,9 @@ for (const size of allSizes) {
 </script>
 <style scoped lang="scss">
 @import "./demo-style.scss";
+
+.dark-container {
+  background-color: black;
+  padding: 16px;
+}
 </style>
