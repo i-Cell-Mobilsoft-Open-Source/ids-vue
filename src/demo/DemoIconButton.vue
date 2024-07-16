@@ -69,8 +69,4 @@ for (const mode of allModes) {
 
 <style scoped>
 @import "./demo-style.scss";
-
-.pt-2 {
-  padding-top: 8px;
-}
 </style>
