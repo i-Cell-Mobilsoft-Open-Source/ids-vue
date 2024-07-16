@@ -29,7 +29,7 @@ const actionPanelStyle = reactive({
 </script>
 
 <template>
-  <div :class="[mode, '[&>*]:w-full']">
+  <div :class="[mode, 'ids-action-panel']">
     <slot />
   </div>
 </template>
@@ -44,6 +44,13 @@ const actionPanelStyle = reactive({
   max-width: v-bind('actionPanelStyle.maxWidth');
   background: v-bind('actionPanelStyle.background');
   border-radius: v-bind('actionPanelStyle.borderRadius');
+}
+
+
+.ids-action-panel {
+  :deep(*) {
+    width: 100%;
+  }
 }
 
 :deep(button) {

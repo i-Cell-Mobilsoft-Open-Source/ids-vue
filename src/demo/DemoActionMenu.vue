@@ -1,5 +1,5 @@
 <template>
-  <div class="demo flex justify-center h-[100vh]">
+  <div class="demo menu-container">
     <h2>Action Menu</h2>
     <IdsActionMenu v-model:show="isMenuOpen" panel-mode="elevated" position="bottomLeft">
       <template #action>
@@ -71,4 +71,10 @@ const repeatedItems = Array.from({ length: 8 }, () => repeatedItem.value);
 
 <style scoped>
 @import "./demo-style.scss";
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
 </style>

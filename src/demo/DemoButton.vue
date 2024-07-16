@@ -100,4 +100,8 @@ for (const appearance of allAppearance) {
 
 <style scoped>
 @import "./demo-style.scss";
+
+.pt-2 {
+  padding-top: 8px;
+}
 </style>

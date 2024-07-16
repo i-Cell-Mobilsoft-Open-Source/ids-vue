@@ -27,16 +27,16 @@ const cardStyle = reactive({
 
 <template>
   <div class="ids-card">
-    <div v-if="$slots.cardHeader" class="w-full">
+    <div v-if="$slots.cardHeader" class="ids-card__content">
       <slot name="cardHeader" />
     </div>
-    <div v-if="$slots.cardMedia" class="w-full">
+    <div v-if="$slots.cardMedia" class="ids-card__content">
       <slot name="cardMedia" />
     </div>
-    <div v-if="$slots.cardBody" class="w-full">
+    <div v-if="$slots.cardBody" class="ids-card__content">
       <slot name="cardBody" />
     </div>
-    <div v-if="$slots.cardFooter" class="w-full">
+    <div v-if="$slots.cardFooter" class="ids-card__content">
       <slot name="cardFooter" />
     </div>
   </div>
@@ -53,5 +53,9 @@ const cardStyle = reactive({
   padding: v-bind("cardStyle.padding");
   background: v-bind("cardStyle.background");
   border-radius: v-bind("cardStyle.borderRadius");
+
+  &__content {
+    width: 100%;
+  }
 }
 </style>
