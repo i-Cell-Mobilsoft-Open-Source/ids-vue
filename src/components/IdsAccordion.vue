@@ -55,22 +55,50 @@ onMounted(() => {
 </script>
 
 <template>
-  <details ref="detailsRef" class="w-full p-2.5">
-    <summary class="flex justify-between w-full" @click="handleToggle">
-      <div class="w-4/5 flex justify-start">
+  <details ref="detailsRef" class="ids-accordion">
+    <summary class="ids-accordion__header" @click="handleToggle">
+      <div class="ids-accordion__header--title">
         <slot name="accordion-title" />
       </div>
-      <div class="w-1/5 flex justify-end">
-        <component :is="open ? ChevronUpIcon : ChevronDownIcon" :class="['w-6', { 'flip': clicked }]" />
+      <div class="ids-accordion__header--icon">
+        <component :is="open ? ChevronUpIcon : ChevronDownIcon" :class="['icon-size', { 'flip': clicked }]" />
       </div>
     </summary>
-    <article class="text-left w-full">
+    <article class="ids-accordion__content">
       <slot name="accordion-content" />
     </article>
   </details>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.ids-accordion {
+  width: 100%;
+  padding: 10px;
+
+  &__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    &--title {
+      display: flex;
+      width: 80%;
+      justify-content: flex-start;
+    }
+
+    &--icon {
+      display: flex;
+      width: 20%;
+      justify-content: flex-end;
+    }
+  }
+
+  &__content {
+    text-align: left;
+    width: 100%;
+  }
+}
+
 details {
   border-top: v-bind('accordionStyle.borderTop');
   &>summary {
@@ -118,6 +146,10 @@ article {
   100% {
     transform: scaleY(1);
   }
+}
+
+.icon-size {
+  width: 24px;
 }
 
 .flip {

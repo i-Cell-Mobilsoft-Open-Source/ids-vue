@@ -85,20 +85,20 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative" @click="openMenu">
+  <div class="ids-action-menu" @click="openMenu">
     <div ref="slotRef">
       <slot name="action" />
     </div>
 
     <transition name="panel-fade">
-      <div v-if="show" ref="panelRef" :class="[props.panelMode, panelPositions, '[&>*]:w-full z-20']">
+      <div v-if="show" ref="panelRef" :class="[props.panelMode, panelPositions, 'ids-action-menu__panel']">
         <template v-if="props.firstPanel">
-          <div class="[&>*]:w-full" @click.stop="handleClickInside">
+          <div class="ids-action-menu__panel--container" @click.stop="handleClickInside">
             <slot name="panel" />
           </div>
         </template>
         <template v-else>
-          <div class="[&>*]:w-full" @click.stop="handleClickInside">
+          <div class="ids-action-menu__panel--container" @click.stop="handleClickInside">
             <slot name="panel" />
           </div>
         </template>
@@ -119,7 +119,24 @@ onBeforeUnmount(() => {
   border-radius: v-bind('actionPanelStyle.borderRadius');
 }
 
+.ids-action-menu {
+  position: relative;
+
+  &__panel {
+    z-index: 20;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}
+
+:deep(.ids-action-menu__panel--container > *) {
+  width: 100%;
+}
+
 :deep(button) {
+  
   &:hover {
     border-color: transparent;
   }

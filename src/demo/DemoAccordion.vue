@@ -1,5 +1,5 @@
 <template>
-  <div class="demo w-full">
+  <div class="demo accordion-container">
     <h2>Accordion</h2>
     <IdsAccordion :is-expanded="true">
       <template #accordion-title>
@@ -52,4 +52,8 @@ import IdsAccordion from "../components/IdsAccordion.vue";
 
 <style scoped>
 @import "./demo-style.scss";
+
+.accordion-container {
+  width: 100%;
+}
 </style>
