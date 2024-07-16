@@ -93,6 +93,10 @@ dialog {
   box-shadow: v-bind("dialogStyle.boxShadow");
   min-height: v-bind("dialogStyle.minHeight");
   border-radius: v-bind("dialogStyle.borderRadius");
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  padding: 0;
 
   .dialog-container {
     display: flex;
@@ -101,7 +105,6 @@ dialog {
     width: v-bind("dialogStyle.width");
     border: v-bind("dialogStyle.border");
     padding: v-bind("dialogStyle.padding");
-    min-height: v-bind("dialogStyle.minHeight");
 
     background: var(--ids-comp-dialog-container-color-bg-enabled);
     //box-shadow: v-bind("dialogStyle.boxShadow");
@@ -144,7 +147,7 @@ dialog {
           line-height: 36px;
           font-weight: 700;
           letter-spacing: 0.5px;
-          color: var(--ids-ids-smc-reference-container-color-fg-surface-darker-95);
+          margin: 0;
         }
 
         &--subTitle {
@@ -152,7 +155,7 @@ dialog {
           line-height: 24px;
           font-weight: 400;
           letter-spacing: 0.5px;
-          color: var(--ids-ids-smc-reference-container-color-fg-surface-darker-95);
+          margin: 0;
         }
       }
     }
