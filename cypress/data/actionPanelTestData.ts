@@ -16,7 +16,7 @@ const actionPanelTestData = {
   elevatedBorderColor: 'rgb(229, 231, 235)',
   //sizes
   allWidth: [{
-    compact: "356px",
+    compact: "320px",
   }],
   radius: '16px',
   padding: '8px',

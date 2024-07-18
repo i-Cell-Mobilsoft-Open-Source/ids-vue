@@ -223,7 +223,7 @@ describe('ids Avatar Demo test', () => {
 
   it('Checks the line-height of avatar-SUB-text', () => {
     allCombinations.forEach((item) => {
-      avatarTestData.allLabelLineHeight.forEach((lineHeigt) => {
+      avatarTestData.allSubLabelLineHeight.forEach((lineHeigt) => {
         const avatarSelector = `#${item.variant}-${item.size}-avatar-label-text`;
         cy.get(avatarSelector)
         .find('div > span')
@@ -678,7 +678,7 @@ describe('ids Avatar Demo test', () => {
 
   it('Checks all padding of avatar-with-image', () => {
     allCombinations.forEach((item) => {
-      const avatarSelector = `#${item.size}-avatar-with-image button`;
+      const avatarSelector = `#${item.size}-avatar-with-image div`;
       cy.get(avatarSelector).should('be.visible').then(($el) => {
         const styles = window.getComputedStyle($el[0]);
         expect(styles.paddingTop).to.equal(avatarTestData.imagePadding);

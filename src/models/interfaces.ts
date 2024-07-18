@@ -23,14 +23,14 @@ export interface ButtonConfig {
 }
 
 export interface TagConfig {
-    appearance?: TagAppearanceType,
+    link?: string,
     size?: SizeType,
-    variant?: AllVariantsType,
     isDisabled?: boolean,
     interactive?: boolean,
     leadingIcon?: Component,
     trailingIcon?: Component,
-    link?: string,
+    variant?: AllVariantsType,
+    appearance?: TagAppearanceType,
 }
 
 export interface AccordionConfig {

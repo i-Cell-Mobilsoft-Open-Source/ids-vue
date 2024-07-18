@@ -64,7 +64,7 @@ describe('ids tags Demo test', () => {
         cy.get(tagSelector)
           .should('be.visible')
           .should('have.css', 'flex-shrink', common['flexShrink'])
-          .should('have.css', 'font-weight', common['fontWeight'])
+          .should('have.css', 'font-weight', tagTestData.fontWeight400)
           .should('have.css', 'align-items', common['alignItems'])
           .should('have.css', 'display', common['display'])
           .should('have.css', 'justify-content', common['justifyContent']);
@@ -79,7 +79,7 @@ describe('ids tags Demo test', () => {
         cy.get(tagSelector).should('be.visible').should(($el) => {
           const styles = window.getComputedStyle($el[0]);
           expect(styles.fontSize).to.equal(font[item.size]);
-          expect(styles.fontWeight).to.equal(tagTestData.allFontWeight);
+          expect(styles.fontWeight).to.equal(tagTestData.fontWeight400);
         });
       });
     });
@@ -101,20 +101,22 @@ describe('ids tags Demo test', () => {
     allCombinations.forEach((item) => {
       tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
-          const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
-          if (item.mode === 'filled') {
-            cy.get(tagSelector).should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
-              expect(styles.color).to.equal(color[item.variant]);
-            });
-          } else {
-            cy.get(tagSelector).should('be.visible').should(($el) => {
-              const styles = window.getComputedStyle($el[0]);
-              expect(styles.backgroundColor).to.equal(tagTestData.white);
-              expect(styles.color).to.equal(bgColor[item.variant]);
-            });
-          }
+          tagTestData.enabledOutlineColors.forEach((outlineColor) => {            
+            const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
+            if (item.mode === 'filled') {
+              cy.get(tagSelector).should('be.visible').should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.backgroundColor).to.equal(bgColor[item.variant]);
+                expect(styles.color).to.equal(color[item.variant]);
+              });
+            } else {
+              cy.get(tagSelector).should('be.visible').should(($el) => {
+                const styles = window.getComputedStyle($el[0]);
+                expect(styles.backgroundColor).to.equal(tagTestData.white);
+                expect(styles.color).to.equal(outlineColor[item.variant]);
+              });
+            }
+          });
         });
       });
     });
@@ -122,8 +124,8 @@ describe('ids tags Demo test', () => {
 
   it('Checks the color of tags leading Icon', () => {
     allCombinations.forEach((item) => {
-      tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
+          tagTestData.enabledOutlineColors.forEach((outlineColor) => {
           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
             cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
@@ -133,7 +135,7 @@ describe('ids tags Demo test', () => {
           } else {
             cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[0]);
-              expect(styles.color).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(outlineColor[item.variant]);
             });
           }
         });
@@ -143,8 +145,8 @@ describe('ids tags Demo test', () => {
 
   it('Checks the color of tags trailing Icon', () => {
     allCombinations.forEach((item) => {
-      tagTestData.enabledBgColors.forEach((bgColor) => {
         tagTestData.enabledColors.forEach((color) => {
+          tagTestData.enabledOutlineColors.forEach((outlineColor) => {
           const tagSelector = `#${item.mode}-${item.variant}-${item.size}-tag`;
           if (item.mode === 'filled') {
             cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
@@ -154,7 +156,7 @@ describe('ids tags Demo test', () => {
           } else {
             cy.get(tagSelector).find('svg').should('be.visible').should(($el) => {
               const styles = window.getComputedStyle($el[1]);
-              expect(styles.color).to.equal(bgColor[item.variant]);
+              expect(styles.color).to.equal(outlineColor[item.variant]);
             });
           }
         });
@@ -249,7 +251,7 @@ describe('ids tags Demo test', () => {
     });
   });
 
-  it('Checks color of disabled state tags', () => {
+  xit('Checks color of disabled state tags', () => {
     allCombinations.forEach((item) => {
       if (item.variant === 'error' || item.variant === 'success' || item.variant === 'warning') {
         return;

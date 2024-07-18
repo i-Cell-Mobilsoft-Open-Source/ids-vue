@@ -125,5 +125,14 @@ describe('ids Action Item Button Demo test', () => {
         });
     });
 
-
+    it('Checks the width of Action Panel', () => {
+        allCombinations.forEach((item) => {
+            actionPanelTestData.allWidth.forEach((width) => {
+            const actionPanelSelector = `#${item.mode}-${item.size}-button`;
+            cy.get(actionPanelSelector).should('be.visible').should(($el) => {
+                expect($el).to.have.css('max-width', width[item.size]);
+                });
+            });
+        });
+    });
 });
