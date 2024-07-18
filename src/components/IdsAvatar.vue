@@ -45,7 +45,7 @@ const avatarStyle = reactive({
   initialsFontFamily: `var(--ids-comp-size-avatar-initials-typography-font-family-${props.size})`,
   initialsFontWeight: `var(--ids-comp-size-avatar-initials-typography-font-weight-${props.size})`,
   initialsFontSize: `var(--ids-comp-size-avatar-initials-typography-font-size-${props.size})`,
-  initialsLineHeight: `var(--avatar-initials-typography-line-height-${props.size})`,
+  initialsLineHeight: `var(--ids-comp-size-avatar-initials-typography-line-height-${props.size})`,
   initialsLetterSpacing: `var(--ids-comp-size-avatar-initials-typography-letter-spacing-${props.size})`,
   labelFontFamily: `var(--ids-comp-size-avatar-label-typography-font-family-${props.size})`,
   labelFontWeight: `var(--ids-comp-size-avatar-label-typography-font-weight-${props.size})`,

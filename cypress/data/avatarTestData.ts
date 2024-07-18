@@ -72,7 +72,7 @@ const avatarTestData = {
   }],
   labelHeight: [{
     compact: "16px",
-    comfortable: "16px",
+    comfortable: "20px",
     spacious: "20px",
   }],
   labelWidth: [{
@@ -102,23 +102,23 @@ const avatarTestData = {
   }],
 
   allFontSize: [{
-    compact: "11px",
+    compact: "12px",
     comfortable: "14px",
     spacious: "22px",
   }],
   
   allLabelFontSize: [{
-    compact: "11px",
-    comfortable: "12px",
+    compact: "12px",
+    comfortable: "14px",
     spacious: "14px",
   }],
   allFontWeight: [{
-    compact: '500',
+    compact: '400',
     comfortable: '400',
     spacious: '400',
   }],
   allLabelFontWeight: [{
-    compact: '500',
+    compact: '600',
     comfortable: '600',
     spacious: '600',
   }],
@@ -129,13 +129,18 @@ const avatarTestData = {
   }],
   allLabelLineHeight: [{
     compact: "16px",
+    comfortable: "20px",
+    spacious: "20px",
+  }],
+  allSubLabelLineHeight: [{
+    compact: "16px",
     comfortable: "16px",
     spacious: "20px",
   }],
   labelLetterSpacing: [{
     compact: "0.5px",
     comfortable: "0.5px",
-    spacious: "0.1px",
+    spacious: "0.5px",
   }],
   columnGap: [{
     compact: "8px",
@@ -157,10 +162,11 @@ const avatarTestData = {
   }],
   white2: 'rgb(255, 255, 255) solid 3px',
   black: 'rgb(0, 0, 0) solid 3px',
+  white_none: 'rgb(255, 255, 255) none 0px',
   hoveredTextBgColors: "rgb(241, 245, 249)",
   allRadius: '1000px',
   image: "https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg",
-  allSubTextFontWeight: '500',
+  allSubTextFontWeight: '400',
   labelFGcolor: 'rgb(2, 6, 23)',
   subFGcolor: 'rgb(51, 65, 85)',
   labelRadius: '0px',

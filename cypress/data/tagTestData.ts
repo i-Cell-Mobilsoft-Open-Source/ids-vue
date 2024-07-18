@@ -17,7 +17,7 @@ const tagTestData = {
       primary: "rgb(0, 60, 255)",
       secondary: "rgb(100, 116, 139)",
       brand: "rgb(0, 60, 255)",
-      error: "rgb(239, 68, 68)",
+      error: "rgb(220, 38, 38)",
       success: "rgb(34, 197, 94)",
       warning: "rgb(249, 115, 22)",
       light: "rgb(255, 255, 255)",
@@ -39,7 +39,7 @@ const tagTestData = {
       primary: "rgb(0, 60, 255)",
       secondary: "rgb(100, 116, 139)",
       brand: "rgb(0, 60, 255)",
-      error: "rgb(239, 68, 68)",
+      error: "rgb(220, 38, 38)",
       success: "rgb(34, 197, 94)",
       warning: "rgb(249, 115, 22)",
       light: "rgb(255, 255, 255)",
@@ -66,6 +66,16 @@ const tagTestData = {
       warning: "rgb(255, 255, 255)",
       light: "rgb(71, 85, 105)",
       dark: "rgb(248, 250, 252)",
+    }],
+    enabledOutlineColors: [{
+      primary: "rgb(0, 60, 255)",
+      secondary: "rgb(100, 116, 139)",
+      brand: "rgb(0, 60, 255)",
+      error: "rgb(239, 68, 68)",
+      success: "rgb(34, 197, 94)",
+      warning: "rgb(249, 115, 22)",
+      light: "rgb(255, 255, 255)",
+      dark: "rgb(2, 6, 23)",
     }],
     hoveredColors: [{
       primary: "rgb(255, 255, 255)",
@@ -168,7 +178,6 @@ const tagTestData = {
 
     common: [{
         flexShrink: '0',
-        fontWeight: '500',
         alignItems: 'center',
         display: 'flex',
         justifyContent: 'center'
@@ -179,9 +188,9 @@ const tagTestData = {
     black: 'rgb(0, 0, 0) solid 3px',
     hoverdOutlineBg: 'rgba(100, 140, 180, 0.1)',
     activeOutlineBg: 'rgba(100, 140, 180, 0.2)',
-    disabledBgColors: "rgb(226, 232, 240)",
-    disabledTextColors: "rgb(148, 163, 184)",
-    allFontWeight: '500',
+    disabledBgColors: "rgb(0, 60, 255)",
+    disabledTextColors: "rgb(255, 255, 255)",
+    fontWeight400: '400',
   }
   
   export default tagTestData;
