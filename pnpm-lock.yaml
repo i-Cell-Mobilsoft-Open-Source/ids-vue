@@ -11,9 +11,12 @@ importers:
       '@heroicons/vue':
         specifier: ^2.1.4
         version: 2.1.4(vue@3.4.21(typescript@5.5.2))
+      '@i-cell/ids-styles':
+        specifier: ^0.0.3
+        version: 0.0.3
       '@i-cell/ids-tokens':
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.13
+        version: 0.0.13
       '@rushstack/eslint-patch':
         specifier: ^1.10.3
         version: 1.10.3
@@ -986,8 +989,11 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
-  '@i-cell/ids-tokens@0.0.9':
-    resolution: {integrity: sha512-Ck0KIrj+Qbb6lI3OElyKXOJKvu2W1iAYS5g6TEqzDf7MTuu6eN6RSWsooi1+5xlsawy72NvJuAy+BKRJZuwxUQ==}
+  '@i-cell/ids-styles@0.0.3':
+    resolution: {integrity: sha512-LZ4+w3WGp3rfZ7vS1aUZxmkirhxlB1qQtWZxxhHlislaDh0uFc3jBxaLjTPVigqW4jomKP5tOPMu59P0eY8Weg==}
+
+  '@i-cell/ids-tokens@0.0.13':
+    resolution: {integrity: sha512-N+0k588SPOvO2OSvmoMSrqUAR6CF8NqnYySfvBmX/6nTDyfy2D3V0EV6jkC1vpGEn56Sw0+fwd/OEDyUqMZXbg==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -5238,7 +5244,9 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@i-cell/ids-tokens@0.0.9': {}
+  '@i-cell/ids-styles@0.0.3': {}
+
+  '@i-cell/ids-tokens@0.0.13': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
