@@ -13,6 +13,7 @@ import ActionItemMenu from "./DemoActionMenu.vue";
 import ActionItemLink from "./DemoActionItemLink.vue";
 import ActionItemButton from "./DemoActionItemButton.vue";
 import Checkbox from "./DemoCheckbox.vue";
+import Paginator from "./DemoPaginator.vue";
 
 const routes = [
   {
@@ -83,6 +84,11 @@ const routes = [
     path: '/components/checkbox',
     name: 'Checkbox',
     component: Checkbox
+  },
+  {
+    path: '/components/paginator',
+    name: 'Paginator',
+    component: Paginator
   }
 ];
 
