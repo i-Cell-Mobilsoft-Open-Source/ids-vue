@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     Paginator
-    <IdsPaginator />
+    <IdsPaginator :length="120" />
     <button @click="changeLang()">
       change
     </button>
@@ -12,7 +12,8 @@ import IdsPaginator from "../components/paginator/IdsPaginator.vue";
 import { useIdsVue } from "../core/config/IdsVue.ts";
 import { onMounted } from 'vue';
 let lang: 'en' | 'hu' = 'en';
-const idsConfig = useIdsVue()
+const idsConfig = useIdsVue();
+
 
 onMounted(() => {
   if (lang === 'en')
