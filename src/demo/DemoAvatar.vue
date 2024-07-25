@@ -7,6 +7,7 @@
       :key="index"
       :size="option.size"
       :variant="option.variant"
+      :interactive="true"
     >
       BB
     </IdsAvatar>
@@ -16,6 +17,7 @@
       :key="index"
       :size="option.size"
       :variant="option.variant"
+      :interactive="true"
     />
 
     <IdsAvatar
@@ -23,6 +25,7 @@
       :id="`${option.size}-avatar-with-image`"
       :key="index"
       :size="option.size"
+      :interactive="true"
       image="https://sm.ign.com/t/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.300.jpg"
     />
     <IdsAvatar

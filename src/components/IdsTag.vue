@@ -7,7 +7,6 @@ import { computed, reactive } from 'vue';
 
 const props = withDefaults(defineProps<TagConfig>(), {
   appearance: TagAppearance.FILLED,
-  isDisabled: false,
   size: Size.COMFORTABLE,
   variant: AllVariants.PRIMARY,
   leadingIcon: undefined,
@@ -52,9 +51,8 @@ const tagStyle = reactive({
   //disabled
   disabledColor: `var(--ids-comp-tag-${props.appearance}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-tag-${props.appearance}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-tag-size-border-width-${props.size}) solid 
-  var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-disabled)`,
-
+  disabledBorder: `var(--ids-comp-tag-size-border-width-${props.size}) solid var(--ids-comp-tag-${props.appearance}-color-border-${props.variant}-disabled)`,
+  
   //icon sizes
   iconWidth: `var(--ids-comp-tag-size-icon-${props.size})`,
   iconHeight: `var(--ids-comp-tag-size-icon-${props.size})`,
@@ -71,8 +69,7 @@ const tagStyle = reactive({
 <template>
   <component
     :is="componentType" :href="hrefLink" 
-    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]" :disabled="isDisabled"
-    :aria-disabled="isDisabled ? 'true' : undefined"
+    :class="[size, 'ids-tag', { 'light': props.variant === 'light' }]"
   >
     <component :is="props.leadingIcon" class="icon-size" />
     <slot />
@@ -124,15 +121,16 @@ $sizes: compact, comfortable, spacious, dense;
 }
 
 //variants
-button.ids-tag {
+.ids-tag {
   @include tagRules;
+
   &:hover {
     color: v-bind('tagStyle.hoverColor');
     border: v-bind('tagStyle.hoverBorder');
     background: v-bind('tagStyle.hoverBackground');
   }
 
-  &:focus-within {
+  &:focus {
     outline-style: solid;
     outline-offset: 2px;
     color: v-bind('tagStyle.focusColor');
@@ -147,12 +145,6 @@ button.ids-tag {
     border: v-bind('tagStyle.activeBorder');
     background: v-bind('tagStyle.activeBackground');
     outline: none;
-  }
-
-  &:disabled {
-    color: v-bind('tagStyle.disabledColor');
-    border: v-bind('tagStyle.disabledBorder');
-    background: v-bind('tagStyle.disabledBackground');
   }
 
   &.light:focus {
