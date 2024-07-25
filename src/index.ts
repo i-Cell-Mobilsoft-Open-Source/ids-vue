@@ -32,3 +32,4 @@ export { default as IdsHintMessage } from "./components/message/IdsHintMessage.v
 export { default as IdsErrorMessage } from "./components/message/IdsErrorMessage.vue";
 export { default as IdsSuccessMessage } from "./components/message/IdsSuccessMessage.vue";
 export { default as IdsPaginator } from "./components/paginator/IdsPaginator.vue";
+export { default as IdsIcon } from "./components/icon/IdsIcon.vue";

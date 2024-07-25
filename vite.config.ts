@@ -4,6 +4,7 @@ import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { fileURLToPath } from 'url';
 import path from 'path';
+import svgLoader from 'vite-svg-loader'
 
 const filesNeedToExclude = ["src/demo/**"];
 
@@ -13,7 +14,7 @@ const filesPathToExclude = filesNeedToExclude.map((src) => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), dts()],
+  plugins: [vue(), dts(), svgLoader()],
   build: {
     cssMinify: true,
     lib: {

@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance, ref } from 'vue';
-import { IdsPaginatorProps } from '@components/paginator/model/IdsPaginatorProps.interface';
-import { PaginatorPageButtonAppearance } from '@components/paginator/model/IdsPaginatorAppearance.type';
+import { IdsPaginatorProps } from '@components/paginator/models/IdsPaginatorProps.interface';
+import { PaginatorPageButtonAppearance } from '@components/paginator/models/IdsPaginatorAppearance.type';
 import { Size } from '@models/size.type';
-import { PaginatorVariant } from '@components/paginator/model/IdsPaginatorVariant.type';
+import { PaginatorVariant } from '@components/paginator/models/IdsPaginatorVariant.type';
 import { addClassPrefix } from '@core/utils/AddClassPrefix';
 import { isNumberEven } from '@core/utils/EvenOdd';
-import { IdsPaginationEvents } from '@components/paginator/model/IdsPaginatorEvents.interface';
+import { IdsPaginationEvents } from '@components/paginator/models/IdsPaginatorEvents.interface';
+import idsIcon from '@components/icon/IdsIcon.vue';
+import ChevronDoubleLeftIcon from '@mdi/svg/svg/chevron-double-left.svg?component';
+import ChevronDoubleRightIcon from '@mdi/svg/svg/chevron-double-right.svg?component';
+import ChevronLeftIcon from '@mdi/svg/svg/chevron-left.svg?component';
+import ChevronRightIcon from '@mdi/svg/svg/chevron-right.svg?component';
+import DotsHorizontalIcon from '@mdi/svg/svg/dots-horizontal.svg?component';
 
 const componentClass = 'ids-paginator';
 
@@ -47,6 +53,14 @@ const props = withDefaults(
     ['ids-paginator__page-button']: true,
     [addClassPrefix('ids-paginator__page-button', props.pageButtonAppearance)]: !!props.pageButtonAppearance,
   }));
+
+  const navigationIcon = {
+    first: ChevronDoubleLeftIcon,
+    prev: ChevronLeftIcon,
+    next: ChevronRightIcon,
+    last: ChevronDoubleRightIcon,
+    truncation: DotsHorizontalIcon,
+  };
 
   const safePageSizeData = computed(() => getSafePageSizeData(props.pageSizeOptions, props.pageSize));
 
@@ -266,8 +280,7 @@ const props = withDefaults(
         :aria-label="getAriaLabel('firstPageLabel')"
         @click="stepFirstPage()"
       >
-        {{ '<<' }}
-      <!-- <ids-icon [icon]="navigationIcon.first" [size]="size()" /> -->
+        <idsIcon :icon="navigationIcon.first" />
       </button>
 
       <button
@@ -278,8 +291,7 @@ const props = withDefaults(
         :aria-label="getAriaLabel('previousPageLabel')"
         @click="stepPreviousPage()"
       >
-        {{ '<' }}
-      <!-- <ids-icon [icon]="navigationIcon.prev" [size]="size()" /> -->
+        <idsIcon :icon="navigationIcon.prev" />
       </button>
       <ul v-if="showPageButtons" class="ids-paginator__page-button-container">
         <li v-for="pageButton in pageButtons" :key="pageButton">
@@ -310,8 +322,7 @@ const props = withDefaults(
         :aria-label="getAriaLabel('nextPageLabel')"
         @click="stepNextPage()"
       >
-        {{ '>' }}
-      <!-- <ids-icon [icon]="navigationIcon.next" [size]="size()" /> -->
+        <idsIcon :icon="navigationIcon.next" />
       </button>
 
       <button
@@ -323,8 +334,7 @@ const props = withDefaults(
         :aria-label="getAriaLabel('lastPageLabel')"
         @click="stepLastPage()"
       >
-        {{ '>>' }}
-      <!-- <ids-icon [icon]="navigationIcon.last" [size]="size()" /> -->
+        <idsIcon :icon="navigationIcon.last" />
       </button>
       <span v-if="showPageInfo" class="ids-paginator__help-text">
         {{ rangeLabel }}
