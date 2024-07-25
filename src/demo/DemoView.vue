@@ -45,6 +45,12 @@
     <router-link data-cy="accordion-component" to="/components/accordion" @click="isMenuVisible = false">
       Accordion Component
     </router-link>
+    <router-link data-cy="checkbox-component" to="/components/checkbox" @click="isMenuVisible = false">
+      Checkbox Component
+    </router-link>
+    <router-link data-cy="paginator-component" to="/components/paginator" @click="isMenuVisible = false">
+      Paginator Component
+    </router-link>
   </nav>
   <section>
     <router-view />

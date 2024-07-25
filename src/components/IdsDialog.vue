@@ -24,14 +24,14 @@ const animationEndHandler = () => {
 }
 
 const dialogStyle = reactive({
-  gap: `var(--ids-comp-size-dialog-container-size-gap-${props.size})`,
-  width: `var(--ids-comp-size-dialog-container-size-width-${props.size})`,
+  gap: `var(--ids-comp-dialog-container-size-gap-${props.size})`,
+  width: `var(--ids-comp-dialog-container-size-width-${props.size})`,
   background: props.backDrop ? '#000000' : 'transparent',
-  minHeight: `var(--ids-comp-size-dialog-container-size-min-height-${props.size})`,
-  border: `var(--ids-comp-size-dialog-container-size-border-width-${props.size}) 
+  minHeight: `var(--ids-comp-dialog-container-size-min-height-${props.size})`,
+  border: `var(--ids-comp-dialog-container-size-border-width-${props.size}) 
   solid var(--ids-comp-dialog-container-color-border-surface-default)`,
-  borderRadius: `var(--ids-comp-size-dialog-container-size-border-radius-${props.size})`,
-  padding: `var(--ids-comp-size-dialog-container-size-padding-y-${props.size}) var(--ids-comp-size-dialog-container-size-padding-x-${props.size})`,
+  borderRadius: `var(--ids-comp-dialog-container-size-border-radius-${props.size})`,
+  padding: `var(--ids-comp-dialog-container-size-padding-y-${props.size}) var(--ids-comp-dialog-container-size-padding-x-${props.size})`,
  
   boxShadow: `var(--ids-smc-reference-container-effects-shadow-horizontal-none)
    var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 
@@ -103,7 +103,7 @@ dialog {
     padding: v-bind("dialogStyle.padding");
     min-height: v-bind("dialogStyle.minHeight");
 
-    background: var(--ids-comp-dialog-container-color-bg-enabled);
+    background: var(--ids-comp-dialog-container-color-bg-default);
     //box-shadow: v-bind("dialogStyle.boxShadow");
 
     section {

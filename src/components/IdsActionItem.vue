@@ -23,19 +23,19 @@ const buttonType = computed(() => (props.type === 'button' ? 'button' : undefine
 
 const actionItemStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-size-action-item-size-gap-${props.size})`,
-  height: `var(--ids-comp-size-action-item-size-height-${props.size})`,
-  borderRadius: `var(--ids-comp-size-action-item-size-border-radius-${props.size})`,
-  color: `var(--ids-comp-action-item-${props.appearance}-color-fg-label-${props.variant}-enabled)`,
-  background: ` var(--ids-comp-action-item-${props.appearance}-color-bg-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-size-action-item-size-padding-y-${props.size}) var(--ids-comp-size-action-item-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
-  solid var(--ids-comp-action-item-${props.appearance}-color-border-${props.variant}-enabled)`,
+  gap: `var(--ids-comp-action-item-size-gap-${props.size})`,
+  height: `var(--ids-comp-action-item-size-height-${props.size})`,
+  borderRadius: `var(--ids-comp-action-item-size-border-radius-${props.size})`,
+  color: `var(--ids-comp-action-item-${props.appearance}-color-fg-label-${props.variant}-default)`,
+  background: ` var(--ids-comp-action-item-${props.appearance}-color-bg-${props.variant}-default)`,
+  padding: `var(--ids-comp-action-item-size-padding-y-${props.size}) var(--ids-comp-action-item-size-padding-x-${props.size})`,
+  border: `var(--ids-comp-action-item-size-border-width-${props.size}) 
+  solid var(--ids-comp-action-item-${props.appearance}-color-border-${props.variant}-default)`,
 
   //hovered
   hoverColor: `var(--ids-comp-action-item-${props.appearance}-color-fg-label-${props.variant}-hovered)`,
   hoverBackground: `var(--ids-comp-action-item-${props.appearance}-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
+  hoverBorder: `var(--ids-comp-action-item-size-border-width-${props.size}) 
   solid var(--ids-comp-action-item-${props.appearance}-color-border-${props.variant}-hovered)`,
 
   //focused
@@ -53,19 +53,19 @@ const actionItemStyle = reactive({
   //disabled
   disabledColor: `var(--ids-comp-action-item-${props.appearance}-color-fg-label-${props.variant}-disabled)`,
   disabledBackground: `var(--ids-comp-action-item-${props.appearance}-color-bg-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-size-action-item-size-border-width-${props.size}) 
+  disabledBorder: `var(--ids-comp-action-item-size-border-width-${props.size}) 
   solid var(--ids-comp-action-item-${props.appearance}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidthHeight: `var(--ids-comp-size-action-item-size-icon-${props.size})`,
+  iconWidthHeight: `var(--ids-comp-action-item-size-icon-${props.size})`,
 
   //typography
   fontStyle: `normal`,
-  fontSize: `var(--ids-comp-size-action-item-label-typography-font-size-${props.size})`,
-  fontFamily: `var(--ids-comp-size-action-item-label-typography-font-family-${props.size})`,
-  fontWeight: `var(--ids-comp-size-action-item-label-typography-font-weight-${props.size})`,
-  lineHeight: `var(--ids-comp-size-action-item-label-typography-line-height-${props.size})`,
-  letterSpacing: `var(--ids-comp-size-action-item-label-typography-letter-spacing-${props.size})`,
+  fontSize: `var(--ids-comp-action-item-label-typography-font-size-${props.size})`,
+  fontFamily: `var(--ids-comp-action-item-label-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-action-item-label-typography-font-weight-${props.size})`,
+  lineHeight: `var(--ids-comp-action-item-label-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-action-item-label-typography-letter-spacing-${props.size})`,
 });
 </script>
 

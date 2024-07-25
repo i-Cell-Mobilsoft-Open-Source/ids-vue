@@ -20,8 +20,8 @@ const DividerStyle = reactive({
   //enabled
   width: props.width,
   height: props.height,
-  background: ` var(--ids-comp-divider-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-size-divider-size-border-radius-${props.size})`,
+  background: ` var(--ids-comp-divider-color-bg-${props.variant}-default)`,
+  borderRadius: `var(--ids-comp-divider-size-border-radius-${props.size})`,
 });
 </script>
 
@@ -46,11 +46,11 @@ $sizes: compact, comfortable, spacious, dense;
     @include common;
 
     &.vertical {
-      width: var(--ids-comp-size-divider-size-width-#{$size});
+      width: var(--ids-comp-divider-size-width-#{$size});
     }
 
     &.horizontal {
-      height: var(--ids-comp-size-divider-size-height-#{$size});
+      height: var(--ids-comp-divider-size-height-#{$size});
     }
   }
 }

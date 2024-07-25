@@ -22,49 +22,49 @@ const props = withDefaults(
 const buttonStyle = reactive({
 
   //enabled
-  gap: `var(--ids-comp-size-buttons-size-gap-${props.size})`,
-  height: `var(--ids-comp-size-buttons-size-height-${props.size})`,
-  minWidth: `var(--ids-comp-size-buttons-size-min-width-${props.size})`,
-  borderRadius: `var(--ids-comp-size-buttons-size-border-radius-${props.size})`,
-  background: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-enabled)`,
-  color: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-enabled)`,
-  padding: `var(--ids-comp-size-buttons-size-padding-y-${props.size}) var(--ids-comp-size-buttons-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid 
-  var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-enabled)`,
+  gap: `var(--ids-comp-buttons-size-gap-${props.size})`,
+  height: `var(--ids-comp-buttons-size-height-${props.size})`,
+  minWidth: `var(--ids-comp-buttons-size-min-width-${props.size})`,
+  borderRadius: `var(--ids-comp-buttons-size-border-radius-${props.size})`,
+  background: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-default)`,
+  color: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-default)`,
+  padding: `var(--ids-comp-buttons-size-padding-y-${props.size}) var(--ids-comp-buttons-size-padding-x-${props.size})`,
+  border: `var(--ids-comp-buttons-size-border-width-${props.size}) solid 
+  var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-default)`,
   
   //hovered
   hoverBackground: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-hovered)`,
   hoverColor: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) solid 
+  hoverBorder: `var(--ids-comp-buttons-size-border-width-${props.size}) solid 
   var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-focused)`,
   focusedColor: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  focusedBorder: `var(--ids-comp-buttons-size-border-width-${props.size}) 
   solid var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-focused)`,
 
   //active
   activeBackground: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-pressed)`,
   activeColor: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  activeBorder: `var(--ids-comp-buttons-size-border-width-${props.size}) 
   solid var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-pressed)`,
 
   //disabled
   disabledBackground: `var(--ids-comp-buttons-${props.appearance}-color-bg-${props.variant}-disabled)`,
   disabledColor: `var(--ids-comp-buttons-${props.appearance}-color-fg-label-${props.variant}-disabled)`,
-  disabledBorder: `var(--ids-comp-size-buttons-size-border-width-${props.size}) 
+  disabledBorder: `var(--ids-comp-buttons-size-border-width-${props.size}) 
   solid var(--ids-comp-buttons-${props.appearance}-color-border-${props.variant}-disabled)`,
 
   //icon sizes
-  iconWidthHeight: `var(--ids-comp-size-buttons-size-icon-${props.size})`,
+  iconWidthHeight: `var(--ids-comp-buttons-size-icon-${props.size})`,
 
   //font
-  fontFamily: `var(--ids-comp-size-buttons-label-typography-font-family-${props.size})`,
-  fontWeight: `var(--ids-comp-size-buttons-label-typography-font-weight-${props.size})`,
-  fontSize: `var(--ids-comp-size-buttons-label-typography-font-size-${props.size})`,
-  lineHeight: `var(--ids-comp-size-buttons-label-typography-line-height-${props.size})`,
-  letterSpacing: `var(--ids-comp-size-buttons-label-typography-letter-spacing-${props.size})`,
+  fontFamily: `var(--ids-comp-buttons-label-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-buttons-label-typography-font-weight-${props.size})`,
+  fontSize: `var(--ids-comp-buttons-label-typography-font-size-${props.size})`,
+  lineHeight: `var(--ids-comp-buttons-label-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-buttons-label-typography-letter-spacing-${props.size})`,
 });
 </script>
 

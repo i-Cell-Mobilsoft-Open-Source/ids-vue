@@ -16,47 +16,47 @@ const props = withDefaults(
 
 const avatarStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-size-avatar-size-gap-${props.size})`,
-  color: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
-  background: ` var(--ids-comp-avatar-color-bg-${props.variant}-enabled)`,
-  borderRadius: `var(--ids-comp-size-avatar-size-border-radius-${props.size})`,
-  padding: props.image ? "0px" : `var(--ids-comp-size-avatar-size-padding-y-${props.size}) var(--ids-comp-size-avatar-size-padding-x-${props.size})`,
-  border: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-enabled)`,
+  gap: `var(--ids-comp-avatar-size-gap-${props.size})`,
+  color: `var(--ids-comp-avatar-color-fg-${props.variant}-default)`,
+  background: ` var(--ids-comp-avatar-color-bg-${props.variant}-default)`,
+  borderRadius: `var(--ids-comp-avatar-size-border-radius-${props.size})`,
+  padding: props.image ? "0px" : `var(--ids-comp-avatar-size-padding-y-${props.size}) var(--ids-comp-avatar-size-padding-x-${props.size})`,
+  border: `var(--ids-comp-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-default)`,
 
   //hovered
   hoverBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-hovered)`,
-  hoverBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered)`,
+  hoverBorder: `var(--ids-comp-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-hovered)`,
 
   //focused
   focusedBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-focused)`,
-  focusedBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
-  focusBorderRadius: `var(--ids-comp-size-avatar-size-border-radius-${props.size})`,
+  focusedBorder: `var(--ids-comp-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-focused)`,
+  focusBorderRadius: `var(--ids-comp-avatar-size-border-radius-${props.size})`,
 
   //active
   activeBackground: `var(--ids-comp-avatar-color-bg-${props.variant}-pressed)`,
-  activeBorder: `var(--ids-comp-size-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
+  activeBorder: `var(--ids-comp-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-pressed)`,
 
   //image sizes
-  width: `var(--ids-comp-size-avatar-size-width-${props.size})`,
-  height: `var(--ids-comp-size-avatar-size-height-${props.size})`,
-  iconColor: `var(--ids-comp-avatar-color-fg-${props.variant}-enabled)`,
+  width: `var(--ids-comp-avatar-size-width-${props.size})`,
+  height: `var(--ids-comp-avatar-size-height-${props.size})`,
+  iconColor: `var(--ids-comp-avatar-color-fg-${props.variant}-default)`,
 
   //font
-  initialsFontFamily: `var(--ids-comp-size-avatar-initials-typography-font-family-${props.size})`,
-  initialsFontWeight: `var(--ids-comp-size-avatar-initials-typography-font-weight-${props.size})`,
-  initialsFontSize: `var(--ids-comp-size-avatar-initials-typography-font-size-${props.size})`,
-  initialsLineHeight: `var(--ids-comp-size-avatar-initials-typography-line-height-${props.size})`,
-  initialsLetterSpacing: `var(--ids-comp-size-avatar-initials-typography-letter-spacing-${props.size})`,
-  labelFontFamily: `var(--ids-comp-size-avatar-label-typography-font-family-${props.size})`,
-  labelFontWeight: `var(--ids-comp-size-avatar-label-typography-font-weight-${props.size})`,
-  labelFontSize: `var(--ids-comp-size-avatar-label-typography-font-size-${props.size})`,
-  labelLineHeight: `var(--ids-comp-size-avatar-label-typography-line-height-${props.size})`,
-  labelLetterSpacing: `var(--ids-comp-size-avatar-label-typography-letter-spacing-${props.size})`,
-  subLabelFontFamily: `var(---ids-comp-size-avatar-sublabel-typography-font-family-${props.size})`,
-  subLabelFontWeight: `var( --ids-comp-size-avatar-sublabel-typography-font-weight-${props.size})`,
-  subLabelFontSize: `var(--ids-comp-size-avatar-sublabel-typography-font-size-${props.size})`,
-  subLabelLineHeight: `var(--ids-comp-size-avatar-sublabel-typography-line-height-${props.size})`,
-  subLabelLetterSpacing: `var(--ids-comp-size-avatar-sublabel-typography-letter-spacing-${props.size})`,
+  initialsFontFamily: `var(--ids-comp-avatar-initials-typography-font-family-${props.size})`,
+  initialsFontWeight: `var(--ids-comp-avatar-initials-typography-font-weight-${props.size})`,
+  initialsFontSize: `var(--ids-comp-avatar-initials-typography-font-size-${props.size})`,
+  initialsLineHeight: `var(--avatar-initials-typography-line-height-${props.size})`,
+  initialsLetterSpacing: `var(--ids-comp-avatar-initials-typography-letter-spacing-${props.size})`,
+  labelFontFamily: `var(--ids-comp-avatar-label-typography-font-family-${props.size})`,
+  labelFontWeight: `var(--ids-comp-avatar-label-typography-font-weight-${props.size})`,
+  labelFontSize: `var(--ids-comp-avatar-label-typography-font-size-${props.size})`,
+  labelLineHeight: `var(--ids-comp-avatar-label-typography-line-height-${props.size})`,
+  labelLetterSpacing: `var(--ids-comp-avatar-label-typography-letter-spacing-${props.size})`,
+  subLabelFontFamily: `var(---ids-comp-avatar-sublabel-typography-font-family-${props.size})`,
+  subLabelFontWeight: `var( --ids-comp-avatar-sublabel-typography-font-weight-${props.size})`,
+  subLabelFontSize: `var(--ids-comp-avatar-sublabel-typography-font-size-${props.size})`,
+  subLabelLineHeight: `var(--ids-comp-avatar-sublabel-typography-line-height-${props.size})`,
+  subLabelLetterSpacing: `var(--ids-comp-avatar-sublabel-typography-letter-spacing-${props.size})`,
 });
 </script>
 
@@ -156,7 +156,7 @@ $sizes: compact, comfortable, spacious, dense;
     line-height: v-bind("avatarStyle.labelLineHeight");
     font-style: normal;
     letter-spacing: v-bind("avatarStyle.labelLetterSpacing");
-    color: var(--ids-comp-avatar-color-fg-surface-enabled);
+    color: var(--ids-comp-avatar-color-fg-surface-default);
   }
 
   .#{$size}-sub-text {
@@ -166,7 +166,7 @@ $sizes: compact, comfortable, spacious, dense;
     line-height: v-bind("avatarStyle.subLabelLineHeight");
     font-style: normal;
     letter-spacing: v-bind("avatarStyle.subLabelLetterSpacing");
-    color: var(--ids-comp-avatar-color-fg-surface-enabled-lighter-10);
+    color: var(--ids-comp-avatar-color-fg-surface-default-lighter-10);
   }
 }
 
