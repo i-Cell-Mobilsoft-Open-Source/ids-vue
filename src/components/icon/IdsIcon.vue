@@ -15,17 +15,18 @@ import { ComponentInternalInstance, computed, getCurrentInstance } from 'vue';
   });
 
   const size = computed<string>(() => {
-    return props.size !== undefined ? 
-      props.size : parent && parent.props['size'] ? 
-      parent.props['size'] as SizeType : Size.COMFORTABLE;
+    return props.size !== undefined ? props.size : getParentSize();
   });
 
   const classObject = computed(() => ({
     [componentClass]: true,
     [addClassPrefix(componentClass, size.value)]: !!size.value,
   }));
-  
 
+  function getParentSize(): string {
+    return parent && parent.props['size'] ? parent.props['size'] as SizeType : Size.COMFORTABLE;
+  }
+  
 </script>
 <template>
   <component :is="icon" :class="classObject" />

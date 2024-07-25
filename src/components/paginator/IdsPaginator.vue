@@ -110,11 +110,12 @@ const props = withDefaults(
 
   const rangeLabel = computed(() => {
       if (props.length === 0 || safePageSizeData.value.safePageSize === 0) {
-        return 'Page 0 of 0';
+        return getRangeLabel('0', '0');
       }
 
-      const maxPageCount = Math.ceil(props.length / safePageSizeData.value.safePageSize);
-      return `Page ${_pageIndex.value + 1} of ${maxPageCount}`;
+      const currentPageIndex = String(_pageIndex.value + 1);
+      const maxPageCount = String(Math.ceil(props.length / safePageSizeData.value.safePageSize));
+      return getRangeLabel(currentPageIndex, maxPageCount);
   });
 
   function getSafePageSizeData(pageSizeOptions: number[], pageSize: number): { safePageSizeOptions: number[], safePageSize: number } {
@@ -263,8 +264,19 @@ const props = withDefaults(
   }
 
   function getAriaLabel(labelType: string): string | undefined {
-    return instance?.appContext.config.globalProperties.$idsVue.config.locale ? 
-      instance?.appContext.config.globalProperties.$idsVue.config.locale[labelType] : undefined;
+    return instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator ? 
+      instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator[labelType] : undefined;
+  }
+
+  function getAriaPageLabel(value: string): string | undefined {
+    return instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator ? 
+      instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator['pageLabel'].replace(/{page}/g, value) : undefined;
+  }
+
+  function getRangeLabel(value1: string, value2: string): string | undefined {
+    return instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator ? 
+      instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator['rangeLabel'].replace(/{value1}/g, value1).replace(/{value2}/g, value2)
+      : undefined;
   }
 
 </script>
@@ -296,8 +308,7 @@ const props = withDefaults(
       <ul v-if="showPageButtons" class="ids-paginator__page-button-container">
         <li v-for="pageButton in pageButtons" :key="pageButton">
           <div v-if="pageButton === '...'" class="ids-paginator__page-button-truncation">
-            {{ '...' }}
-          <!-- <ids-icon [icon]="navigationIcon.truncation" [size]="size()" /> -->
+            <idsIcon :icon="navigationIcon.truncation" />
           </div>
           <button
             v-else
@@ -306,7 +317,7 @@ const props = withDefaults(
             type="button"
             class="ids-paginator__page-button"
             :class="[pageButtonClassObject, +pageButton === pageIndex + 1 ? 'active' : '']"
-            :aria-label="getAriaLabel('pageLabel') + pageButton"
+            :aria-label="getAriaPageLabel(pageButton)"
             :aria-current="+pageButton === pageIndex + 1 ? 'page' : undefined"
             @click="stepPage(+pageButton - 1)"
           >

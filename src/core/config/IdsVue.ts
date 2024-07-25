@@ -1,18 +1,22 @@
 import { inject, App, reactive } from "vue";
+import { defaultConfigOptions } from "@core/config/models/defaultConfigOptions.interface";
 
-interface IdsVue {
-  config: Record<string, unknown>;
+export interface IdsVue {
+  config: defaultConfigOptions;
 }
 
 const IdsVueSymbol = Symbol();
 
-export const defaultOptions = {
+export const defaultOptions: defaultConfigOptions = {
   locale: {
-    nextPageLabel: 'Go to next page',
-    previousPageLabel: 'Go to previous page',
-    firstPageLabel: 'Go to first page',
-    lastPageLabel: 'Go to last page',
-    pageLabel: 'Go to page',
+    paginator: {
+      nextPageLabel: 'Go to next page',
+      previousPageLabel: 'Go to previous page',
+      firstPageLabel: 'Go to first page',
+      lastPageLabel: 'Go to last page',
+      pageLabel: 'Go to page {page}',
+      rangeLabel: 'Page {value1} of {value2}',
+    }
   }
 };
 
@@ -27,7 +31,7 @@ export function useIdsVue(): IdsVue {
   return IdsVue;
 }
 
-export function setup(app: App, options: Partial<typeof defaultOptions>) {
+export function setup(app: App, options: Partial<defaultConfigOptions>) {
   const IdsVue = {
       config: reactive(options)
   };
@@ -39,11 +43,15 @@ export function setup(app: App, options: Partial<typeof defaultOptions>) {
 }
 
 export default {
-  install: (app: App, options?: Partial<typeof defaultOptions>): void => {
+  install: (app: App, options?: Partial<defaultConfigOptions>): void => {
     const configOptions = { 
       locale: {
         ...defaultOptions.locale,
-        ...options?.locale
+        ...options?.locale,
+        paginator: {
+          ...defaultOptions.locale.paginator,
+          ...options?.locale?.paginator,
+        }
       }
     };
     
