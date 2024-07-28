@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Size } from '@models/size.type';
-import { computed, getCurrentInstance, onMounted, ref, watch } from 'vue';
+import { computed, getCurrentInstance, onMounted, provide, ref, toRef, watch } from 'vue';
 import IdsCheckMark from '@assets/IdsCheckMark.vue'
 import IdsIndeterminateIcon from '@assets/IdsIndeterminateIcon.vue';
 import { IdsCheckboxProps } from '@components/checkbox/models/IdsCheckboxProps.interface.ts';
@@ -9,6 +9,7 @@ import { IdsCheckboxState, IdsCheckboxStateType } from '@components/checkbox/mod
 import { IdsCheckboxEvents } from '@components/checkbox/models/IdsCheckboxEvents.interface.ts';
 import { IdsCheckboxSlots } from '@components/checkbox/models/IdsCheckboxSlots.interface.ts';
 import { addClassPrefix } from '@core/utils/AddClassPrefix.ts';
+import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMessageInjectedAttributes.interface';
 
 const componentClass = 'ids-checkbox';
 
@@ -67,6 +68,12 @@ const inputId = computed<string>(() => {
   return props.id !== undefined ? props.id : `${componentClass}-${uid.value}`;
 });
 
+const sizeValue = toRef(() => props.size);
+const variantValue = toRef(() => props.variant);
+const disabledValue = toRef(() => props.disabled);
+
+provide<IdsMessageInjectedAttributes>('componentAttributes', {sizeValue, variantValue, disabledValue});
+
 onMounted(() => {
   if (checkboxRef.value) {
     checkboxRef.value.indeterminate = props.indeterminate;
@@ -80,22 +87,19 @@ onMounted(() => {
   }
 })
 
-watch(() => props.indeterminate, (newVal) => {
-  if (checkboxRef.value) checkboxRef.value.indeterminate = newVal;
-  if (newVal) {
-    checkboxState.value = IdsCheckboxState.INDETERMINATE;
+watch(() => [props.indeterminate, model.value], (currentValue) => {
+  if (checkboxRef.value) {
+    checkboxRef.value.indeterminate = !!currentValue[0];
+    checkboxRef.value.checked = checkboxState.value === IdsCheckboxState.CHECKED;
+    if (checkboxRef.value.indeterminate) {
+      checkboxState.value = IdsCheckboxState.INDETERMINATE;
+    } else {
+      checkboxState.value = determinateCheckValue() ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
+    }
   }
-});
-
-watch(() => model.value, () => {
-  checkboxState.value = determinateCheckValue() ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
 })
 
 function determinateCheckValue(): boolean {
-  if (checkboxState.value === IdsCheckboxState.INDETERMINATE) {
-    return false;
-  }
-
   if (model.value instanceof Array) {
     return model.value.includes(props.value);
   }
@@ -158,7 +162,6 @@ function handleInputClick(): void {
   }
 }
 
-
 function setModelValue(): boolean | Array<unknown> {
   let modelValue;
 
@@ -183,7 +186,6 @@ function onFocus(event: Event): void {
 function onBlur(event: Event): void {
   if (!props.disabled) $emit('blur', event);
 }
-
 </script>
 <template>
   <div
@@ -213,7 +215,7 @@ function onBlur(event: Event): void {
       >
       <div class="ids-checkbox__icon">
         <IdsCheckMark v-if="isChecked" />
-        <IdsIndeterminateIcon v-else-if="isIndeterminate" />
+        <IdsIndeterminateIcon v-if="isIndeterminate" />
       </div>
     </div>
     <div class="ids-checkbox__label-wrapper">
