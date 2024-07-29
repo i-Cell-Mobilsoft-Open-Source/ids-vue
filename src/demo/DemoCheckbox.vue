@@ -34,7 +34,7 @@
       :size="sizeChange"
       :variant="'surface'" :readonly="false" :value="'alma'"
       :is-valid="validw"
-      :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate"
+      :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate($event)"
     >
       Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
       <template #IdsHintMsg>
@@ -177,9 +177,8 @@ function change(): void {
   sizeChange.value = "dense";
 }
 
-function changeIndeterminate(): void {
-  indeterminate.value = false;
-  console.log("Indeterminate: ", indeterminate.value)
+function changeIndeterminate(ind: boolean): void {
+  indeterminate.value = ind;
 }
 
 function toggleValidity(): void {
