@@ -14,6 +14,7 @@ import ActionItemLink from "./DemoActionItemLink.vue";
 import ActionItemButton from "./DemoActionItemButton.vue";
 import Checkbox from "./DemoCheckbox.vue";
 import Paginator from "./DemoPaginator.vue";
+import SegmentedControl from "./DemoSegmentedControl.vue";
 
 const routes = [
   {
@@ -88,7 +89,12 @@ const routes = [
   {
     path: '/components/paginator',
     name: 'Paginator',
-    component: Paginator
+    component: Paginator,
+  },
+  {
+    path: '/components/segmented-control',
+    name: 'Segmented Control',
+    component: SegmentedControl
   }
 ];
 
