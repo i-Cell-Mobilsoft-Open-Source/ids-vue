@@ -77,7 +77,7 @@ import { createComponentError } from '@core/utils/CreateError';
       setSelectionByValue(newValue);
     }
     watchNotTrigger.value = false;
-  })
+  }, { immediate: true })
   
   const disabledValue = toRef(() => props.disabled);
   const nameValue = toRef(() => props.name);
