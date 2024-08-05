@@ -11,9 +11,9 @@ import { IdsSegmentedControlItems } from './models/IdsSegmentedControlItems.inte
 import { useSelectionModel } from '@core/composables/SelectionModel';
 import { createComponentError } from '@core/utils/CreateError';
 
-  const componentClass = 'ids-segmented-control';
+  const componentClass = 'ids-segmented-control-toggle';
   const model = defineModel<unknown>();
-  const segmentedControlRef = ref();
+  const segmentedControlToggleRef = ref();
   const items = ref<IdsSegmentedControlItems[]>([]);
   const watchNotTrigger = ref<boolean>(false);
   
@@ -22,7 +22,7 @@ import { createComponentError } from '@core/utils/CreateError';
     {
       id: undefined,
       name: undefined,
-      multiSelect: true,
+      multiSelect: false,
       size: Size.COMFORTABLE,
       variant: SegmentedControlVariant.SURFACE,
       appearance: SegmentedControlAppearance.FILLED,
@@ -35,7 +35,7 @@ import { createComponentError } from '@core/utils/CreateError';
     deselect,
     isSelected,
     clear 
-  } = useSelectionModel<IdsSegmentedControlItems>([], props.multiSelect, false, (o1, o2) => o1.id === o2.id);
+  } = useSelectionModel<IdsSegmentedControlItems>([], false, false, (o1, o2) => o1.id === o2.id);
 
   const classObject = computed(() => ({
     [componentClass]: true,
@@ -47,10 +47,6 @@ import { createComponentError } from '@core/utils/CreateError';
 
   const segmentedControlId = computed<string>(() => {
     return props.id !== undefined ? props.id : `${componentClass}-${getUid()}`;
-  });
-
-  const setRole = computed<string>(() => {
-    return props.multiSelect ? 'group' : 'radiogroup';
   });
 
   onMounted(() => {
@@ -136,9 +132,7 @@ import { createComponentError } from '@core/utils/CreateError';
 
   function onSelect(selectedValue: IdsSegmentedControlItems, selected: boolean) {
     watchNotTrigger.value = true;
-    if (!props.multiSelect) {
-      clear();
-    }
+    clear();
 
     if (!selected) {
       select(selectedValue);
@@ -196,7 +190,7 @@ import { createComponentError } from '@core/utils/CreateError';
 
 </script>
 <template>
-  <div :id="segmentedControlId" ref="segmentedControlRef" :class="classObject" :role="setRole" @keydown="handleKeyDown($event)">
+  <div :id="segmentedControlId" ref="segmentedControlToggleRef" :class="classObject" role="radiogroup" @keydown="handleKeyDown($event)">
     <slot />
   </div>
 </template>

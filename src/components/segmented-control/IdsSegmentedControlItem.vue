@@ -11,6 +11,7 @@ import { IdsSegmentedControlItemSlots } from './models/IdsSegmentedControlItemSl
 
 const componentClass = 'ids-segmented-control-item';
 const iconChecked = mdiCheck;
+const selectionControlItem = ref();
 defineSlots<IdsSegmentedControlItemSlots>();
 
 const props = withDefaults(
@@ -50,7 +51,7 @@ const props = withDefaults(
   } = inject<IdsSegmentedControlInjectedAttributes>('componentAttributes') || defaultValue;
   
   onMounted(() =>{
-    initItems!({...item, selected: isItemPreSelectedByValue!(props.value)});
+    initItems!({...item, selected: isItemPreSelectedByValue!(props.value), ref: selectionControlItem.value});
   })
 
   function getParentIsDisabled(): boolean {
