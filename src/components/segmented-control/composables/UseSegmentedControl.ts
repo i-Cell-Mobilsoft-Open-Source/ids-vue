@@ -78,14 +78,14 @@ export function useSegmentedControl(
     switch (event.key) {
       case 'ArrowLeft':
         if (index > 0) {
-          const prevIndex = getSiblingItemIndex(index, -1);
+          const prevIndex = getEnabledSiblingItemIndex(index, -1);
           const prevItem = items.value[prevIndex]?.ref;
           prevItem?.focus();
         }
         break;
       case 'ArrowRight':
         if (index < items.value.length - 1) {
-          const nextIndex = getSiblingItemIndex(index, 1);
+          const nextIndex = getEnabledSiblingItemIndex(index, 1);
           const nextItem = items.value[nextIndex]?.ref;
           nextItem?.focus();
         }
@@ -96,12 +96,17 @@ export function useSegmentedControl(
     }
   }
 
-  function getSiblingItemIndex(index: number, offset: number): number {
-    const nextIndex = index + offset;
-    if (nextIndex >= items.value.length || nextIndex < 0) {
-      return index;
+  function getEnabledSiblingItemIndex(index: number, offset: number): number {
+    let nextIndex = index + offset;
+  
+    while (nextIndex >= 0 && nextIndex < items.value.length) {
+      if (!items.value[nextIndex]?.ref!.disabled) {
+        return nextIndex;
+      }
+      nextIndex += offset;
     }
-    return nextIndex;
+  
+    return index; // If no enabled item is found, return the original index.
   }
 
   function isItemPreSelectedByValue(itemValue: unknown): boolean {

@@ -43,12 +43,12 @@ export function useSegmentedControlItem(
     initItems!({ ...item, selected: isItemPreSelectedByValue!(value.value), ref: selectionControlItem.value });
   });
 
-  function getParentIsDisabled(): boolean {
+  const getParentIsDisabled = computed<boolean>(() => {
     return disabledValue ? disabledValue.value : false;
-  }
+  });
 
   const isDisabled = computed<boolean>(() => {
-    return disabled.value !== undefined ? disabled.value : getParentIsDisabled();
+    return getParentIsDisabled.value ? getParentIsDisabled.value : disabled.value;
   });
   
   const controlId = computed<string>(() => {
