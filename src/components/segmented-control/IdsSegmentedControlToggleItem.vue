@@ -65,5 +65,3 @@ const props = withDefaults(
     </button>
   </div>
 </template>
-<style lang="scss">
-</style>
