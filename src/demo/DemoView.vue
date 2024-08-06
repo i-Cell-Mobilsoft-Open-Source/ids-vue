@@ -52,7 +52,10 @@
       Paginator Component
     </router-link>
     <router-link data-cy="segmented-control-component" to="/components/segmented-control" @click="isMenuVisible = false">
-      Segmented Control Component
+      Segmented Control
+    </router-link>
+    <router-link data-cy="segmented-control-component-toggle" to="/components/segmented-control-toggle" @click="isMenuVisible = false">
+      Segmented Control Toggle
     </router-link>
   </nav>
   <section>

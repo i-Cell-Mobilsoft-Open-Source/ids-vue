@@ -1,0 +1,1 @@
+export const SegmentedControlAttributes = Symbol();

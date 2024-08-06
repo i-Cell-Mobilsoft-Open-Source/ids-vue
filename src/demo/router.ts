@@ -15,6 +15,7 @@ import ActionItemButton from "./DemoActionItemButton.vue";
 import Checkbox from "./DemoCheckbox.vue";
 import Paginator from "./DemoPaginator.vue";
 import SegmentedControl from "./DemoSegmentedControl.vue";
+import SegmentedControlToggle from "./DemoSegmentedControlToggle.vue";
 
 const routes = [
   {
@@ -95,6 +96,11 @@ const routes = [
     path: '/components/segmented-control',
     name: 'Segmented Control',
     component: SegmentedControl
+  },
+  {
+    path: '/components/segmented-control-toggle',
+    name: 'Segmented Control Toggle',
+    component: SegmentedControlToggle
   }
 ];
 

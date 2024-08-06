@@ -3,194 +3,55 @@ import { Size } from '@models/size.type';
 import { IdsSegmentedControlProps } from '@components/segmented-control/models/IdsSegmentedControlProps.interface';
 import { SegmentedControlVariant } from '@components/segmented-control/models/IdsSegmentedControlVariant.type';
 import { SegmentedControlAppearance } from '@components/segmented-control/models/IdsSegmentedControlAppearance.type';
-import { computed, onMounted, provide, ref, toRef, watch } from 'vue';
-import { addClassPrefix } from '@core/utils/AddClassPrefix';
-import { IdsSegmentedControlInjectedAttributes } from './models/IdsSegmentedControlInjectedAttributes.interface';
-import { getUid } from './BaseSegmentedControl';
-import { IdsSegmentedControlItems } from './models/IdsSegmentedControlItems.interface';
-import { useSelectionModel } from '@core/composables/SelectionModel';
-import { createComponentError } from '@core/utils/CreateError';
+import { ModelRef, provide, ref, toRef } from 'vue';
+import { IdsSegmentedControlInjectedAttributes } from '@components/segmented-control/models/IdsSegmentedControlInjectedAttributes.interface';
+import { useSegmentedControl } from '@components/segmented-control/composables/UseSegmentedControl';
+import { SegmentedControlAttributes } from '@core/utils/Keys';
 
   const componentClass = 'ids-segmented-control';
-  const model = defineModel<unknown>();
+  const model: ModelRef<unknown> = defineModel<unknown>();
   const segmentedControlRef = ref();
-  const items = ref<IdsSegmentedControlItems[]>([]);
-  const watchNotTrigger = ref<boolean>(false);
   
   const props = withDefaults(
     defineProps<IdsSegmentedControlProps>(),
     {
       id: undefined,
       name: undefined,
-      multiSelect: true,
+      multiSelect: false,
       size: Size.COMFORTABLE,
       variant: SegmentedControlVariant.SURFACE,
       appearance: SegmentedControlAppearance.FILLED,
       disabled: false,
-    });
-    
-   const { 
-    selected, 
-    select,
-    deselect,
-    isSelected,
-    clear 
-  } = useSelectionModel<IdsSegmentedControlItems>([], props.multiSelect, false, (o1, o2) => o1.id === o2.id);
-
-  const classObject = computed(() => ({
-    [componentClass]: true,
-    [addClassPrefix(componentClass, props.size)]: !!props.size,
-    [addClassPrefix(componentClass, props.variant)]: !!props.variant,
-    [addClassPrefix(componentClass, props.appearance)]: !!props.appearance,
-    [addClassPrefix(componentClass, 'disabled')]: props.disabled,
-  }));
-
-  const segmentedControlId = computed<string>(() => {
-    return props.id !== undefined ? props.id : `${componentClass}-${getUid()}`;
-  });
-
-  const setRole = computed<string>(() => {
-    return props.multiSelect ? 'group' : 'radiogroup';
-  });
-
-  onMounted(() => {
-    const minItemCount = 2;
-
-    if (items.value.length < minItemCount) {
-      throw new Error(
-        createComponentError(componentClass, 'invalid count of segmented control items. Minimum item count is 2.'),
-      );
     }
-
-    select(...items.value.filter((item) => {
-      if (item.selected) {
-        return {
-          id: item.id,
-          value: item.value
-        }
-      }
-    }));
-  });
-
-  watch(() => model.value, (newValue) => {
-    if(!watchNotTrigger.value) {
-      setSelectionByValue(newValue);
-    }
-    watchNotTrigger.value = false;
-  }, { immediate: true })
+  );
   
   const disabledValue = toRef(() => props.disabled);
   const nameValue = toRef(() => props.name);
   const multiSelectValue = toRef(() => props.multiSelect);
 
-  function handleKeyDown(event: KeyboardEvent): void {
-    const navigationKeys = ['ArrowLeft', 'ArrowRight', 'Enter'];
-    if (!navigationKeys.includes(event.key)) {
-      return;
-    }
+  const {
+    classObject,
+    selected,
+    segmentedControlId,
+    setRole,
+    handleKeyDown,
+    initItems,
+    onSelect,
+    isSelected,
+    isItemPreSelectedByValue,
+  } = useSegmentedControl(
+    toRef(() => props.id),
+    multiSelectValue,
+    toRef(() => props.size),
+    toRef(() => props.variant),
+    toRef(() => props.appearance),
+    disabledValue,
+    model,
+    false,
+    componentClass
+  );
 
-    event.preventDefault();
-
-    const target = event.target as HTMLButtonElement;
-    const buttonId = target.id;
-    const index = items.value.findIndex((item) => item.id === buttonId);
-    
-    switch (event.key) {
-      case 'ArrowLeft': {
-        if (index === 0) {
-          return;
-        }
-        const prevIndex = getSiblingItemIndex(index, -1);
-        const prevItem = items.value[prevIndex].ref;
-        prevItem?.focus();
-        break;
-      }
-      case 'ArrowRight': {
-        if (index === (items.value.length - 1)) {
-          return;
-        }
-        const nextIndex = getSiblingItemIndex(index, 1);
-        const nextItem = items.value[nextIndex].ref;
-        nextItem?.focus();
-        break;
-      }
-      case 'Enter': {
-        onSelect(items.value[index], isSelected(items.value[index]));
-        break;
-      }
-      default:
-        return;
-    }
-  }
-
-  function getSiblingItemIndex(index: number, offset: number): number {
-    const nextIndex = index + offset;
-    if (nextIndex === items.value.length) {
-      return index;
-    }
-    if (nextIndex === -1) {
-      return index;
-    }
-    return nextIndex;
-  }
-
-  function onSelect(selectedValue: IdsSegmentedControlItems, selected: boolean) {
-    watchNotTrigger.value = true;
-    if (!props.multiSelect) {
-      clear();
-    }
-
-    if (!selected) {
-      select(selectedValue);
-    } else {
-      deselect(selectedValue);
-    }
-
-    model.value = getSelectedValue();
-  }
-
-  function isItemPreSelectedByValue(itemValue: unknown): boolean {
-    if (model.value === undefined) {
-      return false;
-    }
-
-    if (Array.isArray(model.value)) {
-      return model.value.some((value) => itemValue !== null && value === itemValue);
-    }
-
-    return itemValue === model.value;
-  }
-
-  function getSelectedValue(): unknown {
-    const mappedValue = selected.value.map((item) => item.value);
-    
-    return Array.isArray(model.value) ? mappedValue : mappedValue[0];
-  }
-
-  function setSelectionByValue(value: unknown | unknown[]): void {
-    if (items.value.length === 0) {
-      return;
-    }
-
-    if (props.multiSelect && !Array.isArray(value)) {
-      throw new Error(createComponentError(componentClass, 'value must be an array in multiple-selection mode'));
-    }
-    clear();
-    Array.isArray(value) ? value.forEach((currentValue: unknown) => selectValue(currentValue)) : selectValue(value);
-  }
-
-  function selectValue(value: unknown): void {
-    const correspondingItem = items.value.find((item) => item.value !== null && item.value === value);
-    if (correspondingItem) {
-      select(correspondingItem);
-    }
-  }
-
-  function initItems(value: IdsSegmentedControlItems): void {
-    items.value = [...items.value, value];
-  }
-
-  provide<IdsSegmentedControlInjectedAttributes>('componentAttributes', 
+  provide<IdsSegmentedControlInjectedAttributes>(SegmentedControlAttributes, 
     {disabledValue, nameValue, multiSelectValue, onSelect, initItems, isItemPreSelectedByValue, selected, isSelected}
   );
 
