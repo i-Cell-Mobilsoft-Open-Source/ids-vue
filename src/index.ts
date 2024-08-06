@@ -33,3 +33,7 @@ export { default as IdsErrorMessage } from "./components/message/IdsErrorMessage
 export { default as IdsSuccessMessage } from "./components/message/IdsSuccessMessage.vue";
 export { default as IdsPaginator } from "./components/paginator/IdsPaginator.vue";
 export { default as IdsIcon } from "./components/icon/IdsIcon.vue";
+export { default as IdsSegmentedControl } from "./components/segmented-control/IdsSegmentedControl.vue";
+export { default as IdsSegmentedControlToggle } from "./components/segmented-control/IdsSegmentedControlToggle.vue";
+export { default as IdsSegmentedControlItem } from "./components/segmented-control/IdsSegmentedControlItem.vue";
+export { default as IdsSegmentedControlToggleItem } from "./components/segmented-control/IdsSegmentedControlToggleItem.vue";

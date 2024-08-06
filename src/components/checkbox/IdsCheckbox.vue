@@ -37,7 +37,7 @@ const checkboxRef = ref<HTMLInputElement | null>(null);
 const labelRef = ref<HTMLInputElement | null>(null);
 const model = defineModel<unknown, string>();
 const $emit = defineEmits<IdsCheckboxEvents>();
-const $slots = defineSlots<IdsCheckboxSlots>();
+defineSlots<IdsCheckboxSlots>();
 
 const classObject = computed(() => ({
   [componentClass]: true,
@@ -158,7 +158,7 @@ function handleInputClick(): void {
       checkboxState.value = checkboxState.value === IdsCheckboxState.CHECKED ? IdsCheckboxState.UNCHECKED : IdsCheckboxState.CHECKED;
     }
     if (checkboxRef.value) checkboxRef.value.checked = determinateCheckValue();
-    $emit('update:modelValue', setModelValue());
+    model.value = setModelValue();
   }
 }
 
