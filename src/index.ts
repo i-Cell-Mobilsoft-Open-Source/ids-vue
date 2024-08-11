@@ -37,3 +37,5 @@ export { default as IdsSegmentedControl } from "./components/segmented-control/I
 export { default as IdsSegmentedControlToggle } from "./components/segmented-control/IdsSegmentedControlToggle.vue";
 export { default as IdsSegmentedControlItem } from "./components/segmented-control/IdsSegmentedControlItem.vue";
 export { default as IdsSegmentedControlToggleItem } from "./components/segmented-control/IdsSegmentedControlToggleItem.vue";
+export { default as IdsRadioGroup } from "./components/radio/IdsRadioGroup.vue";
+export { default as IdsRadioItem } from "./components/radio/IdsRadioItem.vue";

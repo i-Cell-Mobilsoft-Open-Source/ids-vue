@@ -16,6 +16,7 @@ import Checkbox from "./DemoCheckbox.vue";
 import Paginator from "./DemoPaginator.vue";
 import SegmentedControl from "./DemoSegmentedControl.vue";
 import SegmentedControlToggle from "./DemoSegmentedControlToggle.vue";
+import Radio from "./DemoRadio.vue";
 
 const routes = [
   {
@@ -101,6 +102,11 @@ const routes = [
     path: '/components/segmented-control-toggle',
     name: 'Segmented Control Toggle',
     component: SegmentedControlToggle
+  },
+  {
+    path: '/components/radio',
+    name: 'Radio',
+    component: Radio
   }
 ];
 

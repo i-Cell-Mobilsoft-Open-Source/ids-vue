@@ -11,5 +11,6 @@ export interface IdsRadioGroupProps {
   variant?: RadioVariantType;
   orientation?: OrientationType;
   labelPosition?: PositionType;
+  isValid?: boolean;
   disabled?: boolean;
 }

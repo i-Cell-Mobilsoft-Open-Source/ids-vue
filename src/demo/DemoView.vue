@@ -57,6 +57,9 @@
     <router-link data-cy="segmented-control-component-toggle" to="/components/segmented-control-toggle" @click="isMenuVisible = false">
       Segmented Control Toggle
     </router-link>
+    <router-link data-cy="radio-component-toggle" to="/components/radio" @click="isMenuVisible = false">
+      Radio Component
+    </router-link>
   </nav>
   <section>
     <router-view />
@@ -86,6 +89,7 @@ nav {
   background-color: #334155;
   border-bottom-right-radius: 4px;
   transition: right 0.3s ease;
+  z-index: 1;
 
   &.open {
     right: 0;

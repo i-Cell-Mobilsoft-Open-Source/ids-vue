@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.4
         version: 2.1.4(vue@3.4.21(typescript@5.5.2))
       '@i-cell/ids-tokens':
-        specifier: ^0.0.14
-        version: 0.0.14
+        specifier: ^0.0.15
+        version: 0.0.15
       '@mdi/svg':
         specifier: ^7.4.47
         version: 7.4.47
@@ -992,8 +992,8 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
-  '@i-cell/ids-tokens@0.0.14':
-    resolution: {integrity: sha512-d5/BjG8DlMwDsh62TeRfOlvpwCMFqS6ZT3Up/UCN7gjBjkwXcueIW691/i3PzQVNZeFWa3mgywoYivOhpGvkkw==}
+  '@i-cell/ids-tokens@0.0.15':
+    resolution: {integrity: sha512-IsRl3+QUCXTM9ruG0MvmnPTrBG4aYwzHD0n+hCNOmhZWokQzXRnrk1+n2pwg4ykvZvR4sHLJxGhrv0FW2XLrTw==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -5309,7 +5309,7 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@i-cell/ids-tokens@0.0.14': {}
+  '@i-cell/ids-tokens@0.0.15': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:

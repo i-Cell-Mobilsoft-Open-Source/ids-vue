@@ -36,6 +36,7 @@ import { IdsRadioInjectedAttributes } from '@components/radio/models/IdsRadioInj
       variant: RadioVariant.SURFACE,
       orientation: Orientation.VERTICAL,
       labelPosition: Position.RIGHT,
+      isValid: undefined,
       disabled: false,
     }
   );
@@ -71,12 +72,21 @@ import { IdsRadioInjectedAttributes } from '@components/radio/models/IdsRadioInj
   const classObject = computed(() => ({
     [componentClass]: true,
     [addClassPrefix(componentClass, props.size)]: !!props.size,
-    [addClassPrefix(componentClass, props.variant)]: !!props.variant,
+    [addClassPrefix(componentClass, props.orientation)]: !!props.orientation,
     [addClassPrefix(componentClass, props.labelPosition)]: !!props.labelPosition,
+    [addClassPrefix(componentClass, 'invalid')]: !validity.value,
   }));
 
   const radioGroupId = computed<string>(() => {
     return props.id !== undefined ? props.id : `${componentClass}-${getRadioUid(true)}`;
+  });
+
+  const validity = computed<boolean>(() => {
+    return props.isValid !== undefined ? props.isValid : !props.required ? true : notEmpty.value;
+  });
+
+  const notEmpty = computed<boolean>(() => {
+    return Array.isArray(model.value) ? model.value.length > 0 : !!model.value;
   });
 
   const requiredValue = toRef(() => props.required);
@@ -234,6 +244,7 @@ import { IdsRadioInjectedAttributes } from '@components/radio/models/IdsRadioInj
   }
 </script>
 <template>
+  {{ validity }}
   <div :id="radioGroupId" ref="radioGroupRef" :class="classObject" role="radiogroup" @keydown="handleKeyDown($event)">
     <slot />
   </div>
