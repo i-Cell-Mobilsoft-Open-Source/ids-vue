@@ -14,14 +14,14 @@ const props = withDefaults(
 );
 
 const cardStyle = reactive({
-  gap: `var(--ids-comp-size-cards-container-size-gap-${props.size}, 24px)`,
-  padding: `var(--ids-comp-size-cards-container-size-padding-top-${props.size}, 24px) 
-  var(--ids-comp-size-cards-container-size-padding-right-${props.size}, 0px) 
-  var(--ids-comp-size-cards-container-size-padding-bottom-${props.size}, 24px) 
-  var( --ids-comp-size-cards-container-size-padding-left-${props.size}, 0px)`,
-  background: `var(--ids-comp-cards-filled-color-bg-${props.variant}-enabled, #003CFF)`,
-  borderRadius: `var(--ids-comp-size-cards-container-size-border-radius-${props.size}, 32px)`,
-  border: `var(--ids-comp-size-cards-container-size-border-none-${props.size}, 0px) solid var(--ids-comp-cards-filled-color-border-primary-enabled, #A3BAFF)`,
+  gap: `var(--ids-comp-cards-container-size-gap-${props.size}, 24px)`,
+  padding: `var(--ids-comp-cards-container-size-padding-top-${props.size}, 24px) 
+  var(--ids-comp-cards-container-size-padding-right-${props.size}, 0px) 
+  var(--ids-comp-cards-container-size-padding-bottom-${props.size}, 24px) 
+  var( --ids-comp-cards-container-size-padding-left-${props.size}, 0px)`,
+  background: `var(--ids-comp-cards-filled-color-bg-${props.variant}-default, #003CFF)`,
+  borderRadius: `var(--ids-comp-cards-container-size-border-radius-${props.size}, 32px)`,
+  border: `var(--ids-comp-cards-container-size-border-none-${props.size}, 0px) solid var(--ids-comp-cards-filled-color-border-primary-default, #A3BAFF)`,
 })
 </script>
 

@@ -17,6 +17,7 @@
 // export { IdsActionMenu };
 
 
+export { default as IdsVue } from "./core/config/IdsVue.ts";
 export { default as IdsTag } from "./components/IdsTag.vue";
 export { default as IdsDialog } from "./components/IdsDialog.vue";
 export { default as IdsButton } from "./components/IdsButton.vue";
@@ -30,3 +31,11 @@ export { default as IdsCheckbox } from "./components/checkbox/IdsCheckbox.vue";
 export { default as IdsHintMessage } from "./components/message/IdsHintMessage.vue";
 export { default as IdsErrorMessage } from "./components/message/IdsErrorMessage.vue";
 export { default as IdsSuccessMessage } from "./components/message/IdsSuccessMessage.vue";
+export { default as IdsPaginator } from "./components/paginator/IdsPaginator.vue";
+export { default as IdsIcon } from "./components/icon/IdsIcon.vue";
+export { default as IdsSegmentedControl } from "./components/segmented-control/IdsSegmentedControl.vue";
+export { default as IdsSegmentedControlToggle } from "./components/segmented-control/IdsSegmentedControlToggle.vue";
+export { default as IdsSegmentedControlItem } from "./components/segmented-control/IdsSegmentedControlItem.vue";
+export { default as IdsSegmentedControlToggleItem } from "./components/segmented-control/IdsSegmentedControlToggleItem.vue";
+export { default as IdsRadioGroup } from "./components/radio/IdsRadioGroup.vue";
+export { default as IdsRadioItem } from "./components/radio/IdsRadioItem.vue";

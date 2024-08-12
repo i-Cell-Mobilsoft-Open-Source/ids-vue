@@ -28,13 +28,13 @@ const props = withDefaults(
 
 const actionPanelStyle = reactive({
   //enabled
-  gap: `var(--ids-comp-size-action-panel-size-gap-${props.panelSize})`,
-  borderRadius: ` var(--ids-comp-size-action-panel-size-border-radius-${props.panelSize})`,
-  background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-enabled)`,
-  padding: `var(--ids-comp-size-action-panel-size-padding-y-${props.panelSize})
-      var(--ids-comp-size-action-panel-size-padding-x-${props.panelSize})`,
-  outlinedBorder: `var(--ids-comp-size-action-panel-size-border-${props.panelSize}) 
-      solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-enabled)`,
+  gap: `var(--ids-comp-action-panel-size-gap-${props.panelSize})`,
+  borderRadius: ` var(--ids-comp-action-panel-size-border-radius-${props.panelSize})`,
+  background: `var(--ids-comp-action-panel-${props.panelMode}-color-bg-light-default)`,
+  padding: `var(--ids-comp-action-panel-size-padding-y-${props.panelSize})
+      var(--ids-comp-action-panel-size-padding-x-${props.panelSize})`,
+  outlinedBorder: `var(--ids-comp-action-panel-size-border-${props.panelSize}) 
+      solid var(--ids-comp-action-panel-${props.panelMode}-color-border-light-default)`,
 });
 
 const panelPositions = computed(() => {

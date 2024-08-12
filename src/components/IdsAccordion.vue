@@ -26,22 +26,22 @@ const props = withDefaults(
 );
 
 const accordionStyle = reactive({
-  background: `var(--accordion-button-text-color-bg-enabled)`,
-  gap: `var(--ids-comp-size-accordion-item-size-gap-${props.size})`,
-  summaryGap: `var(--ids-comp-size-accordion-summary-size-gap-${props.size})`,
-  summaryHeight: `var(--ids-comp-size-accordion-summary-size-height-${props.size})`,
-  borderRadius: `var(--ids-comp-size-accordion-item-size-border-radius-${props.size})`,
-  padding: `var(--ids-comp-size-accordion-item-size-padding-y-${props.size}) var(--ids-comp-size-accordion-item-size-padding-x-${props.size})`,
-  borderTop: `var(--ids-comp-size-accordion-summary-size-border-width-${props.size}) solid var(--ids-comp-accordion-item-color-border-default)`,
-  summaryPadding: `var(--ids-comp-size-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-size-accordion-summary-size-padding-x-${props.size})`,
-  detailsPadding: `var(--ids-comp-size-accordion-details-size-padding-y-${props.size}) var(--ids-comp-size-accordion-details-size-padding-x-${props.size})`,
+  background: `var(--accordion-button-text-color-bg-default)`,
+  gap: `var(--ids-comp-accordion-item-size-gap-${props.size})`,
+  summaryGap: `var(--ids-comp-accordion-summary-size-gap-${props.size})`,
+  summaryHeight: `var(--ids-comp-accordion-summary-size-height-${props.size})`,
+  borderRadius: `var(--ids-comp-accordion-item-size-border-radius-${props.size})`,
+  padding: `var(--ids-comp-accordion-item-size-padding-y-${props.size}) var(--ids-comp-accordion-item-size-padding-x-${props.size})`,
+  borderTop: `var(--ids-comp-accordion-summary-size-border-width-${props.size}) solid var(--ids-comp-accordion-item-color-border-default)`,
+  summaryPadding: `var(--ids-comp-accordion-summary-size-padding-y-${props.size}) var(--ids-comp-accordion-summary-size-padding-x-${props.size})`,
+  detailsPadding: `var(--ids-comp-accordion-details-size-padding-y-${props.size}) var(--ids-comp-accordion-details-size-padding-x-${props.size})`,
 
   //typography
-  fontSize: `var(--ids-comp-size-accordion-summary-typography-font-size-${props.size})`,
-  fontFamily: `var(--ids-comp-size-accordion-summary-typography-font-family-${props.size})`,
-  fontWeight: `var(--ids-comp-size-accordion-summary-typography-font-weight-${props.size})`,
-  lineHeight: `var(--ids-comp-size-accordion-summary-typography-line-height-${props.size})`,
-  letterSpacing: `var(--ids-comp-size-accordion-summary-typography-letter-spacing-${props.size})`,
+  fontSize: `var(--ids-comp-accordion-summary-typography-font-size-${props.size})`,
+  fontFamily: `var(--ids-comp-accordion-summary-typography-font-family-${props.size})`,
+  fontWeight: `var(--ids-comp-accordion-summary-typography-font-weight-${props.size})`,
+  lineHeight: `var(--ids-comp-accordion-summary-typography-line-height-${props.size})`,
+  letterSpacing: `var(--ids-comp-accordion-summary-typography-letter-spacing-${props.size})`,
 });
 
 onMounted(() => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Size } from '@models/size.type';
-import { computed, getCurrentInstance, onMounted, ref, watch } from 'vue';
+import { computed, getCurrentInstance, onMounted, provide, ref, toRef, watch } from 'vue';
 import IdsCheckMark from '@assets/IdsCheckMark.vue'
 import IdsIndeterminateIcon from '@assets/IdsIndeterminateIcon.vue';
 import { IdsCheckboxProps } from '@components/checkbox/models/IdsCheckboxProps.interface.ts';
@@ -9,6 +9,7 @@ import { IdsCheckboxState, IdsCheckboxStateType } from '@components/checkbox/mod
 import { IdsCheckboxEvents } from '@components/checkbox/models/IdsCheckboxEvents.interface.ts';
 import { IdsCheckboxSlots } from '@components/checkbox/models/IdsCheckboxSlots.interface.ts';
 import { addClassPrefix } from '@core/utils/AddClassPrefix.ts';
+import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMessageInjectedAttributes.interface';
 
 const componentClass = 'ids-checkbox';
 
@@ -36,7 +37,7 @@ const checkboxRef = ref<HTMLInputElement | null>(null);
 const labelRef = ref<HTMLInputElement | null>(null);
 const model = defineModel<unknown, string>();
 const $emit = defineEmits<IdsCheckboxEvents>();
-const $slots = defineSlots<IdsCheckboxSlots>();
+defineSlots<IdsCheckboxSlots>();
 
 const classObject = computed(() => ({
   [componentClass]: true,
@@ -67,6 +68,12 @@ const inputId = computed<string>(() => {
   return props.id !== undefined ? props.id : `${componentClass}-${uid.value}`;
 });
 
+const sizeValue = toRef(() => props.size);
+const variantValue = toRef(() => props.variant);
+const disabledValue = toRef(() => props.disabled);
+
+provide<IdsMessageInjectedAttributes>('componentAttributes', {sizeValue, variantValue, disabledValue});
+
 onMounted(() => {
   if (checkboxRef.value) {
     checkboxRef.value.indeterminate = props.indeterminate;
@@ -80,22 +87,19 @@ onMounted(() => {
   }
 })
 
-watch(() => props.indeterminate, (newVal) => {
-  if (checkboxRef.value) checkboxRef.value.indeterminate = newVal;
-  if (newVal) {
-    checkboxState.value = IdsCheckboxState.INDETERMINATE;
+watch(() => [props.indeterminate, model.value], (currentValue) => {
+  if (checkboxRef.value) {
+    checkboxRef.value.indeterminate = !!currentValue[0];
+    checkboxRef.value.checked = checkboxState.value === IdsCheckboxState.CHECKED;
+    if (checkboxRef.value.indeterminate) {
+      checkboxState.value = IdsCheckboxState.INDETERMINATE;
+    } else {
+      checkboxState.value = determinateCheckValue() ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
+    }
   }
-});
-
-watch(() => model.value, () => {
-  checkboxState.value = determinateCheckValue() ? IdsCheckboxState.CHECKED : IdsCheckboxState.UNCHECKED;
 })
 
 function determinateCheckValue(): boolean {
-  if (checkboxState.value === IdsCheckboxState.INDETERMINATE) {
-    return false;
-  }
-
   if (model.value instanceof Array) {
     return model.value.includes(props.value);
   }
@@ -154,10 +158,9 @@ function handleInputClick(): void {
       checkboxState.value = checkboxState.value === IdsCheckboxState.CHECKED ? IdsCheckboxState.UNCHECKED : IdsCheckboxState.CHECKED;
     }
     if (checkboxRef.value) checkboxRef.value.checked = determinateCheckValue();
-    $emit('update:modelValue', setModelValue());
+    model.value = setModelValue();
   }
 }
-
 
 function setModelValue(): boolean | Array<unknown> {
   let modelValue;
@@ -183,7 +186,6 @@ function onFocus(event: Event): void {
 function onBlur(event: Event): void {
   if (!props.disabled) $emit('blur', event);
 }
-
 </script>
 <template>
   <div
@@ -213,7 +215,7 @@ function onBlur(event: Event): void {
       >
       <div class="ids-checkbox__icon">
         <IdsCheckMark v-if="isChecked" />
-        <IdsIndeterminateIcon v-else-if="isIndeterminate" />
+        <IdsIndeterminateIcon v-if="isIndeterminate" />
       </div>
     </div>
     <div class="ids-checkbox__label-wrapper">
@@ -248,8 +250,8 @@ $variants: light, dark, surface;
   }
 
   &:not(:disabled) {
-    border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-enabled);
-    background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-enabled);
+    border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-default);
+    background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-default);
 
     &:hover {
       border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
@@ -284,7 +286,7 @@ $variants: light, dark, surface;
 
   &:not(:disabled) {
     & + .ids-checkbox__icon {
-      color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-enabled);
+      color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-default);
     }
 
     &:hover + .ids-checkbox__icon {
@@ -359,17 +361,17 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-checkbox-#{$size} {
-      padding: var(--ids-comp-size-checkbox-container-size-padding-y-#{$size})
-        var(--ids-comp-size-checkbox-container-size-padding-x-#{$size});
-      gap: var(--ids-comp-size-checkbox-container-size-gap-#{$size});
+      padding: var(--ids-comp-checkbox-container-size-padding-y-#{$size})
+        var(--ids-comp-checkbox-container-size-padding-x-#{$size});
+      gap: var(--ids-comp-checkbox-container-size-gap-#{$size});
 
       .ids-checkbox__input-wrapper {
-        $input-height: var(--ids-comp-size-checkbox-input-size-height-#{$size});
-        $input-width: var(--ids-comp-size-checkbox-input-size-width-#{$size});
+        $input-height: var(--ids-comp-checkbox-input-size-height-#{$size});
+        $input-width: var(--ids-comp-checkbox-input-size-width-#{$size});
 
         .ids-checkbox__touch-target {
-          $touch-target-height: var(--ids-comp-size-checkbox-input-size-touchtarget-height-#{$size});
-          $touch-target-width: var(--ids-comp-size-checkbox-input-size-touchtarget-width-#{$size});
+          $touch-target-height: var(--ids-comp-checkbox-input-size-touchtarget-height-#{$size});
+          $touch-target-width: var(--ids-comp-checkbox-input-size-touchtarget-width-#{$size});
           top: calc(($input-height - $touch-target-height) / 2);
           left: calc(($input-width - $touch-target-width) / 2);
           height: $touch-target-height;
@@ -379,30 +381,30 @@ $variants: light, dark, surface;
         input[type='checkbox'] {
           width: $input-width;
           height: $input-height;
-          border-radius: var(--ids-comp-size-checkbox-input-size-border-radius-#{$size});
-          border-width: var(--ids-comp-size-checkbox-input-size-border-width-#{$size});
+          border-radius: var(--ids-comp-checkbox-input-size-border-radius-#{$size});
+          border-width: var(--ids-comp-checkbox-input-size-border-width-#{$size});
 
           &:focus {
-            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{$size});
+            outline-width: var(--ids-comp-checkbox-focused-outline-outline-#{$size});
           }
         }
 
         .ids-checkbox__icon {
-          height: var(--ids-comp-size-checkbox-input-size-icon-#{$size});
-          width: var(--ids-comp-size-checkbox-input-size-icon-#{$size});
+          height: var(--ids-comp-checkbox-input-size-icon-#{$size});
+          width: var(--ids-comp-checkbox-input-size-icon-#{$size});
         }
       }
 
       .ids-checkbox__label-wrapper {
-        padding: var(--ids-comp-size-checkbox-label-group-size-padding-y-#{$size})
-          var(--ids-comp-size-checkbox-label-group-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-checkbox-label-group-size-gap-#{$size});
+        padding: var(--ids-comp-checkbox-label-group-size-padding-y-#{$size})
+          var(--ids-comp-checkbox-label-group-size-padding-x-#{$size});
+        gap: var(--ids-comp-checkbox-label-group-size-gap-#{$size});
 
         .ids-checkbox__label-container {
-          font-family: var(--ids-comp-size-checkbox-label-typography-font-family-#{$size});
-          font-weight: var(--ids-comp-size-checkbox-label-typography-font-weight-#{$size});
-          letter-spacing: var(--ids-comp-size-checkbox-label-typography-letter-spacing-#{$size});
-          font-size: var(--ids-comp-size-checkbox-label-typography-font-size-#{$size});
+          font-family: var(--ids-comp-checkbox-label-typography-font-family-#{$size});
+          font-weight: var(--ids-comp-checkbox-label-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-checkbox-label-typography-letter-spacing-#{$size});
+          font-size: var(--ids-comp-checkbox-label-typography-font-size-#{$size});
           line-height: var(--ids-comp-size-checkbox-label-typography-line-height-#{$size});
         }
       }
@@ -424,7 +426,7 @@ $variants: light, dark, surface;
       }
 
       .ids-checkbox__label-wrapper .ids-checkbox__label-container .ids-checkbox__label {
-        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-enabled);
+        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
 
         &:hover {
           color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-hovered);

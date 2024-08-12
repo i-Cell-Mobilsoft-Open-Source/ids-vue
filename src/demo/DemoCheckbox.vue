@@ -30,11 +30,65 @@
     </IdsCheckbox>
     compact, comfortable, spacious, dense
     <IdsCheckbox
+      :id="'ids-checkbox-' + 445" :key="445" v-model="asd1" :disabled="disab"
+      :size="sizeChange"
+      :variant="'surface'" :readonly="false" :value="'korte'"
+      :is-valid="validw"
+      :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate($event)"
+    >
+      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      <template #IdsHintMsg>
+        <IdsHintMessage>
+          <template #IdsMessagePrefix>
+            Asdaaaaaaa
+          </template>
+          Teszt teszt tesz tesz teszt
+          <template #idsMessageSuffix>
+            13/50
+          </template>
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          Teszt teszt tesz tesz teszt
+          <template #idsMessageSuffix>
+            13/50
+          </template>
+        </IdsErrorMessage>
+      </template>
+    </IdsCheckbox>
+    <IdsCheckbox
       :id="'ids-checkbox-' + 444" :key="444" v-model="asd1" :disabled="disab"
       :size="sizeChange"
       :variant="'surface'" :readonly="false" :value="'alma'"
       :is-valid="validw"
-      :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate"
+    >
+      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      <template #IdsHintMsg>
+        <IdsHintMessage>
+          <template #IdsMessagePrefix>
+            Asdaaaaaaa
+          </template>
+          Teszt teszt tesz tesz teszt
+          <template #idsMessageSuffix>
+            13/50
+          </template>
+        </IdsHintMessage>
+      </template>
+      <template #IdsErrorMsg>
+        <IdsErrorMessage>
+          Teszt teszt tesz tesz teszt
+          <template #idsMessageSuffix>
+            13/50
+          </template>
+        </IdsErrorMessage>
+      </template>
+    </IdsCheckbox>
+    <IdsCheckbox
+      :id="'ids-checkbox-' + 446" :key="446" v-model="asd1" :disabled="disab"
+      :size="sizeChange"
+      :variant="'surface'" :readonly="false" :value="'asd'"
+      :is-valid="validw"
     >
       Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
       <template #IdsHintMsg>
@@ -82,7 +136,7 @@
     <h3>error</h3>
     <IdsCheckbox
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-error'" :key="index"
-      :size="option.size" :variant="option.variant" :invalid="true"
+      :size="option.size" :variant="option.variant" :is-valid="false"
     >
       Almafa Ez egy almafa nem tudom mit írjak e még ide.
     </IdsCheckbox>
@@ -126,13 +180,13 @@
       <h3>error</h3>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-errorli'" :key="index"
-        :size="option" :variant="'light'" :invalid="true"
+        :size="option" :variant="'light'" :is-valid="false"
       >
         Almafa Ez egy almafa nem tudom mit írjak e még ide.
       </IdsCheckbox>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-iererereli'" :key="index"
-        :size="option" :variant="'light'" :invalid="true" :indeterminate="true"
+        :size="option" :variant="'light'" :is-valid="false" :indeterminate="true"
       >
         Almafa Ez egy almafa nem tudom mit írjak e még ide.
       </IdsCheckbox>
@@ -177,9 +231,8 @@ function change(): void {
   sizeChange.value = "dense";
 }
 
-function changeIndeterminate(): void {
-  indeterminate.value = false;
-  console.log("Indeterminate: ", indeterminate.value)
+function changeIndeterminate(ind: boolean): void {
+  indeterminate.value = ind;
 }
 
 function toggleValidity(): void {

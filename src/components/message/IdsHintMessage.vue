@@ -2,12 +2,13 @@
 import { Size, SizeType } from '@models/size.type';
 import { MessageVariant, MessageVariantType } from '@components/message/models/IdsMessageVariant.type.ts';
 import { IdsMessageProps } from '@components/message/models/IdsMessageProps.interface.ts';
-import { ComponentInternalInstance, computed, getCurrentInstance } from 'vue';
+import { computed, inject } from 'vue';
 import { addClassPrefix } from '@core/utils/AddClassPrefix';
+import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMessageInjectedAttributes.interface';
 
   const componentClass = 'ids-message';
   const componentTypeClass = 'ids-hint-message';
-  const parent: ComponentInternalInstance | null | undefined = getCurrentInstance()?.parent;
+  const { sizeValue, variantValue, disabledValue } = inject<IdsMessageInjectedAttributes>('componentAttributes', {});
 
   const props = withDefaults(
     defineProps<IdsMessageProps>(),{
@@ -18,30 +19,36 @@ import { addClassPrefix } from '@core/utils/AddClassPrefix';
   );
 
   const disabled = computed<boolean>(() => {
-    return props.disabled !== undefined ? 
-      props.disabled : parent && parent.props['disabled'] ? 
-      parent.props['disabled'] as boolean : false;
+    return props.disabled !== undefined ? props.disabled : getParentIsDisabled();
   });
 
   const variant = computed<string>(() => {
-    return props.variant !== undefined ? 
-      props.variant : parent && parent.props['variant'] ? 
-      parent.props['variant'] as unknown as MessageVariantType : MessageVariant.SURFACE;
+    return props.variant !== undefined ? props.variant : getParentVariant();
   });
 
   const size = computed<string>(() => {
-    return props.size !== undefined ? 
-      props.size : parent && parent.props['size'] ? 
-      parent.props['size'] as SizeType : Size.COMFORTABLE;
+    return props.size !== undefined ? props.size : getParentSize();
   });
 
   const classObject = computed(() => ({
-  [componentClass]: true,
-  [componentTypeClass]: true,
-  [addClassPrefix(componentClass, size.value)]: size.value,
-  [addClassPrefix(componentClass, variant.value)]: variant.value,
-  [addClassPrefix(componentClass, 'disabled')]: disabled.value,
-}));
+    [componentClass]: true,
+    [componentTypeClass]: true,
+    [addClassPrefix(componentClass, size.value)]: size.value,
+    [addClassPrefix(componentClass, variant.value)]: variant.value,
+    [addClassPrefix(componentClass, 'disabled')]: disabled.value,
+  }));
+
+  function getParentSize(): SizeType {
+    return sizeValue ? sizeValue.value : Size.COMFORTABLE;
+  };
+
+  function getParentIsDisabled(): boolean {
+    return disabledValue ? disabledValue.value : false;
+  };
+
+  function getParentVariant(): MessageVariantType{
+    return variantValue ? variantValue.value : MessageVariant.SURFACE;
+  };
 </script>
 <template>
   <div :class="classObject">
@@ -77,17 +84,17 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-message-#{$size} {
-      gap: var(--ids-comp-size-forms-message-size-gap-#{$size});
-      padding: var(--ids-comp-size-forms-message-size-padding-y-#{$size}) var(--ids-comp-size-forms-message-size-padding-x-#{$size});
-      font-family: var(--ids-comp-size-forms-message-typography-font-family-#{$size});
-      font-size: var(--ids-comp-size-forms-message-typography-font-size-#{$size});
-      font-weight: var(--ids-comp-size-forms-message-typography-font-weight-#{$size});
-      letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
-      line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
+      gap: var(--ids-comp-forms-message-size-gap-#{$size});
+      padding: var(--ids-comp-forms-message-size-padding-y-#{$size}) var(--ids-comp-forms-message-size-padding-x-#{$size});
+      font-family: var(--ids-comp-forms-message-typography-font-family-#{$size});
+      font-size: var(--ids-comp-forms-message-typography-font-size-#{$size});
+      font-weight: var(--ids-comp-forms-message-typography-font-weight-#{$size});
+      letter-spacing: var(--ids-comp-forms-message-typography-letter-spacing-#{$size});
+      line-height: var(--ids-comp-forms-message-typography-line-height-#{$size});
 
       .ids-message__prefix {
-        height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
-        width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
+        height: var(--ids-comp-forms-message-size-icon-height-#{$size});
+        width: var(--ids-comp-forms-message-size-icon-width-#{$size});
 
         & > ids-icon {
           height: inherit;
@@ -100,11 +107,11 @@ $variants: light, dark, surface;
   @each $variant in $variants {
     &.ids-message-#{$variant} {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-default);
       }
 
       &.ids-message-disabled {
@@ -119,22 +126,22 @@ $variants: light, dark, surface;
 
       &.ids-error-message {
         .ids-message__prefix {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-enabled);
+          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-default);
         }
         .ids-message__text,
         .ids-message__suffix {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-default);
         }
       }
     }
 
     &.ids-success-message {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-default);
       }
     }
   }

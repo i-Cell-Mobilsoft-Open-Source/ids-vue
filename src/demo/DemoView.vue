@@ -45,6 +45,21 @@
     <router-link data-cy="accordion-component" to="/components/accordion" @click="isMenuVisible = false">
       Accordion Component
     </router-link>
+    <router-link data-cy="checkbox-component" to="/components/checkbox" @click="isMenuVisible = false">
+      Checkbox Component
+    </router-link>
+    <router-link data-cy="paginator-component" to="/components/paginator" @click="isMenuVisible = false">
+      Paginator Component
+    </router-link>
+    <router-link data-cy="segmented-control-component" to="/components/segmented-control" @click="isMenuVisible = false">
+      Segmented Control
+    </router-link>
+    <router-link data-cy="segmented-control-component-toggle" to="/components/segmented-control-toggle" @click="isMenuVisible = false">
+      Segmented Control Toggle
+    </router-link>
+    <router-link data-cy="radio-component-toggle" to="/components/radio" @click="isMenuVisible = false">
+      Radio Component
+    </router-link>
   </nav>
   <section>
     <router-view />
@@ -74,6 +89,7 @@ nav {
   background-color: #334155;
   border-bottom-right-radius: 4px;
   transition: right 0.3s ease;
+  z-index: 1;
 
   &.open {
     right: 0;
