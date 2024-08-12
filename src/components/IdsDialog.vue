@@ -53,20 +53,20 @@ onBeforeUnmount(() => {
 <template>
   <dialog ref="dialog" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog" class="">
     <section class="dialog-container">
-      <header class="flex justify-between items-center w-full">
-        <div v-if="$slots.customHeader" class="flex grow flex-col items-start gap-2">
+      <header class="dialog-header">
+        <div v-if="$slots.customHeader" class="dialog-header__container">
           <slot name="customHeader" />
         </div>
-        <div v-else class="flex grow flex-col items-start gap-2">
+        <div v-else class="dialog-header__container">
           <p
             v-if="$slots.title"
-            class="text-3xl font-bold tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
+            class="dialog-header__container--title"
           >
             <slot name="title" />
           </p>
           <p
             v-if="$slots.subTitle"
-            class="text-base font-normal tracking-[.5px] text-[--ids-ids-smc-reference-container-color-fg-suface-darker-95]"
+            class="dialog-header__container--subTitle"
           >
             <slot name="subTitle" />
           </p>
@@ -75,12 +75,12 @@ onBeforeUnmount(() => {
       </header>
 
       <section v-if="$slots.content">
-        <div class="max-h-[70vh]">
+        <div class="dialog-content">
           <slot name="content" />
         </div>
       </section>
-      <footer class="flex flex-row items-center w-full">
-        <div v-if="$slots.action" class="w-full">
+      <footer class="dialog-actions">
+        <div v-if="$slots.action" class="dialog-actions__content">
           <slot name="action" />
         </div>
       </footer>
@@ -93,6 +93,10 @@ dialog {
   box-shadow: v-bind("dialogStyle.boxShadow");
   min-height: v-bind("dialogStyle.minHeight");
   border-radius: v-bind("dialogStyle.borderRadius");
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  padding: 0;
 
   .dialog-container {
     display: flex;
@@ -101,7 +105,6 @@ dialog {
     width: v-bind("dialogStyle.width");
     border: v-bind("dialogStyle.border");
     padding: v-bind("dialogStyle.padding");
-    min-height: v-bind("dialogStyle.minHeight");
 
     background: var(--ids-comp-dialog-container-color-bg-default);
     //box-shadow: v-bind("dialogStyle.boxShadow");
@@ -111,7 +114,56 @@ dialog {
       flex-direction: column;
       align-items: flex-start;
     }
+
+    .dialog-content {
+      max-height: 70vh;
+    }
+
+    .dialog-actions {
+      display: flex;
+      width: 100%;
+      align-items: center;
+
+      &__content {
+        width: 100%;
+      }
+    }
+
+    .dialog-header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      &__container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: flex-start;
+        gap: 8px;
+
+        &--title {
+          font-size: 30px;
+          line-height: 36px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin: 0;
+        }
+
+        &--subTitle {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 400;
+          letter-spacing: 0.5px;
+          margin: 0;
+        }
+      }
+    }
   }
+}
+
+.p-0 {
+  padding: 0;
 }
 
 ::backdrop {

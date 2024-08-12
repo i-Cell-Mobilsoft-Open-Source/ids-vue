@@ -94,6 +94,7 @@ $sizes: compact, comfortable, spacious, dense;
   border: v-bind('tagStyle.border');
   background: v-bind('tagStyle.background');
   border-radius: v-bind('tagStyle.borderRadius');
+  box-sizing: border-box;
 }
 
 //common

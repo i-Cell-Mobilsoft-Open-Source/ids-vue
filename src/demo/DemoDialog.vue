@@ -12,7 +12,7 @@
         subTitle
       </template>
       <template #content>
-        <div class="text-left text-sm">
+        <div class="dialog-content">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
           when an unknown printer took a galley of type and
@@ -20,12 +20,12 @@
         </div>
       </template>
       <template #action>
-        <div class="flex justify-between">
+        <div class="dialog-action-btn-container">
           <IdsButton mode="text">
             Label
           </IdsButton>
      
-          <div class="flex gap-2">
+          <div class="dialog-action-btn-container__end">
             <IdsButton mode="outlined" @click="showDialog = false">
               Cancel
             </IdsButton>
@@ -48,6 +48,23 @@ const showDialog = ref(false);
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import "./demo-style.scss";
+
+
+.dialog-content {
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px; 
+}
+
+.dialog-action-btn-container {
+  display: flex;
+  justify-content: space-between;
+
+  &__end {
+    display: flex;
+    gap: 8px;
+  }
+}
 </style>
