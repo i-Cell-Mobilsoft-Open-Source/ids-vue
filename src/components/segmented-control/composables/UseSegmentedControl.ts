@@ -138,7 +138,7 @@ export function useSegmentedControl(
 
   function getSelectedValue(): unknown {
     const mappedValue = selected.value.map((item) => item.value);
-    return multiSelect.value ? mappedValue : mappedValue[0];
+    return Array.isArray(model.value) ? mappedValue : mappedValue[0];
   }
 
   function setSelectionByValue(value: unknown | unknown[]): void {
