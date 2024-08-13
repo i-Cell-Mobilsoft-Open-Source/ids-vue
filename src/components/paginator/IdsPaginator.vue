@@ -45,7 +45,7 @@ const props = withDefaults(
     [componentClass]: true,
     [addClassPrefix(componentClass, props.size)]: !!props.size,
     [addClassPrefix(componentClass, props.variant)]: !!props.variant,
-    [addClassPrefix(componentClass, 'compact')]: props.isCompact,
+    [addClassPrefix(componentClass, 'compact-layout')]: props.isCompact,
   }));
 
   const pageButtonClassObject = computed(() => 
@@ -317,6 +317,7 @@ const props = withDefaults(
             type="button"
             class="ids-paginator__page-button"
             :class="[pageButtonClassObject, +pageButton === pageIndex + 1 ? 'active' : '']"
+            :disabled="props.disabled"
             :aria-label="getAriaPageLabel(pageButton)"
             :aria-current="+pageButton === pageIndex + 1 ? 'page' : undefined"
             @click="stepPage(+pageButton - 1)"
@@ -372,6 +373,7 @@ $variants: primary, secondary, light, surface;
     .ids-paginator__page-button-container {
       display: flex;
       align-items: center;
+      list-style: none;
 
       .ids-paginator__page-button-truncation {
         display: flex;
@@ -385,10 +387,19 @@ $variants: primary, secondary, light, surface;
       justify-content: center;
       align-items: center;
       font-style: normal;
+      border-style: none;
 
       &:focus {
         outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
         outline-style: solid;
+        outline-offset: 2px;
+      }
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      &:disabled {
+        cursor: not-allowed;
       }
     }
 
@@ -397,15 +408,14 @@ $variants: primary, secondary, light, surface;
       &.previous {
         order: 1;
       }
-    }
-    .ids-paginator__page-button-container {
-      order: 2;
-    }
-    .ids-paginator__page-button-arrow {
+
       &.next,
       &.last {
         order: 3;
       }
+    }
+    .ids-paginator__page-button-container {
+      order: 2;
     }
     .ids-paginator__help-text {
       order: 4;
@@ -423,7 +433,7 @@ $variants: primary, secondary, light, surface;
   @each $size in $sizes {
     &.ids-paginator-#{$size} {
       .ids-paginator__navigation-container {
-        gap: var(--ids-comp-paginator-size-gap-comfortable);
+        gap: var(--ids-comp-paginator-size-gap-#{$size});
 
         .ids-paginator__page-button {
           height: var(--ids-comp-paginator-page-links-size-height-#{$size});
@@ -436,6 +446,16 @@ $variants: primary, secondary, light, surface;
           letter-spacing: var(--ids-comp-paginator-page-links-label-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-paginator-page-links-label-typography-line-height-#{$size});
           border-radius: var(--ids-comp-paginator-page-links-page-link-size-border-radius-#{$size});
+        }
+
+        .ids-paginator__page-button-arrow {
+          gap: var(--ids-comp-paginator-page-links-size-gap-#{$size});
+          &.previous > .ids-paginator__page-button-arrow__label {
+            padding-right: var(--ids-comp-paginator-page-links-label-size-padding-right-#{$size});
+          }
+          &.next > .ids-paginator__page-button-arrow__label {
+            padding-left: var(--ids-comp-paginator-page-links-label-size-padding-left-#{$size});
+          }
         }
 
         .ids-paginator__page-button-truncation {
@@ -511,7 +531,7 @@ $variants: primary, secondary, light, surface;
     }
   }
 
-  &.ids-paginator-compact {
+  &.ids-paginator-compact-layout {
     .ids-paginator__navigation-container {
       .ids-paginator__page-button-container {
         display: none;
