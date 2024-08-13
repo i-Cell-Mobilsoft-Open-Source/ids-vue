@@ -24,31 +24,11 @@ const meta = {
     isValid: { control: 'boolean' },
     readonly: { control: 'boolean' },
     required: { control: 'boolean' },
-    id: { 
-      control: {
-        disable: true,
-      } 
-    },
-    name: { 
-      control: {
-        disable: true,
-      } 
-    },
-    value: { 
-      control: {
-        disable: true,
-      } 
-    },
-    tabindex: { 
-      control: {
-        disable: true,
-      } 
-    },
-    modelValue: {
-      table: {
-        disable: true,
-      }
-    },
+    id: { control: 'text' },
+    name: { control: 'text' },
+    value: { control: 'text' },
+    tabindex: { control: 'text' },
+    modelValue: { control: 'text' },
     modelModifiers: {
       table: {
         disable: true,

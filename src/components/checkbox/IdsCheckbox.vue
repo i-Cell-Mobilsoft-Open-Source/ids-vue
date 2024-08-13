@@ -328,9 +328,10 @@ $variants: light, dark, surface;
       -webkit-appearance: none;
       flex-shrink: 0;
       border-style: solid;
+      margin: 0;
 
       &:focus {
-        outline-offset: 3px;
+        outline-offset: 2px;
         outline-style: solid;
       }
 
@@ -361,8 +362,7 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-checkbox-#{$size} {
-      padding: var(--ids-comp-checkbox-container-size-padding-y-#{$size})
-        var(--ids-comp-checkbox-container-size-padding-x-#{$size});
+      padding: var(--ids-comp-checkbox-container-size-padding-y-#{$size}) var(--ids-comp-checkbox-container-size-padding-x-#{$size});
       gap: var(--ids-comp-checkbox-container-size-gap-#{$size});
 
       .ids-checkbox__input-wrapper {
@@ -392,12 +392,12 @@ $variants: light, dark, surface;
         .ids-checkbox__icon {
           height: var(--ids-comp-checkbox-input-size-icon-#{$size});
           width: var(--ids-comp-checkbox-input-size-icon-#{$size});
+          line-height: var(--ids-comp-checkbox-input-size-icon-#{$size});
         }
       }
 
       .ids-checkbox__label-wrapper {
-        padding: var(--ids-comp-checkbox-label-group-size-padding-y-#{$size})
-          var(--ids-comp-checkbox-label-group-size-padding-x-#{$size});
+        padding: var(--ids-comp-checkbox-label-group-size-padding-y-#{$size}) var(--ids-comp-checkbox-label-group-size-padding-x-#{$size});
         gap: var(--ids-comp-checkbox-label-group-size-gap-#{$size});
 
         .ids-checkbox__label-container {
@@ -405,7 +405,7 @@ $variants: light, dark, surface;
           font-weight: var(--ids-comp-checkbox-label-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-checkbox-label-typography-letter-spacing-#{$size});
           font-size: var(--ids-comp-checkbox-label-typography-font-size-#{$size});
-          line-height: var(--ids-comp-size-checkbox-label-typography-line-height-#{$size});
+          line-height: var(--ids-comp-checkbox-label-typography-line-height-#{$size});
         }
       }
     }
@@ -498,7 +498,7 @@ $variants: light, dark, surface;
   &.ng-invalid,
   &.ids-checkbox-invalid {
     @each $variant in $variants {
-      &.ids-checkbox.ids-checkbox-#{$variant} {
+      &.ids-checkbox-#{$variant} {
         .ids-checkbox__input-wrapper {
           input[type='checkbox'] {
             @include checkboxInputVariant($variant, false, true);
@@ -514,6 +514,4 @@ $variants: light, dark, surface;
     }
   }
 }
-
-
 </style>
