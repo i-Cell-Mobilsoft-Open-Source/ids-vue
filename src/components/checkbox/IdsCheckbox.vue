@@ -35,7 +35,7 @@ const checkboxTypes: IdsCheckboxStateType = IdsCheckboxState.UNCHECKED;
 const checkboxState = ref<IdsCheckboxStateType>(checkboxTypes);
 const checkboxRef = ref<HTMLInputElement | null>(null);
 const labelRef = ref<HTMLInputElement | null>(null);
-const model = defineModel<unknown, string>();
+const model = defineModel<unknown>();
 const $emit = defineEmits<IdsCheckboxEvents>();
 defineSlots<IdsCheckboxSlots>();
 

@@ -29,11 +29,6 @@ const meta = {
     value: { control: 'text' },
     tabindex: { control: 'text' },
     modelValue: { control: 'text' },
-    modelModifiers: {
-      table: {
-        disable: true,
-      }
-    },
   },
   parameters: {
     docs: {
