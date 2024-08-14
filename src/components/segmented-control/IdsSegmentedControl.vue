@@ -7,10 +7,14 @@ import { ModelRef, provide, ref, toRef } from 'vue';
 import { IdsSegmentedControlInjectedAttributes } from '@components/segmented-control/models/IdsSegmentedControlInjectedAttributes.interface';
 import { useSegmentedControl } from '@components/segmented-control/composables/UseSegmentedControl';
 import { SegmentedControlAttributes } from '@core/utils/Keys';
+import { IdsSegmentedControlEvents } from '@components/segmented-control/models/IdsSegmentedControlEvents.interface';
+import { IdsSegmentedControlSlots } from '@components/segmented-control/models/IdsSegmentedControlSlots.interface';
 
   const componentClass = 'ids-segmented-control';
   const model: ModelRef<unknown> = defineModel<unknown>();
   const segmentedControlRef = ref();
+  defineEmits<IdsSegmentedControlEvents>();
+  defineSlots<IdsSegmentedControlSlots>()
   
   const props = withDefaults(
     defineProps<IdsSegmentedControlProps>(),

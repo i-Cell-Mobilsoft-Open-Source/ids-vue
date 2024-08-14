@@ -385,6 +385,8 @@ $variants: primary, secondary, light, surface;
       display: flex;
       align-items: center;
       list-style: none;
+      margin: 0;
+      padding: 0;
 
       .ids-paginator__page-button-truncation {
         display: flex;

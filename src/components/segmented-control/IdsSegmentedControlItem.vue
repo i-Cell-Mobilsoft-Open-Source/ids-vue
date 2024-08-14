@@ -3,9 +3,11 @@ import { IdsSegmentedControlItemProps } from '@components/segmented-control/mode
 import IdsIcon from '@components/icon/IdsIcon.vue';
 import { useSegmentedControlItem } from '@components/segmented-control/composables/UseSegmentControlItem';
 import { ref, toRef } from 'vue';
+import { IdsSegmentedControlItemSlots } from '@components/segmented-control/models/IdsSegmentedControlItemSlots.interface';
 
 const componentClass = 'ids-segmented-control-item';
 const selectionControlItem = ref();
+defineSlots<IdsSegmentedControlItemSlots>();
 
 const props = withDefaults(
   defineProps<IdsSegmentedControlItemProps>(),
