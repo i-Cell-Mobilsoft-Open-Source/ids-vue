@@ -30,6 +30,7 @@ const meta = {
     variant: selectControlOptions(PaginatorVariant),
     disabled: { control: 'boolean' },
     isCompact: { control: 'boolean' },
+    showPrevNextLabel: { control: 'boolean' },
   },
 } satisfies Meta<typeof IdsPaginator>;
 
@@ -59,6 +60,34 @@ export const Default: Story = {
     variant: 'surface',
     disabled: false,
     isCompact: false,
+    showPrevNextLabel: false,
+  },
+};
+
+export const PaginatorCompactMode: Story = {
+  render: (args) => ({
+    components: { IdsPaginator },
+    setup() {
+      return { args };
+    },
+    template: '<IdsPaginator v-bind="args" />',
+  }),
+  args: {
+    id: 'paginator-2',
+    pageSize: 10,
+    pageSizeOptions: [10, 20, 50, 100],
+    showFirstLastButton: true,
+    showPageInfo: false,
+    showPageButtons: true,
+    showAllPages: false,
+    maxDisplayedItemCount: 7,
+    length: 120,
+    pageButtonAppearance: 'plain',
+    size: 'comfortable',
+    variant: 'primary',
+    disabled: false,
+    isCompact: true,
+    showPrevNextLabel: true,
   },
 };
 
@@ -71,7 +100,7 @@ export const PaginatorLightVariant: Story = {
     template: '<IdsPaginator v-bind="args" />',
   }),
   args: {
-    id: 'paginator-2',
+    id: 'paginator-3',
     pageSize: 10,
     pageSizeOptions: [10, 20, 50, 100],
     showFirstLastButton: true,
@@ -85,6 +114,7 @@ export const PaginatorLightVariant: Story = {
     variant: 'light',
     disabled: false,
     isCompact: false,
+    showPrevNextLabel: false,
   },
   parameters: {
     backgrounds: 

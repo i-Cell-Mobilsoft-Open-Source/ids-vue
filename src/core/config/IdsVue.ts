@@ -10,10 +10,12 @@ const IdsVueSymbol = Symbol();
 export const defaultOptions: defaultConfigOptions = {
   locale: {
     paginator: {
-      nextPageLabel: 'Go to next page',
-      previousPageLabel: 'Go to previous page',
-      firstPageLabel: 'Go to first page',
-      lastPageLabel: 'Go to last page',
+      nextPageLabel: 'Next',
+      previousPageLabel: 'Previous',
+      nextPageAriaLabel: 'Go to next page',
+      previousPageAriaLabel: 'Go to previous page',
+      firstPageAriaLabel: 'Go to first page',
+      lastPageAriaLabel: 'Go to last page',
       pageLabel: 'Go to page {page}',
       rangeLabel: 'Page {value1} of {value2}',
     }

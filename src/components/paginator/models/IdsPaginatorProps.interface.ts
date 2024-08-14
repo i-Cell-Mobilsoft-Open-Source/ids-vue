@@ -42,6 +42,11 @@ export interface IdsPaginatorProps {
   showAllPages?: boolean;
 
   /**
+   * Determines whether to show all "Previous" and "Next" navigation buttons label
+   */
+  showPrevNextLabel?: boolean;
+
+  /**
    * The maximum number of page buttons to display at once
    */
   maxDisplayedItemCount?: number;
