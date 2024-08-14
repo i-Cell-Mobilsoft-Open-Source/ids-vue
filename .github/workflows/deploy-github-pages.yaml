@@ -3,7 +3,7 @@ name: Build and Publish Storybook to GitHub Pages
 on:
   push:
     branches:
-      - "main"
+      - "feature/storybook-v2"
 
 permissions:
   contents: read
@@ -18,6 +18,6 @@ jobs:
     - id: storybook-build-publish
       uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
       with:
-        path: dist/storybook/widgets
+        path: storybook-static
         install_command: npx pnpm install
-        build_command: npm run build:storybook
+        build_command: npm run build-storybook
