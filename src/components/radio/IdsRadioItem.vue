@@ -6,9 +6,11 @@ import { IdsRadioItems } from '@components/radio/models/IdsRadioItems.interface'
 import { RadioAttributes } from '@core/utils/Keys';
 import { getRadioUid } from '@components/radio/utils/IdHandler';
 import { addClassPrefix } from '@core/utils/AddClassPrefix';
+import { IdsRadioSlots } from '@components/radio/models/IdsRadioSlots.interface';
 
   const componentClass = 'ids-radio-item';
   const inputRef = ref();
+  defineSlots<IdsRadioSlots>();
 
   const props = withDefaults(
     defineProps<IdsRadioItemProps>(),
