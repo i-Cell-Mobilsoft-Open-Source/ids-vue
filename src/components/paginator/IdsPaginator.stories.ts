@@ -77,7 +77,7 @@ export const PaginatorCompactMode: Story = {
     pageSize: 10,
     pageSizeOptions: [10, 20, 50, 100],
     showFirstLastButton: true,
-    showPageInfo: false,
+    showPageInfo: true,
     showPageButtons: true,
     showAllPages: false,
     maxDisplayedItemCount: 7,
@@ -115,6 +115,40 @@ export const PaginatorLightVariant: Story = {
     disabled: false,
     isCompact: false,
     showPrevNextLabel: false,
+  },
+  parameters: {
+    backgrounds: 
+      {
+        default: 'dark',
+      }
+    ,
+  },
+};
+
+export const PaginatorCompactModeLightVariant: Story = {
+  render: (args) => ({
+    components: { IdsPaginator },
+    setup() {
+      return { args };
+    },
+    template: '<IdsPaginator v-bind="args" />',
+  }),
+  args: {
+    id: 'paginator-2',
+    pageSize: 10,
+    pageSizeOptions: [10, 20, 50, 100],
+    showFirstLastButton: true,
+    showPageInfo: true,
+    showPageButtons: true,
+    showAllPages: false,
+    maxDisplayedItemCount: 7,
+    length: 120,
+    pageButtonAppearance: 'plain',
+    size: 'comfortable',
+    variant: 'light',
+    disabled: false,
+    isCompact: true,
+    showPrevNextLabel: true,
   },
   parameters: {
     backgrounds: 
