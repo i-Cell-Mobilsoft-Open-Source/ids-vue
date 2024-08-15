@@ -12,12 +12,16 @@ import { createComponentError } from '@core/utils/CreateError';
 import { useSelectionModel } from '@core/composables/SelectionModel';
 import { RadioAttributes } from '@core/utils/Keys';
 import { IdsRadioInjectedAttributes } from '@components/radio/models/IdsRadioInjectedAttributes.interface';
+import { IdsRadioGroupEvents } from '@components/radio//models/IdsRadioGroupEvents.interface';
+import { IdsRadioSlots } from '@components/radio/models/IdsRadioSlots.interface';
 
   const componentClass = 'ids-radio-group';
   const model: ModelRef<unknown> = defineModel<unknown>();
   const radioGroupRef = ref();
   const items = ref<IdsRadioItems[]>([]);
   const watchNotTrigger = ref<boolean>(false);
+  defineEmits<IdsRadioGroupEvents>();
+  defineSlots<IdsRadioSlots>();
 
   const { selected, select, deselect, isSelected, clear } = useSelectionModel<IdsRadioItems>(
     [],
@@ -244,7 +248,6 @@ import { IdsRadioInjectedAttributes } from '@components/radio/models/IdsRadioInj
   }
 </script>
 <template>
-  {{ validity }}
   <div :id="radioGroupId" ref="radioGroupRef" :class="classObject" role="radiogroup" @keydown="handleKeyDown($event)">
     <slot />
   </div>

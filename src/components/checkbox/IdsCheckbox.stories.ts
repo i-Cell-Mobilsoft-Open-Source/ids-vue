@@ -24,43 +24,13 @@ const meta = {
     isValid: { control: 'boolean' },
     readonly: { control: 'boolean' },
     required: { control: 'boolean' },
-    id: { 
-      control: {
-        disable: true,
-      } 
-    },
-    name: { 
-      control: {
-        disable: true,
-      } 
-    },
-    value: { 
-      control: {
-        disable: true,
-      } 
-    },
-    tabindex: { 
-      control: {
-        disable: true,
-      } 
-    },
-    modelValue: {
-      table: {
-        disable: true,
-      }
-    },
-    modelModifiers: {
-      table: {
-        disable: true,
-      }
-    },
+    id: { control: 'text' },
+    name: { control: 'text' },
+    value: { control: 'text' },
+    tabindex: { control: 'text' },
+    modelValue: { control: 'text' },
   },
   parameters: {
-    docs: {
-      description: {
-        component: 'Another description, overriding the comments'
-      },
-    },
     parameters: {
       backgrounds: {
         default: 'light',
@@ -76,7 +46,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Checkbox: Story = {
+export const Default: Story = {
   render: (args) => ({
     components: { IdsCheckbox },
     setup() {

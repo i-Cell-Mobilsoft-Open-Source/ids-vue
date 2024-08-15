@@ -18,10 +18,10 @@
       check
     </button>
     <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" v-model="checked" :size="'compact'" :variant="'surface'">
-      fefefefefef.
+      Test 1.
       <template #IdsHintMsg>
         <IdsSuccessMessage>
-          Teszt teszt tesz tesz teszt
+          Test Success Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -36,13 +36,10 @@
       :is-valid="validw"
       :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate($event)"
     >
-      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      Test 2.
       <template #IdsHintMsg>
         <IdsHintMessage>
-          <template #IdsMessagePrefix>
-            Asdaaaaaaa
-          </template>
-          Teszt teszt tesz tesz teszt
+          Test Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -50,7 +47,7 @@
       </template>
       <template #IdsErrorMsg>
         <IdsErrorMessage>
-          Teszt teszt tesz tesz teszt
+          Test Error Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -63,13 +60,13 @@
       :variant="'surface'" :readonly="false" :value="'alma'"
       :is-valid="validw"
     >
-      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      This is a test.
       <template #IdsHintMsg>
         <IdsHintMessage>
           <template #IdsMessagePrefix>
-            Asdaaaaaaa
+            Test Hint
           </template>
-          Teszt teszt tesz tesz teszt
+          Test Text
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -77,7 +74,7 @@
       </template>
       <template #IdsErrorMsg>
         <IdsErrorMessage>
-          Teszt teszt tesz tesz teszt
+          Test Error Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -90,13 +87,13 @@
       :variant="'surface'" :readonly="false" :value="'asd'"
       :is-valid="validw"
     >
-      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      Test Label 1.
       <template #IdsHintMsg>
         <IdsHintMessage>
           <template #IdsMessagePrefix>
-            Asdaaaaaaa
+            Test Prefix Hint Msg
           </template>
-          Teszt teszt tesz tesz teszt
+          Test Hint
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -104,14 +101,14 @@
       </template>
       <template #IdsErrorMsg>
         <IdsErrorMessage>
-          Teszt teszt tesz tesz teszt
+          Test Error Msg
           <template #idsMessageSuffix>
             13/50
           </template>
         </IdsErrorMessage>
       </template>
     </IdsCheckbox>
-    <p>ertek: {{ asd1 }}</p>
+    <p>value: {{ asd1 }}</p>
 
     <h3>Disabled</h3>
     <IdsCheckbox
@@ -125,26 +122,26 @@
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-id'" :key="index"
       :size="option.size" :variant="option.variant"
     >
-      Almafa Ez egy almafa nem tudom mit írjak e még ide.
+      This is a test msg.
     </IdsCheckbox>
     <IdsCheckbox
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-idn'" :key="index"
       :size="option.size" :variant="option.variant" :disabled="true" :indeterminate="true"
     >
-      Almafa Ez egy almafa nem tudom mit írjak e még ide.
+      This is a test msg.
     </IdsCheckbox>
     <h3>error</h3>
     <IdsCheckbox
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-error'" :key="index"
       :size="option.size" :variant="option.variant" :is-valid="false"
     >
-      Almafa Ez egy almafa nem tudom mit írjak e még ide.
+      This is a test msg.
     </IdsCheckbox>
     <IdsCheckbox
       v-for="(option, index) in allOptions" :id="'ids-checkbox-' + index + '-iererere'" :key="index"
       :size="option.size" :variant="option.variant" :invalid="true" :indeterminate="true"
     >
-      Almafa Ez egy almafa nem tudom mit írjak e még ide.
+      This is a test msg.
     </IdsCheckbox>
 
     <div class="demo dark-container">
@@ -155,40 +152,40 @@
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + 'li'" :key="index" :size="option"
         :variant="'light'" :indeterminate="false"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
       <h3>Disabled</h3>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-dilis'" :key="index"
         :size="option" :variant="'light'" :disabled="true"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
       <h3>indeterminate</h3>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-idli'" :key="index"
         :size="option" :variant="'light'" :indeterminate="true"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-idnli'" :key="index"
         :size="option" :variant="'light'" :disabled="true" :indeterminate="true"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
       <h3>error</h3>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-errorli'" :key="index"
         :size="option" :variant="'light'" :is-valid="false"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
       <IdsCheckbox
         v-for="(option, index) in allSizes" :id="'ids-checkbox-' + index + '-iererereli'" :key="index"
         :size="option" :variant="'light'" :is-valid="false" :indeterminate="true"
       >
-        Almafa Ez egy almafa nem tudom mit írjak e még ide.
+        This is a test msg.
       </IdsCheckbox>
     </div>
   </div>

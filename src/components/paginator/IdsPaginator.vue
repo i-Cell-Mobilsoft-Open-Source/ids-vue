@@ -31,6 +31,7 @@ const props = withDefaults(
     showFirstLastButton: true,
     showPageInfo: true,
     showPageButtons: true,
+    showPrevNextLabel: false,
     showAllPages: false,
     maxDisplayedItemCount: 7,
     length: undefined,
@@ -45,7 +46,7 @@ const props = withDefaults(
     [componentClass]: true,
     [addClassPrefix(componentClass, props.size)]: !!props.size,
     [addClassPrefix(componentClass, props.variant)]: !!props.variant,
-    [addClassPrefix(componentClass, 'compact')]: props.isCompact,
+    [addClassPrefix(componentClass, 'compact-layout')]: props.isCompact,
   }));
 
   const pageButtonClassObject = computed(() => 
@@ -101,9 +102,10 @@ const props = withDefaults(
   const showFirstLastButton = computed<boolean>(() => props.showFirstLastButton ?? true);
   const showPageButtons = computed<boolean>(() => props.showPageButtons ?? true);
   const showPageInfo = computed<boolean>(() => props.showPageInfo ?? true);
+  const compactLayout = computed<boolean>(() => props.isCompact ?? false);
   
   const pageButtons = computed<string[]>(() => {
-    return props.isCompact
+    return compactLayout.value
       ? []
       : getPageButtons(_pageIndex.value, getNumberOfPages.value, props.showAllPages, props.maxDisplayedItemCount);
   });
@@ -118,6 +120,9 @@ const props = withDefaults(
       return getRangeLabel(currentPageIndex, maxPageCount);
   });
 
+  const prevButtonLabel = computed(() => getLabel('previousPageLabel'));
+  const nextButtonLabel = computed(() => getLabel('nextPageLabel'));
+  
   function getSafePageSizeData(pageSizeOptions: number[], pageSize: number): { safePageSizeOptions: number[], safePageSize: number } {
     if (!pageSize || pageSize < 0) {
       throw new Error('Paginator: invalid pageSize value. Must be a number and greater than 0');
@@ -263,7 +268,7 @@ const props = withDefaults(
     }
   }
 
-  function getAriaLabel(labelType: string): string | undefined {
+  function getLabel(labelType: string): string | undefined {
     return instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator ? 
       instance?.appContext.config.globalProperties.$idsVue.config.locale.paginator[labelType] : undefined;
   }
@@ -289,7 +294,7 @@ const props = withDefaults(
         class="ids-paginator__page-button-arrow first"
         :class="pageButtonClassObject"
         :disabled="isPreviousButtonDisabled"
-        :aria-label="getAriaLabel('firstPageLabel')"
+        :aria-label="getLabel('firstPageAriaLabel')"
         @click="stepFirstPage()"
       >
         <idsIcon :icon="navigationIcon.first" />
@@ -300,12 +305,15 @@ const props = withDefaults(
         class="ids-paginator__page-button-arrow previous"
         :class="pageButtonClassObject"
         :disabled="isPreviousButtonDisabled"
-        :aria-label="getAriaLabel('previousPageLabel')"
+        :aria-label="getLabel('previousPageAriaLabel')"
         @click="stepPreviousPage()"
       >
         <idsIcon :icon="navigationIcon.prev" />
+        <span v-if="showPrevNextLabel && compactLayout" class="ids-paginator__page-button-arrow__label">
+          {{ prevButtonLabel }}
+        </span>
       </button>
-      <ul v-if="showPageButtons" class="ids-paginator__page-button-container">
+      <ul v-if="showPageButtons && !compactLayout" class="ids-paginator__page-button-container">
         <li v-for="pageButton in pageButtons" :key="pageButton">
           <div v-if="pageButton === '...'" class="ids-paginator__page-button-truncation">
             <idsIcon :icon="navigationIcon.truncation" />
@@ -317,6 +325,7 @@ const props = withDefaults(
             type="button"
             class="ids-paginator__page-button"
             :class="[pageButtonClassObject, +pageButton === pageIndex + 1 ? 'active' : '']"
+            :disabled="props.disabled"
             :aria-label="getAriaPageLabel(pageButton)"
             :aria-current="+pageButton === pageIndex + 1 ? 'page' : undefined"
             @click="stepPage(+pageButton - 1)"
@@ -330,9 +339,12 @@ const props = withDefaults(
         class="ids-paginator__page-button-arrow next"
         :class="pageButtonClassObject"
         :disabled="isNextButtonDisabled"
-        :aria-label="getAriaLabel('nextPageLabel')"
+        :aria-label="getLabel('nextPageAriaLabel')"
         @click="stepNextPage()"
       >
+        <span v-if="showPrevNextLabel && compactLayout" class="ids-paginator__page-button-arrow__label">
+          {{ nextButtonLabel }}
+        </span>
         <idsIcon :icon="navigationIcon.next" />
       </button>
 
@@ -342,7 +354,7 @@ const props = withDefaults(
         class="ids-paginator__page-button-arrow last"
         :class="pageButtonClassObject"
         :disabled="isNextButtonDisabled"
-        :aria-label="getAriaLabel('lastPageLabel')"
+        :aria-label="getLabel('lastPageAriaLabel')"
         @click="stepLastPage()"
       >
         <idsIcon :icon="navigationIcon.last" />
@@ -372,6 +384,9 @@ $variants: primary, secondary, light, surface;
     .ids-paginator__page-button-container {
       display: flex;
       align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
       .ids-paginator__page-button-truncation {
         display: flex;
@@ -385,10 +400,19 @@ $variants: primary, secondary, light, surface;
       justify-content: center;
       align-items: center;
       font-style: normal;
+      border-style: none;
 
       &:focus {
         outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
         outline-style: solid;
+        outline-offset: 2px;
+      }
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      &:disabled {
+        cursor: not-allowed;
       }
     }
 
@@ -397,15 +421,14 @@ $variants: primary, secondary, light, surface;
       &.previous {
         order: 1;
       }
-    }
-    .ids-paginator__page-button-container {
-      order: 2;
-    }
-    .ids-paginator__page-button-arrow {
+
       &.next,
       &.last {
         order: 3;
       }
+    }
+    .ids-paginator__page-button-container {
+      order: 2;
     }
     .ids-paginator__help-text {
       order: 4;
@@ -423,7 +446,7 @@ $variants: primary, secondary, light, surface;
   @each $size in $sizes {
     &.ids-paginator-#{$size} {
       .ids-paginator__navigation-container {
-        gap: var(--ids-comp-paginator-size-gap-comfortable);
+        gap: var(--ids-comp-paginator-size-gap-#{$size});
 
         .ids-paginator__page-button {
           height: var(--ids-comp-paginator-page-links-size-height-#{$size});
@@ -436,6 +459,16 @@ $variants: primary, secondary, light, surface;
           letter-spacing: var(--ids-comp-paginator-page-links-label-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-paginator-page-links-label-typography-line-height-#{$size});
           border-radius: var(--ids-comp-paginator-page-links-page-link-size-border-radius-#{$size});
+        }
+
+        .ids-paginator__page-button-arrow {
+          gap: var(--ids-comp-paginator-page-links-size-gap-#{$size});
+          &.previous > .ids-paginator__page-button-arrow__label {
+            padding-right: var(--ids-comp-paginator-page-links-label-size-padding-right-#{$size});
+          }
+          &.next > .ids-paginator__page-button-arrow__label {
+            padding-left: var(--ids-comp-paginator-page-links-label-size-padding-left-#{$size});
+          }
         }
 
         .ids-paginator__page-button-truncation {
@@ -511,7 +544,7 @@ $variants: primary, secondary, light, surface;
     }
   }
 
-  &.ids-paginator-compact {
+  &.ids-paginator-compact-layout {
     .ids-paginator__navigation-container {
       .ids-paginator__page-button-container {
         display: none;
