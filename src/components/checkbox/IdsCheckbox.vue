@@ -10,6 +10,7 @@ import { IdsCheckboxEvents } from '@components/checkbox/models/IdsCheckboxEvents
 import { IdsCheckboxSlots } from '@components/checkbox/models/IdsCheckboxSlots.interface.ts';
 import { addClassPrefix } from '@core/utils/AddClassPrefix.ts';
 import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMessageInjectedAttributes.interface';
+import { MessageAttributes } from '@core/utils/Keys';
 
 const componentClass = 'ids-checkbox';
 
@@ -72,7 +73,7 @@ const sizeValue = toRef(() => props.size);
 const variantValue = toRef(() => props.variant);
 const disabledValue = toRef(() => props.disabled);
 
-provide<IdsMessageInjectedAttributes>('componentAttributes', {sizeValue, variantValue, disabledValue});
+provide<IdsMessageInjectedAttributes>(MessageAttributes, {sizeValue, variantValue, disabledValue});
 
 onMounted(() => {
   if (checkboxRef.value) {

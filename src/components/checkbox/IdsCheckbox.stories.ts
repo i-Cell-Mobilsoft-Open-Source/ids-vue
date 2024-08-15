@@ -31,11 +31,6 @@ const meta = {
     modelValue: { control: 'text' },
   },
   parameters: {
-    docs: {
-      description: {
-        component: 'Another description, overriding the comments'
-      },
-    },
     parameters: {
       backgrounds: {
         default: 'light',

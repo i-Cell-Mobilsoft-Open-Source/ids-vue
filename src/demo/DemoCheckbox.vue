@@ -18,10 +18,10 @@
       check
     </button>
     <IdsCheckbox :id="'ids-checkbox-' + 4444555" :key="44444" v-model="checked" :size="'compact'" :variant="'surface'">
-      fefefefefef.
+      Test 1.
       <template #IdsHintMsg>
         <IdsSuccessMessage>
-          Teszt teszt tesz tesz teszt
+          Test Success Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -36,13 +36,10 @@
       :is-valid="validw"
       :indeterminate="indeterminate" @update:indeterminate="changeIndeterminate($event)"
     >
-      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      Test 2.
       <template #IdsHintMsg>
         <IdsHintMessage>
-          <template #IdsMessagePrefix>
-            Asdaaaaaaa
-          </template>
-          Teszt teszt tesz tesz teszt
+          Test Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -50,7 +47,7 @@
       </template>
       <template #IdsErrorMsg>
         <IdsErrorMessage>
-          Teszt teszt tesz tesz teszt
+          Test Error Msg
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -90,13 +87,13 @@
       :variant="'surface'" :readonly="false" :value="'asd'"
       :is-valid="validw"
     >
-      Teszt teszt teszt teszt teszt teszt Teszt teszt teszt teszt teszt teszt .
+      Test Label 1.
       <template #IdsHintMsg>
         <IdsHintMessage>
           <template #IdsMessagePrefix>
-            Asdaaaaaaa
+            Test Prefix Hint Msg
           </template>
-          Teszt teszt tesz tesz teszt
+          Test Hint
           <template #idsMessageSuffix>
             13/50
           </template>
@@ -104,7 +101,7 @@
       </template>
       <template #IdsErrorMsg>
         <IdsErrorMessage>
-          Teszt teszt tesz tesz teszt
+          Test Error Msg
           <template #idsMessageSuffix>
             13/50
           </template>

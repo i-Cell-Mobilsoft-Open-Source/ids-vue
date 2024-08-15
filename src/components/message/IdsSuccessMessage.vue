@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import IdsCheckMark from '@assets/IdsCheckMark.vue';
-import { Size, SizeType } from '@models/size.type';
-import { MessageVariant, MessageVariantType } from '@components/message/models/IdsMessageVariant.type.ts';
 import { IdsMessageProps } from '@components/message/models/IdsMessageProps.interface.ts';
-import { computed, inject } from 'vue';
-import { addClassPrefix } from '@core/utils/AddClassPrefix';
-import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMessageInjectedAttributes.interface';
+import { useMessage } from '@components/message/composables/useMessage';
+import { toRef } from 'vue';
+import { IdsMessageSlots } from '@components/message/models/IdsMessageSlots.interface';
 
   const componentClass = 'ids-message';
   const componentTypeClass = 'ids-success-message';
-  const { sizeValue, variantValue, disabledValue } = inject<IdsMessageInjectedAttributes>('componentAttributes', {});
+  defineSlots<IdsMessageSlots>();
 
   const props = withDefaults(
     defineProps<IdsMessageProps>(),{
@@ -19,37 +17,13 @@ import { IdsMessageInjectedAttributes } from '@components/message/models/IdsMess
     },
   );
 
-  const disabled = computed<boolean>(() => {
-    return props.disabled !== undefined ? props.disabled : getParentIsDisabled();
-  });
-
-  const variant = computed<string>(() => {
-    return props.variant !== undefined ? props.variant : getParentVariant();
-  });
-
-  const size = computed<string>(() => {
-    return props.size !== undefined ? props.size : getParentSize();
-  });
-
-  const classObject = computed(() => ({
-    [componentClass]: true,
-    [componentTypeClass]: true,
-    [addClassPrefix(componentClass, size.value)]: size.value,
-    [addClassPrefix(componentClass, variant.value)]: variant.value,
-    [addClassPrefix(componentClass, 'disabled')]: disabled.value,
-  }));
-
-  function getParentSize(): SizeType {
-    return sizeValue ? sizeValue.value : Size.COMFORTABLE;
-  };
-
-  function getParentIsDisabled(): boolean {
-    return disabledValue ? disabledValue.value : false;
-  };
-
-  function getParentVariant(): MessageVariantType{
-    return variantValue ? variantValue.value : MessageVariant.SURFACE;
-  };
+  const { classObject } = useMessage(
+    toRef(() => props.size),
+    toRef(() => props.variant),
+    toRef(() => props.disabled),
+    componentClass, 
+    componentTypeClass
+  );
 </script>
 <template>
   <div :class="classObject">
@@ -76,8 +50,9 @@ $variants: light, dark, surface;
   align-items: center;
   font-style: normal;
 
-  .ids-message__prefix {
+  .ids-message__prefix, .ids-message__suffix {
     display: flex;
+    align-items: center;
   }
 
   .ids-message__text {
@@ -149,5 +124,4 @@ $variants: light, dark, surface;
     }
   }
 }
-
 </style>
