@@ -10,7 +10,7 @@ import { ComponentInternalInstance, computed, getCurrentInstance } from 'vue';
   const props = withDefaults(
   defineProps<IdsIconProps>(),
   {
-    iconComponent: undefined,
+    icon: undefined,
     size: undefined,
   });
 
@@ -35,12 +35,13 @@ import { ComponentInternalInstance, computed, getCurrentInstance } from 'vue';
 $sizes: compact, comfortable, spacious, dense;
 
 .ids-icon {
+  display: flex;
+  flex-shrink: 0;
   color: currentColor;
   fill: currentColor;
 
   @each $size in $sizes {
     &.ids-icon-#{$size} {
-      // FIXME: using icon-button's icon size tokens for now
       width: var(--ids-comp-icon-button-size-icon-#{$size});
       height: var(--ids-comp-icon-button-size-icon-#{$size});
     }

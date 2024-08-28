@@ -1,7 +1,6 @@
 import { 
         TagAppearanceType,
-        CardAppearanceType, 
-        ButtonAppearanceType, 
+        CardAppearanceType,
         IconButtonAppearanceType, 
         AccordionAppearanceType, 
         } from "@models/appearances";
@@ -10,18 +9,6 @@ import { SizeType } from "@models/size.type";
 import { AllVariantsType, SurfaceVariantType } from "@models/variants";
 import { OrientationType } from "./orientation.type";
 import { Component } from "vue";
-
-
-export interface ButtonConfig {
-    size?: SizeType,
-    isDisabled?: boolean,
-    leadingIcon?: Component,
-    trailingIcon?: Component,
-    variant?: AllVariantsType,
-    type?: ButtonTypeAttributeType,
-    appearance?: ButtonAppearanceType,
-}
-
 export interface TagConfig {
     link?: string,
     size?: SizeType,

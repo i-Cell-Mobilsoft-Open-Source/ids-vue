@@ -20,7 +20,7 @@
 export { default as IdsVue } from "./core/config/IdsVue.ts";
 export { default as IdsTag } from "./components/IdsTag.vue";
 export { default as IdsDialog } from "./components/IdsDialog.vue";
-export { default as IdsButton } from "./components/IdsButton.vue";
+export { default as IdsButton } from "./components/button/IdsButton.vue";
 export { default as IdsAvatar } from "./components/IdsAvatar.vue";
 export { default as IdsDivider } from "./components/IdsIconButton.vue";
 export { default as IdsAccordion } from "./components/IdsAccordion.vue";

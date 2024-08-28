@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import IdsButton from '../components/IdsButton.vue';
+import IdsButton from '../components/button/IdsButton.vue';
 import IdsDialog from '../components/IdsDialog.vue';
 
 const showDialog = ref(false);

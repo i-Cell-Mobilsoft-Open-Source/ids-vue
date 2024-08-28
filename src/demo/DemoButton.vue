@@ -22,7 +22,7 @@
       v-for="(option, index) in disabledOptions" 
       :id="`${option.appearance}-${option.variant}-${option.size}-disabled-button`" 
       :key="index"
-      :is-disabled="true"
+      :disabled="true"
       :size="option.size" 
       :appearance="option.appearance" 
       :leading-icon="BoltIcon" 
@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
-import IdsButton from "../components/IdsButton.vue";
+import IdsButton from "../components/button/IdsButton.vue";
 type ButtonOptions = {
   appearance?: "filled" | "outlined" | "text";
   size?: "compact" | "comfortable" | "spacious";
