@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { BoltIcon, BeakerIcon } from "@heroicons/vue/24/solid";
-import IdsTag from "../components/IdsTag.vue";
+import IdsTag from "../components/tag/IdsTag.vue";
 
 type TagOptions = {
   appearance?: "filled" | "outlined";

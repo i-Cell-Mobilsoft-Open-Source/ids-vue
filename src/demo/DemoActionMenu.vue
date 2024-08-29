@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
-import IdsButton from "../components/IdsButton.vue";
+import IdsButton from "../components/button/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
 import IdsActionItem from "../components/IdsActionItem.vue";
 const isMenuOpen = ref<boolean>(false);
