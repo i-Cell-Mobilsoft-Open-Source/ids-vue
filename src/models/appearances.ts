@@ -21,13 +21,6 @@
   
   export type ActionItemAppearanceType = (typeof ActionItemAppearance)[keyof typeof ActionItemAppearance];
   
-  export const TagAppearance = {
-    FILLED: 'filled',
-    OUTLINED: 'outlined'
-  } as const;
-  
-  export type TagAppearanceType = (typeof TagAppearance)[keyof typeof TagAppearance];
-  
   export const AccordionAppearance = {
     FILLED: 'filled',
     TEXT: 'text'

@@ -18,7 +18,7 @@
 
 
 export { default as IdsVue } from "./core/config/IdsVue.ts";
-export { default as IdsTag } from "./components/IdsTag.vue";
+export { default as IdsTag } from "./components/tag/IdsTag.vue";
 export { default as IdsDialog } from "./components/IdsDialog.vue";
 export { default as IdsButton } from "./components/button/IdsButton.vue";
 export { default as IdsAvatar } from "./components/IdsAvatar.vue";
