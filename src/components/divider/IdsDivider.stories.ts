@@ -31,10 +31,10 @@ export const Default: Story = {
     setup() {
       return { args }
     },
-    template: '<IdsDivider v-bind="args" :style="setVerticalHeight" />',
+    template: '<div :style="setVerticalHeight"><IdsDivider v-bind="args" /></div>',
     computed: {
       setVerticalHeight() {
-        return this.args.type === Orientation.VERTICAL ? { height: '200px' } : {};
+        return this.args.type === Orientation.VERTICAL ? { height: '100vh' } : {};
       }
     }
   }),
@@ -51,10 +51,10 @@ export const VerticalDivider: Story = {
     setup() {
       return { args };
     },
-    template: '<IdsDivider v-bind="args" :style="setVerticalHeight" />',
+    template: '<div :style="setVerticalHeight"><IdsDivider v-bind="args" :style="setVerticalHeight" /></div>',
     computed: {
       setVerticalHeight() {
-        return this.args.type === Orientation.VERTICAL ? { height: '200px' } : {};
+        return this.args.type === Orientation.VERTICAL ? { height: '100vh' } : {};
       }
     }
   }),

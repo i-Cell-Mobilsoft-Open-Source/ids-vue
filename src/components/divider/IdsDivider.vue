@@ -49,9 +49,11 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
       &.ids-divider-horizontal {
         height: var(--ids-comp-divider-size-height-#{$size});
+        width: 100%;
       }
       &.ids-divider-vertical {
         width: var(--ids-comp-divider-size-width-#{$size});
+        height: 100%;
       }
     }
   }

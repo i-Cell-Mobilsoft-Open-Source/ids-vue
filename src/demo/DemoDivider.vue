@@ -73,9 +73,7 @@ for (const size of allSizes) {
 
 .demo2 {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
-  margin-bottom: 40px;
   flex-grow: 1;
 }
 
