@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref, reactive, withDefaults, onMounted, onBeforeUnmount } from 'vue';
-import IdsIconButton from './IdsIconButton.vue';
+import IdsIconButton from './icon-button/IdsIconButton.vue';
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { DialogConfig } from '@models/interfaces';
 import { Size } from '@models/size.type';

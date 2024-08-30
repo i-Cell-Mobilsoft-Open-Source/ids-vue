@@ -1,9 +1,7 @@
 import { 
         CardAppearanceType,
-        IconButtonAppearanceType, 
         AccordionAppearanceType, 
         } from "@models/appearances";
-import { ButtonTypeAttributeType } from "@models/attributes";
 import { SizeType } from "@models/size.type";
 import { AllVariantsType, SurfaceVariantType } from "@models/variants";
 import { OrientationType } from "./orientation.type";
@@ -27,15 +25,6 @@ export interface ActionItemConfig {
     leadingIcon?: Component,
     trailingIcon?: Component,
     appearance?: "text" | "filled",
-}
-
-export interface IconButtonConfig {
-    isDisabled?: boolean,
-    icon?: Component,
-    mode?: IconButtonAppearanceType,
-    type?: ButtonTypeAttributeType,
-    size?: SizeType,
-    variant?: AllVariantsType,
 }
 
 export interface DividerConfig {

@@ -7,7 +7,7 @@
       :key="index"
       :icon="BeakerIcon"
       :size="option.size"
-      :mode="option.mode" 
+      :appearance="option.mode" 
       :variant="option.variant"
     />
 
@@ -21,8 +21,8 @@
       :key="index"
       :icon="BeakerIcon"
       :size="option.size"
-      :is-disabled="true"
-      :mode="option.mode" 
+      :disabled="true"
+      :appearance="option.mode" 
       :variant="option.variant"
     />
   </div>
@@ -30,7 +30,7 @@
  
 <script setup lang="ts">
 import { BeakerIcon } from '@heroicons/vue/24/solid'
-import IdsIconButton  from '../components/IdsIconButton.vue';
+import IdsIconButton  from '../components/icon-button/IdsIconButton.vue';
 type IconButtonOptions = {
   mode?: "filled" | "outlined" | "standard",
   size?: "compact" | "comfortable" | "spacious",
