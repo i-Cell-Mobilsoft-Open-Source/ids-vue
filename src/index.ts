@@ -22,7 +22,7 @@ export { default as IdsTag } from "./components/tag/IdsTag.vue";
 export { default as IdsDialog } from "./components/IdsDialog.vue";
 export { default as IdsButton } from "./components/button/IdsButton.vue";
 export { default as IdsAvatar } from "./components/IdsAvatar.vue";
-export { default as IdsDivider } from "./components/icon-button/IdsIconButton.vue";
+export { default as IdsDivider } from "./components/divider/IdsDivider.vue";
 export { default as IdsAccordion } from "./components/IdsAccordion.vue";
 export { default as IdsIconButton } from "./components/icon-button/IdsIconButton.vue";
 export { default as IdsActionItem } from "./components/IdsActionItem.vue";
