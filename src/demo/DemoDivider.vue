@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import IdsDivider from "../components/IdsDivider.vue";
+import IdsDivider from "../components/divider/IdsDivider.vue";
 type DividerOptions = {
   size?: "compact" | "comfortable" | "spacious";
   variant?:
@@ -76,6 +76,7 @@ for (const size of allSizes) {
   flex-direction: row;
   gap: 1rem;
   margin-bottom: 40px;
+  flex-grow: 1;
 }
 
 </style>

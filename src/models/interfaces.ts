@@ -4,7 +4,6 @@ import {
         } from "@models/appearances";
 import { SizeType } from "@models/size.type";
 import { AllVariantsType, SurfaceVariantType } from "@models/variants";
-import { OrientationType } from "./orientation.type";
 import { Component } from "vue";
 
 export interface AccordionConfig {
@@ -25,14 +24,6 @@ export interface ActionItemConfig {
     leadingIcon?: Component,
     trailingIcon?: Component,
     appearance?: "text" | "filled",
-}
-
-export interface DividerConfig {
-    type?: OrientationType,
-    size?: SizeType,
-    variant?: AllVariantsType,
-    width?: string,
-    height?: string,
 }
 
 export interface DialogConfig {
