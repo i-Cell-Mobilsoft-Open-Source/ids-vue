@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <h2>ActionItemButtons</h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-button`"
       :key="index"
@@ -11,13 +11,13 @@
       :appearance="option.appearance"
     >
       {{ option.appearance + " " + option.size }} button
-    </IdsActionItem>
+    </IdsMenuItem>
 
     <!-- Active Buttons -->
     <h2 class="pt-2">
       Active ActionItemButtons
     </h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-button`"
       :key="index"
@@ -28,31 +28,31 @@
       :is-active="true"
     >
       {{ option.appearance + " " + option.size }} button
-    </IdsActionItem>
+    </IdsMenuItem>
 
     <!-- Disabled Buttons -->
     <h2 class="pt-2">
       Disabled ActionItemButtons
     </h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-button-disabled`"
       :key="index"
-      :is-disabled="true"
+      :disabled="true"
       :size="option.size"
       :appearance="option.appearance"
       :leading-icon="AdjustmentsVerticalIcon"
       :trailing-icon="ChevronDownIcon"
     >
       {{ option.appearance + " " + option.size }} button
-    </IdsActionItem>
+    </IdsMenuItem>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { AdjustmentsVerticalIcon } from "@heroicons/vue/24/solid";
-import IdsActionItem from "../components/IdsActionItem.vue";
+import IdsMenuItem from "../components/menu-item/IdsMenuItem.vue";
 type ButtonOptions = {
   appearance?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";

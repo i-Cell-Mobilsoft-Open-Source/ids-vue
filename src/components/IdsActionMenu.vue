@@ -131,20 +131,6 @@ onBeforeUnmount(() => {
   }
 }
 
-:deep(.ids-action-menu__panel--container > *) {
-  width: 100%;
-}
-
-:deep(button) {
-  
-  &:hover {
-    border-color: transparent;
-  }
-
-  &:focus {
-    outline: none !important;
-  }
-}
 
 .filled {
   @include commonMixin;
