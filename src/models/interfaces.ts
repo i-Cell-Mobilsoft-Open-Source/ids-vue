@@ -13,19 +13,6 @@ export interface AccordionConfig {
     appearance?: AccordionAppearanceType,
 }
 
-export interface ActionItemConfig {
-    link?: string,
-    size?: SizeType,
-    isActive?: boolean,
-    variant?: "surface",
-    isDisabled?: boolean,
-    interactive?: boolean,
-    type?: "button" | "link",  
-    leadingIcon?: Component,
-    trailingIcon?: Component,
-    appearance?: "text" | "filled",
-}
-
 export interface DialogConfig {
     backDrop?: boolean,
     size?: SizeType,

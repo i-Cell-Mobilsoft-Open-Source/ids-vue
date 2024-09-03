@@ -2,11 +2,11 @@
   <div class="demo">
     <h2>Action Panel</h2>
     <IdsActionPanel
-      v-for="(option, index) in allOptions" :id="`${option.mode}-${option.size}-button`" :key="index"
-      :size="option.size" :mode="option.mode"
+      v-for="(option, index) in allOptions" :id="`${option.appearance}-${option.size}-button`" :key="index"
+      :size="option.size" :appearance="option.mode"
     >
       <IdsActionItem
-        v-for="(item, i) in repeatedItems" :key="i" :leading-icon="ClockIcon"
+        v-for="(item, i) in repeatedItems" :key="i" :leading-icon="ClockIcon" appearance="filled"
         :trailing-icon="ChevronRightIcon"
       >
         {{ item + ' ' + i }}
@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { ClockIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
-import IdsActionPanel from "../components/IdsActionPanel.vue";
-import IdsActionItem from "../components/IdsActionItem.vue";
+import IdsActionPanel from "../components/action-panel/IdsActionPanel.vue";
+import IdsActionItem from "../components/action-item/IdsActionItem.vue";
 type ButtonOptions = {
   mode?: "filled" | "outlined" | "elevated";
   size?: "compact";

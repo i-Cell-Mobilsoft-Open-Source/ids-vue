@@ -8,24 +8,28 @@
         </IdsButton>
       </template>
       <template #panel>
-        <IdsActionItem v-for="(item, i) in repeatedItems" :key="i" :trailing-icon="ChevronRightIcon">
-          {{ item + ' ' + i }}
-        </IdsActionItem>
+        <IdsActionPanel>
+          <IdsActionItem v-for="(item, i) in repeatedItems" :key="i" :trailing-icon="ChevronRightIcon">
+            {{ item + ' ' + i }}
+          </IdsActionItem>
 
-        <IdsActionItem>
-          <IdsActionMenu panel-mode="outlined">
-            <template #action>
-              <IdsActionItem :trailing-icon="ChevronRightIcon">
-                another menu
-              </IdsActionItem>
-            </template>
-            <template #panel>
-              <IdsActionItem v-for="(item, i) in repeatedItems" :key="i">
-                {{ item + ' ' + i }}
-              </IdsActionItem>
-            </template>
-          </IdsActionMenu>
-        </IdsActionItem>
+          <IdsActionItem>
+            <IdsActionMenu panel-mode="outlined">
+              <template #action>
+                <IdsActionItem :trailing-icon="ChevronRightIcon">
+                  another menu
+                </IdsActionItem>
+              </template>
+              <template #panel>
+                <IdsActionPanel>
+                  <IdsActionItem v-for="(item, i) in repeatedItems" :key="i">
+                    {{ item + ' ' + i }}
+                  </IdsActionItem>
+                </IdsActionPanel>
+              </template>
+            </IdsActionMenu>
+          </IdsActionItem>
+        </IdsActionPanel>
       </template>
     </IdsActionMenu>
   </div>
@@ -36,7 +40,8 @@ import { computed, ref } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/button/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
-import IdsActionItem from "../components/IdsActionItem.vue";
+import IdsActionItem from "../components/action-item/IdsActionItem.vue";
+import IdsActionPanel from "../components/action-panel/IdsActionPanel.vue";
 const isMenuOpen = ref<boolean>(false);
 
 const icon = computed(() => {

@@ -38,7 +38,7 @@
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-button-disabled`"
       :key="index"
-      :is-disabled="true"
+      :disabled="true"
       :size="option.size"
       :appearance="option.appearance"
       :leading-icon="AdjustmentsVerticalIcon"
@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { AdjustmentsVerticalIcon } from "@heroicons/vue/24/solid";
-import IdsActionItem from "../components/IdsActionItem.vue";
+import IdsActionItem from "../components/action-item/IdsActionItem.vue";
 type ButtonOptions = {
   appearance?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";
