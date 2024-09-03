@@ -133,17 +133,17 @@ onBeforeUnmount(() => {
 
 
 .filled {
-  //@include commonMixin;
+  @include commonMixin;
 }
 
 .outlined {
-  //@include commonMixin;
+  @include commonMixin;
   border: v-bind('actionPanelStyle.outlinedBorder');
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.00), 0px 0px 0px 0px rgba(0, 0, 0, 0.00);
 }
 
 .elevated {
-  //@include commonMixin;
+  @include commonMixin;
   box-shadow:
     var(--ids-smc-reference-container-effects-shadow-horizontal-none) 
     var(--ids-smc-reference-container-effects-shadow-vertical-xxl) 

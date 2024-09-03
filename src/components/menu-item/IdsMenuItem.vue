@@ -1,35 +1,35 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { IdsActionItemProps } from "@components/action-item/models/IdsActionItemProps.interface";
+import { IdsMenuItemProps } from "@components/menu-item/models/IdsMenuItemProps.interface";
 import { addClassPrefix } from "@core/utils/AddClassPrefix";
 import IdsIcon from "@components/icon/IdsIcon.vue";
-import { IdsActionItemSlots } from "@components/action-item/models/IdsActionItemSlots.interface";
+import { IdsMenuItemSlots } from "@components/menu-item/models/IdsMenuItemSlots.interface";
 import { Size } from "@models/size.type";
-import { IdsActionItemVariant } from "@components/action-item/models/IdsActionItemVariant.type";
-import { IdsActionItemAppearance } from "@components/action-item/models/IdsActionItemAppearance.type";
-import { IdsActionItemTypeAttribute } from "@components/action-item/models/IdsActionItemTypeAttribute.type";
+import { IdsMenuItemVariant } from "@components/menu-item/models/IdsMenuItemVariant.type";
+import { IdsMenuItemAppearance } from "@components/menu-item/models/IdsMenuItemAppearance.type";
+import { IdsMenuItemTypeAttribute } from "@components/menu-item/models/IdsMenuItemTypeAttribute.type";
 
 const componentClass = 'ids-action-item';
-defineSlots<IdsActionItemSlots>();
+defineSlots<IdsMenuItemSlots>();
 
 const props = withDefaults(
-  defineProps<IdsActionItemProps>(),    
+  defineProps<IdsMenuItemProps>(),    
   {
-    type: IdsActionItemTypeAttribute.BUTTON,
+    type: IdsMenuItemTypeAttribute.BUTTON,
     link: undefined,
     isActive: false,
     disabled: false,
-    variant: IdsActionItemVariant.SURFACE,
-    appearance: IdsActionItemAppearance.TEXT,
+    variant: IdsMenuItemVariant.SURFACE,
+    appearance: IdsMenuItemAppearance.TEXT,
     size: Size.COMFORTABLE,
     leadingIcon: undefined,
     trailingIcon: undefined,
   },
 );
 
-const hrefLink = computed(() => (props.type === IdsActionItemTypeAttribute.LINK ? props.link : undefined));
-const componentType = computed(() => (props.type === IdsActionItemTypeAttribute.BUTTON ? 'button' : 'a'));
-const buttonType = computed(() => (props.type === IdsActionItemTypeAttribute.BUTTON ? 'button' : undefined));
+const hrefLink = computed(() => (props.type === IdsMenuItemTypeAttribute.LINK ? props.link : undefined));
+const componentType = computed(() => (props.type === IdsMenuItemTypeAttribute.BUTTON ? 'button' : 'a'));
+const buttonType = computed(() => (props.type === IdsMenuItemTypeAttribute.BUTTON ? 'button' : undefined));
 
 const classObject = computed(() => ({
   [componentClass]: true,

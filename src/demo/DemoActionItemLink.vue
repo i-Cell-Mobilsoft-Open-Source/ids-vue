@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <h2>ActionItemLink</h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-link`"
       :key="index"
@@ -13,13 +13,13 @@
       link="#"
     >
       {{ option.appearance + " " + option.size }} link
-    </IdsActionItem>
+    </IdsMenuItem>
 
     <!-- Active links -->
     <h2 class="pt-2">
       Active ActionItemLinks
     </h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-link`"
       :key="index"
@@ -32,13 +32,13 @@
       link="#"
     >
       {{ option.appearance + " " + option.size }} link
-    </IdsActionItem>
+    </IdsMenuItem>
 
     <!-- Disabled links -->
     <h2 class="pt-2">
       Disabled ActionItemlinks
     </h2>
-    <IdsActionItem
+    <IdsMenuItem
       v-for="(option, index) in allOptions"
       :id="`${option.appearance}-${option.size}-link`"
       :key="index"
@@ -49,14 +49,14 @@
       :trailing-icon="ChevronRightIcon"
     >
       {{ option.appearance + " " + option.size }} link
-    </IdsActionItem>
+    </IdsMenuItem>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ClockIcon } from "@heroicons/vue/24/solid";
 import { ChevronRightIcon } from "@heroicons/vue/24/solid";
-import IdsActionItem from "../components/action-item/IdsActionItem.vue";
+import IdsMenuItem from "../components/menu-item/IdsMenuItem.vue";
 type LinkOptions = {
   appearance?: "filled" | "text";
   size?: "compact" | "comfortable" | "spacious";

@@ -9,26 +9,26 @@
       </template>
       <template #panel>
         <IdsActionPanel>
-          <IdsActionItem v-for="(item, i) in repeatedItems" :key="i" :trailing-icon="ChevronRightIcon">
+          <IdsMenuItem v-for="(item, i) in repeatedItems" :key="i" :trailing-icon="ChevronRightIcon">
             {{ item + ' ' + i }}
-          </IdsActionItem>
+          </IdsMenuItem>
 
-          <IdsActionItem>
+          <IdsMenuItem>
             <IdsActionMenu panel-mode="outlined">
               <template #action>
-                <IdsActionItem :trailing-icon="ChevronRightIcon">
+                <IdsMenuItem :trailing-icon="ChevronRightIcon">
                   another menu
-                </IdsActionItem>
+                </IdsMenuItem>
               </template>
               <template #panel>
                 <IdsActionPanel>
-                  <IdsActionItem v-for="(item, i) in repeatedItems" :key="i">
+                  <IdsMenuItem v-for="(item, i) in repeatedItems" :key="i">
                     {{ item + ' ' + i }}
-                  </IdsActionItem>
+                  </IdsMenuItem>
                 </IdsActionPanel>
               </template>
             </IdsActionMenu>
-          </IdsActionItem>
+          </IdsMenuItem>
         </IdsActionPanel>
       </template>
     </IdsActionMenu>
@@ -40,7 +40,7 @@ import { computed, ref } from 'vue';
 import { ChevronUpIcon, ChevronDownIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import IdsButton from "../components/button/IdsButton.vue";
 import IdsActionMenu from "../components/IdsActionMenu.vue";
-import IdsActionItem from "../components/action-item/IdsActionItem.vue";
+import IdsMenuItem from "../components/menu-item/IdsMenuItem.vue";
 import IdsActionPanel from "../components/action-panel/IdsActionPanel.vue";
 const isMenuOpen = ref<boolean>(false);
 

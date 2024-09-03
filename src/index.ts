@@ -25,7 +25,7 @@ export { default as IdsAvatar } from "./components/IdsAvatar.vue";
 export { default as IdsDivider } from "./components/divider/IdsDivider.vue";
 export { default as IdsAccordion } from "./components/IdsAccordion.vue";
 export { default as IdsIconButton } from "./components/icon-button/IdsIconButton.vue";
-export { default as IdsActionItem } from "./components/action-item/IdsActionItem.vue";
+export { default as IdsMenuItem } from "./components/menu-item/IdsMenuItem.vue";
 export { default as IdsActionPanel } from "./components/action-panel/IdsActionPanel.vue";
 export { default as IdsActionMenu } from "./components/IdsActionMenu.vue";
 export { default as IdsCheckbox } from "./components/checkbox/IdsCheckbox.vue";

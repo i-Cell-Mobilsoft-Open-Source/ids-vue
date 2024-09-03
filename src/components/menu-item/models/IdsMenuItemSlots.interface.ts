@@ -1,9 +1,9 @@
 import { Slot } from "vue";
 
 /**
- * Slots for the Action Item component
+ * Slots for the Menu Item component
  */
-export interface IdsActionItemSlots {
+export interface IdsMenuItemSlots {
   /**
    * The default slot content.
    * @slot default
