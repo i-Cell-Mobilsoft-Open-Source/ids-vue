@@ -21,12 +21,8 @@
       </template>
       <template #action>
         <div class="dialog-action-btn-container">
-          <IdsButton mode="text">
-            Label
-          </IdsButton>
-     
           <div class="dialog-action-btn-container__end">
-            <IdsButton mode="outlined" @click="showDialog = false">
+            <IdsButton appearance="outlined" @click="showDialog = false">
               Cancel
             </IdsButton>
             <IdsButton @click="showDialog = false">
