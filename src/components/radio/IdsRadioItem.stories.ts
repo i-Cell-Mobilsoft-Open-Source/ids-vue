@@ -40,6 +40,7 @@ export const Default: Story = {
     id: 'radio-item-1',
     ariaLabel: 'Default Radio',
     tabindex: 0,
+    value: undefined,
     disabled: false,
   },
 };
