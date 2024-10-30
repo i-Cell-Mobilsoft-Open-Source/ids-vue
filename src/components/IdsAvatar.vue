@@ -18,7 +18,7 @@ const avatarStyle = reactive({
   //enabled
   gap: `var(--ids-comp-avatar-size-gap-${props.size})`,
   color: `var(--ids-comp-avatar-color-fg-${props.variant}-default)`,
-  background: ` var(--ids-comp-avatar-color-bg-${props.variant}-default)`,
+  background: props.image ? 'none' : `var(--ids-comp-avatar-color-bg-${props.variant}-default)`,
   borderRadius: `var(--ids-comp-avatar-size-border-radius-${props.size})`,
   padding: props.image ? "0px" : `var(--ids-comp-avatar-size-padding-y-${props.size}) var(--ids-comp-avatar-size-padding-x-${props.size})`,
   border: `var(--ids-comp-avatar-size-border-${props.size}) solid var(--ids-comp-avatar-color-border-${props.variant}-default)`,
@@ -65,7 +65,7 @@ const avatarStyle = reactive({
     <component :is="interactive ? 'button' : 'div'" :type="interactive ? 'button': ''" :class="[size, 'ids-avatar', { 'light': props.variant === 'light' }]">
       <slot v-if="$slots.default" />
       <div v-else>
-        <img v-if="image" :src="image" class="img-size">
+        <img v-if="image" :src="image" class="img-size object-fit-cover">
         <svg
           v-else width="52" height="52" viewBox="0 0 52 52"
           fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -196,6 +196,10 @@ $sizes: compact, comfortable, spacious, dense;
 
 .p-0 {
   padding: 0px;
+}
+
+.object-fit-cover {
+  object-fit: cover;
 }
 
 //variants
