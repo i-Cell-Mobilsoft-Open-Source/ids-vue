@@ -39,6 +39,7 @@ export const Default: Story = {
   args: {
     id: 'segmented-control-item-1',
     name: 'item1',
+    value: undefined,
     ariaLabel: 'Label 1',
     label: 'Label 1',
     tabindex: 0,
