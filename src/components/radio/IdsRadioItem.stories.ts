@@ -38,9 +38,9 @@ export const Default: Story = {
   }),
   args: {
     id: 'radio-item-1',
+    value: undefined,
     ariaLabel: 'Default Radio',
     tabindex: 0,
-    value: undefined,
     disabled: false,
   },
 };
@@ -64,8 +64,9 @@ export const RadioItemDisabled: Story = {
   }),
   args: {
     id: 'radio-item-2',
+    value: undefined,
     ariaLabel: 'Disabled Radio',
     tabindex: 0,
-    disabled: true,
+    disabled: true,    
   },
 };
