@@ -64,6 +64,7 @@ export const SegmentedControlItemDisabled: Story = {
   args: {
     id: 'segmented-control-item-2',
     name: 'item1',
+    value: undefined,
     ariaLabel: 'Label 1',
     label: 'Label 1',
     tabindex: 0,
@@ -101,6 +102,7 @@ export const SegmentedControlItemWithIcon: Story = {
   args: {
     id: 'segmented-control-item-3',
     name: 'item1',
+    value: undefined,
     ariaLabel: 'Label 1',
     label: 'Label 1',
     tabindex: 0,
@@ -137,6 +139,7 @@ export const SegmentedControlItemWithSuffix: Story = {
   args: {
     id: 'segmented-control-item-4',
     name: 'item1',
+    value: undefined,
     ariaLabel: 'Label 1',
     label: 'Label 1',
     tabindex: 0,
@@ -183,6 +186,7 @@ export const SegmentedControlItemWithIconAndSuffix: Story = {
   args: {
     id: 'segmented-control-item-5',
     name: 'item1',
+    value: undefined,
     ariaLabel: 'Label 1',
     label: 'Label 1',
     tabindex: 0,
