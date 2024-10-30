@@ -1,6 +1,6 @@
 {
-  "name": "@baller/ids",
-  "version": "1.0.39",
+  "name": "@i-cell/ids-vue",
+  "version": "2.0.0",
   "description": "i-ds",
   "private": false,
   "type": "module",
